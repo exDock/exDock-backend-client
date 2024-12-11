@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-void main() async {
-  runApp(const LoginPage());
-}
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -22,11 +23,32 @@ class LoginForm extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
 
-    Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>> login(
+    Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>?> login(
         BuildContext context) async {
-      return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Incorrect email or Password"),
-      ));
+      FlutterSecureStorage storage = FlutterSecureStorage();
+      Uri uri = Uri.http("127.0.0.1", "/api/v1/token");
+      http.Response response = await http.post(uri,
+          headers: {"content-type": "application/json"},
+          body: jsonEncode({
+            "email": emailController.text,
+            "password": passwordController.text
+          }));
+
+      if (response.statusCode == 200) {
+        await storage.write(key: "jwt", value: response.body);
+        if (context.mounted) {
+          context.go("/");
+        }
+        return null;
+      } else {
+        if (context.mounted) {
+          return ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Incorrect email or Password"),
+          ));
+        } else {
+          return null;
+        }
+      }
     }
 
     return Scaffold(

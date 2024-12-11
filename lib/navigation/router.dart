@@ -1,13 +1,29 @@
-import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
 
-void main() async {
-  FlutterSecureStorage storage = FlutterSecureStorage();
-  http.Response response =
-      await http.get(Uri.http("127.0.0.1", "/api/v1/token"), headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-  });
-  await storage.write(key: "jwt", value: response.body);
-  print(await storage.read(key: "jwt"));
-}
+import '../auth/login.dart';
+import '../main.dart';
+
+final GoRouter goRouter = GoRouter(
+    routes: <RouteBase>[
+      GoRoute(
+          path: "/",
+          builder: (BuildContext context, GoRouterState state) {
+            return const MyHomePage(title: "ExDock");
+          }),
+      GoRoute(
+          path: "/login",
+          builder: (BuildContext context, GoRouterState state) {
+            return const LoginPage();
+          }),
+    ],
+    redirect: (BuildContext context, GoRouterState state) async {
+      FlutterSecureStorage storage = FlutterSecureStorage();
+      String? token = await storage.read(key: "jwt");
+      if (token == null) {
+        return "/login";
+      } else {
+        return null;
+      }
+    });

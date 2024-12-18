@@ -1,5 +1,6 @@
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/navigation_rail_destinations.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ExDockNavigationRail extends StatefulWidget {
   const ExDockNavigationRail({super.key});
@@ -19,9 +20,10 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
       onDestinationSelected: (newIndex) {
         setState(() {
           selectedIndex = newIndex;
+          context.push(navigationRailDestinations.keys.toList()[newIndex]);
         });
       },
-      destinations: navigationRailDestinations,
+      destinations: navigationRailDestinations.values.toList(),
     );
   }
 }

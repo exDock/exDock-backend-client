@@ -1,41 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
-const List<NavigationRailDestination> navigationRailDestinations = [
-  NavigationRailDestination(
+const Map<String, NavigationRailDestination> navigationRailDestinations = {
+  "/home": NavigationRailDestination(
     icon: Icon(Icons.home_rounded),
     label: Text("home"),
   ),
-  NavigationRailDestination(
+  "/sales": NavigationRailDestination(
     icon: Icon(Symbols.request_quote_rounded),
     label: Text("sales"),
   ),
-  NavigationRailDestination(
+  "/catalog": NavigationRailDestination(
     icon: Icon(Symbols.package_2_rounded),
     label: Text("catalog"),
   ),
-  NavigationRailDestination(
+  "/customers": NavigationRailDestination(
     icon: Icon(Symbols.emoji_people_rounded),
     label: Text("customers"),
   ),
-  NavigationRailDestination(
+  "/marketing": NavigationRailDestination(
     icon: Icon(Symbols.campaign_sharp),
     label: Text("marketing"),
   ),
-  NavigationRailDestination(
+  "/content": NavigationRailDestination(
     icon: Icon(Symbols.newspaper_rounded),
     label: Text("content"),
   ),
-  NavigationRailDestination(
+  "/reports": NavigationRailDestination(
     icon: Icon(Symbols.monitoring_rounded),
     label: Text("reports"),
   ),
-  NavigationRailDestination(
+  "/stores": NavigationRailDestination(
     icon: Icon(Symbols.storefront_rounded),
     label: Text("stores"),
   ),
-  NavigationRailDestination(
+  "/system": NavigationRailDestination(
     icon: Icon(Symbols.host_rounded),
     label: Text("system"),
   ),
-];
+};

@@ -1,5 +1,5 @@
+import 'package:exdock_backend_client/pages/page_wrapper/side_bar/exdock_navigation_rail.dart';
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key, required this.width});
@@ -11,8 +11,6 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
-  int selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,19 +26,7 @@ class _SideBarState extends State<SideBar> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
-              child: NavigationRail(
-                destinations: const [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home_rounded),
-                    label: Text("home"),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Symbols.request_quote_rounded),
-                    label: Text("sales"),
-                  ),
-                ],
-                selectedIndex: selectedIndex,
-              ),
+              child: ExDockNavigationRail(),
             ),
             Container(
               height: widget.width,

@@ -1,4 +1,4 @@
-import 'package:exdock_backend_client/pages/page_wrapper/side_bar.dart';
+import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/top_bar.dart';
 import 'package:flutter/material.dart';
 

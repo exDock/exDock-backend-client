@@ -25,12 +25,14 @@ class _NotificationsState extends State<Notifications> {
     "Notification 13",
     "Notification 14",
   ]; // Sample notifications
+  double dropdownHeight = 200;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 250,
-      child: Column(
+      child: Stack(
+        clipBehavior: Clip.none, // Allow overflow
         children: [
           // Notification Bar
           GestureDetector(
@@ -53,7 +55,7 @@ class _NotificationsState extends State<Notifications> {
                     notifications.isEmpty
                         ? "No unread notifications"
                         : notifications.first,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
                   Icon(
                     isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
@@ -64,23 +66,36 @@ class _NotificationsState extends State<Notifications> {
             ),
           ),
           // Expandable List
-          AnimatedContainer(
-            duration: Duration(milliseconds: 300),
-            height: isExpanded ? 200 : 0, // Adjust the height for expansion
-            child: Container(
-              decoration: BoxDecoration(color: Theme.of(context).canvasColor),
-              child: notifications.isEmpty
-                  ? Center(child: Text("No notifications"))
-                  : ListView.builder(
-                      itemCount: notifications.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(notifications[index]),
-                        );
-                      },
-                    ),
+          if (isExpanded)
+            Positioned(
+              top: 60, // Position below the notification bar
+              left: 0,
+              right: 0,
+              child: Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: dropdownHeight,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).canvasColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: notifications.isEmpty
+                      ? Center(child: Text("No notifications"))
+                      : SizedBox(
+                          height: dropdownHeight,
+                          child: ListView.builder(
+                            itemCount: notifications.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: Text(notifications[index]),
+                              );
+                            },
+                          ),
+                        ),
+                ),
+              ),
             ),
-          ),
         ],
       ),
     );

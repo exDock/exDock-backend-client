@@ -12,34 +12,28 @@ final GoRouter router = GoRouter(
         return Scaffold(
           body: Stack(
             children: [
-              SizedBox(
-                height: double.infinity,
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 100),
-                  child: Stack(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 100),
-                          child: Stack(
-                            children: [
-                              child,
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Scope(),
-                              ),
-                            ],
+              Padding(
+                padding: const EdgeInsets.only(left: 100),
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 100),
+                      child: Stack(
+                        children: [
+                          child,
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Scope(),
                           ),
-                        ),
+                        ],
                       ),
-                      const TopBar(
-                        height: 100,
-                        pageName: "testPageName",
-                        breadCrumbs: "test > bread > crumbs",
-                      ),
-                    ],
-                  ),
+                    ),
+                    const TopBar(
+                      height: 100,
+                      pageName: "testPageName",
+                      breadCrumbs: "test > bread > crumbs",
+                    ),
+                  ],
                 ),
               ),
               const SideBar(width: 100),

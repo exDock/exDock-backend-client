@@ -40,7 +40,9 @@ class _TopBarState extends State<TopBar> {
             Row(
               children: [
                 Search(),
+                SizedBox(width: 24),
                 Notifications(),
+                SizedBox(width: 24),
                 AccountWidget(),
               ],
             ),

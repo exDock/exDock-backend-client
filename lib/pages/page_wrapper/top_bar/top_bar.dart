@@ -1,4 +1,7 @@
+import 'package:exdock_backend_client/pages/page_wrapper/top_bar/account_widget.dart';
+import 'package:exdock_backend_client/pages/page_wrapper/top_bar/notifications.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/page_name.dart';
+import 'package:exdock_backend_client/pages/page_wrapper/top_bar/search.dart';
 import 'package:flutter/material.dart';
 
 class TopBar extends StatefulWidget {
@@ -35,7 +38,11 @@ class _TopBarState extends State<TopBar> {
             PageName(
                 pageName: widget.pageName, breadCrumbs: widget.breadCrumbs),
             Row(
-              children: [],
+              children: [
+                Search(),
+                Notifications(),
+                AccountWidget(),
+              ],
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -25,6 +26,11 @@ class _NotificationsState extends State<Notifications> {
     "Notification 13",
     "Notification 14",
   ]; // Sample notifications
+
+  late Widget notificationIcon = Icon(
+    Symbols.notifications_rounded,
+    color: Theme.of(context).primaryColor,
+  );
 
   OverlayEntry? _overlayEntry;
 
@@ -101,14 +107,27 @@ class _NotificationsState extends State<Notifications> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                notifications.isEmpty
-                    ? "No unread notifications"
-                    : notifications.first,
-                style: TextStyle(color: Colors.black),
+              if (notifications.isEmpty)
+                notificationIcon
+              else
+                Badge(
+                    label: Text("${notifications.length}"),
+                    child: notificationIcon),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
+                    notifications.isEmpty
+                        ? "No unread notifications"
+                        : notifications.first,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
               ),
               Icon(
-                isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
+                isExpanded
+                    ? Symbols.keyboard_arrow_up_rounded
+                    : Symbols.keyboard_arrow_down_rounded,
                 color: Colors.black,
               ),
             ],

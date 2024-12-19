@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:flutter/material.dart';
 
 class Scope extends StatefulWidget {
@@ -16,7 +17,7 @@ class _ScopeState extends State<Scope> {
         borderRadius: BorderRadius.only(
           bottomRight: Radius.circular(10),
         ),
-        boxShadow: [BoxShadow(blurRadius: 15)],
+        boxShadow: kBoxShadowList,
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),

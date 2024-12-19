@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/account_widget.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/notifications.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/page_name.dart';
@@ -28,7 +29,7 @@ class _TopBarState extends State<TopBar> {
       width: double.infinity,
       decoration: const BoxDecoration(
         color: Colors.white,
-        boxShadow: [BoxShadow(blurRadius: 15)],
+        boxShadow: kBoxShadowList,
       ),
       child: Padding(
         padding: const EdgeInsets.all(24),

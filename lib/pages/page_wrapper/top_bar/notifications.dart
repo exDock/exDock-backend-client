@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class Notifications extends StatefulWidget {
@@ -101,7 +102,7 @@ class _NotificationsState extends State<Notifications> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [BoxShadow(blurRadius: 15)],
+            boxShadow: kBoxShadowList,
           ),
           padding: EdgeInsets.all(14),
           child: Row(

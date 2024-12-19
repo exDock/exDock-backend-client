@@ -41,10 +41,11 @@ class _AccountWidgetState extends State<AccountWidget> {
                       height: badgeSize,
                       width: badgeSize,
                       decoration: BoxDecoration(
-                          color: Colors.red.shade800,
-                          borderRadius: BorderRadius.circular(badgeSize / 2)),
+                        color: Colors.red.shade800,
+                        borderRadius: BorderRadius.circular(badgeSize / 2),
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
       ),

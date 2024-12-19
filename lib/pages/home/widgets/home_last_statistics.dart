@@ -13,6 +13,39 @@ class HomeLastStatistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).canvasColor,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 15,
+            color: Colors.black.withOpacity(.5),
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Column(
+            children: [
+              Text("Last orders"),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Text("Customer name"),
+                      Text("Items"),
+                      Text("Total"),
+                    ],
+                  ),
+                  // TODO: stripe
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

@@ -14,7 +14,7 @@ class _AccountWidgetState extends State<AccountWidget> {
     size: 48,
     Symbols.account_circle_rounded,
   );
-  double badgeSize = 11;
+  double badgeSize = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,9 @@ class _AccountWidgetState extends State<AccountWidget> {
             ? accountIcon
             : Stack(
                 children: [
-                  accountIcon,
+                  Align(alignment: Alignment.center, child: accountIcon),
                   Positioned(
-                    top: 5,
+                    top: 6,
                     right: 6,
                     child: Container(
                       height: badgeSize,

@@ -9,21 +9,45 @@ class AccountWidget extends StatefulWidget {
 }
 
 class _AccountWidgetState extends State<AccountWidget> {
-  bool attentionRequired = false;
+  bool attentionRequired = true;
+  Widget accountIcon = Icon(
+    size: 48,
+    Symbols.account_circle_rounded,
+  );
+  double badgeSize = 11;
 
   @override
   Widget build(BuildContext context) {
-    if (attentionRequired) {
-      return MaterialButton(
-        onPressed: () {},
-        child: Badge(
-          child: Icon(Symbols.account_circle_rounded),
-        ),
-      );
-    }
-    return MaterialButton(
+    return TextButton(
+      style: ButtonStyle(
+        iconColor: WidgetStatePropertyAll(
+            Theme.of(context).textTheme.bodyMedium?.color),
+        textStyle:
+            WidgetStatePropertyAll(Theme.of(context).textTheme.bodyMedium),
+        padding: WidgetStatePropertyAll(EdgeInsets.zero),
+      ),
       onPressed: () {},
-      child: Icon(Symbols.account_circle_rounded),
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: !attentionRequired
+            ? accountIcon
+            : Stack(
+                children: [
+                  accountIcon,
+                  Positioned(
+                    top: 5,
+                    right: 6,
+                    child: Container(
+                      height: badgeSize,
+                      width: badgeSize,
+                      decoration: BoxDecoration(
+                          color: Colors.red.shade800,
+                          borderRadius: BorderRadius.circular(badgeSize / 2)),
+                    ),
+                  )
+                ],
+              ),
+      ),
     );
   }
 }

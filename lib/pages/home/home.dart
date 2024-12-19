@@ -64,7 +64,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(24),
+      padding: const EdgeInsets.all(24),
       child: FutureBuilder(
           future: getHomeData(),
           builder: (context, snapshot) {

@@ -14,7 +14,8 @@ class HomeSynchronous extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
+        Flexible(
+          flex: 3,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -42,13 +43,20 @@ class HomeSynchronous extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 24),
-        Row(
-          children: [
-            HomeTopStatistics(
-              topProducts: homeData.topProducts,
-              topSearches: homeData.topSearches,
-            ),
-          ],
+        Flexible(
+          flex: 2,
+          child: Row(
+            children: [
+              Expanded(
+                child: HomeTopStatistics(
+                  topProducts: homeData.topProducts,
+                  topSearches: homeData.topSearches,
+                ),
+              ),
+              const SizedBox(width: 24),
+              const Expanded(child: Placeholder()),
+            ],
+          ),
         ),
       ],
     );

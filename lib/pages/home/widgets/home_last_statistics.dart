@@ -1,4 +1,5 @@
 import 'package:exdock_backend_client/pages/home/home_data.dart';
+import 'package:exdock_backend_client/pages/home/widgets/dashboard_table_3_columns.dart';
 import 'package:flutter/material.dart';
 
 class HomeLastStatistics extends StatelessWidget {
@@ -10,6 +11,8 @@ class HomeLastStatistics extends StatelessWidget {
 
   final List<HomeDataOrder> lastOrders;
   final List<HomeDataSearch> lastSearches;
+
+  final double widthTotal = 72;
 
   @override
   Widget build(BuildContext context) {
@@ -25,26 +28,30 @@ class HomeLastStatistics extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        children: [
-          Column(
-            children: [
-              Text("Last orders"),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Text("Customer name"),
-                      Text("Items"),
-                      Text("Total"),
-                    ],
-                  ),
-                  // TODO: stripe
-                ],
-              )
-            ],
-          )
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Row(
+          children: [
+            Expanded(
+              child: DashboardTable3Columns(
+                title: "Last orders",
+                column0Name: "Customer name",
+                column1Name: "items",
+                column2Name: "total",
+                values: List<List<String>>.generate(
+                  lastOrders.length,
+                  (index) {
+                    return [
+                      lastOrders[index].customerName,
+                      lastOrders[index].itemCount.toString(),
+                      "€ ${lastOrders[index].totalAmount}",
+                    ];
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

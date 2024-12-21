@@ -3,6 +3,7 @@ import 'package:exdock_backend_client/router/routes/content.dart';
 import 'package:exdock_backend_client/router/routes/customers.dart';
 import 'package:exdock_backend_client/router/routes/home.dart';
 import 'package:exdock_backend_client/router/routes/marketing.dart';
+import 'package:exdock_backend_client/router/routes/products.dart';
 import 'package:exdock_backend_client/router/routes/reports.dart';
 import 'package:exdock_backend_client/router/routes/sales.dart';
 import 'package:exdock_backend_client/router/routes/stores.dart';
@@ -22,6 +23,7 @@ List<GoRoute> getRoutes() {
     ...getCatalogRoutes(),
     ...getCustomersRoutes(),
     ...getMarketingRoutes(),
+    ...getProductsRoutes(),
     ...getContentRoutes(),
     ...getReportsRoutes(),
     ...getStoresRoutes(),

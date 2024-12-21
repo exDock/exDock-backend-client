@@ -12,8 +12,6 @@ class HomeLastStatistics extends StatelessWidget {
   final List<HomeDataOrder> lastOrders;
   final List<HomeDataSearch> lastSearches;
 
-  final double widthTotal = 72;
-
   @override
   Widget build(BuildContext context) {
     return Container(

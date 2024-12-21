@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/pages/home/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {

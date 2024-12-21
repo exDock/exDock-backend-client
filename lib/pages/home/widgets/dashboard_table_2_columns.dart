@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
-class DashboardTable3Columns extends StatelessWidget {
-  const DashboardTable3Columns({
+class DashboardTable2Columns extends StatelessWidget {
+  const DashboardTable2Columns({
     super.key,
     required this.title,
     required this.column0Name,
     required this.column1Name,
-    required this.column2Name,
     required this.values,
   });
 
   final String title;
   final String column0Name;
   final String column1Name;
-  final String column2Name;
   final List<List<String>> values;
 
   final double widthTotal = 72;
@@ -57,18 +55,6 @@ class DashboardTable3Columns extends StatelessWidget {
                     ),
                     textAlign: TextAlign.right,
                   ),
-                  SizedBox(
-                    width: widthTotal,
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        column2Name,
-                        style: standardTextStyle.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
               Padding(
@@ -102,16 +88,6 @@ class DashboardTable3Columns extends StatelessWidget {
                             values[index][1],
                             style: standardTextStyle,
                             textAlign: TextAlign.right,
-                          ),
-                          SizedBox(
-                            width: widthTotal,
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                values[index][2],
-                                style: standardTextStyle,
-                              ),
-                            ),
                           ),
                         ],
                       ),

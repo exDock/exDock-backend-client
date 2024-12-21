@@ -50,6 +50,25 @@ class HomeLastStatistics extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(width: 24),
+            Expanded(
+              child: DashboardTable3Columns(
+                title: "Last searches",
+                column0Name: "search term",
+                column1Name: "results",
+                column2Name: "uses",
+                values: List<List<String>>.generate(
+                  lastSearches.length,
+                  (index) {
+                    return [
+                      lastSearches[index].searchTerm,
+                      lastSearches[index].results.toString(),
+                      lastSearches[index].uses.toString(),
+                    ];
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),

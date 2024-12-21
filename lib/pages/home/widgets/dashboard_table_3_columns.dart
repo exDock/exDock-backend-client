@@ -18,6 +18,10 @@ class DashboardTable3Columns extends StatelessWidget {
 
   final double widthTotal = 72;
 
+  static const TextStyle standardTextStyle = TextStyle(
+    fontSize: 16,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,33 +31,50 @@ class DashboardTable3Columns extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
         ),
+        const SizedBox(height: 12),
         Expanded(
           child: Column(
             children: [
               Row(
                 children: [
                   Expanded(
-                    child: Text(column0Name),
+                    child: Text(
+                      column0Name,
+                      style: standardTextStyle.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   Text(
                     column1Name,
+                    style: standardTextStyle.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                     textAlign: TextAlign.right,
                   ),
                   SizedBox(
                     width: widthTotal,
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: Text(column2Name),
+                      child: Text(
+                        column2Name,
+                        style: standardTextStyle.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
+                  horizontal: 10,
+                  vertical: 5,
                 ),
                 child: Container(
                   height: 2,
@@ -67,25 +88,33 @@ class DashboardTable3Columns extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: values.length,
                   itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        Expanded(
-                          child: Text(values[index][0]),
-                        ),
-                        Text(
-                          values[index][1].toString(),
-                          textAlign: TextAlign.right,
-                        ),
-                        SizedBox(
-                          width: widthTotal,
-                          child: Align(
-                            alignment: Alignment.centerRight,
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        children: [
+                          Expanded(
                             child: Text(
-                              values[index][2],
+                              values[index][0],
+                              style: standardTextStyle,
                             ),
                           ),
-                        ),
-                      ],
+                          Text(
+                            values[index][1].toString(),
+                            style: standardTextStyle,
+                            textAlign: TextAlign.right,
+                          ),
+                          SizedBox(
+                            width: widthTotal,
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                values[index][2],
+                                style: standardTextStyle,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),

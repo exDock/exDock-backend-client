@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:flutter/material.dart';
 
 class PageName extends StatefulWidget {
@@ -8,19 +9,36 @@ class PageName extends StatefulWidget {
 }
 
 class _PageNameState extends State<PageName> {
+  final ValueNotifier<String> _pathNotifier = ValueNotifier<String>(path);
+
   String capitalise(String input) {
+    if (input == "") return "";
     return input[0].toUpperCase() + input.substring(1).toLowerCase();
   }
 
   @override
+  void initState() {
+    _pathNotifier.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pathNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<String> breadCrumbsList = Uri.base.path.split("/");
-    breadCrumbsList.removeAt(0);
-    breadCrumbsList.removeLast();
+    List<String> breadCrumbsList = _pathNotifier.value.split("/");
+    if (breadCrumbsList.isNotEmpty) breadCrumbsList.removeAt(0);
+    if (breadCrumbsList.isNotEmpty) breadCrumbsList.removeLast();
     String breadCrumbs = breadCrumbsList.join(" > ").replaceAll("-", " ");
 
     Widget pageNameWidget = Text(
-      capitalise(Uri.base.path.split("/").last).replaceAll("-", " "),
+      capitalise(_pathNotifier.value.split("/").last).replaceAll("-", " "),
       style: Theme.of(context).textTheme.headlineLarge,
     );
     if (breadCrumbs != "") {

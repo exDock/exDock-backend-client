@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/scope.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/top_bar.dart';
@@ -9,6 +10,7 @@ final GoRouter router = GoRouter(
   routes: [
     ShellRoute(
       builder: (_, GoRouterState state, child) {
+        path = state.uri.path;
         return Scaffold(
           body: Stack(
             children: [

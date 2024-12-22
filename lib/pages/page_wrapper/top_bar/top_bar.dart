@@ -40,7 +40,7 @@ class _TopBarState extends State<TopBar> {
                 pageName: widget.pageName, breadCrumbs: widget.breadCrumbs),
             Row(
               children: [
-                Search(),
+                Search(width: 400),
                 SizedBox(width: 24),
                 Notifications(),
                 SizedBox(width: 24),

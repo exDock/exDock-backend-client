@@ -10,7 +10,7 @@ final GoRouter router = GoRouter(
   routes: [
     ShellRoute(
       builder: (_, GoRouterState state, child) {
-        path = state.uri.path;
+        pathNotifier.value = state.uri.path;
         return Scaffold(
           body: Stack(
             children: [

@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/pages/catalog/category/category.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,7 +10,7 @@ List<GoRoute> getCatalogRoutes() {
     ),
     GoRoute(
       path: '/catalog/category',
-      builder: (context, state) => const Placeholder(),
+      builder: (context, state) => Category(),
     ),
   ];
 }

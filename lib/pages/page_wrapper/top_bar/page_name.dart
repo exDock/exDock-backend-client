@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PageName extends StatelessWidget {
+class PageName extends StatefulWidget {
   const PageName({super.key});
 
+  @override
+  State<PageName> createState() => _PageNameState();
+}
+
+class _PageNameState extends State<PageName> {
   String capitalise(String input) {
     return input[0].toUpperCase() + input.substring(1).toLowerCase();
   }

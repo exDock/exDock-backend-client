@@ -7,5 +7,9 @@ List<GoRoute> getCatalogRoutes() {
       path: '/catalog',
       builder: (context, state) => const Placeholder(),
     ),
+    GoRoute(
+      path: '/catalog/category',
+      builder: (context, state) => const Placeholder(),
+    ),
   ];
 }

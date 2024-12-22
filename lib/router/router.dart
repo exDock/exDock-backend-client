@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 final GoRouter router = GoRouter(
   routes: [
     ShellRoute(
-      builder: (_, GoRouterState state, child) {
+      builder: (context, GoRouterState state, child) {
         pathNotifier.value = state.uri.path;
         return Scaffold(
           body: Stack(

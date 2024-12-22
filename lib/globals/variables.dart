@@ -16,5 +16,4 @@ class StringNotifier extends ChangeNotifier {
   }
 }
 
-String path = Uri.base.path;
 StringNotifier pathNotifier = StringNotifier(Uri.base.path);

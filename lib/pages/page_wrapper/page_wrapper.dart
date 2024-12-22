@@ -19,11 +19,7 @@ class _MainPageWrapperState extends State<MainPageWrapper> {
           SideBar(width: 100),
           Column(
             children: [
-              TopBar(
-                height: 100,
-                pageName: "pageNameTest",
-                breadCrumbs: "test > bread > crumbs",
-              ),
+              TopBar(height: 100),
             ],
           )
         ],

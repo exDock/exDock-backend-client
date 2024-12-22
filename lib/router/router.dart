@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/scope.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/top_bar.dart';
@@ -8,7 +9,8 @@ import 'package:go_router/go_router.dart';
 final GoRouter router = GoRouter(
   routes: [
     ShellRoute(
-      builder: (_, GoRouterState state, child) {
+      builder: (context, GoRouterState state, child) {
+        pathNotifier.value = state.uri.path;
         return Scaffold(
           body: Stack(
             children: [
@@ -30,8 +32,6 @@ final GoRouter router = GoRouter(
                     ),
                     const TopBar(
                       height: 100,
-                      pageName: "testPageName",
-                      breadCrumbs: "test > bread > crumbs",
                     ),
                   ],
                 ),

@@ -30,8 +30,6 @@ final GoRouter router = GoRouter(
                     ),
                     const TopBar(
                       height: 100,
-                      pageName: "testPageName",
-                      breadCrumbs: "test > bread > crumbs",
                     ),
                   ],
                 ),

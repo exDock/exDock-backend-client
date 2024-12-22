@@ -9,13 +9,9 @@ class TopBar extends StatelessWidget {
   const TopBar({
     super.key,
     required this.height,
-    required this.pageName,
-    this.breadCrumbs,
   });
 
   final double height;
-  final String pageName;
-  final String? breadCrumbs;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +27,7 @@ class TopBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            PageName(pageName: pageName, breadCrumbs: breadCrumbs),
+            PageName(),
             Row(
               children: [
                 Search(width: 400),

@@ -2,9 +2,9 @@ import 'package:exdock_backend_client/pages/catalog/category/category_data.dart'
 import 'package:flutter/material.dart';
 
 class CategorySynchronous extends StatefulWidget {
-  const CategorySynchronous({super.key, required this.categoryData});
+  const CategorySynchronous({super.key, required this.categoryTree});
 
-  final CategoryData categoryData;
+  final CategoryTree categoryTree;
 
   @override
   State<CategorySynchronous> createState() => _CategorySynchronousState();

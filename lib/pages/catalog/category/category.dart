@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 class Category extends StatelessWidget {
   const Category({super.key});
 
-  Future<CategoryData> getCategoryData() async {
-    return CategoryData();
+  Future<CategoryTree> getCategoryTree() async {
+    return CategoryTree([]);
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getCategoryData(),
+      future: getCategoryTree(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             !snapshot.hasError) {
-          return CategorySynchronous(categoryData: snapshot.data!);
+          return CategorySynchronous(categoryTree: snapshot.data!);
         }
         if (snapshot.hasError) {
           //

@@ -5,7 +5,7 @@ import 'package:exdock_backend_client/pages/page_wrapper/top_bar/page_name.dart'
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/search.dart';
 import 'package:flutter/material.dart';
 
-class TopBar extends StatefulWidget {
+class TopBar extends StatelessWidget {
   const TopBar({
     super.key,
     required this.height,
@@ -18,17 +18,12 @@ class TopBar extends StatefulWidget {
   final String? breadCrumbs;
 
   @override
-  State<TopBar> createState() => _TopBarState();
-}
-
-class _TopBarState extends State<TopBar> {
-  @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height,
+      height: height,
       width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: Theme.of(context).indicatorColor,
         boxShadow: kBoxShadowList,
       ),
       child: Padding(
@@ -36,8 +31,7 @@ class _TopBarState extends State<TopBar> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            PageName(
-                pageName: widget.pageName, breadCrumbs: widget.breadCrumbs),
+            PageName(pageName: pageName, breadCrumbs: breadCrumbs),
             Row(
               children: [
                 Search(width: 400),

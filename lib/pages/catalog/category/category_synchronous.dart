@@ -81,7 +81,18 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleLarge
-                                        ?.copyWith(color: Colors.white),
+                                        ?.copyWith(
+                                          color: Colors.white,
+                                          fontWeight:
+                                              categorySelection.isNotEmpty &&
+                                                      categorySelection[0].id ==
+                                                          widget
+                                                              .categoryTree
+                                                              .leaves[rowIndex]
+                                                              .id
+                                                  ? FontWeight.bold
+                                                  : FontWeight.normal,
+                                        ),
                                   ),
                                 );
                               },
@@ -145,8 +156,20 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
                                     categorySelection[index - 1]
                                         .subLeaves![rowIndex]
                                         .name,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                          fontWeight: categorySelection.length >
+                                                      index &&
+                                                  categorySelection[index - 1]
+                                                          .subLeaves![rowIndex]
+                                                          .id ==
+                                                      categorySelection[index]
+                                                          .id
+                                              ? FontWeight.bold
+                                              : FontWeight.normal,
+                                        ),
                                   ),
                                 );
                               },

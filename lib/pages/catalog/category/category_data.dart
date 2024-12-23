@@ -5,10 +5,11 @@ class CategoryTree {
 }
 
 class CategoryLeaf {
+  final int id;
   final String name;
   final List<CategoryLeaf>? subLeaves;
 
-  CategoryLeaf(this.name, {this.subLeaves});
+  CategoryLeaf(this.id, this.name, {this.subLeaves});
 }
 
 class CategoryData {

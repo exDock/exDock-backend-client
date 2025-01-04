@@ -102,7 +102,7 @@ class _ProductItemState extends State<ProductItem> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  widget.product.price.toString(),
+                  widget.product.price.toStringAsFixed(2),
                   style: TextStyle(color: Color(0xFF264653)),
                 )
               ],

@@ -15,10 +15,10 @@ class ProductHomeSynchronous extends StatefulWidget {
 
 class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
   List<String> originalFilters = ["Test", "Test 2", "Test 3"];
-  List<String> filters = [];
   ValueNotifier<List<String>> filterList = ValueNotifier([]);
   ValueNotifier<List<String>> availableFilters =
       ValueNotifier(["Test", "Test 2", "Test 3"]);
+  ValueNotifier<String> nameFilter = ValueNotifier("");
 
   filterCallback(filter) {
     filterList.value = [...filterList.value, filter];
@@ -30,31 +30,44 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     availableFilters.value = originalFilters;
   }
 
+  searchCallback(String searchInput) {
+    nameFilter.value = searchInput;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ValueListenableBuilder(
-            valueListenable: availableFilters,
-            builder: (context, val, child) {
-              return ProductTopBar(
-                height: 100,
-                filterCallback: filterCallback,
-                filters: val,
-              );
-            }),
+          valueListenable: availableFilters,
+          builder: (context, val, child) {
+            return ProductTopBar(
+              height: 100,
+              filters: val,
+              filterCallback: filterCallback,
+              searchCallback: searchCallback,
+            );
+          },
+        ),
         ValueListenableBuilder(
-            valueListenable: filterList,
-            builder: (context, List<String> val, child) {
-              return ProductMiddleBar(
-                height: 150,
-                filterList: val,
-                removeFilterCallback: removeFilterCallback,
-              );
-            }),
-        ProductList(
-          productList: widget.productData.products,
+          valueListenable: filterList,
+          builder: (context, List<String> val, child) {
+            return ProductMiddleBar(
+              height: 150,
+              filterList: val,
+              removeFilterCallback: removeFilterCallback,
+            );
+          },
+        ),
+        ValueListenableBuilder(
+          valueListenable: nameFilter,
+          builder: (context, val, child) {
+            return ProductList(
+              productList: widget.productData.products,
+              nameFilter: val,
+            );
+          },
         ),
       ],
     );

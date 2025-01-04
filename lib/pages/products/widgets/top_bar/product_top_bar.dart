@@ -1,6 +1,6 @@
-import 'package:exdock_backend_client/pages/page_wrapper/top_bar/search.dart';
 import 'package:exdock_backend_client/pages/products/widgets/top_bar/dropdown_button_filters.dart';
 import 'package:exdock_backend_client/pages/products/widgets/top_bar/dropdown_button_icon.dart';
+import 'package:exdock_backend_client/pages/products/widgets/top_bar/product_search.dart';
 import 'package:flutter/material.dart';
 
 class ProductTopBar extends StatelessWidget {
@@ -8,7 +8,8 @@ class ProductTopBar extends StatelessWidget {
       {super.key,
       required this.height,
       required this.filterCallback,
-      required this.filters});
+      required this.filters,
+      required this.searchCallback});
 
   final double height;
   final List<String> filters;
@@ -17,6 +18,7 @@ class ProductTopBar extends StatelessWidget {
   final List<String> columns = ["Test"];
   final List<String> views = ["test"];
   final Function filterCallback;
+  final Function searchCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,9 @@ class ProductTopBar extends StatelessWidget {
         padding: EdgeInsets.only(left: 16.0, top: 20.0),
         child: Row(
           children: [
-            Search(
+            ProductSearch(
               width: 700,
+              searchCallback: searchCallback,
             ),
             Padding(padding: EdgeInsets.symmetric(horizontal: 20.0)),
             DropdownButtonIcon(

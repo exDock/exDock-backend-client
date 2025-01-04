@@ -93,7 +93,7 @@ class _DropdownButtonIconState extends State<DropdownButtonIcon> {
 
   @override
   Widget build(BuildContext context) {
-    if (isBaseValue) selectedValue = widget.list.first;
+    if (isBaseValue) selectedValue = widget.title;
 
     return SizedBox(
       width: widget.width,

@@ -9,11 +9,17 @@ class ProductMiddleBar extends StatelessWidget {
     required this.height,
     required this.filterList,
     required this.removeFilterCallback,
+    required this.setPageNumCallback,
+    required this.pageNum,
+    required this.maxSize,
   });
 
   final double height;
   final List<String> filterList;
+  final int pageNum;
+  final int maxSize;
   final Function removeFilterCallback;
+  final Function setPageNumCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,11 @@ class ProductMiddleBar extends StatelessWidget {
           RemoveFilterButton(
             removeFilterCallback: removeFilterCallback,
           ),
-          ProductViewSize(size: 200),
+          ProductViewSize(
+            size: pageNum,
+            pageNumCallback: setPageNumCallback,
+            maxSize: maxSize,
+          ),
         ],
       ),
     );

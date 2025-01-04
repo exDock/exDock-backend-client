@@ -15,23 +15,49 @@ class ProductHomeSynchronous extends StatefulWidget {
 
 class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
   List<String> originalFilters = ["Test", "Test 2", "Test 3"];
-  ValueNotifier<List<String>> filterList = ValueNotifier([]);
   ValueNotifier<List<String>> availableFilters =
       ValueNotifier(["Test", "Test 2", "Test 3"]);
-  ValueNotifier<String> nameFilter = ValueNotifier("");
+  ValueNotifier<ProductListWidgetData> listNotifier =
+      ValueNotifier(ProductListWidgetData(nameFilter: "", pageNum: 1));
+  ValueNotifier<ProductMiddleBarWidgetData> middleBarNotifier = ValueNotifier(
+      ProductMiddleBarWidgetData(filterList: [], pageNum: 1, maxSize: 1));
 
   filterCallback(filter) {
-    filterList.value = [...filterList.value, filter];
+    ProductMiddleBarWidgetData temp = ProductMiddleBarWidgetData(
+        filterList: [...middleBarNotifier.value.filterList, filter],
+        pageNum: middleBarNotifier.value.pageNum,
+        maxSize: 1);
+
     availableFilters.value.remove(filter);
+    middleBarNotifier.value = temp;
   }
 
   removeFilterCallback() {
-    filterList.value = [];
+    ProductMiddleBarWidgetData temp = ProductMiddleBarWidgetData(
+        filterList: [], pageNum: middleBarNotifier.value.pageNum, maxSize: 1);
+
     availableFilters.value = originalFilters;
+    middleBarNotifier.value = temp;
   }
 
   searchCallback(String searchInput) {
-    nameFilter.value = searchInput;
+    ProductListWidgetData temp = ProductListWidgetData(
+        nameFilter: searchInput, pageNum: listNotifier.value.pageNum);
+
+    listNotifier.value = temp;
+  }
+
+  setPageNumCallback(int pageNum) {
+    ProductListWidgetData temp = ProductListWidgetData(
+        nameFilter: listNotifier.value.nameFilter, pageNum: pageNum);
+    ProductMiddleBarWidgetData tempMiddle = ProductMiddleBarWidgetData(
+        filterList: middleBarNotifier.value.filterList,
+        pageNum: pageNum,
+        maxSize: 1);
+
+    listNotifier.value = temp;
+    middleBarNotifier.value = tempMiddle;
+    print(listNotifier.value.pageNum);
   }
 
   @override
@@ -51,21 +77,25 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
           },
         ),
         ValueListenableBuilder(
-          valueListenable: filterList,
-          builder: (context, List<String> val, child) {
+          valueListenable: middleBarNotifier,
+          builder: (context, val, child) {
             return ProductMiddleBar(
               height: 150,
-              filterList: val,
+              filterList: val.filterList,
+              pageNum: val.pageNum,
+              maxSize: val.maxSize,
               removeFilterCallback: removeFilterCallback,
+              setPageNumCallback: setPageNumCallback,
             );
           },
         ),
         ValueListenableBuilder(
-          valueListenable: nameFilter,
+          valueListenable: listNotifier,
           builder: (context, val, child) {
             return ProductList(
               productList: widget.productData.products,
-              nameFilter: val,
+              nameFilter: val.nameFilter,
+              pageNum: val.pageNum,
             );
           },
         ),
@@ -75,8 +105,26 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
 
   @override
   dispose() {
-    filterList.dispose();
+    availableFilters.dispose();
+    middleBarNotifier.dispose();
+    listNotifier.dispose();
 
     super.dispose();
   }
+}
+
+class ProductListWidgetData {
+  String nameFilter;
+  int pageNum;
+
+  ProductListWidgetData({required this.nameFilter, required this.pageNum});
+}
+
+class ProductMiddleBarWidgetData {
+  List<String> filterList;
+  int pageNum;
+  int maxSize;
+
+  ProductMiddleBarWidgetData(
+      {required this.filterList, required this.pageNum, required this.maxSize});
 }

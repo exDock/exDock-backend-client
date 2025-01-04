@@ -6,10 +6,14 @@ import '../../product_data.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList(
-      {super.key, required this.productList, required this.nameFilter});
+      {super.key,
+      required this.productList,
+      required this.nameFilter,
+      required this.pageNum});
 
   final List<ProductInfo> productList;
   final String nameFilter;
+  final int pageNum;
 
   @override
   State<ProductList> createState() => _ProductListState();
@@ -23,6 +27,17 @@ class _ProductListState extends State<ProductList> {
             .toLowerCase()
             .contains(widget.nameFilter.toLowerCase()))
         .toList();
+    List<ProductInfo> finalList = [];
+    int filteredListLength =
+        filteredList.length > 50 + (50 * (widget.pageNum - 1))
+            ? 50
+            : filteredList.length;
+
+    for (int i = 0 + (50 * (widget.pageNum - 1));
+        i < filteredListLength + (50 * (widget.pageNum - 1));
+        i++) {
+      if (i < filteredListLength) finalList.add(filteredList[i]);
+    }
 
     return Container(
       margin: EdgeInsets.only(left: 15, right: 50),
@@ -32,9 +47,10 @@ class _ProductListState extends State<ProductList> {
           SizedBox(
             height: 400,
             child: ListView.builder(
-              itemCount: filteredList.length,
+              itemCount:
+                  filteredListLength % 50 == 0 ? 50 : filteredListLength % 50,
               itemBuilder: (context, index) {
-                return ProductItem(product: filteredList[index]);
+                return ProductItem(product: finalList[index]);
               },
             ),
           ),

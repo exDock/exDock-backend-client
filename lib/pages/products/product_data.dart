@@ -8,10 +8,12 @@ class ProductInfo {
   int id;
   String thumbnail;
   String name;
+  double price;
 
   ProductInfo({
     required this.id,
     required this.thumbnail,
     required this.name,
+    required this.price,
   });
 }

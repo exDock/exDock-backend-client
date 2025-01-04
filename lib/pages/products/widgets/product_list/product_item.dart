@@ -94,6 +94,22 @@ class _ProductItemState extends State<ProductItem> {
           ),
           Container(
             height: 40,
+            width: 120,
+            decoration: BoxDecoration(
+                border: Border(right: BorderSide(color: Color(0xFF264653)))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  widget.product.price.toString(),
+                  style: TextStyle(color: Color(0xFF264653)),
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: 40,
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,

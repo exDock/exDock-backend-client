@@ -95,6 +95,22 @@ class _ProductInfoState extends State<ProductInfoWidget> {
           ),
           Container(
             height: 40,
+            width: 120,
+            decoration: BoxDecoration(
+                border: Border(right: BorderSide(color: Colors.white))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "PRICE",
+                  style: TextStyle(color: Colors.white),
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: 40,
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,

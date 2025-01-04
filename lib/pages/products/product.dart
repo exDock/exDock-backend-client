@@ -9,9 +9,13 @@ class Product extends StatelessWidget {
 
   Future<ProductData> getProductData() async {
     List<ProductInfo> products = [];
+    Random random = Random();
     for (var i = 0; i < 100; i++) {
       products.add(ProductInfo(
-          id: i, thumbnail: getRandomString(10), name: getRandomString(30)));
+          id: i,
+          thumbnail: getRandomString(10),
+          name: getRandomString(30),
+          price: random.nextDouble() * 100));
     }
     return ProductData(products: products);
   }

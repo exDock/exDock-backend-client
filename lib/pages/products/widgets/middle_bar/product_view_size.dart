@@ -38,7 +38,7 @@ class ProductViewSize extends StatelessWidget {
               : Padding(padding: EdgeInsets.only(right: 10)),
           Text(size.toString()),
           Padding(padding: EdgeInsets.only(left: 10)),
-          size < 20
+          size < maxSize
               ? GestureDetector(
                   onTap: () {
                     pageNumCallback(size + 1);

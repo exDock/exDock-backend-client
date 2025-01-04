@@ -18,15 +18,31 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
   ValueNotifier<List<String>> availableFilters =
       ValueNotifier(["Test", "Test 2", "Test 3"]);
   ValueNotifier<ProductListWidgetData> listNotifier =
-      ValueNotifier(ProductListWidgetData(nameFilter: "", pageNum: 1));
+      ValueNotifier(ProductListWidgetData(filteredList: [], pageNum: 1));
   ValueNotifier<ProductMiddleBarWidgetData> middleBarNotifier = ValueNotifier(
       ProductMiddleBarWidgetData(filterList: [], pageNum: 1, maxSize: 1));
+
+  List<ProductInfo> applyFilters(List<ProductInfo> list, String searchInput) {
+    List<ProductInfo> filteredList = list.where((element) {
+      if (!element.name.contains(searchInput)) return false;
+
+      return true;
+    }).toList();
+
+    ProductMiddleBarWidgetData temp = ProductMiddleBarWidgetData(
+        filterList: middleBarNotifier.value.filterList,
+        pageNum: middleBarNotifier.value.pageNum,
+        maxSize: (filteredList.length ~/ 50) + 1);
+
+    middleBarNotifier.value = temp;
+    return filteredList;
+  }
 
   filterCallback(filter) {
     ProductMiddleBarWidgetData temp = ProductMiddleBarWidgetData(
         filterList: [...middleBarNotifier.value.filterList, filter],
         pageNum: middleBarNotifier.value.pageNum,
-        maxSize: 1);
+        maxSize: middleBarNotifier.value.maxSize);
 
     availableFilters.value.remove(filter);
     middleBarNotifier.value = temp;
@@ -42,22 +58,40 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
 
   searchCallback(String searchInput) {
     ProductListWidgetData temp = ProductListWidgetData(
-        nameFilter: searchInput, pageNum: listNotifier.value.pageNum);
+        filteredList: applyFilters(widget.productData.products, searchInput),
+        pageNum: listNotifier.value.pageNum);
 
     listNotifier.value = temp;
   }
 
   setPageNumCallback(int pageNum) {
     ProductListWidgetData temp = ProductListWidgetData(
-        nameFilter: listNotifier.value.nameFilter, pageNum: pageNum);
+        filteredList: listNotifier.value.filteredList, pageNum: pageNum);
     ProductMiddleBarWidgetData tempMiddle = ProductMiddleBarWidgetData(
         filterList: middleBarNotifier.value.filterList,
         pageNum: pageNum,
-        maxSize: 1);
+        maxSize: middleBarNotifier.value.maxSize);
 
     listNotifier.value = temp;
     middleBarNotifier.value = tempMiddle;
-    print(listNotifier.value.pageNum);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    ProductListWidgetData listTemp = ProductListWidgetData(
+        filteredList: applyFilters(widget.productData.products, ""),
+        pageNum: listNotifier.value.pageNum);
+    int maxSize = (listTemp.filteredList.length ~/ 50) + 1;
+
+    ProductMiddleBarWidgetData middleTemp = ProductMiddleBarWidgetData(
+        filterList: middleBarNotifier.value.filterList,
+        pageNum: middleBarNotifier.value.pageNum,
+        maxSize: maxSize);
+
+    listNotifier.value = listTemp;
+    middleBarNotifier.value = middleTemp;
   }
 
   @override
@@ -93,8 +127,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
           valueListenable: listNotifier,
           builder: (context, val, child) {
             return ProductList(
-              productList: widget.productData.products,
-              nameFilter: val.nameFilter,
+              productList: val.filteredList,
               pageNum: val.pageNum,
             );
           },
@@ -114,10 +147,10 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
 }
 
 class ProductListWidgetData {
-  String nameFilter;
+  List<ProductInfo> filteredList;
   int pageNum;
 
-  ProductListWidgetData({required this.nameFilter, required this.pageNum});
+  ProductListWidgetData({required this.filteredList, required this.pageNum});
 }
 
 class ProductMiddleBarWidgetData {

@@ -40,147 +40,47 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
                   : categorySelection.length,
               (index) {
                 if (categorySelection.isEmpty || index == 0) {
-                  return Container(
-                    height: 72,
-                    decoration: BoxDecoration(
-                      color: Color(0xff264653),
-                      boxShadow: kBoxShadowList,
-                    ),
-                    child: Row(
-                      children: [
-                        Flexible(
-                          flex: 9,
-                          child: SizedBox(
-                            width: double.infinity,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 8,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List<Widget>.generate(
-                              widget.categoryTree.leaves.length,
-                              (rowIndex) {
-                                return TextButton(
-                                  onPressed: () {
-                                    selectedCategory =
-                                        widget.categoryTree.leaves[rowIndex].id;
-                                    if (index < categorySelection.length) {
-                                      categorySelection[index] =
-                                          widget.categoryTree.leaves[rowIndex];
-                                      categorySelection = categorySelection
-                                          .sublist(0, index + 1);
-                                    } else {
-                                      categorySelection.add(
-                                          widget.categoryTree.leaves[rowIndex]);
-                                    }
-                                    setState(() {});
-                                  },
-                                  child: Text(
-                                    widget.categoryTree.leaves[rowIndex].name,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge
-                                        ?.copyWith(
-                                          color: Colors.white,
-                                          fontWeight:
-                                              categorySelection.isNotEmpty &&
-                                                      categorySelection[0].id ==
-                                                          widget
-                                                              .categoryTree
-                                                              .leaves[rowIndex]
-                                                              .id
-                                                  ? FontWeight.bold
-                                                  : FontWeight.normal,
-                                        ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          flex: 9,
-                          child: SizedBox(
-                            width: double.infinity,
-                          ),
-                        ),
-                      ],
-                    ),
+                  return TopCategoryRow(
+                    onPressed: (int rowIndex) {
+                      selectedCategory =
+                          widget.categoryTree.leaves[rowIndex].id;
+                      if (index < categorySelection.length) {
+                        categorySelection[index] =
+                            widget.categoryTree.leaves[rowIndex];
+                        categorySelection =
+                            categorySelection.sublist(0, index + 1);
+                      } else {
+                        categorySelection
+                            .add(widget.categoryTree.leaves[rowIndex]);
+                      }
+                      setState(() {});
+                    },
+                    categoryTree: widget.categoryTree,
+                    categorySelection: categorySelection,
                   );
                 }
                 return Padding(
                   padding: EdgeInsets.only(top: 72 + (index - 1) * 48),
-                  child: Container(
-                    height: 48,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).indicatorColor,
-                      boxShadow: kBoxShadowList,
-                    ),
-                    child: Row(
-                      children: [
-                        Flexible(
-                          child: SizedBox(width: double.infinity),
-                        ),
-                        Flexible(
-                          flex: 4,
-                          child: Row(
-                            mainAxisAlignment:
-                                categorySelection[index - 1].subLeaves!.length >
-                                        1
-                                    ? MainAxisAlignment.spaceBetween
-                                    : MainAxisAlignment.center,
-                            children: List<Widget>.generate(
-                              categorySelection[index - 1].subLeaves!.length,
-                              (rowIndex) {
-                                return TextButton(
-                                  onPressed: () {
-                                    selectedCategory =
-                                        categorySelection[index - 1]
-                                            .subLeaves![rowIndex]
-                                            .id;
-                                    if (index < categorySelection.length) {
-                                      categorySelection[index] =
-                                          categorySelection[index - 1]
-                                              .subLeaves![rowIndex];
-                                      categorySelection = categorySelection
-                                          .sublist(0, index + 1);
-                                    } else {
-                                      categorySelection.add(
-                                          categorySelection[index - 1]
-                                              .subLeaves![rowIndex]);
-                                    }
-                                    setState(() {});
-                                  },
-                                  child: Text(
-                                    categorySelection[index - 1]
-                                        .subLeaves![rowIndex]
-                                        .name,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge
-                                        ?.copyWith(
-                                          fontWeight: categorySelection.length >
-                                                      index &&
-                                                  categorySelection[index - 1]
-                                                          .subLeaves![rowIndex]
-                                                          .id ==
-                                                      categorySelection[index]
-                                                          .id
-                                              ? FontWeight.bold
-                                              : FontWeight.normal,
-                                        ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          child: SizedBox(width: double.infinity),
-                        ),
-                      ],
-                    ),
+                  child: SubCategoryRow(
+                    onPressed: (int rowIndex) {
+                      selectedCategory =
+                          categorySelection[index - 1].subLeaves![rowIndex].id;
+                      if (index < categorySelection.length) {
+                        categorySelection[index] =
+                            categorySelection[index - 1].subLeaves![rowIndex];
+                        categorySelection =
+                            categorySelection.sublist(0, index + 1);
+                      } else {
+                        categorySelection.add(
+                            categorySelection[index - 1].subLeaves![rowIndex]);
+                      }
+                      setState(() {});
+                    },
+                    previousLeaf: categorySelection[index - 1],
+                    currentSelectedCategoryLeaf:
+                        categorySelection.length >= index + 1
+                            ? categorySelection[index]
+                            : null,
                   ),
                 );
               },
@@ -191,6 +91,135 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
           child: CategoryEdit(categoryId: selectedCategory),
         ),
       ],
+    );
+  }
+}
+
+class SubCategoryRow extends StatelessWidget {
+  const SubCategoryRow({
+    super.key,
+    required this.onPressed,
+    required this.previousLeaf,
+    this.currentSelectedCategoryLeaf,
+  });
+
+  final Function(int) onPressed;
+  final CategoryLeaf previousLeaf;
+  final CategoryLeaf? currentSelectedCategoryLeaf;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 48,
+      decoration: BoxDecoration(
+        color: Theme.of(context).indicatorColor,
+        boxShadow: kBoxShadowList,
+      ),
+      child: Row(
+        children: [
+          Flexible(
+            child: SizedBox(width: double.infinity),
+          ),
+          Flexible(
+            flex: 4,
+            child: Row(
+              mainAxisAlignment: previousLeaf.subLeaves!.length > 1
+                  ? MainAxisAlignment.spaceBetween
+                  : MainAxisAlignment.center,
+              children: List<Widget>.generate(
+                previousLeaf.subLeaves!.length,
+                (rowIndex) {
+                  return TextButton(
+                    onPressed: () {
+                      onPressed(rowIndex);
+                    },
+                    child: Text(
+                      previousLeaf.subLeaves![rowIndex].name,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: currentSelectedCategoryLeaf != null &&
+                                    previousLeaf.subLeaves![rowIndex].id ==
+                                        currentSelectedCategoryLeaf!.id
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          Flexible(
+            child: SizedBox(width: double.infinity),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TopCategoryRow extends StatelessWidget {
+  const TopCategoryRow({
+    super.key,
+    required this.onPressed,
+    required this.categoryTree,
+    required this.categorySelection,
+  });
+
+  final Function(int) onPressed;
+  final CategoryTree categoryTree;
+  final List<CategoryLeaf> categorySelection;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 72,
+      decoration: BoxDecoration(
+        color: Color(0xff264653),
+        boxShadow: kBoxShadowList,
+      ),
+      child: Row(
+        children: [
+          Flexible(
+            flex: 9,
+            child: SizedBox(
+              width: double.infinity,
+            ),
+          ),
+          Expanded(
+            flex: 8,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List<Widget>.generate(
+                categoryTree.leaves.length,
+                (rowIndex) {
+                  return TextButton(
+                    onPressed: () {
+                      onPressed(rowIndex);
+                    },
+                    child: Text(
+                      categoryTree.leaves[rowIndex].name,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: Colors.white,
+                            fontWeight: categorySelection.isNotEmpty &&
+                                    categorySelection[0].id ==
+                                        categoryTree.leaves[rowIndex].id
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 9,
+            child: SizedBox(
+              width: double.infinity,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'dart:math';
 
-import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/category_edit.dart';
+import 'package:exdock_backend_client/pages/catalog/category/selection_bar/sub_category_row.dart';
+import 'package:exdock_backend_client/pages/catalog/category/selection_bar/top_category_row.dart';
 import 'package:flutter/material.dart';
 
 class CategorySynchronous extends StatefulWidget {
@@ -91,135 +92,6 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
           child: CategoryEdit(categoryId: selectedCategory),
         ),
       ],
-    );
-  }
-}
-
-class SubCategoryRow extends StatelessWidget {
-  const SubCategoryRow({
-    super.key,
-    required this.onPressed,
-    required this.previousLeaf,
-    this.currentSelectedCategoryLeaf,
-  });
-
-  final Function(int) onPressed;
-  final CategoryLeaf previousLeaf;
-  final CategoryLeaf? currentSelectedCategoryLeaf;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 48,
-      decoration: BoxDecoration(
-        color: Theme.of(context).indicatorColor,
-        boxShadow: kBoxShadowList,
-      ),
-      child: Row(
-        children: [
-          Flexible(
-            child: SizedBox(width: double.infinity),
-          ),
-          Flexible(
-            flex: 4,
-            child: Row(
-              mainAxisAlignment: previousLeaf.subLeaves!.length > 1
-                  ? MainAxisAlignment.spaceBetween
-                  : MainAxisAlignment.center,
-              children: List<Widget>.generate(
-                previousLeaf.subLeaves!.length,
-                (rowIndex) {
-                  return TextButton(
-                    onPressed: () {
-                      onPressed(rowIndex);
-                    },
-                    child: Text(
-                      previousLeaf.subLeaves![rowIndex].name,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: currentSelectedCategoryLeaf != null &&
-                                    previousLeaf.subLeaves![rowIndex].id ==
-                                        currentSelectedCategoryLeaf!.id
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-          Flexible(
-            child: SizedBox(width: double.infinity),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class TopCategoryRow extends StatelessWidget {
-  const TopCategoryRow({
-    super.key,
-    required this.onPressed,
-    required this.categoryTree,
-    required this.categorySelection,
-  });
-
-  final Function(int) onPressed;
-  final CategoryTree categoryTree;
-  final List<CategoryLeaf> categorySelection;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 72,
-      decoration: BoxDecoration(
-        color: Color(0xff264653),
-        boxShadow: kBoxShadowList,
-      ),
-      child: Row(
-        children: [
-          Flexible(
-            flex: 9,
-            child: SizedBox(
-              width: double.infinity,
-            ),
-          ),
-          Expanded(
-            flex: 8,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List<Widget>.generate(
-                categoryTree.leaves.length,
-                (rowIndex) {
-                  return TextButton(
-                    onPressed: () {
-                      onPressed(rowIndex);
-                    },
-                    child: Text(
-                      categoryTree.leaves[rowIndex].name,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: Colors.white,
-                            fontWeight: categorySelection.isNotEmpty &&
-                                    categorySelection[0].id ==
-                                        categoryTree.leaves[rowIndex].id
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 9,
-            child: SizedBox(
-              width: double.infinity,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

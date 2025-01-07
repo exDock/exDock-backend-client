@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:exdock_backend_client/pages/products/product_data.dart';
-import 'package:exdock_backend_client/pages/products/product_home_synchronous.dart';
+import 'package:exdock_backend_client/pages/catalog/products/product_data.dart';
+import 'package:exdock_backend_client/pages/catalog/products/product_home_synchronous.dart';
 import 'package:flutter/material.dart';
 
 class Product extends StatelessWidget {

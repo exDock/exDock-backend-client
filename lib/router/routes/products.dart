@@ -1,11 +1,11 @@
 import 'package:go_router/go_router.dart';
 
-import '../../pages/products/product.dart';
+import '../../pages/catalog/products/product.dart';
 
 List<GoRoute> getProductsRoutes() {
   return [
     GoRoute(
-      path: '/products',
+      path: '/catalog/products',
       builder: (context, state) => Product(),
     ),
   ];

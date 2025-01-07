@@ -1,5 +1,5 @@
-import 'package:exdock_backend_client/pages/products/widgets/product_list/product_info.dart';
-import 'package:exdock_backend_client/pages/products/widgets/product_list/product_item.dart';
+import 'package:exdock_backend_client/pages/catalog/products/widgets/product_list/product_info.dart';
+import 'package:exdock_backend_client/pages/catalog/products/widgets/product_list/product_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../product_data.dart';

@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/pages/products/widgets/top_bar/filters/bottom_filter_menu.dart';
-import 'package:exdock_backend_client/pages/products/widgets/top_bar/filters/id_filter.dart';
-import 'package:exdock_backend_client/pages/products/widgets/top_bar/filters/price_filter.dart';
 import 'package:flutter/material.dart';
 
 import '../../product_home_synchronous.dart';
+import 'filters/bottom_filter_menu.dart';
+import 'filters/id_filter.dart';
+import 'filters/price_filter.dart';
 
 class DropdownButtonFilters extends StatefulWidget {
   const DropdownButtonFilters(

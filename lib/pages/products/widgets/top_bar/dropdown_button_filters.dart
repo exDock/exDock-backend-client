@@ -74,7 +74,7 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
         top: position.dy + renderBox.size.height + 8,
         left: position.dx,
         width: renderBox.size.width * 3.525,
-        height: 340,
+        height: renderBox.size.height * 7,
         child: Material(
           elevation: 5,
           borderRadius: BorderRadius.circular(10),
@@ -91,56 +91,68 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
                 borderRadius: BorderRadius.circular(10),
                 child: Column(
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(14),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        padding: EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              widget.title,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.close),
+                              onPressed: _toggleOverlay,
+                            ),
+                          ],
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            widget.title,
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.close),
-                            onPressed: _toggleOverlay,
-                          ),
-                        ],
+                    ),
+                    Flexible(
+                      flex: 2,
+                      child: ValueListenableBuilder(
+                        valueListenable: selectedId,
+                        builder: (context, val, child) {
+                          return IdFilter(
+                            setIdValue: setIdValue,
+                            idValue: val,
+                            key: idFilterKey,
+                          );
+                        },
                       ),
                     ),
-                    ValueListenableBuilder(
-                      valueListenable: selectedId,
-                      builder: (context, val, child) {
-                        return IdFilter(
-                          setIdValue: setIdValue,
-                          idValue: val,
-                          key: idFilterKey,
-                        );
-                      },
+                    Flexible(
+                      flex: 2,
+                      child: ValueListenableBuilder(
+                        valueListenable: selectedPrice,
+                        builder: (context, val, child) {
+                          return PriceFilter(
+                            key: priceFilterKey,
+                            lowPrice: val.lowPrice,
+                            highPrice: val.highPrice,
+                            setPriceValue: setPriceValue,
+                          );
+                        },
+                      ),
                     ),
-                    ValueListenableBuilder(
-                      valueListenable: selectedPrice,
-                      builder: (context, val, child) {
-                        return PriceFilter(
-                          key: priceFilterKey,
-                          lowPrice: val.lowPrice,
-                          highPrice: val.highPrice,
-                          setPriceValue: setPriceValue,
-                        );
-                      },
-                    ),
-                    BottomFilterMenu(
-                      resetFilters: resetFilters,
-                      applyFilters: () {
-                        applyFilters();
-                        _toggleOverlay();
-                      },
+                    Expanded(
+                      flex: 2,
+                      child: BottomFilterMenu(
+                        resetFilters: resetFilters,
+                        applyFilters: () {
+                          applyFilters();
+                          _toggleOverlay();
+                        },
+                      ),
                     ),
                   ],
                 ),

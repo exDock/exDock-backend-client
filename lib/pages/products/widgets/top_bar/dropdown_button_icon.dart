@@ -2,19 +2,18 @@ import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:flutter/material.dart';
 
 class DropdownButtonIcon extends StatefulWidget {
-  const DropdownButtonIcon(
-      {super.key,
-      required this.list,
-      required this.icon,
-      required this.isIconAtStart,
-      required this.title,
-      required this.width});
+  const DropdownButtonIcon({
+    super.key,
+    required this.list,
+    required this.icon,
+    required this.isIconAtStart,
+    required this.title,
+  });
 
   final List<String> list;
   final Icon icon;
   final bool isIconAtStart;
   final String title;
-  final double width;
 
   @override
   State<DropdownButtonIcon> createState() => _DropdownButtonIconState();
@@ -96,7 +95,6 @@ class _DropdownButtonIconState extends State<DropdownButtonIcon> {
     if (isBaseValue) selectedValue = widget.title;
 
     return SizedBox(
-      width: widget.width,
       child: GestureDetector(
         onTap: _toggleOverlay,
         child: Container(

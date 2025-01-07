@@ -31,8 +31,7 @@ class _ProductListState extends State<ProductList> {
       if (i < filteredListLength) finalList.add(filteredList[i]);
     }
 
-    return Container(
-      margin: EdgeInsets.only(left: 15, right: 50),
+    return Expanded(
       child: Column(
         children: [
           ProductInfoWidget(),

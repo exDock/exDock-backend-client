@@ -26,41 +26,58 @@ class ProductTopBar extends StatelessWidget {
         padding: EdgeInsets.only(left: 16.0, top: 20.0),
         child: Row(
           children: [
-            ProductSearch(
-              width: 700,
-              searchCallback: searchCallback,
+            Flexible(
+              flex: 4,
+              child: ProductSearch(
+                searchCallback: searchCallback,
+              ),
             ),
-            Padding(padding: EdgeInsets.symmetric(horizontal: 20.0)),
-            DropdownButtonIcon(
-              list: actions,
-              title: "ACTIONS",
-              icon: Icon(Icons.bolt_outlined),
-              isIconAtStart: false,
-              width: 150.0,
+            SizedBox(
+              width: 40,
             ),
-            Padding(padding: EdgeInsets.symmetric(horizontal: 60.0)),
-            DropdownButtonFilters(
-              title: "FILTERS",
-              icon: Icon(Icons.filter_alt_outlined),
-              isIconAtStart: false,
-              width: 150.0,
-              filterCallback: filterCallback,
+            Flexible(
+              child: DropdownButtonIcon(
+                list: actions,
+                title: "ACTIONS",
+                icon: Icon(Icons.bolt_outlined),
+                isIconAtStart: false,
+              ),
             ),
-            Padding(padding: EdgeInsets.symmetric(horizontal: 20.0)),
-            DropdownButtonIcon(
-              list: filters,
-              title: "COLUMNS",
-              icon: Icon(Icons.view_column_outlined),
-              isIconAtStart: false,
-              width: 150.0,
+            Expanded(
+              child: SizedBox(
+                width: 120,
+              ),
             ),
-            Padding(padding: EdgeInsets.symmetric(horizontal: 20.0)),
-            DropdownButtonIcon(
-              list: filters,
-              title: "VIEWS",
-              icon: Icon(Icons.remove_red_eye_outlined),
-              isIconAtStart: false,
-              width: 150.0,
+            Flexible(
+              child: DropdownButtonFilters(
+                title: "FILTERS",
+                icon: Icon(Icons.filter_alt_outlined),
+                isIconAtStart: false,
+                width: 150.0,
+                filterCallback: filterCallback,
+              ),
+            ),
+            SizedBox(
+              width: 40,
+            ),
+            Flexible(
+              child: DropdownButtonIcon(
+                list: filters,
+                title: "COLUMNS",
+                icon: Icon(Icons.view_column_outlined),
+                isIconAtStart: false,
+              ),
+            ),
+            SizedBox(
+              width: 40,
+            ),
+            Flexible(
+              child: DropdownButtonIcon(
+                list: filters,
+                title: "VIEWS",
+                icon: Icon(Icons.remove_red_eye_outlined),
+                isIconAtStart: false,
+              ),
             ),
           ],
         ),

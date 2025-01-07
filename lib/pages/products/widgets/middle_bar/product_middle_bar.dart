@@ -28,17 +28,24 @@ class ProductMiddleBar extends StatelessWidget {
       padding: EdgeInsets.only(left: 16.0, top: 40.0),
       child: Row(
         children: [
-          FilterList(
-            filters: filterList,
-            height: height,
+          Expanded(
+            flex: 6,
+            child: FilterList(
+              filters: filterList,
+              height: height,
+            ),
           ),
-          RemoveFilterButton(
-            removeFilterCallback: removeFilterCallback,
+          Flexible(
+            child: RemoveFilterButton(
+              removeFilterCallback: removeFilterCallback,
+            ),
           ),
-          ProductViewSize(
-            size: pageNum,
-            pageNumCallback: setPageNumCallback,
-            maxSize: maxSize,
+          Flexible(
+            child: ProductViewSize(
+              size: pageNum,
+              pageNumCallback: setPageNumCallback,
+              maxSize: maxSize,
+            ),
           ),
         ],
       ),

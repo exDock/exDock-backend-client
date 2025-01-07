@@ -17,18 +17,19 @@ class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 1600,
       height: 40,
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
       decoration: BoxDecoration(
           border: Border.all(color: Color(0xFF264653)),
           borderRadius: BorderRadius.all(Radius.circular(7.5))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-              height: 40,
+          Flexible(
+            flex: 1,
+            child: Container(
               width: 70,
+              height: 40,
               decoration: BoxDecoration(
                   border: Border(right: BorderSide(color: Color(0xFF264653)))),
               child: GestureDetector(
@@ -43,81 +44,94 @@ class _ProductItemState extends State<ProductItem> {
                       : Icons.check_box_outline_blank,
                   color: Color(0xFF264653),
                 ),
-              )),
-          Container(
-            height: 40,
-            width: 50,
-            decoration: BoxDecoration(
-                border: Border(right: BorderSide(color: Color(0xFF264653)))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  widget.product.id.toString(),
-                  style: TextStyle(color: Color(0xFF264653)),
-                )
-              ],
+              ),
             ),
           ),
-          Container(
-            height: 40,
-            width: 140,
-            decoration: BoxDecoration(
-                border: Border(right: BorderSide(color: Color(0xFF264653)))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  widget.product.thumbnail,
-                  style: TextStyle(color: Color(0xFF264653)),
-                )
-              ],
+          Flexible(
+            flex: 1,
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                  border: Border(right: BorderSide(color: Color(0xFF264653)))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.product.id.toString(),
+                    style: TextStyle(color: Color(0xFF264653)),
+                  )
+                ],
+              ),
             ),
           ),
-          Container(
-            height: 40,
-            width: 400,
-            decoration: BoxDecoration(
-                border: Border(right: BorderSide(color: Color(0xFF264653)))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  widget.product.name,
-                  style: TextStyle(color: Color(0xFF264653)),
-                )
-              ],
+          Flexible(
+            flex: 3,
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                  border: Border(right: BorderSide(color: Color(0xFF264653)))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.product.thumbnail,
+                    style: TextStyle(color: Color(0xFF264653)),
+                  )
+                ],
+              ),
             ),
           ),
-          Container(
-            height: 40,
-            width: 120,
-            decoration: BoxDecoration(
-                border: Border(right: BorderSide(color: Color(0xFF264653)))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  widget.product.price.toStringAsFixed(2),
-                  style: TextStyle(color: Color(0xFF264653)),
-                )
-              ],
+          Flexible(
+            flex: 8,
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                  border: Border(right: BorderSide(color: Color(0xFF264653)))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.product.name,
+                    style: TextStyle(color: Color(0xFF264653)),
+                  )
+                ],
+              ),
             ),
           ),
-          Container(
-            height: 40,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(padding: EdgeInsets.only(left: 20)),
-              ],
+          Flexible(
+            flex: 3,
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                  border: Border(right: BorderSide(color: Color(0xFF264653)))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.product.price.toStringAsFixed(2),
+                    style: TextStyle(color: Color(0xFF264653)),
+                  )
+                ],
+              ),
             ),
-          )
+          ),
+          Expanded(
+            flex: 15,
+            child: Container(
+              height: 40,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(padding: EdgeInsets.only(left: 20)),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

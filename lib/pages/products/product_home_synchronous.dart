@@ -117,12 +117,29 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
   }
 
   searchCallback(String searchInput) {
+    List<String> filterList = middleBarNotifier.value.filterList;
     selectedFilters.searchInput = searchInput;
     ProductListWidgetData temp = ProductListWidgetData(
         filteredList:
             applyFilters(widget.productData.products, selectedFilters),
         pageNum: listNotifier.value.pageNum);
 
+    filterList = filterList.where((element) {
+      if (element.contains("Name: ")) return false;
+      return true;
+    }).toList();
+
+    if (searchInput != "") {
+      filterList.add("Name: $searchInput");
+    }
+
+    ProductMiddleBarWidgetData tempMiddle = ProductMiddleBarWidgetData(
+      filterList: filterList,
+      pageNum: middleBarNotifier.value.pageNum,
+      maxSize: middleBarNotifier.value.maxSize,
+    );
+
+    middleBarNotifier.value = tempMiddle;
     listNotifier.value = temp;
   }
 

@@ -14,8 +14,20 @@ class TopCategoryRow extends StatelessWidget {
   final CategoryTree categoryTree;
   final List<CategoryLeaf> categorySelection;
 
+  static final ButtonStyle topCategoryRowButtonStyle = ButtonStyle(
+    shape: WidgetStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
+    bool isSelected(int rowIndex) =>
+        categorySelection.isNotEmpty &&
+        categorySelection[0].id == categoryTree.leaves[rowIndex].id;
+
     return Container(
       height: 72,
       decoration: BoxDecoration(
@@ -37,17 +49,18 @@ class TopCategoryRow extends StatelessWidget {
               children: List<Widget>.generate(
                 categoryTree.leaves.length,
                 (rowIndex) {
+                  bool categoryIsSelected = isSelected(rowIndex);
                   return TextButton(
                     onPressed: () {
                       onPressed(rowIndex);
                     },
+                    style: topCategoryRowButtonStyle,
                     child: Text(
                       categoryTree.leaves[rowIndex].name,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: Colors.white,
-                            fontWeight: categorySelection.isNotEmpty &&
-                                    categorySelection[0].id ==
-                                        categoryTree.leaves[rowIndex].id
+                            color:
+                                categoryIsSelected ? mainColour : Colors.white,
+                            fontWeight: categoryIsSelected
                                 ? FontWeight.bold
                                 : FontWeight.normal,
                           ),

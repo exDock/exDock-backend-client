@@ -14,6 +14,14 @@ class SubCategoryRow extends StatelessWidget {
   final CategoryLeaf previousLeaf;
   final CategoryLeaf? currentSelectedCategoryLeaf;
 
+  static final ButtonStyle subCategoryRowButtonStyle = ButtonStyle(
+    shape: WidgetStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,6 +48,7 @@ class SubCategoryRow extends StatelessWidget {
                     onPressed: () {
                       onPressed(rowIndex);
                     },
+                    style: subCategoryRowButtonStyle,
                     child: Text(
                       previousLeaf.subLeaves![rowIndex].name,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(

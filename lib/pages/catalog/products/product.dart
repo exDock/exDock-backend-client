@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class Product extends StatelessWidget {
   const Product({super.key});
 
+  // Generate random product data
   Future<ProductData> getProductData() async {
     List<ProductInfo> products = [];
     Random random = Random();
@@ -20,6 +21,7 @@ class Product extends StatelessWidget {
     return ProductData(products: products);
   }
 
+  // Generate random string
   String getRandomString(int length) {
     const _chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';

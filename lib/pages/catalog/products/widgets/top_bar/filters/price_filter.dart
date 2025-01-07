@@ -36,8 +36,13 @@ class PriceFilterState extends State<PriceFilter> {
 
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(top: BorderSide(color: Color(0xFF264653)))),
+        color: Colors.white,
+        border: Border(
+          top: BorderSide(
+            color: Color(0xFF264653),
+          ),
+        ),
+      ),
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         children: [

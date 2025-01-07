@@ -41,8 +41,9 @@ class _DropdownButtonIconState extends State<DropdownButtonIcon> {
           child: Container(
             height: 200,
             decoration: BoxDecoration(
-                color: Theme.of(context).canvasColor,
-                borderRadius: BorderRadius.circular(10)),
+              color: Theme.of(context).canvasColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: ListView.builder(

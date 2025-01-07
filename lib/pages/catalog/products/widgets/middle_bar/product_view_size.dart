@@ -32,12 +32,22 @@ class ProductViewSize extends StatelessWidget {
                   },
                   child: Icon(Icons.arrow_back_ios),
                 )
-              : Padding(padding: EdgeInsets.only(right: 24)),
+              : Padding(
+                  padding: EdgeInsets.only(right: 24),
+                ),
           size > 9
-              ? Padding(padding: EdgeInsets.only(right: 2))
-              : Padding(padding: EdgeInsets.only(right: 10)),
-          Text(size.toString()),
-          Padding(padding: EdgeInsets.only(left: 10)),
+              ? Padding(
+                  padding: EdgeInsets.only(right: 2),
+                )
+              : Padding(
+                  padding: EdgeInsets.only(right: 10),
+                ),
+          Text(
+            size.toString(),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10),
+          ),
           size < maxSize
               ? GestureDetector(
                   onTap: () {
@@ -45,7 +55,9 @@ class ProductViewSize extends StatelessWidget {
                   },
                   child: Icon(Icons.arrow_forward_ios),
                 )
-              : Padding(padding: EdgeInsets.only(right: 17)),
+              : Padding(
+                  padding: EdgeInsets.only(right: 17),
+                ),
         ],
       ),
     );

@@ -25,6 +25,7 @@ class _FilterListState extends State<FilterList> {
     filterWidgets = [];
     filterWidgets.add(Text("active filters: "));
 
+    // Add a filter widget for each filter in the list
     for (var filter in widget.filters) {
       filterWidgets.add(Container(
         padding: EdgeInsets.symmetric(horizontal: 20),

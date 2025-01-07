@@ -22,6 +22,7 @@ class _ProductListState extends State<ProductList> {
       SortData(sortType: null, isAscending: true, isInfoSelected: false));
   ValueNotifier<bool> areAllSelectedNotifier = ValueNotifier(false);
 
+  // Deselects the info widget when a product id gets deselected
   deselectInfoWidget() {
     SortData sortData = SortData(
         sortType: infoBarNotifier.value.sortType,
@@ -30,6 +31,7 @@ class _ProductListState extends State<ProductList> {
     infoBarNotifier.value = sortData;
   }
 
+  // Changes the state of the info widget id and all other products
   selectInfoWidget() {
     SortData sortData = SortData(
         sortType: infoBarNotifier.value.sortType,
@@ -39,6 +41,7 @@ class _ProductListState extends State<ProductList> {
     areAllSelectedNotifier.value = infoBarNotifier.value.isInfoSelected;
   }
 
+  // Sets the sort type of the product list
   setSortType(String? sortType) {
     bool isAscending = infoBarNotifier.value.sortType == sortType
         ? !infoBarNotifier.value.isAscending
@@ -54,6 +57,7 @@ class _ProductListState extends State<ProductList> {
     });
   }
 
+  // Sorts the product list based on the sort type
   void sortList(List<ProductInfo> list) {
     switch (infoBarNotifier.value.sortType) {
       case null:
@@ -89,12 +93,14 @@ class _ProductListState extends State<ProductList> {
             ? 50
             : filteredList.length;
 
+    // Splits the list into pages of 50
     for (int i = 0 + (50 * (widget.pageNum - 1));
         i < filteredListLength + (50 * (widget.pageNum - 1));
         i++) {
       if (i < filteredListLength) finalList.add(filteredList[i]);
     }
 
+    // Sorts the list based on the sort type
     sortList(finalList);
 
     return Expanded(

@@ -27,13 +27,14 @@ class _ProductInfoState extends State<ProductInfoWidget> {
       height: 40,
       margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
       decoration: BoxDecoration(
-          color: Color(0xFF264653),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-            bottomLeft: Radius.circular(7.5),
-            bottomRight: Radius.circular(7.5),
-          )),
+        color: Color(0xFF264653),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+          bottomLeft: Radius.circular(7.5),
+          bottomRight: Radius.circular(7.5),
+        ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -43,7 +44,10 @@ class _ProductInfoState extends State<ProductInfoWidget> {
               height: 40,
               width: 70,
               decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Colors.white))),
+                border: Border(
+                  right: BorderSide(color: Colors.white),
+                ),
+              ),
               child: GestureDetector(
                 onTap: () {
                   widget.selectInfoWidget();
@@ -66,7 +70,10 @@ class _ProductInfoState extends State<ProductInfoWidget> {
               child: Container(
                 height: 40,
                 decoration: BoxDecoration(
-                    border: Border(right: BorderSide(color: Colors.white))),
+                  border: Border(
+                    right: BorderSide(color: Colors.white),
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,7 +102,10 @@ class _ProductInfoState extends State<ProductInfoWidget> {
               child: Container(
                 height: 40,
                 decoration: BoxDecoration(
-                    border: Border(right: BorderSide(color: Colors.white))),
+                  border: Border(
+                    right: BorderSide(color: Colors.white),
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,7 +130,10 @@ class _ProductInfoState extends State<ProductInfoWidget> {
               child: Container(
                 height: 40,
                 decoration: BoxDecoration(
-                    border: Border(right: BorderSide(color: Colors.white))),
+                  border: Border(
+                    right: BorderSide(color: Colors.white),
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -152,7 +165,10 @@ class _ProductInfoState extends State<ProductInfoWidget> {
               child: Container(
                 height: 40,
                 decoration: BoxDecoration(
-                    border: Border(right: BorderSide(color: Colors.white))),
+                  border: Border(
+                    right: BorderSide(color: Colors.white),
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -183,7 +199,9 @@ class _ProductInfoState extends State<ProductInfoWidget> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(padding: EdgeInsets.only(left: 20)),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                  ),
                   Text(
                     "ETC...",
                     style: TextStyle(color: Colors.white),

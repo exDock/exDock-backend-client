@@ -21,6 +21,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
   ValueNotifier<ProductMiddleBarWidgetData> middleBarNotifier = ValueNotifier(
       ProductMiddleBarWidgetData(filterList: [], pageNum: 1, maxSize: 1));
 
+  // Applies filters to the list based on the search input, id, low price, and high price
   List<ProductInfo> applyFilters(
     List<ProductInfo> list,
     Filters filters,
@@ -60,6 +61,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     return filteredList;
   }
 
+  // Callback function for the apply filter button
   filterCallback(Filters filter) {
     List<String> filterList = middleBarNotifier.value.filterList;
 
@@ -101,6 +103,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     listNotifier.value = productListWidgetData;
   }
 
+  // Callback function to remove all active filters
   removeFilterCallback() {
     selectedFilters = Filters(searchInput: "");
     ProductMiddleBarWidgetData temp = ProductMiddleBarWidgetData(
@@ -116,6 +119,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     listNotifier.value = productListWidgetData;
   }
 
+  // Remove a single filter from the list
   removeFilterFromList(List<String> filters) {
     if (selectedFilters.searchInput != "" &&
         !filters.contains("Name: ${selectedFilters.searchInput}")) {
@@ -147,6 +151,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     listNotifier.value = temp;
   }
 
+  // Apply search input filter
   searchCallback(String searchInput) {
     List<String> filterList = middleBarNotifier.value.filterList;
     selectedFilters.searchInput = searchInput;
@@ -174,6 +179,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     listNotifier.value = temp;
   }
 
+  // Sets the page number for the list
   setPageNumCallback(int pageNum) {
     ProductListWidgetData temp = ProductListWidgetData(
         filteredList: listNotifier.value.filteredList, pageNum: pageNum);

@@ -38,22 +38,26 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
   final GlobalKey<PriceFilterState> priceFilterKey =
       GlobalKey<PriceFilterState>();
 
+  // Sets the value of the id filter
   void setIdValue(int? id) {
     selectedId.value = id;
   }
 
+  // Sets the value of the price filter
   void setPriceValue(double? lowPrice, double? highPrice) {
     PriceFilterValues temp =
         PriceFilterValues(lowPrice: lowPrice, highPrice: highPrice);
     selectedPrice.value = temp;
   }
 
+  // Resets the filters
   void resetFilters() {
     PriceFilterValues temp = PriceFilterValues();
     selectedId.value = null;
     selectedPrice.value = temp;
   }
 
+  // Applies the filters
   void applyFilters() {
     Filters filters = Filters(
         searchInput: "",
@@ -81,8 +85,9 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
           child: Container(
             height: 200,
             decoration: BoxDecoration(
-                color: Theme.of(context).canvasColor,
-                borderRadius: BorderRadius.circular(10)),
+              color: Theme.of(context).canvasColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: TapRegion(
               onTapOutside: (tap) {
                 _toggleOverlay();

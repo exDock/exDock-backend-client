@@ -34,8 +34,13 @@ class _ProductItemState extends State<ProductItem> {
       height: 40,
       margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
       decoration: BoxDecoration(
-          border: Border.all(color: Color(0xFF264653)),
-          borderRadius: BorderRadius.all(Radius.circular(7.5))),
+        border: Border.all(
+          color: Color(0xFF264653),
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(7.5),
+        ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -45,7 +50,12 @@ class _ProductItemState extends State<ProductItem> {
               width: 70,
               height: 40,
               decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Color(0xFF264653)))),
+                border: Border(
+                  right: BorderSide(
+                    color: Color(0xFF264653),
+                  ),
+                ),
+              ),
               child: GestureDetector(
                 onTap: () {
                   setState(() {
@@ -69,14 +79,21 @@ class _ProductItemState extends State<ProductItem> {
             child: Container(
               height: 40,
               decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Color(0xFF264653)))),
+                border: Border(
+                  right: BorderSide(
+                    color: Color(0xFF264653),
+                  ),
+                ),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     widget.product.id.toString(),
-                    style: TextStyle(color: Color(0xFF264653)),
+                    style: TextStyle(
+                      color: Color(0xFF264653),
+                    ),
                   )
                 ],
               ),
@@ -87,14 +104,21 @@ class _ProductItemState extends State<ProductItem> {
             child: Container(
               height: 40,
               decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Color(0xFF264653)))),
+                border: Border(
+                  right: BorderSide(
+                    color: Color(0xFF264653),
+                  ),
+                ),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     widget.product.thumbnail,
-                    style: TextStyle(color: Color(0xFF264653)),
+                    style: TextStyle(
+                      color: Color(0xFF264653),
+                    ),
                   )
                 ],
               ),
@@ -105,14 +129,21 @@ class _ProductItemState extends State<ProductItem> {
             child: Container(
               height: 40,
               decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Color(0xFF264653)))),
+                border: Border(
+                  right: BorderSide(
+                    color: Color(0xFF264653),
+                  ),
+                ),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     widget.product.name,
-                    style: TextStyle(color: Color(0xFF264653)),
+                    style: TextStyle(
+                      color: Color(0xFF264653),
+                    ),
                   )
                 ],
               ),
@@ -123,14 +154,21 @@ class _ProductItemState extends State<ProductItem> {
             child: Container(
               height: 40,
               decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Color(0xFF264653)))),
+                border: Border(
+                  right: BorderSide(
+                    color: Color(0xFF264653),
+                  ),
+                ),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     widget.product.price.toStringAsFixed(2),
-                    style: TextStyle(color: Color(0xFF264653)),
+                    style: TextStyle(
+                      color: Color(0xFF264653),
+                    ),
                   )
                 ],
               ),
@@ -144,7 +182,9 @@ class _ProductItemState extends State<ProductItem> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(padding: EdgeInsets.only(left: 20)),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                  ),
                 ],
               ),
             ),

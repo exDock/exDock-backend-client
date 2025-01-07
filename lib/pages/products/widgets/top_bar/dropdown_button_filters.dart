@@ -1,17 +1,20 @@
 import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/pages/products/widgets/top_bar/filters/bottom_filter_menu.dart';
+import 'package:exdock_backend_client/pages/products/widgets/top_bar/filters/id_filter.dart';
+import 'package:exdock_backend_client/pages/products/widgets/top_bar/filters/price_filter.dart';
 import 'package:flutter/material.dart';
+
+import '../../product_home_synchronous.dart';
 
 class DropdownButtonFilters extends StatefulWidget {
   const DropdownButtonFilters(
       {super.key,
-      required this.list,
       required this.icon,
       required this.isIconAtStart,
       required this.title,
       required this.width,
       required this.filterCallback});
 
-  final List<String> list;
   final Icon icon;
   final bool isIconAtStart;
   final String title;
@@ -25,12 +28,40 @@ class DropdownButtonFilters extends StatefulWidget {
 class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
   bool isExpanded = false; // Check if the list is expended
 
-  OverlayEntry? _overlayEntry;
+  ValueNotifier<int?> selectedId = ValueNotifier(null);
+  ValueNotifier<PriceFilterValues> selectedPrice =
+      ValueNotifier(PriceFilterValues());
 
-  void handleSelect(int index) {
-    widget.filterCallback(widget.list[index]);
-    _toggleOverlay();
+  final GlobalKey<IdFilterState> idFilterKey = GlobalKey<IdFilterState>();
+  final GlobalKey<PriceFilterState> priceFilterKey =
+      GlobalKey<PriceFilterState>();
+
+  void setIdValue(int? id) {
+    selectedId.value = id;
   }
+
+  void setPriceValue(double? lowPrice, double? highPrice) {
+    PriceFilterValues temp =
+        PriceFilterValues(lowPrice: lowPrice, highPrice: highPrice);
+    selectedPrice.value = temp;
+  }
+
+  void resetFilters() {
+    PriceFilterValues temp = PriceFilterValues();
+    selectedId.value = null;
+    selectedPrice.value = temp;
+  }
+
+  void applyFilters() {
+    Filters filters = Filters(
+        searchInput: "",
+        id: idFilterKey.currentState?.idValue,
+        lowPrice: priceFilterKey.currentState?.lowPrice,
+        highPrice: priceFilterKey.currentState?.highPrice);
+    widget.filterCallback(filters);
+  }
+
+  OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlayEntry() {
     final renderBox = context.findRenderObject() as RenderBox;
@@ -40,7 +71,8 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
       builder: (context) => Positioned(
         top: position.dy + renderBox.size.height + 8,
         left: position.dx,
-        width: renderBox.size.width,
+        width: renderBox.size.width * 3.525,
+        height: 340,
         child: Material(
           elevation: 5,
           borderRadius: BorderRadius.circular(10),
@@ -51,20 +83,57 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
                 borderRadius: BorderRadius.circular(10)),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: widget.list.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      handleSelect(index);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.only(left: 16.0, top: 16.0),
-                      child: Text(widget.list[index]),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      ),
                     ),
-                  );
-                },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.title,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: _toggleOverlay,
+                        ),
+                      ],
+                    ),
+                  ),
+                  ValueListenableBuilder(
+                    valueListenable: selectedId,
+                    builder: (context, val, child) {
+                      return IdFilter(
+                        setIdValue: setIdValue,
+                        idValue: val,
+                        key: idFilterKey,
+                      );
+                    },
+                  ),
+                  ValueListenableBuilder(
+                    valueListenable: selectedPrice,
+                    builder: (context, val, child) {
+                      return PriceFilter(
+                        key: priceFilterKey,
+                        lowPrice: val.lowPrice,
+                        highPrice: val.highPrice,
+                        setPriceValue: setPriceValue,
+                      );
+                    },
+                  ),
+                  BottomFilterMenu(
+                    resetFilters: resetFilters,
+                    applyFilters: applyFilters,
+                  ),
+                ],
               ),
             ),
           ),
@@ -125,4 +194,11 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
       ),
     );
   }
+}
+
+class PriceFilterValues {
+  double? lowPrice;
+  double? highPrice;
+
+  PriceFilterValues({this.lowPrice, this.highPrice});
 }

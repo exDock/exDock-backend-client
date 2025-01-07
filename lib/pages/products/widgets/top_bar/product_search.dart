@@ -56,12 +56,9 @@ class _ProductSearchState extends State<ProductSearch> {
             width: widget.width,
             height: 56,
             decoration: BoxDecoration(
-              color: Theme.of(context).indicatorColor,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: _isHoveredOrFocused
-                  ? kBoxShadowList
-                  : [], // Fades the shadow smoothly
-            ),
+                color: Theme.of(context).indicatorColor,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: kBoxShadowList),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(

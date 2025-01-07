@@ -8,12 +8,9 @@ class ProductTopBar extends StatelessWidget {
       {super.key,
       required this.height,
       required this.filterCallback,
-      required this.filters,
       required this.searchCallback});
 
   final double height;
-  final List<String> filters;
-
   final List<String> actions = ["test", "Test 2"];
   final List<String> columns = ["Test"];
   final List<String> views = ["test"];
@@ -22,6 +19,7 @@ class ProductTopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> filters = ["Test", "Test 2", "Test 3"];
     return SizedBox(
       height: height,
       child: Padding(
@@ -42,7 +40,6 @@ class ProductTopBar extends StatelessWidget {
             ),
             Padding(padding: EdgeInsets.symmetric(horizontal: 60.0)),
             DropdownButtonFilters(
-              list: filters,
               title: "FILTERS",
               icon: Icon(Icons.filter_alt_outlined),
               isIconAtStart: false,

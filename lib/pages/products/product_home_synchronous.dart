@@ -14,20 +14,42 @@ class ProductHomeSynchronous extends StatefulWidget {
 }
 
 class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
+  Filters selectedFilters = Filters(searchInput: "");
   List<String> originalFilters = ["Test", "Test 2", "Test 3"];
-  ValueNotifier<List<String>> availableFilters =
-      ValueNotifier(["Test", "Test 2", "Test 3"]);
   ValueNotifier<ProductListWidgetData> listNotifier =
       ValueNotifier(ProductListWidgetData(filteredList: [], pageNum: 1));
   ValueNotifier<ProductMiddleBarWidgetData> middleBarNotifier = ValueNotifier(
       ProductMiddleBarWidgetData(filterList: [], pageNum: 1, maxSize: 1));
 
-  List<ProductInfo> applyFilters(List<ProductInfo> list, String searchInput) {
+  List<ProductInfo> applyFilters(
+    List<ProductInfo> list,
+    Filters filters,
+  ) {
     List<ProductInfo> filteredList = list.where((element) {
-      if (!element.name.contains(searchInput)) return false;
-
+      if (!element.name.contains(filters.searchInput)) return false;
       return true;
     }).toList();
+
+    if (filters.id != null) {
+      filteredList = filteredList.where((element) {
+        if (element.id != filters.id) return false;
+        return true;
+      }).toList();
+    }
+
+    if (filters.lowPrice != null) {
+      filteredList = filteredList.where((element) {
+        if (element.price < filters.lowPrice!) return false;
+        return true;
+      }).toList();
+    }
+
+    if (filters.highPrice != null) {
+      filteredList = filteredList.where((element) {
+        if (element.price > filters.highPrice!) return false;
+        return true;
+      }).toList();
+    }
 
     ProductMiddleBarWidgetData temp = ProductMiddleBarWidgetData(
         filterList: middleBarNotifier.value.filterList,
@@ -38,27 +60,67 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     return filteredList;
   }
 
-  filterCallback(filter) {
-    ProductMiddleBarWidgetData temp = ProductMiddleBarWidgetData(
-        filterList: [...middleBarNotifier.value.filterList, filter],
-        pageNum: middleBarNotifier.value.pageNum,
-        maxSize: middleBarNotifier.value.maxSize);
+  filterCallback(Filters filter) {
+    List<String> filterList = middleBarNotifier.value.filterList;
 
-    availableFilters.value.remove(filter);
+    filterList = filterList.where((element) {
+      if (element.contains("ID:")) return false;
+      return true;
+    }).toList();
+    if (filter.id != null) {
+      filterList.add("ID: ${filter.id}");
+    }
+
+    filterList = filterList.where((element) {
+      if (element.contains("Price:")) return false;
+      return true;
+    }).toList();
+
+    if (filter.lowPrice != null || filter.highPrice != null) {
+      if (filter.lowPrice != null && filter.highPrice != null) {
+        filterList.add("Price: ${filter.lowPrice} - ${filter.highPrice}");
+      } else if (filter.lowPrice != null) {
+        filterList.add("Price: > ${filter.lowPrice}");
+      } else {
+        filterList.add("Price: < ${filter.highPrice}");
+      }
+    }
+
+    ProductMiddleBarWidgetData temp = ProductMiddleBarWidgetData(
+      filterList: filterList,
+      pageNum: middleBarNotifier.value.pageNum,
+      maxSize: middleBarNotifier.value.maxSize,
+    );
+
     middleBarNotifier.value = temp;
+
+    ProductListWidgetData productListWidgetData = ProductListWidgetData(
+        filteredList: applyFilters(widget.productData.products, filter),
+        pageNum: listNotifier.value.pageNum);
+
+    listNotifier.value = productListWidgetData;
   }
 
   removeFilterCallback() {
+    selectedFilters = Filters(searchInput: "");
     ProductMiddleBarWidgetData temp = ProductMiddleBarWidgetData(
         filterList: [], pageNum: middleBarNotifier.value.pageNum, maxSize: 1);
 
-    availableFilters.value = originalFilters;
     middleBarNotifier.value = temp;
+
+    ProductListWidgetData productListWidgetData = ProductListWidgetData(
+        filteredList:
+            applyFilters(widget.productData.products, selectedFilters),
+        pageNum: listNotifier.value.pageNum);
+
+    listNotifier.value = productListWidgetData;
   }
 
   searchCallback(String searchInput) {
+    selectedFilters.searchInput = searchInput;
     ProductListWidgetData temp = ProductListWidgetData(
-        filteredList: applyFilters(widget.productData.products, searchInput),
+        filteredList:
+            applyFilters(widget.productData.products, selectedFilters),
         pageNum: listNotifier.value.pageNum);
 
     listNotifier.value = temp;
@@ -81,7 +143,8 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     super.initState();
 
     ProductListWidgetData listTemp = ProductListWidgetData(
-        filteredList: applyFilters(widget.productData.products, ""),
+        filteredList:
+            applyFilters(widget.productData.products, selectedFilters),
         pageNum: listNotifier.value.pageNum);
     int maxSize = (listTemp.filteredList.length ~/ 50) + 1;
 
@@ -99,16 +162,10 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ValueListenableBuilder(
-          valueListenable: availableFilters,
-          builder: (context, val, child) {
-            return ProductTopBar(
-              height: 100,
-              filters: val,
-              filterCallback: filterCallback,
-              searchCallback: searchCallback,
-            );
-          },
+        ProductTopBar(
+          height: 100,
+          filterCallback: filterCallback,
+          searchCallback: searchCallback,
         ),
         ValueListenableBuilder(
           valueListenable: middleBarNotifier,
@@ -138,7 +195,6 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
 
   @override
   dispose() {
-    availableFilters.dispose();
     middleBarNotifier.dispose();
     listNotifier.dispose();
 
@@ -160,4 +216,13 @@ class ProductMiddleBarWidgetData {
 
   ProductMiddleBarWidgetData(
       {required this.filterList, required this.pageNum, required this.maxSize});
+}
+
+class Filters {
+  String searchInput;
+  int? id;
+  double? lowPrice;
+  double? highPrice;
+
+  Filters({required this.searchInput, this.id, this.lowPrice, this.highPrice});
 }

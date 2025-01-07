@@ -2,9 +2,15 @@ import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:flutter/material.dart';
 
 class FilterList extends StatefulWidget {
-  const FilterList({super.key, required this.filters, required this.height});
+  const FilterList({
+    super.key,
+    required this.filters,
+    required this.height,
+    required this.removeFilter,
+  });
 
   final List<String> filters;
+  final Function removeFilter;
   final double height;
 
   @override
@@ -25,9 +31,23 @@ class _FilterListState extends State<FilterList> {
         margin: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
             color: Theme.of(context).indicatorColor,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
             boxShadow: kBoxShadowList),
-        child: Text(filter),
+        child: Row(
+          children: [
+            Text(filter),
+            SizedBox(width: 10),
+            IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                setState(() {
+                  widget.filters.remove(filter);
+                  widget.removeFilter(widget.filters);
+                });
+              },
+            )
+          ],
+        ),
       ));
     }
 

@@ -116,6 +116,37 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     listNotifier.value = productListWidgetData;
   }
 
+  removeFilterFromList(List<String> filters) {
+    if (selectedFilters.searchInput != "" &&
+        !filters.contains("Name: ${selectedFilters.searchInput}")) {
+      selectedFilters.searchInput = "";
+    }
+    if (selectedFilters.id != null &&
+        !filters.contains("ID: ${selectedFilters.id}")) {
+      selectedFilters.id = null;
+    }
+    if (selectedFilters.lowPrice != null &&
+        selectedFilters.highPrice != null &&
+        !filters.contains(
+            "Price: ${selectedFilters.lowPrice} - ${selectedFilters.highPrice}")) {
+      selectedFilters.lowPrice = null;
+      selectedFilters.highPrice = null;
+    } else if (selectedFilters.lowPrice != null &&
+        !filters.contains("Price: > ${selectedFilters.lowPrice}")) {
+      selectedFilters.lowPrice = null;
+    } else if (selectedFilters.highPrice != null &&
+        !filters.contains("Price: < ${selectedFilters.highPrice}")) {
+      selectedFilters.highPrice = null;
+    }
+
+    ProductListWidgetData temp = ProductListWidgetData(
+        filteredList:
+            applyFilters(widget.productData.products, selectedFilters),
+        pageNum: listNotifier.value.pageNum);
+
+    listNotifier.value = temp;
+  }
+
   searchCallback(String searchInput) {
     List<String> filterList = middleBarNotifier.value.filterList;
     selectedFilters.searchInput = searchInput;
@@ -193,6 +224,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
               pageNum: val.pageNum,
               maxSize: val.maxSize,
               removeFilterCallback: removeFilterCallback,
+              removeFilter: removeFilterFromList,
               setPageNumCallback: setPageNumCallback,
             );
           },

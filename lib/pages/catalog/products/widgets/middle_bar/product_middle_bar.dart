@@ -13,6 +13,7 @@ class ProductMiddleBar extends StatelessWidget {
     required this.setPageNumCallback,
     required this.pageNum,
     required this.maxSize,
+    required this.removeFilter,
   });
 
   final double height;
@@ -20,6 +21,7 @@ class ProductMiddleBar extends StatelessWidget {
   final int pageNum;
   final int maxSize;
   final Function removeFilterCallback;
+  final Function removeFilter;
   final Function setPageNumCallback;
 
   @override
@@ -33,6 +35,7 @@ class ProductMiddleBar extends StatelessWidget {
             flex: 6,
             child: FilterList(
               filters: filterList,
+              removeFilter: removeFilter,
               height: height,
             ),
           ),

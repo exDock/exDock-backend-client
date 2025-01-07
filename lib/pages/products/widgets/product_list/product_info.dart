@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ProductInfoWidget extends StatefulWidget {
-  const ProductInfoWidget(
-      {super.key, required this.selectInfoWidget, required this.isAllSelected});
+  const ProductInfoWidget({
+    super.key,
+    required this.selectInfoWidget,
+    required this.isAllSelected,
+    required this.sortType,
+    required this.isAscending,
+    required this.setSortType,
+  });
 
   final Function selectInfoWidget;
+  final Function setSortType;
   final bool isAllSelected;
+  final String? sortType;
+  final bool isAscending;
 
   @override
   State<ProductInfoWidget> createState() => _ProductInfoState();
@@ -50,73 +59,119 @@ class _ProductInfoState extends State<ProductInfoWidget> {
           ),
           Flexible(
             flex: 1,
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Colors.white))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "ID",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
+            child: GestureDetector(
+              onTap: () {
+                widget.setSortType("ID");
+              },
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                    border: Border(right: BorderSide(color: Colors.white))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Text(
+                        "ID",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    if (widget.sortType == "ID")
+                      Icon(
+                        widget.isAscending
+                            ? Icons.arrow_drop_up
+                            : Icons.arrow_drop_down,
+                        color: Colors.white,
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
           Flexible(
             flex: 3,
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Colors.white))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "THUMBNAIL",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
+            child: GestureDetector(
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                    border: Border(right: BorderSide(color: Colors.white))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Text(
+                        "THUMBNAIL",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
           Flexible(
             flex: 8,
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Colors.white))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "NAME",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
+            child: GestureDetector(
+              onTap: () {
+                widget.setSortType("NAME");
+              },
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                    border: Border(right: BorderSide(color: Colors.white))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Text(
+                        "NAME",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    if (widget.sortType == "NAME")
+                      Icon(
+                        widget.isAscending
+                            ? Icons.arrow_drop_up
+                            : Icons.arrow_drop_down,
+                        color: Colors.white,
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
           Flexible(
             flex: 3,
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                  border: Border(right: BorderSide(color: Colors.white))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "PRICE",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
+            child: GestureDetector(
+              onTap: () {
+                widget.setSortType("PRICE");
+              },
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                    border: Border(right: BorderSide(color: Colors.white))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Text(
+                        "PRICE",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    if (widget.sortType == "PRICE")
+                      Icon(
+                        widget.isAscending
+                            ? Icons.arrow_drop_up
+                            : Icons.arrow_drop_down,
+                        color: Colors.white,
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

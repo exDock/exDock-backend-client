@@ -16,16 +16,68 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
-  ValueNotifier<bool> isInfoSelected = ValueNotifier(false);
+  SortData listSortData =
+      SortData(sortType: null, isAscending: true, isInfoSelected: false);
+  ValueNotifier<SortData> infoBarNotifier = ValueNotifier(
+      SortData(sortType: null, isAscending: true, isInfoSelected: false));
   ValueNotifier<bool> areAllSelectedNotifier = ValueNotifier(false);
 
   deselectInfoWidget() {
-    isInfoSelected.value = false;
+    SortData sortData = SortData(
+        sortType: infoBarNotifier.value.sortType,
+        isAscending: infoBarNotifier.value.isAscending,
+        isInfoSelected: false);
+    infoBarNotifier.value = sortData;
   }
 
   selectInfoWidget() {
-    isInfoSelected.value = !isInfoSelected.value;
-    areAllSelectedNotifier.value = isInfoSelected.value;
+    SortData sortData = SortData(
+        sortType: infoBarNotifier.value.sortType,
+        isAscending: infoBarNotifier.value.isAscending,
+        isInfoSelected: !infoBarNotifier.value.isInfoSelected);
+    infoBarNotifier.value = sortData;
+    areAllSelectedNotifier.value = infoBarNotifier.value.isInfoSelected;
+  }
+
+  setSortType(String? sortType) {
+    bool isAscending = infoBarNotifier.value.sortType == sortType
+        ? !infoBarNotifier.value.isAscending
+        : true;
+    SortData sortData = SortData(
+        sortType: sortType,
+        isAscending: isAscending,
+        isInfoSelected: infoBarNotifier.value.isInfoSelected);
+
+    infoBarNotifier.value = sortData;
+    setState(() {
+      listSortData = sortData;
+    });
+  }
+
+  void sortList(List<ProductInfo> list) {
+    switch (infoBarNotifier.value.sortType) {
+      case null:
+        break;
+      case "ID":
+        if (infoBarNotifier.value.isAscending) {
+          list.sort((a, b) => a.id.compareTo(b.id));
+        } else {
+          list.sort((a, b) => b.id.compareTo(a.id));
+        }
+        break;
+      case "NAME":
+        if (infoBarNotifier.value.isAscending) {
+          list.sort((a, b) => a.name.compareTo(b.name));
+        } else {
+          list.sort((a, b) => b.name.compareTo(a.name));
+        }
+      case "PRICE":
+        if (infoBarNotifier.value.isAscending) {
+          list.sort((a, b) => a.price.compareTo(b.price));
+        } else {
+          list.sort((a, b) => b.price.compareTo(a.price));
+        }
+    }
   }
 
   @override
@@ -43,15 +95,20 @@ class _ProductListState extends State<ProductList> {
       if (i < filteredListLength) finalList.add(filteredList[i]);
     }
 
+    sortList(finalList);
+
     return Expanded(
       child: Column(
         children: [
           ValueListenableBuilder(
-            valueListenable: isInfoSelected,
+            valueListenable: infoBarNotifier,
             builder: (context, val, child) {
               return ProductInfoWidget(
                 selectInfoWidget: selectInfoWidget,
-                isAllSelected: val,
+                setSortType: setSortType,
+                isAllSelected: val.isInfoSelected,
+                sortType: val.sortType,
+                isAscending: val.isAscending,
               );
             },
           ),
@@ -79,4 +136,15 @@ class _ProductListState extends State<ProductList> {
       ),
     );
   }
+}
+
+class SortData {
+  String? sortType;
+  bool isAscending;
+  bool isInfoSelected;
+
+  SortData(
+      {required this.sortType,
+      required this.isAscending,
+      required this.isInfoSelected});
 }

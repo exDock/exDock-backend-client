@@ -89,7 +89,7 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
           ),
         ),
         Expanded(
-          child: CategoryEdit(categoryId: selectedCategory),
+          child: CategoryEdit(categorySelection: categorySelection),
         ),
       ],
     );

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ProductInfoWidget extends StatefulWidget {
-  const ProductInfoWidget({super.key});
+  const ProductInfoWidget(
+      {super.key, required this.selectInfoWidget, required this.isAllSelected});
+
+  final Function selectInfoWidget;
+  final bool isAllSelected;
 
   @override
   State<ProductInfoWidget> createState() => _ProductInfoState();
 }
 
 class _ProductInfoState extends State<ProductInfoWidget> {
-  bool selectedIcon = false;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,12 +37,10 @@ class _ProductInfoState extends State<ProductInfoWidget> {
                   border: Border(right: BorderSide(color: Colors.white))),
               child: GestureDetector(
                 onTap: () {
-                  setState(() {
-                    selectedIcon = !selectedIcon;
-                  });
+                  widget.selectInfoWidget();
                 },
                 child: Icon(
-                  selectedIcon
+                  widget.isAllSelected
                       ? Icons.check_box_outlined
                       : Icons.check_box_outline_blank,
                   color: Colors.white,

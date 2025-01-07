@@ -3,9 +3,16 @@ import 'package:flutter/material.dart';
 import '../../product_data.dart';
 
 class ProductItem extends StatefulWidget {
-  const ProductItem({super.key, required this.product});
+  const ProductItem({
+    super.key,
+    required this.product,
+    required this.isAllSelected,
+    required this.deselectInfoWidget,
+  });
 
   final ProductInfo product;
+  final bool isAllSelected;
+  final Function deselectInfoWidget;
 
   @override
   State<ProductItem> createState() => _ProductItemState();
@@ -13,6 +20,13 @@ class ProductItem extends StatefulWidget {
 
 class _ProductItemState extends State<ProductItem> {
   bool selectedIcon = false;
+
+  @override
+  void didUpdateWidget(covariant ProductItem oldWidget) {
+    selectedIcon = widget.isAllSelected;
+
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +50,9 @@ class _ProductItemState extends State<ProductItem> {
                 onTap: () {
                   setState(() {
                     selectedIcon = !selectedIcon;
+                    if (widget.isAllSelected) {
+                      widget.deselectInfoWidget();
+                    }
                   });
                 },
                 child: Icon(

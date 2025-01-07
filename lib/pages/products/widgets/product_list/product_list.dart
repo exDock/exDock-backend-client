@@ -16,6 +16,18 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
+  ValueNotifier<bool> isInfoSelected = ValueNotifier(false);
+  ValueNotifier<bool> areAllSelectedNotifier = ValueNotifier(false);
+
+  deselectInfoWidget() {
+    isInfoSelected.value = false;
+  }
+
+  selectInfoWidget() {
+    isInfoSelected.value = !isInfoSelected.value;
+    areAllSelectedNotifier.value = isInfoSelected.value;
+  }
+
   @override
   Widget build(BuildContext context) {
     List<ProductInfo> filteredList = widget.productList;
@@ -34,7 +46,15 @@ class _ProductListState extends State<ProductList> {
     return Expanded(
       child: Column(
         children: [
-          ProductInfoWidget(),
+          ValueListenableBuilder(
+            valueListenable: isInfoSelected,
+            builder: (context, val, child) {
+              return ProductInfoWidget(
+                selectInfoWidget: selectInfoWidget,
+                isAllSelected: val,
+              );
+            },
+          ),
           if (finalList.isNotEmpty)
             SizedBox(
               height: 400,
@@ -42,7 +62,16 @@ class _ProductListState extends State<ProductList> {
                 itemCount:
                     filteredListLength % 50 == 0 ? 50 : filteredListLength % 50,
                 itemBuilder: (context, index) {
-                  return ProductItem(product: finalList[index]);
+                  return ValueListenableBuilder(
+                    valueListenable: areAllSelectedNotifier,
+                    builder: (context, val, child) {
+                      return ProductItem(
+                        product: finalList[index],
+                        isAllSelected: val,
+                        deselectInfoWidget: deselectInfoWidget,
+                      );
+                    },
+                  );
                 },
               ),
             ),

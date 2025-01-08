@@ -1,4 +1,6 @@
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/content/category_edit_content.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/header/category_edit_header.dart';
 import 'package:flutter/material.dart';
 
 class CategoryEdit extends StatefulWidget {
@@ -13,16 +15,19 @@ class CategoryEdit extends StatefulWidget {
 class _CategoryEditState extends State<CategoryEdit> {
   @override
   Widget build(BuildContext context) {
-    if (widget.categorySelection.isEmpty) {
-      return const Placeholder(
-        child: Text("no category selected"),
+    Widget categoryContent = Center(child: Text("no category selected"));
+
+    if (widget.categorySelection.isNotEmpty) {
+      categoryContent = CategoryEditContent(
+        selectedCategoryLeaf: widget.categorySelection.last,
       );
     }
 
-    return Placeholder(
-      child: Text(
-        widget.categorySelection.last.id.toString(),
-      ),
+    return Column(
+      children: [
+        CategoryEditHeader(categorySelection: widget.categorySelection),
+        Expanded(child: categoryContent),
+      ],
     );
   }
 }

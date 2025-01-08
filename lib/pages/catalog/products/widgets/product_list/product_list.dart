@@ -88,6 +88,10 @@ class _ProductListState extends State<ProductList> {
   Widget build(BuildContext context) {
     List<ProductInfo> filteredList = widget.productList;
     List<ProductInfo> finalList = [];
+
+    // Sorts the list based on the sort type
+    sortList(filteredList);
+
     int filteredListLength =
         filteredList.length > 50 + (50 * (widget.pageNum - 1))
             ? 50
@@ -99,9 +103,6 @@ class _ProductListState extends State<ProductList> {
         i++) {
       if (i < filteredListLength) finalList.add(filteredList[i]);
     }
-
-    // Sorts the list based on the sort type
-    sortList(finalList);
 
     return Expanded(
       child: Column(

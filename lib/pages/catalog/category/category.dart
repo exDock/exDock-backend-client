@@ -3,7 +3,9 @@ import 'package:exdock_backend_client/pages/catalog/category/category_synchronou
 import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {
-  const Category({super.key});
+  const Category({super.key, this.selectedCategory});
+
+  final int? selectedCategory;
 
   Future<CategoryTree> getCategoryTree() async {
     return CategoryTree([
@@ -37,12 +39,16 @@ class Category extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("selectedCategory: $selectedCategory");
     return FutureBuilder(
       future: getCategoryTree(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             !snapshot.hasError) {
-          return CategorySynchronous(categoryTree: snapshot.data!);
+          return CategorySynchronous(
+            categoryTree: snapshot.data!,
+            selectedId: selectedCategory,
+          );
         }
         if (snapshot.hasError) {
           //

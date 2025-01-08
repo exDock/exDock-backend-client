@@ -12,5 +12,17 @@ List<GoRoute> getCatalogRoutes() {
       path: '/catalog/category',
       builder: (context, state) => Category(),
     ),
+    GoRoute(
+      path: '/catalog/category/:selectedCategory',
+      builder: (context, state) {
+        int? categoryId;
+        try {
+          categoryId = int.parse(state.pathParameters['selectedCategory']!);
+        } catch (_) {}
+        return Category(
+          selectedCategory: categoryId,
+        );
+      },
+    ),
   ];
 }

@@ -5,11 +5,17 @@ import 'package:exdock_backend_client/pages/catalog/category/edit/category_edit.
 import 'package:exdock_backend_client/pages/catalog/category/selection_bar/sub_category_row.dart';
 import 'package:exdock_backend_client/pages/catalog/category/selection_bar/top_category_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CategorySynchronous extends StatefulWidget {
-  const CategorySynchronous({super.key, required this.categoryTree});
+  const CategorySynchronous({
+    super.key,
+    required this.categoryTree,
+    this.selectedId,
+  });
 
   final CategoryTree categoryTree;
+  final int? selectedId;
 
   @override
   State<CategorySynchronous> createState() => _CategorySynchronousState();
@@ -19,9 +25,44 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
   List<CategoryLeaf> categorySelection = [];
   int selectedCategory = -1;
 
+  void updateUri() {
+    List<int> categorySelectionIds = [];
+
+    for (CategoryLeaf category in categorySelection) {
+      categorySelectionIds.add(category.id);
+    }
+
+    SystemNavigator.routeInformationUpdated(
+      uri: Uri(path: "/catalog/category/${categorySelectionIds.last}"),
+    );
+  }
+
+  List<CategoryLeaf>? applySelectedCategory(List<CategoryLeaf>? categoryTree) {
+    if (widget.selectedId == null || categoryTree == null) return null;
+
+    for (CategoryLeaf leaf in categoryTree) {
+      if (leaf.id == widget.selectedId) return [leaf];
+      List<CategoryLeaf>? foundSelection =
+          applySelectedCategory(leaf.subLeaves);
+      if (foundSelection != null) return [leaf, ...foundSelection];
+    }
+
+    return null;
+  }
+
   @override
   void initState() {
     super.initState();
+
+    categorySelection = applySelectedCategory(widget.categoryTree.leaves) ?? [];
+
+    if (categorySelection.isEmpty) {
+      SystemNavigator.routeInformationUpdated(
+        uri: Uri(path: "/catalog/category"),
+      );
+    } else {
+      selectedCategory = widget.selectedId!;
+    }
   }
 
   @override
@@ -54,6 +95,9 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
                         categorySelection
                             .add(widget.categoryTree.leaves[rowIndex]);
                       }
+
+                      updateUri();
+
                       setState(() {});
                     },
                     categoryTree: widget.categoryTree,
@@ -75,6 +119,9 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
                         categorySelection.add(
                             categorySelection[index - 1].subLeaves![rowIndex]);
                       }
+
+                      updateUri();
+
                       setState(() {});
                     },
                     previousLeaf: categorySelection[index - 1],

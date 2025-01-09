@@ -67,13 +67,14 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    double headerHeight = (categorySelection.isNotEmpty &&
+            categorySelection.last.subLeaves != null)
+        ? 72 + categorySelection.length * 48
+        : max(72 + (categorySelection.length - 1) * 48, 72);
+    return Stack(
       children: [
         SizedBox(
-          height: (categorySelection.isNotEmpty &&
-                  categorySelection.last.subLeaves != null)
-              ? 72 + categorySelection.length * 48
-              : max(72 + (categorySelection.length - 1) * 48, 72),
+          height: headerHeight,
           child: Stack(
             children: List.generate(
               (categorySelection.isEmpty ||
@@ -135,10 +136,11 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
             ).reversed.toList(),
           ),
         ),
-        Expanded(
+        Padding(
+          padding: EdgeInsets.only(top: headerHeight),
           child: CategoryEdit(categorySelection: categorySelection),
         ),
-      ],
+      ].reversed.toList(),
     );
   }
 }

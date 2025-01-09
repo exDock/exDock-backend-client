@@ -5,10 +5,15 @@ import 'package:flutter/material.dart';
 import '../../product_data.dart';
 
 class ProductList extends StatefulWidget {
-  const ProductList(
-      {super.key, required this.productList, required this.pageNum});
+  const ProductList({
+    super.key,
+    required this.productList,
+    required this.pageNum,
+    required this.selectedColumns,
+  });
 
   final List<ProductInfo> productList;
+  final List<String> selectedColumns;
   final int pageNum;
 
   @override
@@ -116,6 +121,7 @@ class _ProductListState extends State<ProductList> {
                 isAllSelected: val.isInfoSelected,
                 sortType: val.sortType,
                 isAscending: val.isAscending,
+                selectedColumns: widget.selectedColumns,
               );
             },
           ),
@@ -132,6 +138,7 @@ class _ProductListState extends State<ProductList> {
                       return ProductItem(
                         product: finalList[index],
                         isAllSelected: val,
+                        selectedColumns: widget.selectedColumns,
                         deselectInfoWidget: deselectInfoWidget,
                       );
                     },

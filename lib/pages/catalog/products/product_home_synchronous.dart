@@ -16,8 +16,11 @@ class ProductHomeSynchronous extends StatefulWidget {
 class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
   Filters selectedFilters = Filters(searchInput: "");
   List<String> originalFilters = ["Test", "Test 2", "Test 3"];
-  ValueNotifier<ProductListWidgetData> listNotifier =
-      ValueNotifier(ProductListWidgetData(filteredList: [], pageNum: 1));
+  ValueNotifier<ProductListWidgetData> listNotifier = ValueNotifier(
+      ProductListWidgetData(
+          filteredList: [],
+          selectedColumns: ["ID", "THUMBNAIL", "NAME", "PRICE"],
+          pageNum: 1));
   ValueNotifier<ProductMiddleBarWidgetData> middleBarNotifier = ValueNotifier(
       ProductMiddleBarWidgetData(filterList: [], pageNum: 1, maxSize: 1));
 
@@ -98,6 +101,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
 
     ProductListWidgetData productListWidgetData = ProductListWidgetData(
         filteredList: applyFilters(widget.productData.products, filter),
+        selectedColumns: listNotifier.value.selectedColumns,
         pageNum: listNotifier.value.pageNum);
 
     listNotifier.value = productListWidgetData;
@@ -114,6 +118,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     ProductListWidgetData productListWidgetData = ProductListWidgetData(
         filteredList:
             applyFilters(widget.productData.products, selectedFilters),
+        selectedColumns: listNotifier.value.selectedColumns,
         pageNum: listNotifier.value.pageNum);
 
     listNotifier.value = productListWidgetData;
@@ -146,6 +151,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     ProductListWidgetData temp = ProductListWidgetData(
         filteredList:
             applyFilters(widget.productData.products, selectedFilters),
+        selectedColumns: listNotifier.value.selectedColumns,
         pageNum: listNotifier.value.pageNum);
 
     listNotifier.value = temp;
@@ -158,6 +164,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     ProductListWidgetData temp = ProductListWidgetData(
         filteredList:
             applyFilters(widget.productData.products, selectedFilters),
+        selectedColumns: listNotifier.value.selectedColumns,
         pageNum: listNotifier.value.pageNum);
 
     filterList = filterList.where((element) {
@@ -182,7 +189,9 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
   // Sets the page number for the list
   setPageNumCallback(int pageNum) {
     ProductListWidgetData temp = ProductListWidgetData(
-        filteredList: listNotifier.value.filteredList, pageNum: pageNum);
+        filteredList: listNotifier.value.filteredList,
+        selectedColumns: listNotifier.value.selectedColumns,
+        pageNum: pageNum);
     ProductMiddleBarWidgetData tempMiddle = ProductMiddleBarWidgetData(
         filterList: middleBarNotifier.value.filterList,
         pageNum: pageNum,
@@ -192,6 +201,15 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     middleBarNotifier.value = tempMiddle;
   }
 
+  setSelectedColumns(List<String> columns) {
+    ProductListWidgetData temp = ProductListWidgetData(
+        filteredList: listNotifier.value.filteredList,
+        selectedColumns: columns,
+        pageNum: listNotifier.value.pageNum);
+
+    listNotifier.value = temp;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -199,6 +217,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
     ProductListWidgetData listTemp = ProductListWidgetData(
         filteredList:
             applyFilters(widget.productData.products, selectedFilters),
+        selectedColumns: listNotifier.value.selectedColumns,
         pageNum: listNotifier.value.pageNum);
     int maxSize = (listTemp.filteredList.length ~/ 50) + 1;
 
@@ -220,6 +239,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
           height: 100,
           filterCallback: filterCallback,
           searchCallback: searchCallback,
+          setSelectedColumns: setSelectedColumns,
         ),
         ValueListenableBuilder(
           valueListenable: middleBarNotifier,
@@ -241,6 +261,7 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
             return ProductList(
               productList: val.filteredList,
               pageNum: val.pageNum,
+              selectedColumns: val.selectedColumns,
             );
           },
         ),
@@ -259,9 +280,13 @@ class _ProductHomeSynchronousState extends State<ProductHomeSynchronous> {
 
 class ProductListWidgetData {
   List<ProductInfo> filteredList;
+  List<String> selectedColumns;
   int pageNum;
 
-  ProductListWidgetData({required this.filteredList, required this.pageNum});
+  ProductListWidgetData(
+      {required this.filteredList,
+      required this.selectedColumns,
+      required this.pageNum});
 }
 
 class ProductMiddleBarWidgetData {

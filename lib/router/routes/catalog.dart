@@ -12,5 +12,11 @@ List<GoRoute> getCatalogRoutes() {
       path: '/catalog/category',
       builder: (context, state) => Category(),
     ),
+    GoRoute(
+        path: '/catalog/product/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id'];
+          return Text('Product $id');
+        }),
   ];
 }

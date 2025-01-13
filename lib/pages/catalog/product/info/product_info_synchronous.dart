@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/pages/catalog/product/info/price/price.dart';
 import 'package:flutter/material.dart';
 
 import 'id_data/id_data.dart';
@@ -9,7 +10,7 @@ class ProductInfoSynchronous extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
-        height: 1300,
+        height: 1500,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
           child: Row(
@@ -22,9 +23,12 @@ class ProductInfoSynchronous extends StatelessWidget {
                       flex: 5,
                       child: IdData(),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Flexible(
                       flex: 3,
-                      child: Placeholder(),
+                      child: Price(),
                     ),
                     Expanded(
                       flex: 8,

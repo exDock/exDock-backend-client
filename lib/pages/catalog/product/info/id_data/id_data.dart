@@ -141,6 +141,7 @@ class IdData extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(),
           ],
         ),
       ),

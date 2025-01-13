@@ -47,12 +47,14 @@ class ProductInfoSynchronous extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(
+                      flex: 2,
                       child: Content(),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     Flexible(
+                      flex: 2,
                       child: Images(),
                     ),
                   ],

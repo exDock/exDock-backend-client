@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/pages/catalog/product/info/images/image_list.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../globals/styling.dart';
@@ -34,6 +35,14 @@ class Images extends StatelessWidget {
                   ),
                   Icon(Icons.close),
                 ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Flexible(
+              child: ImageList(
+                images: ["test", "test", "test", "test"],
               ),
             ),
           ],

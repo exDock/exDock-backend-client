@@ -63,7 +63,7 @@ class _CategoryListState extends State<CategoryList> {
                   child: Text("Categories"),
                 ),
                 Expanded(
-                  flex: 16,
+                  flex: 14,
                   child: SizedBox(),
                 ),
                 SizedBox(

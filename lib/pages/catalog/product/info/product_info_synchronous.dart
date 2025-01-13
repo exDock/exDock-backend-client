@@ -1,4 +1,5 @@
 import 'package:exdock_backend_client/pages/catalog/product/info/content/content.dart';
+import 'package:exdock_backend_client/pages/catalog/product/info/images/images.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/price/price.dart';
 import 'package:flutter/material.dart';
 
@@ -48,8 +49,11 @@ class ProductInfoSynchronous extends StatelessWidget {
                     Flexible(
                       child: Content(),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Flexible(
-                      child: Placeholder(),
+                      child: Images(),
                     ),
                   ],
                 ),

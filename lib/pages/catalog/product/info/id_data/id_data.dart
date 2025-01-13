@@ -45,7 +45,7 @@ class IdData extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        boxShadow: kBoxShadowList,
+                        boxShadow: lightKBoxShadowList,
                         color: Colors.white,
                       ),
                       child: Row(
@@ -68,7 +68,7 @@ class IdData extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        boxShadow: kBoxShadowList,
+                        boxShadow: lightKBoxShadowList,
                         color: Colors.white,
                       ),
                       child: Row(
@@ -91,7 +91,7 @@ class IdData extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  boxShadow: kBoxShadowList,
+                  boxShadow: lightKBoxShadowList,
                   color: Colors.white,
                 ),
                 child: Row(
@@ -111,7 +111,7 @@ class IdData extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  boxShadow: kBoxShadowList,
+                  boxShadow: lightKBoxShadowList,
                   color: Colors.white,
                 ),
                 child: Row(

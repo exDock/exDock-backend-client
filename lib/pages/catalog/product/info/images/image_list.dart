@@ -35,7 +35,7 @@ class _ImageListState extends State<ImageList> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  boxShadow: kBoxShadowList,
+                  boxShadow: lightKBoxShadowList,
                   color: Colors.white,
                 ),
                 padding: EdgeInsets.symmetric(vertical: 5),
@@ -50,7 +50,7 @@ class _ImageListState extends State<ImageList> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  boxShadow: kBoxShadowList,
+                  boxShadow: lightKBoxShadowList,
                   color: Colors.white,
                 ),
                 padding: EdgeInsets.symmetric(vertical: 5),
@@ -65,7 +65,7 @@ class _ImageListState extends State<ImageList> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  boxShadow: kBoxShadowList,
+                  boxShadow: lightKBoxShadowList,
                   color: Colors.white,
                 ),
                 padding: EdgeInsets.symmetric(vertical: 5),

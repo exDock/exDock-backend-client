@@ -1,4 +1,5 @@
 import 'package:exdock_backend_client/pages/catalog/category/category.dart';
+import 'package:exdock_backend_client/pages/catalog/product/info/product_info_synchronous.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,7 +17,7 @@ List<GoRoute> getCatalogRoutes() {
         path: '/catalog/product/:id',
         builder: (context, state) {
           final id = state.pathParameters['id'];
-          return Text('Product $id');
+          return ProductInfoSynchronous();
         }),
   ];
 }

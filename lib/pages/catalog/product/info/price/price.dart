@@ -1,17 +1,41 @@
+import 'package:exdock_backend_client/pages/catalog/product/info/product_info_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../globals/styling.dart';
 
 class Price extends StatefulWidget {
-  const Price({super.key});
+  const Price({
+    super.key,
+    required this.priceData,
+  });
+
+  final PriceData priceData;
 
   @override
   State<Price> createState() => _PriceState();
 }
 
 class _PriceState extends State<Price> {
+  TextEditingController costPriceController = TextEditingController();
+  TextEditingController taxClassController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController salePriceController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    costPriceController.value = TextEditingValue(
+      text: widget.priceData.costPrice.toString(),
+    );
+    taxClassController.value = TextEditingValue(
+      text: widget.priceData.taxClass.toString(),
+    );
+    priceController.value = TextEditingValue(
+      text: widget.priceData.price.toString(),
+    );
+    salePriceController.value = TextEditingValue(
+      text: widget.priceData.salePrice.toString(),
+    );
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -39,6 +63,10 @@ class _PriceState extends State<Price> {
               ),
             ),
             Flexible(
+              flex: 1,
+              child: SizedBox(),
+            ),
+            Flexible(
               flex: 4,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,7 +86,16 @@ class _PriceState extends State<Price> {
                           SizedBox(
                             width: 5,
                           ),
-                          Text("€ 5,73 (cost_price)"),
+                          Expanded(
+                            child: TextField(
+                              controller: costPriceController,
+                              decoration: InputDecoration(
+                                labelText: "Cost price",
+                                border: InputBorder.none,
+                                prefixText: "€ ",
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -81,13 +118,25 @@ class _PriceState extends State<Price> {
                           SizedBox(
                             width: 5,
                           ),
-                          Text("Standard VAT (tax_class)"),
+                          Expanded(
+                            child: TextField(
+                              controller: taxClassController,
+                              decoration: InputDecoration(
+                                labelText: "Tax class",
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
                 ],
               ),
+            ),
+            Flexible(
+              flex: 1,
+              child: SizedBox(),
             ),
             Flexible(
               flex: 4,
@@ -109,7 +158,15 @@ class _PriceState extends State<Price> {
                           SizedBox(
                             width: 5,
                           ),
-                          Text("€ 18,95 (price)"),
+                          Expanded(
+                              child: TextField(
+                            controller: priceController,
+                            decoration: InputDecoration(
+                              labelText: "Price",
+                              border: InputBorder.none,
+                              prefixText: "€ ",
+                            ),
+                          ))
                         ],
                       ),
                     ),
@@ -132,13 +189,26 @@ class _PriceState extends State<Price> {
                           SizedBox(
                             width: 5,
                           ),
-                          Text("€ 15,95 (sale_price)"),
+                          Expanded(
+                            child: TextField(
+                              controller: salePriceController,
+                              decoration: InputDecoration(
+                                labelText: "Sale price",
+                                border: InputBorder.none,
+                                prefixText: "€ ",
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
                 ],
               ),
+            ),
+            Flexible(
+              flex: 1,
+              child: SizedBox(),
             ),
             Flexible(
               flex: 4,

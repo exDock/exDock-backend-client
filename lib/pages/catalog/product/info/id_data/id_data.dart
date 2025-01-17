@@ -3,11 +3,43 @@ import 'package:exdock_backend_client/pages/catalog/product/info/id_data/categor
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class IdData extends StatelessWidget {
-  const IdData({super.key});
+import '../product_info_data.dart';
+
+class IdDataWidget extends StatefulWidget {
+  const IdDataWidget({
+    super.key,
+    required this.idData,
+    required this.availableCategories,
+  });
+
+  final IdData idData;
+  final CategoryList availableCategories;
+
+  @override
+  State<IdDataWidget> createState() => IdDataWidgetState();
+}
+
+class IdDataWidgetState extends State<IdDataWidget> {
+  TextEditingController skuController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+  TextEditingController eanController = TextEditingController();
+  TextEditingController manufacturerController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    skuController.value = TextEditingValue(
+      text: widget.idData.sku,
+    );
+    locationController.value = TextEditingValue(
+      text: widget.idData.location,
+    );
+    eanController.value = TextEditingValue(
+      text: widget.idData.ean,
+    );
+    manufacturerController.value = TextEditingValue(
+      text: widget.idData.manufacturer,
+    );
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -20,7 +52,7 @@ class IdData extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
-              flex: 1,
+              flex: 2,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -35,7 +67,11 @@ class IdData extends StatelessWidget {
               ),
             ),
             Flexible(
-              flex: 2,
+              flex: 1,
+              child: SizedBox(),
+            ),
+            Flexible(
+              flex: 4,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -54,7 +90,15 @@ class IdData extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          Text("00/073 (SKU)"),
+                          Expanded(
+                            child: TextField(
+                              controller: skuController,
+                              decoration: InputDecoration(
+                                labelText: "SKU",
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -77,7 +121,15 @@ class IdData extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          Text("G4.32 (location)"),
+                          Expanded(
+                            child: TextField(
+                              controller: locationController,
+                              decoration: InputDecoration(
+                                labelText: "Location",
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -86,7 +138,11 @@ class IdData extends StatelessWidget {
               ),
             ),
             Flexible(
-              flex: 2,
+              flex: 1,
+              child: SizedBox(),
+            ),
+            Flexible(
+              flex: 4,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
@@ -100,13 +156,25 @@ class IdData extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("1234567890123 (GTIN/EAN)"),
+                    Expanded(
+                      child: TextField(
+                        controller: eanController,
+                        decoration: InputDecoration(
+                          labelText: "GTIN/EAN",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
             Flexible(
-              flex: 2,
+              flex: 1,
+              child: SizedBox(),
+            ),
+            Flexible(
+              flex: 4,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
@@ -120,28 +188,35 @@ class IdData extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    Text("manufacturer"),
+                    Expanded(
+                      child: TextField(
+                        controller: manufacturerController,
+                        decoration: InputDecoration(
+                          labelText: "Manufacturer",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
             Flexible(
-              flex: 4,
+              flex: 1,
+              child: SizedBox(),
+            ),
+            Flexible(
+              flex: 8,
               child: CategoryList(
-                categories: [
-                  "test1",
-                  "test2",
-                  "test3",
-                  "test1",
-                  "test2",
-                  "test3",
-                  "test1",
-                  "test2",
-                  "test3"
-                ],
+                categories: widget.idData.categories.map((e) {
+                  return e.name;
+                }).toList(),
               ),
             ),
-            SizedBox(),
+            Flexible(
+              flex: 2,
+              child: SizedBox(),
+            ),
           ],
         ),
       ),

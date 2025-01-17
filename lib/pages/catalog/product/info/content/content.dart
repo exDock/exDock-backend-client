@@ -1,17 +1,33 @@
+import 'package:exdock_backend_client/pages/catalog/product/info/product_info_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../globals/styling.dart';
 
 class Content extends StatefulWidget {
-  const Content({super.key});
+  const Content({
+    super.key,
+    required this.contentData,
+  });
+
+  final ContentData contentData;
 
   @override
   State<Content> createState() => _ContentState();
 }
 
 class _ContentState extends State<Content> {
+  TextEditingController shortDescriptionController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    shortDescriptionController.value = TextEditingValue(
+      text: widget.contentData.shortDescription,
+    );
+    descriptionController.value = TextEditingValue(
+      text: widget.contentData.description,
+    );
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -40,28 +56,40 @@ class _ContentState extends State<Content> {
             SizedBox(
               height: 5,
             ),
-            Flexible(
+            Expanded(
               flex: 3,
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black),
                 ),
-                child: Center(
-                  child: Text("short description WYSIWYG editor"),
+                child: TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  controller: shortDescriptionController,
+                  decoration: InputDecoration(
+                    labelText: "Short Description",
+                    border: InputBorder.none,
+                  ),
                 ),
               ),
             ),
             SizedBox(
               height: 20,
             ),
-            Flexible(
+            Expanded(
               flex: 6,
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black),
                 ),
-                child: Center(
-                  child: Text("description WYSIWYG editor"),
+                child: TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  controller: descriptionController,
+                  decoration: InputDecoration(
+                    labelText: "Description",
+                    border: InputBorder.none,
+                  ),
                 ),
               ),
             ),

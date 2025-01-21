@@ -1,9 +1,9 @@
-import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/content/content.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/id_data/id_data.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/images/images.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/price/price.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_data.dart';
+import 'package:exdock_backend_client/pages/catalog/product/info/top_bar/top_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'id_data/category_list.dart';
@@ -15,12 +15,8 @@ class ProductInfoSynchronous extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          height: 50,
-          decoration: BoxDecoration(
-            color: darkColour,
-            boxShadow: kBoxShadowList,
-          ),
+        TopBar(
+          name: "Product Name",
         ),
         Padding(
           padding: EdgeInsets.only(top: 50),

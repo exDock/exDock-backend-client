@@ -1,4 +1,5 @@
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/content/attribute_types/category_image_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/category_edit_group_card_with_title.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,11 @@ class _CategoryEditContentState extends State<CategoryEditContent> {
                   CategoryEditGroupCardWithTitle(
                     title: "Content",
                     unsavedChangesNotifier: ValueNotifier<bool>(true),
-                    child: const SizedBox(height: 250),
+                    child: Column(
+                      children: [
+                        CategoryImageAttribute(),
+                      ],
+                    ),
                   ),
                 ],
               ),

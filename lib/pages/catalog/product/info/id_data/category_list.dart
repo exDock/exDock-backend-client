@@ -23,8 +23,10 @@ class _CategoryListState extends State<CategoryList> {
 
     for (String categoryName in widget.categories) {
       categoryWidgets.add(Container(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        width: 90,
+        constraints: BoxConstraints(
+          maxWidth: 125,
+        ),
+        padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           boxShadow: lightKBoxShadowList,

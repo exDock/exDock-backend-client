@@ -1,10 +1,12 @@
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/content/content.dart';
-import 'package:exdock_backend_client/pages/catalog/product/info/id_data/category_list.dart';
+import 'package:exdock_backend_client/pages/catalog/product/info/id_data/id_data.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/images/images.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/price/price.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_data.dart';
 import 'package:flutter/material.dart';
+
+import 'id_data/category_list.dart';
 
 class ProductInfoSynchronous extends StatelessWidget {
   const ProductInfoSynchronous({super.key});
@@ -16,7 +18,7 @@ class ProductInfoSynchronous extends StatelessWidget {
         Container(
           height: 50,
           decoration: BoxDecoration(
-            color: Colors.amber,
+            color: darkColour,
             boxShadow: kBoxShadowList,
           ),
         ),
@@ -34,11 +36,35 @@ class ProductInfoSynchronous extends StatelessWidget {
                       child: SizedBox(
                         child: Column(
                           children: [
-                            IdData(),
+                            IdDataWidget(
+                              idData: IdData(
+                                sku: "123232",
+                                location: "G23.15",
+                                ean: "1234567890123",
+                                manufacturer: "manufacturer",
+                                categories: [
+                                  CategoryData(
+                                    name: "test name",
+                                  ),
+                                ],
+                              ),
+                              availableCategories: CategoryList(
+                                categories: ["test"],
+                              ),
+                            ),
                             SizedBox(
                               height: 20,
                             ),
-                            Price(),
+                            Price(
+                              priceData: PriceData(
+                                costPrice: 18.99,
+                                taxClass: "standard VAT",
+                                price: 12.99,
+                                salePrice: 15.99,
+                                saleDateStart: "05-12-2024",
+                                saleDateEnd: "05-12-2024",
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -51,7 +77,12 @@ class ProductInfoSynchronous extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Content(),
+                          Content(
+                            contentData: ContentData(
+                              description: "test description",
+                              shortDescription: "short description",
+                            ),
+                          ),
                           SizedBox(
                             height: 20,
                           ),

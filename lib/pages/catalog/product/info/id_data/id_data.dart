@@ -1,7 +1,7 @@
 import 'package:exdock_backend_client/globals/styling.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/id_data/category_list.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import '../product_info_data.dart';
 
@@ -140,7 +140,7 @@ class IdDataWidgetState extends State<IdDataWidget> {
                 ),
                 child: Row(
                   children: [
-                    Icon(FontAwesomeIcons.barcode),
+                    Icon(Symbols.barcode),
                     SizedBox(
                       width: 5,
                     ),

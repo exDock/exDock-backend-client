@@ -20,6 +20,8 @@ class _PriceState extends State<Price> {
   TextEditingController taxClassController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController salePriceController = TextEditingController();
+  TextEditingController priceStartDateController = TextEditingController();
+  TextEditingController priceEndDateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,12 @@ class _PriceState extends State<Price> {
     );
     salePriceController.value = TextEditingValue(
       text: widget.priceData.salePrice.toString(),
+    );
+    priceStartDateController.value = TextEditingValue(
+      text: widget.priceData.saleDateStart.toString(),
+    );
+    priceEndDateController.value = TextEditingValue(
+      text: widget.priceData.saleDateEnd.toString(),
     );
 
     return Container(
@@ -194,10 +202,7 @@ class _PriceState extends State<Price> {
                 ],
               ),
             ),
-            Flexible(
-              flex: 1,
-              child: SizedBox(),
-            ),
+            SizedBox(),
             Padding(
               padding: const EdgeInsets.only(top: 24),
               child: Row(
@@ -219,7 +224,15 @@ class _PriceState extends State<Price> {
                       ),
                       child: Row(
                         children: [
-                          Text("15-12-2024"),
+                          Expanded(
+                            child: TextField(
+                              controller: priceEndDateController,
+                              decoration: InputDecoration(
+                                labelText: "End date",
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
                           Expanded(
                             child: SizedBox(),
                           ),
@@ -240,7 +253,15 @@ class _PriceState extends State<Price> {
                       ),
                       child: Row(
                         children: [
-                          Text("15-12-2024"),
+                          Expanded(
+                            child: TextField(
+                              controller: priceStartDateController,
+                              decoration: InputDecoration(
+                                labelText: "Start date",
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
                           Expanded(
                             child: SizedBox(),
                           ),

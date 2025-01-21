@@ -1,4 +1,5 @@
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_data.dart';
+import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../globals/styling.dart';
@@ -18,6 +19,8 @@ class Content extends StatefulWidget {
 class _ContentState extends State<Content> {
   TextEditingController shortDescriptionController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  FleatherController fleatherDescriptionController = FleatherController();
+  FleatherController fleatherShortDescriptionController = FleatherController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +38,14 @@ class _ContentState extends State<Content> {
         color: Colors.white,
       ),
       child: Container(
-        constraints: BoxConstraints(
-          maxHeight: 1200,
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: EdgeInsets.all(24),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.only(left: 3, top: 8),
+                  padding: EdgeInsets.only(left: 3, bottom: 12),
                   child: Text(
                     "Content",
                     style: TextStyle(fontSize: 20),
@@ -57,25 +57,50 @@ class _ContentState extends State<Content> {
               height: 5,
             ),
             Container(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              height: 300,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
               ),
-              child: Center(
-                child: TextField(
-                  keyboardType: TextInputType.multiline,
-                  controller: shortDescriptionController,
-                ),
+              child: Column(
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: FleatherToolbar.basic(
+                      controller: fleatherShortDescriptionController,
+                    ),
+                  ),
+                  Expanded(
+                    child: FleatherEditor(
+                      controller: fleatherShortDescriptionController,
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(
               height: 20,
             ),
             Container(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              height: 500,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
               ),
-              child: Center(
-                child: Text("description WYSIWYG editor"),
+              child: Column(
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: FleatherToolbar.basic(
+                      controller: fleatherDescriptionController,
+                    ),
+                  ),
+                  Expanded(
+                    child: FleatherEditor(
+                      controller: fleatherDescriptionController,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

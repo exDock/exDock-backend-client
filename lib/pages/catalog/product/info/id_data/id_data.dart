@@ -47,31 +47,23 @@ class IdDataWidgetState extends State<IdDataWidget> {
         color: Colors.white,
       ),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        margin: EdgeInsets.all(24),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Flexible(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 3, top: 8),
-                    child: Text(
-                      "ID data",
-                      style: TextStyle(fontSize: 20),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 3),
+                  child: Text(
+                    "ID data",
+                    style: TextStyle(fontSize: 20),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Flexible(
-              flex: 1,
-              child: SizedBox(),
-            ),
-            Flexible(
-              flex: 4,
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -137,12 +129,8 @@ class IdDataWidgetState extends State<IdDataWidget> {
                 ],
               ),
             ),
-            Flexible(
-              flex: 1,
-              child: SizedBox(),
-            ),
-            Flexible(
-              flex: 4,
+            Padding(
+              padding: const EdgeInsets.only(top: 24),
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
@@ -169,12 +157,8 @@ class IdDataWidgetState extends State<IdDataWidget> {
                 ),
               ),
             ),
-            Flexible(
-              flex: 1,
-              child: SizedBox(),
-            ),
-            Flexible(
-              flex: 4,
+            Padding(
+              padding: const EdgeInsets.only(top: 24),
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
@@ -201,21 +185,13 @@ class IdDataWidgetState extends State<IdDataWidget> {
                 ),
               ),
             ),
-            Flexible(
-              flex: 1,
-              child: SizedBox(),
-            ),
-            Flexible(
-              flex: 8,
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
               child: CategoryList(
                 categories: widget.idData.categories.map((e) {
                   return e.name;
                 }).toList(),
               ),
-            ),
-            Flexible(
-              flex: 2,
-              child: SizedBox(),
             ),
           ],
         ),

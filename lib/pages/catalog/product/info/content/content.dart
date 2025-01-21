@@ -35,62 +35,47 @@ class _ContentState extends State<Content> {
         color: Colors.white,
       ),
       child: Container(
+        constraints: BoxConstraints(
+          maxHeight: 1200,
+        ),
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Column(
           children: [
-            Flexible(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 3, top: 8),
-                    child: Text(
-                      "Content",
-                      style: TextStyle(fontSize: 20),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 3, top: 8),
+                  child: Text(
+                    "Content",
+                    style: TextStyle(fontSize: 20),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             SizedBox(
               height: 5,
             ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              child: Center(
                 child: TextField(
                   keyboardType: TextInputType.multiline,
-                  maxLines: null,
                   controller: shortDescriptionController,
-                  decoration: InputDecoration(
-                    labelText: "Short Description",
-                    border: InputBorder.none,
-                  ),
                 ),
               ),
             ),
             SizedBox(
               height: 20,
             ),
-            Expanded(
-              flex: 6,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                ),
-                child: TextField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  controller: descriptionController,
-                  decoration: InputDecoration(
-                    labelText: "Description",
-                    border: InputBorder.none,
-                  ),
-                ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              child: Center(
+                child: Text("description WYSIWYG editor"),
               ),
             ),
           ],

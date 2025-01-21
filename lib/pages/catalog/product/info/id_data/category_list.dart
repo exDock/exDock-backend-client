@@ -40,55 +40,39 @@ class _CategoryListState extends State<CategoryList> {
     }
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         boxShadow: lightKBoxShadowList,
         color: Colors.white,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Flexible(
-            child: Row(
-              children: [
-                Flexible(
-                  flex: 1,
-                  child: Icon(Icons.category_outlined),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Flexible(
-                  flex: 2,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Icon(Icons.category_outlined),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12),
                   child: Text("Categories"),
                 ),
-                Expanded(
-                  flex: 14,
-                  child: SizedBox(),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Flexible(
-                  flex: 1,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Icon(Icons.add),
-                  ),
-                ),
-              ],
-            ),
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Icon(Icons.add),
+              ),
+            ],
           ),
           SizedBox(
-            height: 8,
+            height: 12,
           ),
-          Flexible(
-            child: Wrap(
-              spacing: 10,
-              runSpacing: 5,
-              direction: Axis.horizontal,
-              children: categoryWidgets,
-            ),
+          Wrap(
+            spacing: 10,
+            runSpacing: 5,
+            direction: Axis.horizontal,
+            children: categoryWidgets,
           ),
         ],
       ),

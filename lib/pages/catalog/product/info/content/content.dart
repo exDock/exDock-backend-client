@@ -22,6 +22,9 @@ class _ContentState extends State<Content> {
         color: Colors.white,
       ),
       child: Container(
+        constraints: BoxConstraints(
+          maxHeight: 1200,
+        ),
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Column(
           children: [
@@ -40,31 +43,26 @@ class _ContentState extends State<Content> {
             SizedBox(
               height: 5,
             ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                ),
-                child: Center(
-                  child: TextField(
-                    controller: shortDescriptionController,
-                  ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              child: Center(
+                child: TextField(
+                  keyboardType: TextInputType.multiline,
+                  controller: shortDescriptionController,
                 ),
               ),
             ),
             SizedBox(
               height: 20,
             ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                ),
-                child: Center(
-                  child: Text("description WYSIWYG editor"),
-                ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              child: Center(
+                child: Text("description WYSIWYG editor"),
               ),
             ),
           ],

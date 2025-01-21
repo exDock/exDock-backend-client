@@ -19,27 +19,23 @@ class _PriceState extends State<Price> {
         color: Colors.white,
       ),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: EdgeInsets.all(24),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Flexible(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 3, top: 8),
-                    child: Text(
-                      "Price",
-                      style: TextStyle(fontSize: 20),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 3, top: 8),
+                  child: Text(
+                    "Price",
+                    style: TextStyle(fontSize: 20),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Flexible(
-              flex: 4,
+            Padding(
+              padding: const EdgeInsets.only(top: 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -89,8 +85,8 @@ class _PriceState extends State<Price> {
                 ],
               ),
             ),
-            Flexible(
-              flex: 4,
+            Padding(
+              padding: const EdgeInsets.only(top: 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -140,8 +136,8 @@ class _PriceState extends State<Price> {
                 ],
               ),
             ),
-            Flexible(
-              flex: 4,
+            Padding(
+              padding: const EdgeInsets.only(top: 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

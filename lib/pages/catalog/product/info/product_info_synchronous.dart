@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/content/content.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/images/images.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/price/price.dart';
@@ -10,59 +11,61 @@ class ProductInfoSynchronous extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SizedBox(
-        height: 1500,
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Column(
-                  children: [
-                    Flexible(
-                      flex: 5,
-                      child: IdData(),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Flexible(
-                      flex: 3,
-                      child: Price(),
-                    ),
-                    Expanded(
-                      flex: 8,
-                      child: SizedBox(),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Flexible(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Flexible(
-                      child: Content(),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Flexible(
-                      child: Images(),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+    return Stack(
+      children: [
+        Container(
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.amber,
+            boxShadow: kBoxShadowList,
           ),
         ),
-      ),
+        Padding(
+          padding: EdgeInsets.only(top: 50),
+          child: SingleChildScrollView(
+            child: SizedBox(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      child: SizedBox(
+                        child: Column(
+                          children: [
+                            IdData(),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Price(),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Flexible(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Content(),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Images(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ].reversed.toList(),
     );
   }
 }

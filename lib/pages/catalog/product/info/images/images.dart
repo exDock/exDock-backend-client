@@ -18,32 +18,27 @@ class Images extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         child: Column(
           children: [
-            Flexible(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 3, top: 8),
-                    child: Text(
-                      "Images",
-                      style: TextStyle(fontSize: 20),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 3, top: 8),
+                  child: Text(
+                    "Images",
+                    style: TextStyle(fontSize: 20),
                   ),
-                  Expanded(
-                    child: SizedBox(),
-                  ),
-                  Icon(Icons.close),
-                ],
-              ),
+                ),
+                Expanded(
+                  child: SizedBox(),
+                ),
+                Icon(Icons.close),
+              ],
             ),
             SizedBox(
               height: 30,
             ),
-            Flexible(
-              child: ImageList(
-                images: ["test", "test", "test", "test"],
-              ),
+            ImageList(
+              images: ["test", "test", "test", "test"],
             ),
           ],
         ),

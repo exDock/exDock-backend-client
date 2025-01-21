@@ -1,5 +1,6 @@
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../globals/styling.dart';
 
@@ -7,9 +8,11 @@ class Price extends StatefulWidget {
   const Price({
     super.key,
     required this.priceData,
+    required this.changeNotifierState,
   });
 
   final PriceData priceData;
+  final Function changeNotifierState;
 
   @override
   State<Price> createState() => _PriceState();
@@ -44,6 +47,21 @@ class _PriceState extends State<Price> {
       text: widget.priceData.saleDateEnd.toString(),
     );
 
+    checkIfChanged() {
+      if (double.parse(costPriceController.text) !=
+              widget.priceData.costPrice ||
+          taxClassController.text != widget.priceData.taxClass ||
+          double.parse(priceController.text) != widget.priceData.price ||
+          double.parse(salePriceController.text) !=
+              widget.priceData.salePrice ||
+          priceStartDateController.text != widget.priceData.saleDateStart ||
+          priceEndDateController.text != widget.priceData.saleDateEnd) {
+        widget.changeNotifierState(true, "price");
+      } else {
+        widget.changeNotifierState(false, "price");
+      }
+    }
+
     return Column(
       children: [
         Padding(
@@ -67,7 +85,16 @@ class _PriceState extends State<Price> {
                       ),
                       Expanded(
                         child: TextField(
+                          onChanged: (_) {
+                            checkIfChanged();
+                          },
                           controller: costPriceController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                              RegExp(r'^(\d+)?\.?\d{0,2}'),
+                            ),
+                          ],
                           decoration: InputDecoration(
                             labelText: "Cost price",
                             border: InputBorder.none,
@@ -98,6 +125,9 @@ class _PriceState extends State<Price> {
                       ),
                       Expanded(
                         child: TextField(
+                          onChanged: (_) {
+                            checkIfChanged();
+                          },
                           controller: taxClassController,
                           decoration: InputDecoration(
                             labelText: "Tax class",
@@ -133,7 +163,16 @@ class _PriceState extends State<Price> {
                       ),
                       Expanded(
                           child: TextField(
+                        onChanged: (_) {
+                          checkIfChanged();
+                        },
                         controller: priceController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(
+                            RegExp(r'^(\d+)?\.?\d{0,2}'),
+                          ),
+                        ],
                         decoration: InputDecoration(
                           labelText: "Price",
                           border: InputBorder.none,
@@ -164,11 +203,20 @@ class _PriceState extends State<Price> {
                       Expanded(
                         child: TextField(
                           controller: salePriceController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                              RegExp(r'^(\d+)?\.?\d{0,2}'),
+                            ),
+                          ],
                           decoration: InputDecoration(
                             labelText: "Sale price",
                             border: InputBorder.none,
                             prefixText: "€ ",
                           ),
+                          onChanged: (_) {
+                            checkIfChanged();
+                          },
                         ),
                       ),
                     ],

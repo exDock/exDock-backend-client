@@ -7,17 +7,17 @@ class TopBar extends StatefulWidget {
   const TopBar({
     super.key,
     required this.name,
+    required this.saveNotifier,
   });
 
   final String name;
+  final ValueNotifier<bool> saveNotifier;
 
   @override
   State<TopBar> createState() => _TopBarState();
 }
 
 class _TopBarState extends State<TopBar> {
-  ValueNotifier<bool> saveNotifier = ValueNotifier(false);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +46,7 @@ class _TopBarState extends State<TopBar> {
             child: SizedBox(),
           ),
           ExDockSaveButton(
-            somethingToSaveNotifier: saveNotifier,
+            somethingToSaveNotifier: widget.saveNotifier,
             onPressed: () {},
             // TODO: Give onPressed functionality
           ),

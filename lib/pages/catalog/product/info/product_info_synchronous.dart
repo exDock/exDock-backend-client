@@ -14,10 +14,43 @@ class ProductInfoSynchronous extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ValueNotifier<bool> idDataNotifier = ValueNotifier(false);
+    ValueNotifier<bool> priceNotifier = ValueNotifier(false);
+    ValueNotifier<bool> contentNotifier = ValueNotifier(false);
+    ValueNotifier<bool> imageNotifier = ValueNotifier(false);
+    ValueNotifier<bool> topBarNotifier = ValueNotifier(false);
+
+    changeNotifierState(bool value, String valueName) {
+      switch (valueName) {
+        case "idData":
+          idDataNotifier.value = value;
+          break;
+        case "price":
+          priceNotifier.value = value;
+          break;
+        case "content":
+          contentNotifier.value = value;
+          break;
+        case "images":
+          imageNotifier.value = value;
+          break;
+      }
+
+      if (idDataNotifier.value ||
+          priceNotifier.value ||
+          contentNotifier.value ||
+          imageNotifier.value) {
+        topBarNotifier.value = true;
+      } else {
+        topBarNotifier.value = false;
+      }
+    }
+
     return Stack(
       children: [
         TopBar(
           name: "Product Name",
+          saveNotifier: topBarNotifier,
         ),
         Padding(
           padding: EdgeInsets.only(top: 50),
@@ -35,7 +68,7 @@ class ProductInfoSynchronous extends StatelessWidget {
                           children: [
                             ProductInfoCardTitle(
                               title: "ID data",
-                              unsavedChangesNotifier: ValueNotifier(false),
+                              unsavedChangesNotifier: idDataNotifier,
                               child: IdDataWidget(
                                 idData: IdData(
                                   sku: "123232",
@@ -51,6 +84,7 @@ class ProductInfoSynchronous extends StatelessWidget {
                                 availableCategories: CategoryList(
                                   categories: ["test"],
                                 ),
+                                changeNotifierState: changeNotifierState,
                               ),
                             ),
                             SizedBox(
@@ -58,7 +92,7 @@ class ProductInfoSynchronous extends StatelessWidget {
                             ),
                             ProductInfoCardTitle(
                               title: 'Price',
-                              unsavedChangesNotifier: ValueNotifier(false),
+                              unsavedChangesNotifier: priceNotifier,
                               child: Price(
                                 priceData: PriceData(
                                   costPrice: 18.99,
@@ -68,6 +102,7 @@ class ProductInfoSynchronous extends StatelessWidget {
                                   saleDateStart: "05-12-2024",
                                   saleDateEnd: "05-12-2024",
                                 ),
+                                changeNotifierState: changeNotifierState,
                               ),
                             ),
                           ],
@@ -84,12 +119,13 @@ class ProductInfoSynchronous extends StatelessWidget {
                         children: [
                           ProductInfoCardTitle(
                             title: 'Content',
-                            unsavedChangesNotifier: ValueNotifier(false),
+                            unsavedChangesNotifier: contentNotifier,
                             child: Content(
                               contentData: ContentData(
                                 description: "test description",
                                 shortDescription: "short description",
                               ),
+                              changeNotifierState: changeNotifierState,
                             ),
                           ),
                           SizedBox(
@@ -97,7 +133,7 @@ class ProductInfoSynchronous extends StatelessWidget {
                           ),
                           ProductInfoCardTitle(
                             title: 'Images',
-                            unsavedChangesNotifier: ValueNotifier(false),
+                            unsavedChangesNotifier: imageNotifier,
                             child: Images(),
                           ),
                         ],

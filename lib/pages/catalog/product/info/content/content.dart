@@ -6,9 +6,11 @@ class Content extends StatefulWidget {
   const Content({
     super.key,
     required this.contentData,
+    required this.changeNotifierState,
   });
 
   final ContentData contentData;
+  final Function changeNotifierState;
 
   @override
   State<Content> createState() => _ContentState();
@@ -17,17 +19,32 @@ class Content extends StatefulWidget {
 class _ContentState extends State<Content> {
   TextEditingController shortDescriptionController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  FleatherController fleatherDescriptionController = FleatherController();
-  FleatherController fleatherShortDescriptionController = FleatherController();
+  FleatherController? fleatherDescriptionController;
+  FleatherController? fleatherShortDescriptionController;
 
   @override
   Widget build(BuildContext context) {
-    shortDescriptionController.value = TextEditingValue(
-      text: widget.contentData.shortDescription,
-    );
-    descriptionController.value = TextEditingValue(
-      text: widget.contentData.description,
-    );
+    checkIfChanged() {
+      if (fleatherDescriptionController!.plainTextEditingValue.text !=
+              widget.contentData.description ||
+          fleatherShortDescriptionController!.plainTextEditingValue.text !=
+              widget.contentData.shortDescription) {
+        widget.changeNotifierState(true, "content");
+      } else {
+        widget.changeNotifierState(false, "content");
+      }
+    }
+
+    var descriptionDocument = ParchmentDocument();
+    var shortDescriptionDocument = ParchmentDocument();
+
+    descriptionDocument.insert(0, widget.contentData.description);
+    shortDescriptionDocument.insert(0, widget.contentData.shortDescription);
+
+    fleatherDescriptionController =
+        FleatherController(document: descriptionDocument);
+    fleatherShortDescriptionController =
+        FleatherController(document: shortDescriptionDocument);
 
     return Column(
       children: [
@@ -45,12 +62,20 @@ class _ContentState extends State<Content> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: FleatherToolbar.basic(
-                  controller: fleatherShortDescriptionController,
+                  controller: fleatherShortDescriptionController!,
                 ),
               ),
               Expanded(
-                child: FleatherEditor(
-                  controller: fleatherShortDescriptionController,
+                child: Focus(
+                  onKeyEvent: (focusNode, keyEvent) {
+                    if (focusNode.hasFocus) {
+                      checkIfChanged();
+                    }
+                    return KeyEventResult.ignored;
+                  },
+                  child: FleatherEditor(
+                    controller: fleatherShortDescriptionController!,
+                  ),
                 ),
               ),
             ],
@@ -70,12 +95,20 @@ class _ContentState extends State<Content> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: FleatherToolbar.basic(
-                  controller: fleatherDescriptionController,
+                  controller: fleatherDescriptionController!,
                 ),
               ),
               Expanded(
-                child: FleatherEditor(
-                  controller: fleatherDescriptionController,
+                child: Focus(
+                  onKeyEvent: (focusNode, keyEvent) {
+                    if (focusNode.hasFocus) {
+                      checkIfChanged();
+                    }
+                    return KeyEventResult.ignored;
+                  },
+                  child: FleatherEditor(
+                    controller: fleatherDescriptionController!,
+                  ),
                 ),
               ),
             ],

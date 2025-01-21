@@ -10,10 +10,12 @@ class IdDataWidget extends StatefulWidget {
     super.key,
     required this.idData,
     required this.availableCategories,
+    required this.changeNotifierState,
   });
 
   final IdData idData;
   final CategoryList availableCategories;
+  final Function changeNotifierState;
 
   @override
   State<IdDataWidget> createState() => IdDataWidgetState();
@@ -40,6 +42,17 @@ class IdDataWidgetState extends State<IdDataWidget> {
       text: widget.idData.manufacturer,
     );
 
+    checkIfChanged() {
+      if (skuController.text != widget.idData.sku ||
+          locationController.text != widget.idData.location ||
+          eanController.text != widget.idData.ean ||
+          manufacturerController.text != widget.idData.manufacturer) {
+        widget.changeNotifierState(true, "idData");
+      } else {
+        widget.changeNotifierState(false, "idData");
+      }
+    }
+
     return Column(
       children: [
         Padding(
@@ -63,6 +76,9 @@ class IdDataWidgetState extends State<IdDataWidget> {
                       ),
                       Expanded(
                         child: TextField(
+                          onChanged: (_) {
+                            checkIfChanged();
+                          },
                           controller: skuController,
                           decoration: InputDecoration(
                             labelText: "SKU",
@@ -93,6 +109,9 @@ class IdDataWidgetState extends State<IdDataWidget> {
                       ),
                       Expanded(
                         child: TextField(
+                          onChanged: (_) {
+                            checkIfChanged();
+                          },
                           controller: locationController,
                           decoration: InputDecoration(
                             labelText: "Location",
@@ -124,6 +143,9 @@ class IdDataWidgetState extends State<IdDataWidget> {
                 ),
                 Expanded(
                   child: TextField(
+                    onChanged: (_) {
+                      checkIfChanged();
+                    },
                     controller: eanController,
                     decoration: InputDecoration(
                       labelText: "GTIN/EAN",
@@ -152,6 +174,9 @@ class IdDataWidgetState extends State<IdDataWidget> {
                 ),
                 Expanded(
                   child: TextField(
+                    onChanged: (_) {
+                      checkIfChanged();
+                    },
                     controller: manufacturerController,
                     decoration: InputDecoration(
                       labelText: "Manufacturer",

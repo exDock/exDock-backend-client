@@ -126,8 +126,7 @@ class _ProductListState extends State<ProductList> {
             },
           ),
           if (finalList.isNotEmpty)
-            SizedBox(
-              height: 400,
+            Expanded(
               child: ListView.builder(
                 itemCount:
                     filteredListLength % 50 == 0 ? 50 : filteredListLength % 50,

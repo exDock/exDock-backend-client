@@ -10,6 +10,9 @@ class Content extends StatefulWidget {
 }
 
 class _ContentState extends State<Content> {
+  TextEditingController shortDescriptionController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,40 +25,39 @@ class _ContentState extends State<Content> {
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Column(
           children: [
-            Flexible(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 3, top: 8),
-                    child: Text(
-                      "Content",
-                      style: TextStyle(fontSize: 20),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 3, top: 8),
+                  child: Text(
+                    "Content",
+                    style: TextStyle(fontSize: 20),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             SizedBox(
               height: 5,
             ),
-            Flexible(
-              flex: 3,
+            Expanded(
+              flex: 1,
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black),
                 ),
                 child: Center(
-                  child: Text("short description WYSIWYG editor"),
+                  child: TextField(
+                    controller: shortDescriptionController,
+                  ),
                 ),
               ),
             ),
             SizedBox(
               height: 20,
             ),
-            Flexible(
-              flex: 6,
+            Expanded(
+              flex: 3,
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black),

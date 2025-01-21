@@ -22,6 +22,7 @@ class _ImageListState extends State<ImageList> {
         SizedBox(
           width: 200,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 height: 200,

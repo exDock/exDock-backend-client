@@ -34,17 +34,18 @@ class Product extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getProductData(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            // TODO: handle error
-          }
-          return ProductHomeSynchronous(
-            productData: snapshot.data!,
-          );
-        });
+      future: getProductData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError) {
+          // TODO: handle error
+        }
+        return ProductHomeSynchronous(
+          productData: snapshot.data!,
+        );
+      },
+    );
   }
 }

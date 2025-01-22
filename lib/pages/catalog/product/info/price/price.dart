@@ -15,10 +15,10 @@ class Price extends StatefulWidget {
   final Function changeNotifierState;
 
   @override
-  State<Price> createState() => _PriceState();
+  State<Price> createState() => PriceState();
 }
 
-class _PriceState extends State<Price> {
+class PriceState extends State<Price> {
   TextEditingController costPriceController = TextEditingController();
   TextEditingController taxClassController = TextEditingController();
   TextEditingController priceController = TextEditingController();

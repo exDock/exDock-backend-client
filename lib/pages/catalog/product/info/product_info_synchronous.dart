@@ -10,7 +10,12 @@ import 'package:flutter/material.dart';
 import 'id_data/category_list.dart';
 
 class ProductInfoSynchronous extends StatelessWidget {
-  const ProductInfoSynchronous({super.key});
+  const ProductInfoSynchronous({
+    super.key,
+    required this.productData,
+  });
+
+  final ProductInfoData productData;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +24,11 @@ class ProductInfoSynchronous extends StatelessWidget {
     ValueNotifier<bool> contentNotifier = ValueNotifier(false);
     ValueNotifier<bool> imageNotifier = ValueNotifier(false);
     ValueNotifier<bool> topBarNotifier = ValueNotifier(false);
+    GlobalKey<IdDataWidgetState> idDataKey = GlobalKey();
+    GlobalKey<PriceState> priceKey = GlobalKey();
+    GlobalKey<ContentState> contentKey = GlobalKey();
+    GlobalKey<ImagesState> imagesKey = GlobalKey();
+    ProductInfoData mutableData = productData;
 
     changeNotifierState(bool value, String valueName) {
       switch (valueName) {
@@ -46,11 +56,58 @@ class ProductInfoSynchronous extends StatelessWidget {
       }
     }
 
+    saveValues() {
+      IdData idData = IdData(
+        sku: idDataKey.currentState!.manufacturerController.text,
+        location: idDataKey.currentState!.locationController.text,
+        ean: idDataKey.currentState!.eanController.text,
+        manufacturer: idDataKey.currentState!.manufacturerController.text,
+        categories: [],
+      );
+
+      PriceData priceData = PriceData(
+        costPrice:
+            double.parse(priceKey.currentState!.costPriceController.text),
+        taxClass: priceKey.currentState!.taxClassController.text,
+        price: double.parse(priceKey.currentState!.priceController.text),
+        salePrice:
+            double.parse(priceKey.currentState!.salePriceController.text),
+        saleDateStart: priceKey.currentState!.priceStartDateController.text,
+        saleDateEnd: priceKey.currentState!.priceEndDateController.text,
+      );
+
+      ContentData contentData = ContentData(
+        shortDescription: contentKey.currentState!
+            .fleatherShortDescriptionController!.plainTextEditingValue.text,
+        description: contentKey.currentState!.fleatherDescriptionController!
+            .plainTextEditingValue.text,
+      );
+
+      mutableData = ProductInfoData(
+        idData: idData,
+        priceData: priceData,
+        contentData: contentData,
+        imageData: ImageData(
+          url: "",
+          extensions: [],
+        ),
+      );
+
+      idDataNotifier.value = false;
+      priceNotifier.value = false;
+      contentNotifier.value = false;
+      imageNotifier.value = false;
+      topBarNotifier.value = false;
+
+      // TODO: Change data in the backend
+    }
+
     return Stack(
       children: [
         TopBar(
           name: "Product Name",
           saveNotifier: topBarNotifier,
+          saveValues: saveValues,
         ),
         Padding(
           padding: EdgeInsets.only(top: 50),
@@ -70,17 +127,8 @@ class ProductInfoSynchronous extends StatelessWidget {
                               title: "ID data",
                               unsavedChangesNotifier: idDataNotifier,
                               child: IdDataWidget(
-                                idData: IdData(
-                                  sku: "123232",
-                                  location: "G23.15",
-                                  ean: "1234567890123",
-                                  manufacturer: "manufacturer",
-                                  categories: [
-                                    CategoryData(
-                                      name: "test name",
-                                    ),
-                                  ],
-                                ),
+                                key: idDataKey,
+                                idData: mutableData.idData,
                                 availableCategories: CategoryList(
                                   categories: ["test"],
                                 ),
@@ -94,14 +142,8 @@ class ProductInfoSynchronous extends StatelessWidget {
                               title: 'Price',
                               unsavedChangesNotifier: priceNotifier,
                               child: Price(
-                                priceData: PriceData(
-                                  costPrice: 18.99,
-                                  taxClass: "standard VAT",
-                                  price: 12.99,
-                                  salePrice: 15.99,
-                                  saleDateStart: "05-12-2024",
-                                  saleDateEnd: "05-12-2024",
-                                ),
+                                key: priceKey,
+                                priceData: mutableData.priceData,
                                 changeNotifierState: changeNotifierState,
                               ),
                             ),
@@ -121,10 +163,8 @@ class ProductInfoSynchronous extends StatelessWidget {
                             title: 'Content',
                             unsavedChangesNotifier: contentNotifier,
                             child: Content(
-                              contentData: ContentData(
-                                description: "test description",
-                                shortDescription: "short description",
-                              ),
+                              key: contentKey,
+                              contentData: mutableData.contentData,
                               changeNotifierState: changeNotifierState,
                             ),
                           ),
@@ -132,6 +172,7 @@ class ProductInfoSynchronous extends StatelessWidget {
                             height: 20,
                           ),
                           ProductInfoCardTitle(
+                            key: imagesKey,
                             title: 'Images',
                             unsavedChangesNotifier: imageNotifier,
                             child: Images(),

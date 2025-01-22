@@ -8,10 +8,12 @@ class TopBar extends StatefulWidget {
     super.key,
     required this.name,
     required this.saveNotifier,
+    required this.saveValues,
   });
 
   final String name;
   final ValueNotifier<bool> saveNotifier;
+  final Function saveValues;
 
   @override
   State<TopBar> createState() => _TopBarState();
@@ -47,8 +49,9 @@ class _TopBarState extends State<TopBar> {
           ),
           ExDockSaveButton(
             somethingToSaveNotifier: widget.saveNotifier,
-            onPressed: () {},
-            // TODO: Give onPressed functionality
+            onPressed: () {
+              widget.saveValues();
+            },
           ),
           Container(
             padding: EdgeInsets.only(left: 64, right: 12, top: 12),

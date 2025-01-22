@@ -13,12 +13,10 @@ class Content extends StatefulWidget {
   final Function changeNotifierState;
 
   @override
-  State<Content> createState() => _ContentState();
+  State<Content> createState() => ContentState();
 }
 
-class _ContentState extends State<Content> {
-  TextEditingController shortDescriptionController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+class ContentState extends State<Content> {
   FleatherController? fleatherDescriptionController;
   FleatherController? fleatherShortDescriptionController;
 

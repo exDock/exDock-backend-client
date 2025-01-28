@@ -23,14 +23,17 @@ class ProductInfo extends StatelessWidget {
         taxClass: "standard VAT",
         price: 12.99,
         salePrice: 15.99,
-        saleDateStart: "05-12-2024",
-        saleDateEnd: "05-12-2024",
+        saleDateStart: DateTime(2024, 12, 05),
+        saleDateEnd: DateTime(2024, 12, 20),
       ),
       contentData: ContentData(
         description: "test description",
         shortDescription: "short description",
       ),
-      imageData: ImageData(url: "test", extensions: []),
+      imageData: ImageData(
+        url: "test",
+        extensions: [],
+      ),
     );
   }
 

@@ -33,8 +33,8 @@ class PriceData {
   String taxClass;
   double price;
   double salePrice;
-  String saleDateStart;
-  String saleDateEnd;
+  DateTime? saleDateStart;
+  DateTime? saleDateEnd;
 
   PriceData({
     required this.costPrice,

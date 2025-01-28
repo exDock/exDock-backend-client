@@ -72,8 +72,8 @@ class ProductInfoSynchronous extends StatelessWidget {
         price: double.parse(priceKey.currentState!.priceController.text),
         salePrice:
             double.parse(priceKey.currentState!.salePriceController.text),
-        saleDateStart: priceKey.currentState!.priceStartDateController.text,
-        saleDateEnd: priceKey.currentState!.priceEndDateController.text,
+        saleDateStart: priceKey.currentState!.saleStartDate,
+        saleDateEnd: priceKey.currentState!.saleEndDate,
       );
 
       ContentData contentData = ContentData(

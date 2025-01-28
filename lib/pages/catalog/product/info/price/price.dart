@@ -1,3 +1,4 @@
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,8 +24,8 @@ class PriceState extends State<Price> {
   TextEditingController taxClassController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController salePriceController = TextEditingController();
-  TextEditingController priceStartDateController = TextEditingController();
-  TextEditingController priceEndDateController = TextEditingController();
+  late DateTime? saleStartDate;
+  late DateTime? saleEndDate;
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +41,16 @@ class PriceState extends State<Price> {
     salePriceController.value = TextEditingValue(
       text: widget.priceData.salePrice.toString(),
     );
-    priceStartDateController.value = TextEditingValue(
-      text: widget.priceData.saleDateStart.toString(),
-    );
-    priceEndDateController.value = TextEditingValue(
-      text: widget.priceData.saleDateEnd.toString(),
-    );
 
-    checkIfChanged() {
+    checkIfChanged(DateTime? dateStart, DateTime? dateEnd) {
       if (double.parse(costPriceController.text) !=
               widget.priceData.costPrice ||
           taxClassController.text != widget.priceData.taxClass ||
           double.parse(priceController.text) != widget.priceData.price ||
           double.parse(salePriceController.text) !=
               widget.priceData.salePrice ||
-          priceStartDateController.text != widget.priceData.saleDateStart ||
-          priceEndDateController.text != widget.priceData.saleDateEnd) {
+          dateStart != widget.priceData.saleDateStart ||
+          dateEnd != widget.priceData.saleDateEnd) {
         widget.changeNotifierState(true, "price");
       } else {
         widget.changeNotifierState(false, "price");
@@ -86,7 +81,10 @@ class PriceState extends State<Price> {
                       Expanded(
                         child: TextField(
                           onChanged: (_) {
-                            checkIfChanged();
+                            checkIfChanged(
+                              widget.priceData.saleDateStart,
+                              widget.priceData.saleDateEnd,
+                            );
                           },
                           controller: costPriceController,
                           keyboardType: TextInputType.number,
@@ -126,7 +124,10 @@ class PriceState extends State<Price> {
                       Expanded(
                         child: TextField(
                           onChanged: (_) {
-                            checkIfChanged();
+                            checkIfChanged(
+                              widget.priceData.saleDateStart,
+                              widget.priceData.saleDateEnd,
+                            );
                           },
                           controller: taxClassController,
                           decoration: InputDecoration(
@@ -162,23 +163,27 @@ class PriceState extends State<Price> {
                         width: 5,
                       ),
                       Expanded(
-                          child: TextField(
-                        onChanged: (_) {
-                          checkIfChanged();
-                        },
-                        controller: priceController,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(
-                            RegExp(r'^(\d+)?\.?\d{0,2}'),
+                        child: TextField(
+                          onChanged: (_) {
+                            checkIfChanged(
+                              widget.priceData.saleDateStart,
+                              widget.priceData.saleDateEnd,
+                            );
+                          },
+                          controller: priceController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                              RegExp(r'^(\d+)?\.?\d{0,2}'),
+                            ),
+                          ],
+                          decoration: InputDecoration(
+                            labelText: "Price",
+                            border: InputBorder.none,
+                            prefixText: "€ ",
                           ),
-                        ],
-                        decoration: InputDecoration(
-                          labelText: "Price",
-                          border: InputBorder.none,
-                          prefixText: "€ ",
                         ),
-                      ))
+                      ),
                     ],
                   ),
                 ),
@@ -215,7 +220,10 @@ class PriceState extends State<Price> {
                             prefixText: "€ ",
                           ),
                           onChanged: (_) {
-                            checkIfChanged();
+                            checkIfChanged(
+                              widget.priceData.saleDateStart,
+                              widget.priceData.saleDateEnd,
+                            );
                           },
                         ),
                       ),
@@ -238,57 +246,66 @@ class PriceState extends State<Price> {
               ),
               Expanded(
                 flex: 3,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    boxShadow: lightKBoxShadowList,
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: priceEndDateController,
-                          decoration: InputDecoration(
-                            labelText: "End date",
-                            border: InputBorder.none,
-                          ),
+                child: GestureDetector(
+                  onTap: () async {
+                    var result = await showCalendarDatePicker2Dialog(
+                      context: context,
+                      config: CalendarDatePicker2WithActionButtonsConfig(
+                        calendarType: CalendarDatePicker2Type.range,
+                      ),
+                      dialogSize: const Size(325, 400),
+                      borderRadius: BorderRadius.circular(15),
+                      value: [
+                        widget.priceData.saleDateStart,
+                        widget.priceData.saleDateEnd,
+                      ],
+                    );
+
+                    if (result == null) {
+                      checkIfChanged(null, null);
+                    } else {
+                      checkIfChanged(result.first, result.last);
+                    }
+
+                    if (result == null ||
+                        result.first == null ||
+                        result.last == null) {
+                      setState(() {
+                        widget.priceData.saleDateStart = null;
+                        widget.priceData.saleDateEnd = null;
+                        saleStartDate = null;
+                        saleEndDate = null;
+                      });
+                    } else {
+                      setState(() {
+                        widget.priceData.saleDateStart = result.first;
+                        widget.priceData.saleDateEnd = result.last;
+                        saleStartDate = result.first;
+                        saleEndDate = result.last;
+                      });
+                    }
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      boxShadow: lightKBoxShadowList,
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      children: [
+                        widget.priceData.saleDateStart != null ||
+                                widget.priceData.saleDateEnd != null
+                            ? Text(
+                                '${widget.priceData.saleDateStart!.toLocal().toString().split(' ')[0]} - ${widget.priceData.saleDateEnd!.toLocal().toString().split(' ')[0]}',
+                              )
+                            : Text("No active or planned sales."),
+                        Expanded(
+                          child: SizedBox(),
                         ),
-                      ),
-                      Expanded(
-                        child: SizedBox(),
-                      ),
-                      Icon(Icons.event_available_outlined),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    boxShadow: lightKBoxShadowList,
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: priceStartDateController,
-                          decoration: InputDecoration(
-                            labelText: "Start date",
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: SizedBox(),
-                      ),
-                      Icon(Icons.event_note_outlined),
-                    ],
+                        Icon(Icons.event_note_outlined)
+                      ],
+                    ),
                   ),
                 ),
               ),

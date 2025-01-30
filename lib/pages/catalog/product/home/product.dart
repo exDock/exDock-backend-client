@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:exdock_backend_client/pages/catalog/products/product_data.dart';
-import 'package:exdock_backend_client/pages/catalog/products/product_home_synchronous.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/product_data.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/product_home_synchronous.dart';
 import 'package:flutter/material.dart';
 
 class Product extends StatelessWidget {
@@ -34,17 +34,18 @@ class Product extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getProductData(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            // TODO: handle error
-          }
-          return ProductHomeSynchronous(
-            productData: snapshot.data!,
-          );
-        });
+      future: getProductData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError) {
+          // TODO: handle error
+        }
+        return ProductHomeSynchronous(
+          productData: snapshot.data!,
+        );
+      },
+    );
   }
 }

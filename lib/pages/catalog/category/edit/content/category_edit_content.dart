@@ -1,6 +1,5 @@
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/attribute_types/category_image_attribute.dart';
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/category_edit_group_card_with_title.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/content/category_edit_content_synchronous.dart';
 import 'package:flutter/material.dart';
 
 class CategoryEditContent extends StatefulWidget {
@@ -13,45 +12,60 @@ class CategoryEditContent extends StatefulWidget {
 }
 
 class _CategoryEditContentState extends State<CategoryEditContent> {
+  Future<Map<String, dynamic>> getCategoryAttributes(int categoryId) async {
+    return {
+      "Content": {
+        "block_type": "standard",
+        "attributes": [
+          {
+            "attribute_id": "main_image",
+            "attribute_type": "image",
+            "current_attribute_value": {
+              "main": "https://www.example.com/path", // nullable
+              "mobile": null,
+              "tablet": null,
+            },
+          },
+          {
+            "attribute_id": "short_description",
+            "attribute_type": "wysiwyg",
+            "current_attribute_value": "test short description value",
+          },
+          {
+            "attribute_id": "description",
+            "attribute_type": "wysiwyg",
+            "current_attribute_value": "test description value",
+          },
+        ],
+      },
+      "Search Engine Optimisation": {
+        "block_type": "standard",
+        "attributes": [
+          {
+            "attribute_id": "url_key",
+            "attribute_type": "text",
+            "current_attribute_value": "",
+          },
+        ],
+      },
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  CategoryEditGroupCardWithTitle(
-                    title: "Content",
-                    unsavedChangesNotifier: ValueNotifier<bool>(true),
-                    child: Column(
-                      children: [
-                        CategoryImageAttribute(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 24),
-            Expanded(
-              child: Column(
-                children: [
-                  CategoryEditGroupCardWithTitle(
-                    title: "Search Engine Optimisation",
-                    unsavedChangesNotifier: ValueNotifier<bool>(false),
-                    child: const SizedBox(height: 250),
-                  ),
-                  const SizedBox(height: 24),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+    return FutureBuilder(
+      future: getCategoryAttributes(widget.selectedCategoryLeaf.id),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Placeholder();
+        }
+        if (snapshot.connectionState == ConnectionState.done) {
+          return CategoryEditContentSynchronous(
+            blocks: snapshot.data!,
+          );
+        }
+        return Center(child: CircularProgressIndicator());
+      },
     );
   }
 }

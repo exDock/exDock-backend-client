@@ -28,11 +28,8 @@ class _CategoryEditContentBlocksState extends State<CategoryEditContentBlocks> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 24),
-                  child: SizedBox(
-                    height: 20,
-                    child: GenerateBlock(
-                      block: widget.blocks.entries.toList()[index],
-                    ),
+                  child: GenerateBlock(
+                    block: widget.blocks.entries.toList()[index],
                   ),
                 );
               },

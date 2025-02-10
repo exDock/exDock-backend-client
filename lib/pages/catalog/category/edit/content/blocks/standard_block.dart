@@ -24,13 +24,8 @@ class _StandardBlockState extends State<StandardBlock> {
         itemCount: widget.block.value['attributes'].length,
         itemBuilder: (context, index) {
           if (widget.block.value['attributes'][index] != null) {
-            return Container(
-              height: 50,
-              width: 50,
-              color: Colors.orange,
-              child: GenerateAttribute(
-                attribute: widget.block.value['attributes'][index],
-              ),
+            return GenerateAttribute(
+              attribute: widget.block.value['attributes'][index],
             );
           }
           return SizedBox(height: 50, child: Placeholder());

@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/pages/catalog/attributes/single_image_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/attributes/text_field_attribute.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,9 @@ class GenerateAttribute extends StatelessWidget {
     }
     if (attribute["attribute_type"] == "wysiwyg") {
       // TODO: create wysiwyg attribute
+    }
+    if (attribute["attribute_type"] == "image") {
+      return SingleImageAttribute();
     }
     return Text(
       "attribute_type not recognised: ${attribute["attribute_type"]}",

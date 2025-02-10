@@ -1,4 +1,4 @@
-import 'package:exdock_backend_client/pages/catalog/attributes/category_image_attribute.dart';
+import 'package:exdock_backend_client/pages/catalog/attributes/single_image_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_edit_content_blocks.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/category_edit_group_card_with_title.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +35,7 @@ class _CategoryEditContentSynchronousState
                     unsavedChangesNotifier: ValueNotifier<bool>(true),
                     child: Column(
                       children: [
-                        CategoryImageAttribute(),
+                        SingleImageAttribute(),
                       ],
                     ),
                   ),

@@ -1,14 +1,14 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
-class CategoryImageAttribute extends StatefulWidget {
-  const CategoryImageAttribute({super.key});
+class SingleImageAttribute extends StatefulWidget {
+  const SingleImageAttribute({super.key});
 
   @override
-  State<CategoryImageAttribute> createState() => _CategoryImageAttributeState();
+  State<SingleImageAttribute> createState() => _SingleImageAttributeState();
 }
 
-class _CategoryImageAttributeState extends State<CategoryImageAttribute> {
+class _SingleImageAttributeState extends State<SingleImageAttribute> {
   bool hasImage = false;
 
   @override
@@ -20,9 +20,9 @@ class _CategoryImageAttributeState extends State<CategoryImageAttribute> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CategoryImageDeviceTypeSelector(name: "main"),
-              CategoryImageDeviceTypeSelector(name: "mobile"),
-              CategoryImageDeviceTypeSelector(name: "tablet"),
+              SingleImageDeviceTypeSelector(name: "main"),
+              SingleImageDeviceTypeSelector(name: "mobile"),
+              SingleImageDeviceTypeSelector(name: "tablet"),
             ],
           ),
           Padding(
@@ -33,7 +33,7 @@ class _CategoryImageAttributeState extends State<CategoryImageAttribute> {
             ),
           ),
           Expanded(
-            child: hasImage ? Placeholder() : NoCategoryImagePresent(),
+            child: hasImage ? Placeholder() : NoImagePresent(),
           ),
         ],
       ),
@@ -41,8 +41,8 @@ class _CategoryImageAttributeState extends State<CategoryImageAttribute> {
   }
 }
 
-class NoCategoryImagePresent extends StatelessWidget {
-  const NoCategoryImagePresent({super.key});
+class NoImagePresent extends StatelessWidget {
+  const NoImagePresent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +62,8 @@ class NoCategoryImagePresent extends StatelessWidget {
   }
 }
 
-class CategoryImageDeviceTypeSelector extends StatelessWidget {
-  const CategoryImageDeviceTypeSelector({super.key, required this.name});
+class SingleImageDeviceTypeSelector extends StatelessWidget {
+  const SingleImageDeviceTypeSelector({super.key, required this.name});
 
   final String name;
 

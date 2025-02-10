@@ -19,24 +19,22 @@ class _StandardBlockState extends State<StandardBlock> {
     return CategoryEditGroupCardWithTitle(
       title: widget.block.key,
       unsavedChangesNotifier: ValueNotifier<bool>(true),
-      child: SizedBox(
-        height: 100,
-        child: ListView.builder(
-          itemCount: widget.block.value['attributes'].length,
-          itemBuilder: (context, index) {
-            if (widget.block.value['attributes'][index] != null) {
-              return Container(
-                height: 50,
-                width: 50,
-                color: Colors.orange,
-                child: GenerateAttribute(
-                  attribute: widget.block.value['attributes'][index],
-                ),
-              );
-            }
-            return SizedBox(height: 50, child: Placeholder());
-          },
-        ),
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: widget.block.value['attributes'].length,
+        itemBuilder: (context, index) {
+          if (widget.block.value['attributes'][index] != null) {
+            return Container(
+              height: 50,
+              width: 50,
+              color: Colors.orange,
+              child: GenerateAttribute(
+                attribute: widget.block.value['attributes'][index],
+              ),
+            );
+          }
+          return SizedBox(height: 50, child: Placeholder());
+        },
       ),
     );
   }

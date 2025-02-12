@@ -25,7 +25,7 @@ class _TextFieldAttributeState extends State<TextFieldAttribute> {
       child: TextField(
         controller: controller,
         onChanged: (value) {
-          if (value == "") {
+          if (value == widget.attribute["current_attribute_value"]) {
             widget.changeAttributeMap.removeEntry(
               widget.attribute["attribute_id"],
             );

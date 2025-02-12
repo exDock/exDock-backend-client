@@ -1,12 +1,16 @@
-import 'package:exdock_backend_client/pages/catalog/attributes/single_image_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_edit_content_blocks.dart';
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/category_edit_group_card_with_title.dart';
+import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
 class CategoryEditContentSynchronous extends StatefulWidget {
-  const CategoryEditContentSynchronous({super.key, required this.blocks});
+  const CategoryEditContentSynchronous({
+    super.key,
+    required this.blocks,
+    required this.changeAttributeMap,
+  });
 
   final Map<String, dynamic> blocks;
+  final MapNotifier changeAttributeMap;
 
   @override
   State<CategoryEditContentSynchronous> createState() =>
@@ -19,44 +23,9 @@ class _CategoryEditContentSynchronousState
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: CategoryEditContentBlocks(blocks: widget.blocks),
-    );
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  CategoryEditGroupCardWithTitle(
-                    title: "Content",
-                    unsavedChangesNotifier: ValueNotifier<bool>(true),
-                    child: Column(
-                      children: [
-                        SingleImageAttribute(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 24),
-            Expanded(
-              child: Column(
-                children: [
-                  CategoryEditGroupCardWithTitle(
-                    title: "Search Engine Optimisation",
-                    unsavedChangesNotifier: ValueNotifier<bool>(false),
-                    child: const SizedBox(height: 250),
-                  ),
-                  const SizedBox(height: 24),
-                ],
-              ),
-            ),
-          ],
-        ),
+      child: CategoryEditContentBlocks(
+        blocks: widget.blocks,
+        changeAttributeMap: widget.changeAttributeMap,
       ),
     );
   }

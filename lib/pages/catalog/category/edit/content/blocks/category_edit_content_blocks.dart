@@ -1,10 +1,16 @@
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/generate_block.dart';
+import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
 class CategoryEditContentBlocks extends StatefulWidget {
-  const CategoryEditContentBlocks({super.key, required this.blocks});
+  const CategoryEditContentBlocks({
+    super.key,
+    required this.blocks,
+    required this.changeAttributeMap,
+  });
 
   final Map<String, dynamic> blocks;
+  final MapNotifier changeAttributeMap;
 
   @override
   State<CategoryEditContentBlocks> createState() =>
@@ -30,6 +36,7 @@ class _CategoryEditContentBlocksState extends State<CategoryEditContentBlocks> {
                   padding: const EdgeInsets.only(top: 24),
                   child: GenerateBlock(
                     block: widget.blocks.entries.toList()[index],
+                    changeAttributeMap: widget.changeAttributeMap,
                   ),
                 );
               },

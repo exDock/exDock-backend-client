@@ -1,23 +1,31 @@
 import 'package:exdock_backend_client/pages/catalog/attributes/single_image_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/attributes/text_field_attribute.dart';
+import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
 class GenerateAttribute extends StatelessWidget {
-  const GenerateAttribute({super.key, required this.attribute});
+  const GenerateAttribute(
+      {super.key, required this.attribute, required this.changeAttributeMap});
 
-  final Map attribute;
+  final Map<String, dynamic> attribute;
+  final MapNotifier changeAttributeMap;
 
   @override
   Widget build(BuildContext context) {
     if (attribute["attribute_type"] == "text") {
-      // TODO: create text field attribute
-      return TextFieldAttribute();
+      return TextFieldAttribute(
+        attribute: attribute,
+        changeAttributeMap: changeAttributeMap,
+      );
     }
     if (attribute["attribute_type"] == "wysiwyg") {
       // TODO: create wysiwyg attribute
     }
     if (attribute["attribute_type"] == "image") {
-      return SingleImageAttribute();
+      return SingleImageAttribute(
+        attribute: attribute,
+        changeAttributeMap: changeAttributeMap,
+      );
     }
     return Text(
       "attribute_type not recognised: ${attribute["attribute_type"]}",

@@ -1,8 +1,13 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
 class SingleImageAttribute extends StatefulWidget {
-  const SingleImageAttribute({super.key});
+  const SingleImageAttribute(
+      {super.key, required this.attribute, required this.changeAttributeMap});
+
+  final Map<String, dynamic> attribute;
+  final MapNotifier changeAttributeMap;
 
   @override
   State<SingleImageAttribute> createState() => _SingleImageAttributeState();

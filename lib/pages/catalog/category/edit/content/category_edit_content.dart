@@ -1,11 +1,17 @@
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/category_edit_content_synchronous.dart';
+import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
 class CategoryEditContent extends StatefulWidget {
-  const CategoryEditContent({super.key, required this.selectedCategoryLeaf});
+  const CategoryEditContent({
+    super.key,
+    required this.selectedCategoryLeaf,
+    required this.changeAttributeMap,
+  });
 
   final CategoryLeaf selectedCategoryLeaf;
+  final MapNotifier changeAttributeMap;
 
   @override
   State<CategoryEditContent> createState() => _CategoryEditContentState();
@@ -19,6 +25,7 @@ class _CategoryEditContentState extends State<CategoryEditContent> {
         "attributes": [
           {
             "attribute_id": "main_image",
+            "attribute_name": "Main image",
             "attribute_type": "image",
             "current_attribute_value": {
               "main": "https://www.example.com/path", // nullable
@@ -28,11 +35,13 @@ class _CategoryEditContentState extends State<CategoryEditContent> {
           },
           {
             "attribute_id": "short_description",
+            "attribute_name": "Short description",
             "attribute_type": "wysiwyg",
             "current_attribute_value": "test short description value",
           },
           {
             "attribute_id": "description",
+            "attribute_name": "Description",
             "attribute_type": "wysiwyg",
             "current_attribute_value": "test description value",
           },
@@ -43,6 +52,7 @@ class _CategoryEditContentState extends State<CategoryEditContent> {
         "attributes": [
           {
             "attribute_id": "url_key",
+            "attribute_name": "URL key",
             "attribute_type": "text",
             "current_attribute_value": "",
           },
@@ -62,6 +72,7 @@ class _CategoryEditContentState extends State<CategoryEditContent> {
         if (snapshot.connectionState == ConnectionState.done) {
           return CategoryEditContentSynchronous(
             blocks: snapshot.data!,
+            changeAttributeMap: widget.changeAttributeMap,
           );
         }
         return Center(child: CircularProgressIndicator());

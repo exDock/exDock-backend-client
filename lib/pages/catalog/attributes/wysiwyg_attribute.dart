@@ -34,14 +34,9 @@ class _WysiwygAttributeState extends State<WysiwygAttribute> {
           .replaceAll("<br><br>", "<br>");
       value = value.substring(0, value.length - 4); // Remove last "<br>"
       if (value == widget.attribute['current_attribute_value']) {
-        print("value is unchanged");
         widget.changeAttributeMap.removeEntry(widget.attribute['attribute_id']);
         return;
       }
-      print("value is changed");
-      print("value: $value");
-      print(
-          "widget.attribute['current_attribute_value']: ${widget.attribute['current_attribute_value']}");
       widget.changeAttributeMap.addEntry(
         widget.attribute['attribute_id'],
         value,

@@ -20,6 +20,7 @@ class WysiwygAttribute extends StatefulWidget {
 
 class _WysiwygAttributeState extends State<WysiwygAttribute> {
   // TODO: make the wysiwyg editor work properly
+  // TODO: make initial value display
   final FleatherController controller = FleatherController();
   final ParchmentHtmlCodec converter = ParchmentHtmlCodec();
 

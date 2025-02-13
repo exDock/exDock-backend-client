@@ -269,6 +269,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  parchment_to_html:
+    dependency: "direct main"
+    description:
+      name: parchment_to_html
+      sha256: b2eb549c684f71befc35cc8bfb2e3e257c4c4c153b29a4db7d24e46c9b30c7ae
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+1"
   path:
     dependency: transitive
     description:

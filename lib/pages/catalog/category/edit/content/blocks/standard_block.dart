@@ -15,7 +15,6 @@ class StandardBlock extends StatefulWidget {
 }
 
 class _StandardBlockState extends State<StandardBlock> {
-  // bool isChanged = false;
   late final ValueNotifier<bool> unsavedChangesNotifier =
       ValueNotifier<bool>(false);
 
@@ -29,22 +28,14 @@ class _StandardBlockState extends State<StandardBlock> {
   void initState() {
     super.initState();
     widget.changeAttributeMap.addListener(() {
-      print("getAttributesList(): ${getAttributesList()}");
       unsavedChangesNotifier.value = widget.changeAttributeMap.attributeChanged(
         getAttributesList(),
       );
-      // print("result: $isChanged");
-    });
-
-    unsavedChangesNotifier.addListener(() {
-      print("unsavedChangesNotifier Listener notified");
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print("widget.block.key: ${widget.block.key}");
-    print("widget.block.value: ${widget.block.value}");
     return CategoryEditGroupCardWithTitle(
       title: widget.block.key,
       unsavedChangesNotifier: unsavedChangesNotifier,

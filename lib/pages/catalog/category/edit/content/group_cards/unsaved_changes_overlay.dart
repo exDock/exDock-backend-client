@@ -21,7 +21,6 @@ class _UnsavedChangesOverlayState extends State<UnsavedChangesOverlay> {
       child: ValueListenableBuilder(
         valueListenable: widget.unsavedChangesNotifier,
         builder: (context, value, child) {
-          print("unsavedChangesNotifier: $value");
           if (!value) {
             return SizedBox();
           }

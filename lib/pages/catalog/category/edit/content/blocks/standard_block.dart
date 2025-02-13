@@ -15,13 +15,39 @@ class StandardBlock extends StatefulWidget {
 }
 
 class _StandardBlockState extends State<StandardBlock> {
+  // bool isChanged = false;
+  late final ValueNotifier<bool> unsavedChangesNotifier =
+      ValueNotifier<bool>(false);
+
+  List<String> getAttributesList() {
+    return List<String>.from(
+      widget.block.value['attributes'].map((e) => e["attribute_id"]).toList(),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.changeAttributeMap.addListener(() {
+      print("getAttributesList(): ${getAttributesList()}");
+      unsavedChangesNotifier.value = widget.changeAttributeMap.attributeChanged(
+        getAttributesList(),
+      );
+      // print("result: $isChanged");
+    });
+
+    unsavedChangesNotifier.addListener(() {
+      print("unsavedChangesNotifier Listener notified");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     print("widget.block.key: ${widget.block.key}");
     print("widget.block.value: ${widget.block.value}");
     return CategoryEditGroupCardWithTitle(
       title: widget.block.key,
-      unsavedChangesNotifier: ValueNotifier<bool>(true),
+      unsavedChangesNotifier: unsavedChangesNotifier,
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: widget.block.value['attributes'].length,

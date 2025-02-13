@@ -13,5 +13,9 @@ class MapNotifier extends ValueNotifier<Map<String, dynamic>> {
     notifyListeners();
   }
 
+  bool attributeChanged(List<String> attributes) {
+    return attributes.any(value.keys.contains);
+  }
+
   bool get isEmpty => value.isEmpty;
 }

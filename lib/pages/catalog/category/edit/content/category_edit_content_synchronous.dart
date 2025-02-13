@@ -21,12 +21,9 @@ class _CategoryEditContentSynchronousState
     extends State<CategoryEditContentSynchronous> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: CategoryEditContentBlocks(
-        blocks: widget.blocks,
-        changeAttributeMap: widget.changeAttributeMap,
-      ),
+    return CategoryEditContentBlocks(
+      blocks: widget.blocks,
+      changeAttributeMap: widget.changeAttributeMap,
     );
   }
 }

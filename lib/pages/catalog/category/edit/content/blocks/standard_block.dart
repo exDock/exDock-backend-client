@@ -43,13 +43,17 @@ class _StandardBlockState extends State<StandardBlock> {
         shrinkWrap: true,
         itemCount: widget.block.value['attributes'].length,
         itemBuilder: (context, index) {
-          if (widget.block.value['attributes'][index] != null) {
-            return GenerateAttribute(
-              attribute: widget.block.value['attributes'][index],
-              changeAttributeMap: widget.changeAttributeMap,
+          Widget child = GenerateAttribute(
+            attribute: widget.block.value['attributes'][index],
+            changeAttributeMap: widget.changeAttributeMap,
+          );
+          if (index != 0) {
+            child = Padding(
+              padding: const EdgeInsets.only(top: 24),
+              child: child,
             );
           }
-          return SizedBox(height: 50, child: Placeholder());
+          return child;
         },
       ),
     );

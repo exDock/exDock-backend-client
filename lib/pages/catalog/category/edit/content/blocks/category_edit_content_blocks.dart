@@ -22,18 +22,18 @@ class _CategoryEditContentBlocksState extends State<CategoryEditContentBlocks> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 1000,
+    return SingleChildScrollView(
       child: Row(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Flexible(
             child: ListView.builder(
+              shrinkWrap: true,
               itemCount: widget.blocks.entries.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.only(top: 24),
+                  padding: const EdgeInsets.only(top: 24, left: 24, right: 12),
                   child: GenerateBlock(
                     block: widget.blocks.entries.toList()[index],
                     changeAttributeMap: widget.changeAttributeMap,
@@ -42,10 +42,10 @@ class _CategoryEditContentBlocksState extends State<CategoryEditContentBlocks> {
               },
             ),
           ),
-          SizedBox(width: 24),
+          // SizedBox(width: 24),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.only(top: 24),
+              padding: const EdgeInsets.only(top: 24, left: 12, right: 24),
               child: Container(
                 height: 100,
                 color: Colors.red,

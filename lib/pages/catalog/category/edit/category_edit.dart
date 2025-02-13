@@ -27,13 +27,16 @@ class _CategoryEditState extends State<CategoryEdit> {
       );
     }
 
-    return Column(
+    return Stack(
       children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 104),
+          child: categoryContent,
+        ),
         CategoryEditHeader(
           categorySelection: widget.categorySelection,
           changeAttributeMap: changeAttributeMap,
         ),
-        Expanded(child: categoryContent),
       ],
     );
   }

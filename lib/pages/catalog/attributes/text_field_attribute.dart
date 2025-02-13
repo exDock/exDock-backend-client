@@ -18,6 +18,13 @@ class TextFieldAttribute extends StatefulWidget {
 
 class _TextFieldAttributeState extends State<TextFieldAttribute> {
   final TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    controller.text = widget.attribute['current_attribute_value'] ?? "";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ExdockCard(

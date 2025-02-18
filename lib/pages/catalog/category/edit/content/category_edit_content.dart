@@ -28,7 +28,7 @@ class _CategoryEditContentState extends State<CategoryEditContent> {
             "attribute_name": "Main image",
             "attribute_type": "image",
             "current_attribute_value": {
-              "main": "https://www.example.com/path", // nullable
+              "main": "https://picsum.photos/200/1000", // nullable
               "mobile": null,
               "tablet": null,
             },

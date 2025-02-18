@@ -1,4 +1,4 @@
-import 'package:exdock_backend_client/pages/catalog/attributes/single_image_attribute.dart';
+import 'package:exdock_backend_client/pages/catalog/attributes/images/single_image_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/attributes/text_field_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/attributes/wysiwyg_attribute.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';

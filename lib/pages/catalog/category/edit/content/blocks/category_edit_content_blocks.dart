@@ -1,4 +1,4 @@
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/generate_block.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/content/category_edit_content_attribute_list_builder.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,27 @@ class CategoryEditContentBlocks extends StatefulWidget {
 }
 
 class _CategoryEditContentBlocksState extends State<CategoryEditContentBlocks> {
-  // TODO: split attribute blocks into two lists
+  List<MapEntry<String, dynamic>> oddEntries = [];
+  List<MapEntry<String, dynamic>> evenEntries = [];
+
+  @override
+  void initState() {
+    // TODO: make it so that the next block is added to the list with the lowest height
+    int index = 0;
+    for (var entry in widget.blocks.entries) {
+      index++; // Start index from 1 for odd/even check
+
+      if (index % 2 == 1) {
+        // Check if index is odd
+        oddEntries.add(entry);
+      } else {
+        // Index is even
+        evenEntries.add(entry);
+      }
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,30 +50,20 @@ class _CategoryEditContentBlocksState extends State<CategoryEditContentBlocks> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Flexible(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: widget.blocks.entries.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(top: 24, left: 24, right: 12),
-                    child: GenerateBlock(
-                      block: widget.blocks.entries.toList()[index],
-                      changeAttributeMap: widget.changeAttributeMap,
-                    ),
-                  );
-                },
+              child: CategoryEditContentAttributeListBuilder(
+                blocks: oddEntries,
+                changeAttributeMap: widget.changeAttributeMap,
+                childrenPadding:
+                    const EdgeInsets.only(top: 24, left: 24, right: 12),
               ),
             ),
             // SizedBox(width: 24),
             Flexible(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 24, left: 12, right: 24),
-                child: Container(
-                  height: 100,
-                  color: Colors.red,
-                  child: Placeholder(),
-                ),
+              child: CategoryEditContentAttributeListBuilder(
+                blocks: evenEntries,
+                changeAttributeMap: widget.changeAttributeMap,
+                childrenPadding:
+                    const EdgeInsets.only(top: 24, left: 12, right: 24),
               ),
             ),
           ],

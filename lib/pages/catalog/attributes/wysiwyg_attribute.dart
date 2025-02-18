@@ -19,6 +19,7 @@ class WysiwygAttribute extends StatefulWidget {
 }
 
 class _WysiwygAttributeState extends State<WysiwygAttribute> {
+  // TODO: make raw HTML editable
   late FleatherController controller;
   final ParchmentHtmlCodec converter = ParchmentHtmlCodec();
 

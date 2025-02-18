@@ -19,20 +19,34 @@ class WysiwygAttribute extends StatefulWidget {
 }
 
 class _WysiwygAttributeState extends State<WysiwygAttribute> {
-  // TODO: make the wysiwyg editor work properly
-  // TODO: make initial value display
-  final FleatherController controller = FleatherController();
+  late FleatherController controller;
   final ParchmentHtmlCodec converter = ParchmentHtmlCodec();
 
   @override
   void initState() {
     super.initState();
 
+    // Get the initial HTML value from the attribute
+    String initialHtml = widget.attribute['current_attribute_value'] ?? '';
+
+    // Convert HTML to Delta
+    Delta delta = converter.decode(initialHtml);
+
+    // Convert Delta to ParchmentDocument
+    ParchmentDocument document = ParchmentDocument.fromDelta(delta);
+
+    // Initialize the controller
+    controller = FleatherController(document: document);
+
     controller.addListener(() {
       String value = converter
           .encode(controller.document.toDelta())
           .replaceAll("<br><br>", "<br>");
-      value = value.substring(0, value.length - 4); // Remove last "<br>"
+
+      if (value.endsWith("<br>")) {
+        value = value.substring(0, value.length - 4); // Remove last "<br>"
+      }
+
       if (value == widget.attribute['current_attribute_value']) {
         widget.changeAttributeMap.removeEntry(widget.attribute['attribute_id']);
         return;

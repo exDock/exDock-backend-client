@@ -58,6 +58,10 @@ class _CategoryEditContentState extends State<CategoryEditContent> {
           },
         ],
       },
+      "Products": {
+        "block_type": "category_products",
+        "current_products": [1, 3, 5, 7, 8, 9, 14],
+      },
     };
   }
 

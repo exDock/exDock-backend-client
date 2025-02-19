@@ -37,7 +37,9 @@ class ExdockBigPopup extends StatelessWidget {
                     title,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  child,
+                  Expanded(
+                    child: child,
+                  ),
                 ],
               ),
             ),

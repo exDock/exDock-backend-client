@@ -2,10 +2,12 @@ import 'dart:math';
 
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/category_edit.dart';
+import 'package:exdock_backend_client/pages/catalog/category/selection_bar/edit_category_structure_popup.dart';
 import 'package:exdock_backend_client/pages/catalog/category/selection_bar/sub_category_row.dart';
 import 'package:exdock_backend_client/pages/catalog/category/selection_bar/top_category_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kumi_popup_window/kumi_popup_window.dart';
 
 class CategorySynchronous extends StatefulWidget {
   const CategorySynchronous({
@@ -73,6 +75,27 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
         : max(72 + (categorySelection.length - 1) * 48, 72);
     return Stack(
       children: [
+        Positioned(
+          top: 12,
+          right: 12,
+          child: IconButton(
+            onPressed: () {
+              showPopupWindow(
+                context,
+                childFun: (pop) {
+                  return EditCategoryStructurePopup(
+                    key: GlobalKey(),
+                    pop: pop,
+                  );
+                },
+              );
+            },
+            iconSize: 24,
+            padding: const EdgeInsets.all(12),
+            color: Colors.white,
+            icon: Icon(Icons.edit_rounded),
+          ),
+        ),
         SizedBox(
           height: headerHeight,
           child: Stack(

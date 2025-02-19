@@ -1,4 +1,3 @@
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/generate_block.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ class CategoryEditContentAttributeListBuilder extends StatelessWidget {
     this.childrenPadding = const EdgeInsets.only(top: 24, left: 24, right: 24),
   });
 
-  final List<MapEntry<String, dynamic>> blocks;
+  final List<Widget> blocks;
   final MapNotifier changeAttributeMap;
   final EdgeInsets childrenPadding;
 
@@ -22,10 +21,7 @@ class CategoryEditContentAttributeListBuilder extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
           padding: childrenPadding,
-          child: GenerateBlock(
-            block: blocks[index],
-            changeAttributeMap: changeAttributeMap,
-          ),
+          child: blocks[index],
         );
       },
     );

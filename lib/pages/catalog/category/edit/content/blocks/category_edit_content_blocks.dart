@@ -1,6 +1,6 @@
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/category_edit_content_attribute_list_builder.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class CategoryEditContentBlocks extends StatefulWidget {
   const CategoryEditContentBlocks({
@@ -9,7 +9,7 @@ class CategoryEditContentBlocks extends StatefulWidget {
     required this.changeAttributeMap,
   });
 
-  final Map<String, dynamic> blocks;
+  final List<Widget> blocks;
   final MapNotifier changeAttributeMap;
 
   @override
@@ -18,26 +18,38 @@ class CategoryEditContentBlocks extends StatefulWidget {
 }
 
 class _CategoryEditContentBlocksState extends State<CategoryEditContentBlocks> {
-  List<MapEntry<String, dynamic>> oddEntries = [];
-  List<MapEntry<String, dynamic>> evenEntries = [];
+  final List<Widget> leftColumn = [];
+  final List<Widget> rightColumn = [];
+  double leftHeight = 0;
+  double rightHeight = 0;
 
   @override
   void initState() {
-    // TODO: make it so that the next block is added to the list with the lowest height
-    int index = 0;
-    for (var entry in widget.blocks.entries) {
-      index++; // Start index from 1 for odd/even check
+    super.initState();
 
-      if (index % 2 == 1) {
-        // Check if index is odd
-        oddEntries.add(entry);
+    _splitWidgets();
+  }
+
+  void _splitWidgets() {
+    for (var widget in widget.blocks) {
+      double widgetHeight = _getWidgetHeight(widget);
+
+      if (leftHeight <= rightHeight) {
+        leftColumn.add(widget);
+        leftHeight += widgetHeight;
       } else {
-        // Index is even
-        evenEntries.add(entry);
+        rightColumn.add(widget);
+        rightHeight += widgetHeight;
       }
     }
+    setState(() {}); // Trigger rebuild
+  }
 
-    super.initState();
+  double _getWidgetHeight(Widget widget) {
+    if (widget is SizedBox && widget.height != null) {
+      return widget.height!;
+    }
+    return 50.0; // Default estimated height (adjust as needed)
   }
 
   @override
@@ -45,28 +57,16 @@ class _CategoryEditContentBlocksState extends State<CategoryEditContentBlocks> {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(bottom: 24),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Flexible(
-              child: CategoryEditContentAttributeListBuilder(
-                blocks: oddEntries,
-                changeAttributeMap: widget.changeAttributeMap,
-                childrenPadding:
-                    const EdgeInsets.only(top: 24, left: 24, right: 12),
-              ),
-            ),
-            // SizedBox(width: 24),
-            Flexible(
-              child: CategoryEditContentAttributeListBuilder(
-                blocks: evenEntries,
-                changeAttributeMap: widget.changeAttributeMap,
-                childrenPadding:
-                    const EdgeInsets.only(top: 24, left: 12, right: 24),
-              ),
-            ),
-          ],
+        child: MasonryGridView.count(
+          padding: const EdgeInsets.all(24),
+          mainAxisSpacing: 24,
+          crossAxisSpacing: 24,
+          shrinkWrap: true,
+          crossAxisCount: 2,
+          itemCount: widget.blocks.length,
+          itemBuilder: (context, index) {
+            return widget.blocks[index];
+          },
         ),
       ),
     );

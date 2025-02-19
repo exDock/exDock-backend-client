@@ -1,4 +1,5 @@
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_edit_content_blocks.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/generate_block.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
@@ -21,8 +22,18 @@ class _CategoryEditContentSynchronousState
     extends State<CategoryEditContentSynchronous> {
   @override
   Widget build(BuildContext context) {
+    List<MapEntry<String, dynamic>> blocksEntriesList =
+        widget.blocks.entries.toList();
     return CategoryEditContentBlocks(
-      blocks: widget.blocks,
+      blocks: List<Widget>.generate(
+        widget.blocks.length,
+        (index) {
+          return GenerateBlock(
+            block: blocksEntriesList[index],
+            changeAttributeMap: widget.changeAttributeMap,
+          );
+        },
+      ),
       changeAttributeMap: widget.changeAttributeMap,
     );
   }

@@ -2,7 +2,7 @@ import 'package:exdock_backend_client/widgets/exdock_close_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:kumi_popup_window/kumi_popup_window.dart';
 
-class SingleImageAttributePopup extends StatefulWidget {
+class SingleImageAttributePopup extends StatelessWidget {
   const SingleImageAttributePopup({
     super.key,
     required this.pop,
@@ -16,12 +16,6 @@ class SingleImageAttributePopup extends StatefulWidget {
   final String? currentImage;
   final Function(String?) onNewImage;
 
-  @override
-  State<SingleImageAttributePopup> createState() =>
-      _SingleImageAttributePopupState();
-}
-
-class _SingleImageAttributePopupState extends State<SingleImageAttributePopup> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +36,7 @@ class _SingleImageAttributePopupState extends State<SingleImageAttributePopup> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Category image [${widget.scope}]",
+                    "Category image [$scope]",
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   // TODO: upload new image button
@@ -56,7 +50,7 @@ class _SingleImageAttributePopupState extends State<SingleImageAttributePopup> {
             top: 12,
             right: 12,
             child: ExdockCloseIcon(onPressed: () {
-              widget.pop.dismiss(context);
+              pop.dismiss(context);
             }),
           ),
         ],

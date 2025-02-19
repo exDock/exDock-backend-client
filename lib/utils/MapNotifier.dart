@@ -13,6 +13,11 @@ class MapNotifier extends ValueNotifier<Map<String, dynamic>> {
     notifyListeners();
   }
 
+  void reset() {
+    value.clear();
+    notifyListeners();
+  }
+
   bool attributeChanged(List<String> attributes) {
     return attributes.any(value.keys.contains);
   }

@@ -36,6 +36,7 @@ class _CategoryEditState extends State<CategoryEdit> {
         CategoryEditHeader(
           categorySelection: widget.categorySelection,
           changeAttributeMap: changeAttributeMap,
+          mainSetState: setState,
         ),
       ],
     );

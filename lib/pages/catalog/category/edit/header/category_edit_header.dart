@@ -1,9 +1,8 @@
-import 'dart:convert';
-
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/header/category_edit_header_switches.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/header/category_edit_title.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/header/save_category_changes.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:exdock_backend_client/widgets/exdock_save_button.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +12,12 @@ class CategoryEditHeader extends StatefulWidget {
     super.key,
     required this.categorySelection,
     required this.changeAttributeMap,
+    required this.mainSetState,
   });
 
   final List<CategoryLeaf> categorySelection;
   final MapNotifier changeAttributeMap;
+  final Function(Function()) mainSetState;
 
   @override
   State<CategoryEditHeader> createState() => _CategoryEditHeaderState();
@@ -49,18 +50,15 @@ class _CategoryEditHeaderState extends State<CategoryEditHeader> {
             Flexible(
               flex: 1,
               child: ExDockSaveButton(
-                // TODO: implement save
                 // somethingToSaveNotifier:
                 // ValueNotifier<bool>(widget.changeAttributeMap.isEmpty),
                 somethingToSaveNotifier: widget.changeAttributeMap,
-                onPressed: () {
-                  print("[START] | changeAttributeMap");
-                  print(widget.changeAttributeMap.value);
-                  print("[JSON ENCODED]");
-                  print(jsonEncode(widget.changeAttributeMap.value));
-                  print("[END] | changeAttributeMap");
-                  print(
-                      "widget.changeAttributeMap.isEmpty: ${widget.changeAttributeMap.isEmpty}");
+                onPressed: () async {
+                  saveCategoryChanges(
+                    widget.changeAttributeMap,
+                    widget.mainSetState,
+                  );
+                  setState(() {});
                 },
               ),
             ),

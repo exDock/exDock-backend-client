@@ -1,4 +1,5 @@
 import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
 class ExDockSaveButton extends StatefulWidget {
@@ -12,7 +13,7 @@ class ExDockSaveButton extends StatefulWidget {
 
   final double width;
   final double height;
-  final ValueNotifier<bool> somethingToSaveNotifier;
+  final MapNotifier somethingToSaveNotifier;
   final Function() onPressed;
 
   @override
@@ -25,7 +26,7 @@ class _ExDockSaveButtonState extends State<ExDockSaveButton> {
     return ValueListenableBuilder(
       valueListenable: widget.somethingToSaveNotifier,
       builder: (context, value, child) {
-        if (!value) {
+        if (value.isEmpty) {
           return Container(
             width: widget.width,
             height: widget.height,

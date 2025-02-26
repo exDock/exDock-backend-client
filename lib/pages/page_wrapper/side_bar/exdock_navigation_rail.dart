@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'dart:async';
 
 import 'navigation_rail_destinations.dart';
 
@@ -14,7 +15,31 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
   int selectedIndex = 0;
   int? hoveredIndex;
   bool isHoveringMenu = false;
+  bool isHoveringButton = false;
   late OverlayState overlayState;
+  OverlayEntry? _overlayEntry;
+  Timer? _dismissTimer;
+
+  @override
+  void dispose() {
+    _dismissTimer?.cancel();
+    _removeOverlay();
+    super.dispose();
+  }
+
+  void _startDismissTimer() {
+    _dismissTimer?.cancel();
+    _dismissTimer = Timer(const Duration(milliseconds: 250), () {
+      if (!isHoveringMenu && !isHoveringButton) {
+        _removeOverlay();
+      }
+    });
+  }
+
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +60,19 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
           .map((entry) {
         return NavigationRailDestination(
           icon: MouseRegion(
-            onEnter: (_) => setState(() {
-              // hoveredIndex = entry.key;
-              showOverlay(entry.key);
-            }),
+            onEnter: (_) {
+              setState(() {
+                hoveredIndex = entry.key;
+                isHoveringButton = true;
+                showOverlay(entry.key);
+              });
+            },
+            onExit: (_) {
+              setState(() {
+                isHoveringButton = false;
+                _startDismissTimer();
+              });
+            },
             child: entry.value.icon,
           ),
           label: entry.value.label,
@@ -48,15 +82,37 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
   }
 
   void showOverlay(int index) {
-    overlayState.insert(
-      OverlayEntry(
-        builder: (context) => Positioned(
-          left: 100,
-          top: 100,
+    _removeOverlay(); // Remove any existing overlay first
+
+    _overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        left: 100,
+        top: 100,
+        child: MouseRegion(
+          onEnter: (_) {
+            setState(() {
+              isHoveringMenu = true;
+            });
+          },
+          onExit: (_) {
+            setState(() {
+              isHoveringMenu = false;
+              _startDismissTimer();
+            });
+          },
           child: Container(
             height: MediaQuery.of(context).size.height - 100,
             width: 200, // TODO: remove for dynamic
-            decoration: BoxDecoration(color: Colors.deepOrange),
+            decoration: BoxDecoration(
+              color: Colors.deepOrange,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
             child: Column(
               children: _getMenuItemsForDestination(index),
             ),
@@ -64,6 +120,8 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
         ),
       ),
     );
+
+    overlayState.insert(_overlayEntry!);
   }
 
   List<Widget> _getMenuItemsForDestination(int index) {

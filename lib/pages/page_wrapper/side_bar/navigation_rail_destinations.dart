@@ -1,40 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:hoverable_navigation_rail/hoverable_navigation_rail_destination.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
-const Map<String, NavigationRailDestination> navigationRailDestinations = {
-  "/home": NavigationRailDestination(
+Map<String, HoverableNavigationRailDestination> navigationRailDestinations = {
+  "/home": HoverableNavigationRailDestination(
     icon: Icon(Icons.home_rounded),
     label: Text("home"),
   ),
-  "/sales": NavigationRailDestination(
+  "/sales": HoverableNavigationRailDestination(
     icon: Icon(Symbols.request_quote_rounded),
     label: Text("sales"),
   ),
-  "/catalog": NavigationRailDestination(
+  "/catalog": HoverableNavigationRailDestination(
     icon: Icon(Symbols.package_2_rounded),
     label: Text("catalog"),
   ),
-  "/customers": NavigationRailDestination(
+  "/customers": HoverableNavigationRailDestination(
     icon: Icon(Symbols.emoji_people_rounded),
     label: Text("customers"),
   ),
-  "/marketing": NavigationRailDestination(
+  "/marketing": HoverableNavigationRailDestination(
     icon: Icon(Symbols.campaign_sharp),
     label: Text("marketing"),
   ),
-  "/content": NavigationRailDestination(
+  "/content": HoverableNavigationRailDestination(
     icon: Icon(Symbols.newspaper_rounded),
     label: Text("content"),
   ),
-  "/reports": NavigationRailDestination(
+  "/reports": HoverableNavigationRailDestination(
     icon: Icon(Symbols.monitoring_rounded),
     label: Text("reports"),
   ),
-  "/stores": NavigationRailDestination(
+  "/stores": HoverableNavigationRailDestination(
     icon: Icon(Symbols.storefront_rounded),
     label: Text("stores"),
   ),
-  "/system": NavigationRailDestination(
+  "/system": HoverableNavigationRailDestination(
     icon: Icon(Symbols.host_rounded),
     label: Text("system"),
   ),

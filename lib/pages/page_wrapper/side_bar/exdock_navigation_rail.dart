@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hoverable_navigation_rail/hoverable_navigation_rail.dart';
+import 'package:hoverable_navigation_rail/hoverable_navigation_rail_destination.dart';
 import 'dart:async';
 
 import 'navigation_rail_destinations.dart';
@@ -44,7 +46,7 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
   @override
   Widget build(BuildContext context) {
     overlayState = Overlay.of(context);
-    return NavigationRail(
+    return HoverableNavigationRail(
       labelType: NavigationRailLabelType.all,
       selectedIndex: selectedIndex,
       onDestinationSelected: (newIndex) {
@@ -58,23 +60,22 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
           .asMap()
           .entries
           .map((entry) {
-        return NavigationRailDestination(
-          icon: MouseRegion(
-            onEnter: (_) {
+        return HoverableNavigationRailDestination(
+          onHoverStateChange: (isHovering) {
+            if (isHovering) {
               setState(() {
                 hoveredIndex = entry.key;
                 isHoveringButton = true;
                 showOverlay(entry.key);
               });
-            },
-            onExit: (_) {
+            } else {
               setState(() {
                 isHoveringButton = false;
                 _startDismissTimer();
               });
-            },
-            child: entry.value.icon,
-          ),
+            }
+          },
+          icon: entry.value.icon,
           label: entry.value.label,
         );
       }).toList(),

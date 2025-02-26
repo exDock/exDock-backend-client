@@ -14,70 +14,53 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
   int selectedIndex = 0;
   int? hoveredIndex;
   bool isHoveringMenu = false;
+  late OverlayState overlayState;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none, // Allow content to overflow
-      children: [
-        NavigationRail(
-          labelType: NavigationRailLabelType.all,
-          selectedIndex: selectedIndex,
-          onDestinationSelected: (newIndex) {
-            setState(() {
-              selectedIndex = newIndex;
-              context.push(navigationRailDestinations.keys.toList()[newIndex]);
-            });
-          },
-          destinations: navigationRailDestinations.values
-              .toList()
-              .asMap()
-              .entries
-              .map((entry) {
-            return NavigationRailDestination(
-              icon: MouseRegion(
-                onEnter: (_) => setState(() => hoveredIndex = entry.key),
-                child: entry.value.icon,
-              ),
-              label: entry.value.label,
-            );
-          }).toList(),
-        ),
-        if (hoveredIndex != null)
-          Positioned(
-            left: 72,
-            top: _calculateMenuPosition(hoveredIndex!),
-            child: MouseRegion(
-              onEnter: (_) => setState(() => isHoveringMenu = true),
-              onExit: (_) => setState(() {
-                isHoveringMenu = false;
-                hoveredIndex = null;
-              }),
-              child: _buildHoverMenu(hoveredIndex!),
-            ),
+    overlayState = Overlay.of(context);
+    return NavigationRail(
+      labelType: NavigationRailLabelType.all,
+      selectedIndex: selectedIndex,
+      onDestinationSelected: (newIndex) {
+        setState(() {
+          selectedIndex = newIndex;
+          context.push(navigationRailDestinations.keys.toList()[newIndex]);
+        });
+      },
+      destinations: navigationRailDestinations.values
+          .toList()
+          .asMap()
+          .entries
+          .map((entry) {
+        return NavigationRailDestination(
+          icon: MouseRegion(
+            onEnter: (_) => setState(() {
+              // hoveredIndex = entry.key;
+              showOverlay(entry.key);
+            }),
+            child: entry.value.icon,
           ),
-      ],
+          label: entry.value.label,
+        );
+      }).toList(),
     );
   }
 
-  double _calculateMenuPosition(int index) {
-    const double itemHeight = 72.0;
-    const double initialOffset = 8.0;
-    return initialOffset + (itemHeight * index);
-  }
-
-  Widget _buildHoverMenu(int index) {
-    return Card(
-      elevation: 4,
-      child: Container(
-        constraints: const BoxConstraints(
-          minWidth: 200,
-          maxWidth: 300,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: _getMenuItemsForDestination(index),
+  void showOverlay(int index) {
+    overlayState.insert(
+      OverlayEntry(
+        builder: (context) => Positioned(
+          left: 100,
+          top: 100,
+          child: Container(
+            height: MediaQuery.of(context).size.height - 100,
+            width: 200, // TODO: remove for dynamic
+            decoration: BoxDecoration(color: Colors.deepOrange),
+            child: Column(
+              children: _getMenuItemsForDestination(index),
+            ),
+          ),
         ),
       ),
     );
@@ -139,8 +122,8 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
   }
 
   Widget _buildMenuItem(String label, String route) {
-    return InkWell(
-      onTap: () => context.push(route),
+    return MaterialButton(
+      onPressed: () => context.push(route),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

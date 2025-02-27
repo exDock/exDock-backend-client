@@ -173,6 +173,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.8.0"
+  hoverable_navigation_rail:
+    dependency: "direct main"
+    description:
+      name: hoverable_navigation_rail
+      sha256: "3f8196833822b77382bbb75db08cd264534fa6b68feca56f4353573578eea790"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   html:
     dependency: transitive
     description:
@@ -395,5 +403,5 @@ packages:
     source: hosted
     version: "14.3.1"
 sdks:
-  dart: ">=3.7.0-0 <4.0.0"
+  dart: ">=3.7.0 <4.0.0"
   flutter: ">=3.27.0"

@@ -1,11 +1,9 @@
-import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar_hover_menu.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar_hover_menu_data.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hoverable_navigation_rail/hoverable_navigation_rail.dart';
 import 'package:hoverable_navigation_rail/hoverable_navigation_rail_destination.dart';
-import 'dart:async';
 
 import 'navigation_rail_destinations.dart';
 
@@ -25,6 +23,14 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
       null,
       null);
   int selectedIndex = 0;
+  late Map<String, HoverableNavigationRailDestination> destinations;
+
+  @override
+  void didChangeDependencies() {
+    destinations = navigationRailDestinations(context, sideBarHoverMenuData);
+
+    super.didChangeDependencies();
+  }
 
   @override
   void dispose() {
@@ -42,24 +48,10 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
       onDestinationSelected: (newIndex) {
         setState(() {
           selectedIndex = newIndex;
-          context.push(navigationRailDestinations.keys.toList()[newIndex]);
+          context.push(destinations.keys.toList()[newIndex]);
         });
       },
-      destinations: navigationRailDestinations.values
-          .toList()
-          .asMap()
-          .entries
-          .map((entry) {
-        return HoverableNavigationRailDestination(
-          onHoverStateChange: onHoverStateChangeHoverMenu(
-            sideBarHoverMenuData,
-            entry.key,
-            context,
-          ),
-          icon: entry.value.icon,
-          label: entry.value.label,
-        );
-      }).toList(),
+      destinations: destinations.values.toList(),
     );
   }
 }

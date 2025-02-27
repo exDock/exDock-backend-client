@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hoverable_navigation_rail/hoverable_navigation_rail.dart';
@@ -103,16 +104,9 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
           },
           child: Container(
             height: MediaQuery.of(context).size.height - 100,
-            width: 200, // TODO: remove for dynamic
+            width: 200,
             decoration: BoxDecoration(
-              color: Colors.deepOrange,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ],
+              color: darkColour,
             ),
             child: Column(
               children: _getMenuItemsForDestination(index),
@@ -137,7 +131,10 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
           (navigationRailDestinations.values.toList()[index].label as Text)
                   .data ??
               "",
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge
+              ?.copyWith(color: Colors.white),
         ),
       ),
     );
@@ -155,15 +152,6 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
         menuItems.addAll([
           _buildMenuItem('Products', '/catalog/products'),
           _buildMenuItem('Categories', '/catalog/categories'),
-          _buildMenuItem('Inventory', '/catalog/inventory'),
-          _buildMenuItem('Shared Catalogs', '/catalog/shared'),
-        ]);
-      case '/customers':
-        menuItems.addAll([
-          _buildMenuItem('All Customers', '/customers/all'),
-          _buildMenuItem('Now Online', '/customers/online'),
-          _buildMenuItem('Customer Groups', '/customers/groups'),
-          _buildMenuItem('Segments', '/customers/segments'),
         ]);
       default:
         menuItems.add(
@@ -171,7 +159,10 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
             padding: const EdgeInsets.all(16),
             child: Text(
               'No submenu available',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: Colors.white),
             ),
           ),
         );
@@ -188,7 +179,10 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Text(
           label,
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: Colors.white),
         ),
       ),
     );

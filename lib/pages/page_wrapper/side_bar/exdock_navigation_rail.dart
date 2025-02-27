@@ -53,24 +53,20 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
         return HoverableNavigationRailDestination(
           onHoverStateChange: (isHovering) {
             if (isHovering) {
-              setState(() {
-                hoveredIndex = entry.key;
-                sideBarHoverMenuData.isHoveringButton = true;
-                showHoverMenuOverlay(
-                  sideBarHoverMenuData,
-                  SizedBox(
-                    width: 200,
-                    child: Column(
-                      children: _getMenuItemsForDestination(entry.key),
-                    ),
+              hoveredIndex = entry.key;
+              sideBarHoverMenuData.isHoveringButton = true;
+              showHoverMenuOverlay(
+                sideBarHoverMenuData,
+                SizedBox(
+                  width: 200,
+                  child: Column(
+                    children: _getMenuItemsForDestination(entry.key),
                   ),
-                );
-              });
+                ),
+              );
             } else {
-              setState(() {
-                sideBarHoverMenuData.isHoveringButton = false;
-                startHoverMenuDismissTimer(sideBarHoverMenuData);
-              });
+              sideBarHoverMenuData.isHoveringButton = false;
+              startHoverMenuDismissTimer(sideBarHoverMenuData);
             }
           },
           icon: entry.value.icon,

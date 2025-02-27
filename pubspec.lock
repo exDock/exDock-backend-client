@@ -50,13 +50,21 @@ packages:
     source: hosted
     version: "1.1.2"
   collection:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: collection
       sha256: "2f5709ae4d3d59dd8f7cd309b4e023046b57d8a6c82130785d2b0e5868084e76"
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      sha256: "09bad715f418841f976c77db72d5398dc1253c21fb9c0c7f0b0b985860b2d58e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -65,6 +73,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  diff_match_patch:
+    dependency: transitive
+    description:
+      name: diff_match_patch
+      sha256: "2efc9e6e8f449d0abe15be240e2c2a3bcd977c8d126cfd70598aee60af35c0a4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.1"
+  dotted_border:
+    dependency: "direct main"
+    description:
+      name: dotted_border
+      sha256: "108837e11848ca776c53b30bc870086f84b62ed6e01c503ed976e8f8c7df9c04"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   fake_async:
     dependency: transitive
     description:
@@ -81,6 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
+  fleather:
+    dependency: "direct main"
+    description:
+      name: fleather
+      sha256: b1e6cd8b843cfda7b879440d8b8fee9437ae1879c9acf2307e74afafa92099c4
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.20.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -94,6 +126,19 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.0"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_staggered_grid_view:
+    dependency: "direct main"
+    description:
+      name: flutter_staggered_grid_view
+      sha256: "19e7abb550c96fbfeb546b23f3ff356ee7c59a019a651f8f102a4ba9b7349395"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.0"
   flutter_switch:
     dependency: "direct main"
     description:
@@ -128,14 +173,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.8.0"
-  hoverable_navigation_rail:
-    dependency: "direct main"
+  html:
+    dependency: transitive
     description:
-      name: hoverable_navigation_rail
-      sha256: "062973a49bb05e685ae53ef9457c1c5e4cef6e199b4fc5c484f274974e4c4e1a"
+      name: html
+      sha256: "1fc58edeaec4307368c60d59b7e15b9d658b57d7f3125098b6294153c75337ec"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "0.15.5"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.19.0"
+  kumi_popup_window:
+    dependency: "direct main"
+    description:
+      name: kumi_popup_window
+      sha256: "3159a2ee307850ab3520cfb162efc1e330aac2e560569e20227bf2ac93ec06d5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   leak_tracker:
     dependency: transitive
     description:
@@ -208,6 +269,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.16.0"
+  parchment:
+    dependency: transitive
+    description:
+      name: parchment
+      sha256: f4ae57085a8565202c52fa7f7d7ad94e7e873fc65a2fd7831200754bddc5028d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.20.1"
+  parchment_delta:
+    dependency: transitive
+    description:
+      name: parchment_delta
+      sha256: "8b360d0138eb591c7fe193670e2d05466e482792af9c5b4d3f568c5c61530f08"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  parchment_to_html:
+    dependency: "direct main"
+    description:
+      name: parchment_to_html
+      sha256: b2eb549c684f71befc35cc8bfb2e3e257c4c4c153b29a4db7d24e46c9b30c7ae
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+1"
   path:
     dependency: transitive
     description:
@@ -216,6 +301,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      sha256: bbb1934c0cbb03091af082a6389ca2080345291ef07a5fa6d6e078ba8682f977
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      sha256: "883402936929eac138ee0a45da5b0f2c80f89913e6dc3bf77eb65b84b409c6ca"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      sha256: ea0b925899e64ecdfbf9c7becb60d5b50e706ade44a85b2363be2a22d88117d2
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -286,5 +395,5 @@ packages:
     source: hosted
     version: "14.3.1"
 sdks:
-  dart: ">=3.7.0 <4.0.0"
-  flutter: ">=3.22.0"
+  dart: ">=3.7.0-0 <4.0.0"
+  flutter: ">=3.27.0"

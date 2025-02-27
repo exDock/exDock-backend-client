@@ -1,4 +1,6 @@
 import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar_hover_menu.dart';
+import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar_hover_menu_data.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hoverable_navigation_rail/hoverable_navigation_rail.dart';
@@ -15,38 +17,25 @@ class ExDockNavigationRail extends StatefulWidget {
 }
 
 class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
+  final SideBarHoverMenuData sideBarHoverMenuData = SideBarHoverMenuData(
+      false,
+      false,
+      OverlayState(), // temporary
+      null,
+      null);
   int selectedIndex = 0;
   int? hoveredIndex;
-  bool isHoveringMenu = false;
-  bool isHoveringButton = false;
-  late OverlayState overlayState;
-  OverlayEntry? _overlayEntry;
-  Timer? _dismissTimer;
 
   @override
   void dispose() {
-    _dismissTimer?.cancel();
-    _removeOverlay();
+    sideBarHoverMenuData.dismissTimer?.cancel();
+    removeHoverMenuOverlay(sideBarHoverMenuData);
     super.dispose();
-  }
-
-  void _startDismissTimer() {
-    _dismissTimer?.cancel();
-    _dismissTimer = Timer(const Duration(milliseconds: 250), () {
-      if (!isHoveringMenu && !isHoveringButton) {
-        _removeOverlay();
-      }
-    });
-  }
-
-  void _removeOverlay() {
-    _overlayEntry?.remove();
-    _overlayEntry = null;
   }
 
   @override
   Widget build(BuildContext context) {
-    overlayState = Overlay.of(context);
+    sideBarHoverMenuData.overlayState = Overlay.of(context);
     return HoverableNavigationRail(
       labelType: NavigationRailLabelType.all,
       selectedIndex: selectedIndex,
@@ -66,13 +55,21 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
             if (isHovering) {
               setState(() {
                 hoveredIndex = entry.key;
-                isHoveringButton = true;
-                showOverlay(entry.key);
+                sideBarHoverMenuData.isHoveringButton = true;
+                showHoverMenuOverlay(
+                  sideBarHoverMenuData,
+                  SizedBox(
+                    width: 200,
+                    child: Column(
+                      children: _getMenuItemsForDestination(entry.key),
+                    ),
+                  ),
+                );
               });
             } else {
               setState(() {
-                isHoveringButton = false;
-                _startDismissTimer();
+                sideBarHoverMenuData.isHoveringButton = false;
+                startHoverMenuDismissTimer(sideBarHoverMenuData);
               });
             }
           },
@@ -81,42 +78,6 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
         );
       }).toList(),
     );
-  }
-
-  void showOverlay(int index) {
-    _removeOverlay(); // Remove any existing overlay first
-
-    _overlayEntry = OverlayEntry(
-      builder: (context) => Positioned(
-        left: 100,
-        top: 100,
-        child: MouseRegion(
-          onEnter: (_) {
-            setState(() {
-              isHoveringMenu = true;
-            });
-          },
-          onExit: (_) {
-            setState(() {
-              isHoveringMenu = false;
-              _startDismissTimer();
-            });
-          },
-          child: Container(
-            height: MediaQuery.of(context).size.height - 100,
-            width: 200,
-            decoration: BoxDecoration(
-              color: darkColour,
-            ),
-            child: Column(
-              children: _getMenuItemsForDestination(index),
-            ),
-          ),
-        ),
-      ),
-    );
-
-    overlayState.insert(_overlayEntry!);
   }
 
   List<Widget> _getMenuItemsForDestination(int index) {

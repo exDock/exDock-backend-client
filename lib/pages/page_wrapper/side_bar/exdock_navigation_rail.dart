@@ -22,9 +22,9 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
       false,
       OverlayState(), // temporary
       null,
+      null,
       null);
   int selectedIndex = 0;
-  int? hoveredIndex;
 
   @override
   void dispose() {
@@ -51,97 +51,15 @@ class _ExDockNavigationRailState extends State<ExDockNavigationRail> {
           .entries
           .map((entry) {
         return HoverableNavigationRailDestination(
-          onHoverStateChange: (isHovering) {
-            if (isHovering) {
-              hoveredIndex = entry.key;
-              sideBarHoverMenuData.isHoveringButton = true;
-              showHoverMenuOverlay(
-                sideBarHoverMenuData,
-                SizedBox(
-                  width: 200,
-                  child: Column(
-                    children: _getMenuItemsForDestination(entry.key),
-                  ),
-                ),
-              );
-            } else {
-              sideBarHoverMenuData.isHoveringButton = false;
-              startHoverMenuDismissTimer(sideBarHoverMenuData);
-            }
-          },
+          onHoverStateChange: onHoverStateChangeHoverMenu(
+            sideBarHoverMenuData,
+            entry.key,
+            context,
+          ),
           icon: entry.value.icon,
           label: entry.value.label,
         );
       }).toList(),
-    );
-  }
-
-  List<Widget> _getMenuItemsForDestination(int index) {
-    final String route = navigationRailDestinations.keys.toList()[index];
-    final List<Widget> menuItems = [];
-
-    menuItems.add(
-      Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(16),
-        child: Text(
-          (navigationRailDestinations.values.toList()[index].label as Text)
-                  .data ??
-              "",
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(color: Colors.white),
-        ),
-      ),
-    );
-
-    switch (route) {
-      case '/sales':
-        menuItems.addAll([
-          _buildMenuItem('Orders', '/sales/orders'),
-          _buildMenuItem('Invoices', '/sales/invoices'),
-          _buildMenuItem('Shipments', '/sales/shipments'),
-          _buildMenuItem('Credit Memos', '/sales/credit-memos'),
-          _buildMenuItem('Returns', '/sales/returns'),
-        ]);
-      case '/catalog':
-        menuItems.addAll([
-          _buildMenuItem('Products', '/catalog/products'),
-          _buildMenuItem('Categories', '/catalog/categories'),
-        ]);
-      default:
-        menuItems.add(
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(
-              'No submenu available',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: Colors.white),
-            ),
-          ),
-        );
-    }
-
-    return menuItems;
-  }
-
-  Widget _buildMenuItem(String label, String route) {
-    return MaterialButton(
-      onPressed: () => context.push(route),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Text(
-          label,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: Colors.white),
-        ),
-      ),
     );
   }
 }

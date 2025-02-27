@@ -9,6 +9,7 @@ class SideBarHoverMenuData {
     this.overlayState,
     this.overlayEntry,
     this.dismissTimer,
+    this.hoveredIndex,
   );
 
   bool isHoveringMenu = false;
@@ -16,4 +17,5 @@ class SideBarHoverMenuData {
   OverlayState overlayState;
   OverlayEntry? overlayEntry;
   Timer? dismissTimer;
+  int? hoveredIndex;
 }

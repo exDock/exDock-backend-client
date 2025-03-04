@@ -21,26 +21,24 @@ class _SideBarState extends State<SideBar> {
         color: Colors.white,
         boxShadow: kBoxShadowList,
       ),
-      child: ClipRect(
-        child: Column(
-          verticalDirection: VerticalDirection.up,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Expanded(
-              child: ExDockNavigationRail(),
+      child: Column(
+        verticalDirection: VerticalDirection.up,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: ExDockNavigationRail(),
+          ),
+          Container(
+            height: widget.width,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              boxShadow: kBoxShadowList,
             ),
-            Container(
-              height: widget.width,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                boxShadow: kBoxShadowList,
-              ),
-              child: const Center(
-                child: Text("exDock"),
-              ),
+            child: const Center(
+              child: Text("exDock"),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

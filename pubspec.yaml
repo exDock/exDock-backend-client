@@ -40,6 +40,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   flutter_switch: ^0.3.2
+  hoverable_navigation_rail: ^1.0.0
   dotted_border: ^2.1.0
   fleather: ^1.20.1
   parchment_to_html: ^1.0.0+1

@@ -40,7 +40,13 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   flutter_switch: ^0.3.2
-  fleather: ^1.19.0
+  hoverable_navigation_rail: ^1.0.0
+  dotted_border: ^2.1.0
+  fleather: ^1.20.1
+  parchment_to_html: ^1.0.0+1
+  collection: ^1.19.0
+  kumi_popup_window: ^2.0.1
+  flutter_staggered_grid_view: ^0.7.0
   calendar_date_picker2: ^1.1.8
 
 dev_dependencies:

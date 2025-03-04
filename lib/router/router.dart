@@ -13,6 +13,7 @@ final GoRouter router = GoRouter(
         pathNotifier.value = state.uri.path;
         return Scaffold(
           body: Stack(
+            clipBehavior: Clip.none,
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 100),

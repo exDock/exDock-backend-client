@@ -1,7 +1,9 @@
 import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -25,6 +27,8 @@ class _LoginState extends State<Login> {
     // return 500 if there is a server error
     // return 503 if there is a connection error
 
+    authData.setAuthEmail(email);
+    authData.setAuthPassword(password);
     // return 200 if login is successful
     return 200;
   }
@@ -86,6 +90,14 @@ class _LoginState extends State<Login> {
                           passwordController.text,
                         );
                         if (statusCode == 200) {
+                          if (context.mounted) {
+                            if (context.canPop()) {
+                              context.pop();
+                              return;
+                            }
+                            context.go("/");
+                          }
+                        } else if (statusCode == 400) {
                           // TODO: navigate to last page or home page
                         } else if (statusCode == 403) {
                           // TODO: show invalid credentials error

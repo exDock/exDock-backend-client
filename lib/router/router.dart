@@ -1,4 +1,5 @@
 import 'package:exdock_backend_client/globals/variables.dart';
+import 'package:exdock_backend_client/pages/login/login.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/scope.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/top_bar.dart';
@@ -8,8 +9,13 @@ import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
   routes: [
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => const Login(),
+    ),
     ShellRoute(
       builder: (context, GoRouterState state, child) {
+        // TODO: check if logged in
         pathNotifier.value = state.uri.path;
         return Scaffold(
           body: Stack(

@@ -97,8 +97,6 @@ class _LoginState extends State<Login> {
                             }
                             context.go("/");
                           }
-                        } else if (statusCode == 400) {
-                          // TODO: navigate to last page or home page
                         } else if (statusCode == 403) {
                           // TODO: show invalid credentials error
                         } else if (statusCode == 500) {

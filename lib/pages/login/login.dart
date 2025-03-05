@@ -1,5 +1,6 @@
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/globals/variables.dart';
+import 'package:exdock_backend_client/utils/snackbar/exdock_snackbar.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _LoginState extends State<Login> {
     return "website name";
   }
 
-  Future<int> login(String email, String password) async {
+  Future<int> loginServer(String email, String password) async {
     // TODO: check login credentials
     // return 403 if credentials are incorrect
     // return 500 if there is a server error
@@ -31,6 +32,43 @@ class _LoginState extends State<Login> {
     authData.setAuthPassword(password);
     // return 200 if login is successful
     return 200;
+  }
+
+  void loginButtonFunction() async {
+    final int statusCode = await loginServer(
+      emailController.text,
+      passwordController.text,
+    );
+    if (statusCode == 200) {
+      if (mounted) {
+        if (context.canPop()) {
+          context.pop();
+          return;
+        }
+        context.go("/");
+      }
+    } else if (statusCode == 403) {
+      if (mounted) {
+        showExDockSnackBar(
+          context: context,
+          child: Text("403 has been thrown | invalid credentials"),
+        );
+      }
+    } else if (statusCode == 500) {
+      if (mounted) {
+        showExDockSnackBar(
+          context: context,
+          child: Text("500 has been thrown | server experienced an error"),
+        );
+      }
+    } else if (statusCode == 503) {
+      if (mounted) {
+        showExDockSnackBar(
+          context: context,
+          child: Text("503 has been thrown | connection error"),
+        );
+      }
+    }
   }
 
   @override
@@ -84,27 +122,7 @@ class _LoginState extends State<Login> {
                   Expanded(
                     child: ExdockButton(
                       label: "LOGIN",
-                      onPressed: () async {
-                        final int statusCode = await login(
-                          emailController.text,
-                          passwordController.text,
-                        );
-                        if (statusCode == 200) {
-                          if (context.mounted) {
-                            if (context.canPop()) {
-                              context.pop();
-                              return;
-                            }
-                            context.go("/");
-                          }
-                        } else if (statusCode == 403) {
-                          // TODO: show invalid credentials error
-                        } else if (statusCode == 500) {
-                          // TODO: show server error
-                        } else if (statusCode == 503) {
-                          // TODO: show connection error
-                        }
-                      },
+                      onPressed: loginButtonFunction,
                     ),
                   ),
                 ],

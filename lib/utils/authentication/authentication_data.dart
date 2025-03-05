@@ -13,14 +13,14 @@ class AuthenticationData {
     if (_authEmail != null) return _authEmail!;
     _authEmail = prefs.getString('authEmail');
     if (_authEmail != null) return _authEmail!;
-    Exception('No email set');
+    throw NotAuthenticatedException('No email set');
   }
 
   get password {
     if (_authPassword != null) return _authPassword!;
     _authPassword = prefs.getString('authPassword');
     if (_authPassword != null) return _authPassword!;
-    Exception('No password set');
+    throw NotAuthenticatedException('No password set');
   }
 
   void setAuthEmail(String val) async {
@@ -32,4 +32,9 @@ class AuthenticationData {
     _authPassword = val;
     await prefs.setString('authPassword', val);
   }
+}
+
+class NotAuthenticatedException implements Exception {
+  final String message;
+  NotAuthenticatedException(this.message);
 }

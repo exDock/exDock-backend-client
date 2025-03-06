@@ -1,6 +1,8 @@
 import 'package:exdock_backend_client/pages/stores/configuration/configuration_menu_sub_type.dart';
 
-Map<String, List<ConfigurationMenuSubType>> getConfigurationMenu() {
+Map<String, List<ConfigurationMenuSubType>> getConfigurationMenu(
+  Function(String) switchToConfigurationsSettingsPage,
+) {
   return {
     'General': [],
     'Catalog': [],
@@ -9,31 +11,31 @@ Map<String, List<ConfigurationMenuSubType>> getConfigurationMenu() {
       ConfigurationMenuSubType(
         title: 'orders',
         onPressed: () {
-          print('Orders pressed');
+          switchToConfigurationsSettingsPage('orders');
         },
       ),
       ConfigurationMenuSubType(
         title: 'shipments',
         onPressed: () {
-          print('Shipments pressed');
+          switchToConfigurationsSettingsPage('shipments');
         },
       ),
       ConfigurationMenuSubType(
         title: 'tax',
         onPressed: () {
-          print('Tax pressed');
+          switchToConfigurationsSettingsPage('tax');
         },
       ),
       ConfigurationMenuSubType(
         title: 'checkout',
         onPressed: () {
-          print('Checkout pressed');
+          switchToConfigurationsSettingsPage('checkout');
         },
       ),
       ConfigurationMenuSubType(
         title: 'payments',
         onPressed: () {
-          print('Payments pressed');
+          switchToConfigurationsSettingsPage('payments');
         },
       ),
     ],

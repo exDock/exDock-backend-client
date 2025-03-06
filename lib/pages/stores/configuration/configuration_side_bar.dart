@@ -19,9 +19,93 @@ class ConfigurationSidebar extends StatefulWidget {
   State<ConfigurationSidebar> createState() => _ConfigurationSidebarState();
 }
 
-class _ConfigurationSidebarState extends State<ConfigurationSidebar> {
+class _ConfigurationSidebarState extends State<ConfigurationSidebar>
+    with TickerProviderStateMixin {
   // Track expanded sections
   Set<String> expandedSections = {};
+
+  // Store animation controllers
+  final Map<String, AnimationController> _rotationControllers = {};
+  final Map<String, AnimationController> _expansionControllers = {};
+  final Map<String, List<AnimationController>> _itemControllers = {};
+
+  // Animation durations
+  final Duration _rotationDuration = const Duration(milliseconds: 300);
+  final Duration _expansionDuration = const Duration(milliseconds: 300);
+  final Duration _itemFadeDuration = const Duration(milliseconds: 200);
+  final Duration _staggerDelay = const Duration(milliseconds: 75);
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeAnimationControllers();
+  }
+
+  void _initializeAnimationControllers() {
+    // Initialize animation controllers for each section
+    for (var sectionTitle in widget.menuItems.keys) {
+      // Rotation controller for the arrow icon
+      _rotationControllers[sectionTitle] = AnimationController(
+        vsync: this,
+        duration: _rotationDuration,
+      );
+
+      // Expansion controller for the section container
+      _expansionControllers[sectionTitle] = AnimationController(
+        vsync: this,
+        duration: _expansionDuration,
+      );
+
+      // Individual controllers for each item in the section
+      final items = widget.menuItems[sectionTitle] ?? [];
+      _itemControllers[sectionTitle] = List.generate(
+        items.length,
+        (index) => AnimationController(
+          vsync: this,
+          duration: _itemFadeDuration,
+        ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    // Dispose all animation controllers
+    for (var controller in _rotationControllers.values) {
+      controller.dispose();
+    }
+
+    for (var controller in _expansionControllers.values) {
+      controller.dispose();
+    }
+
+    for (var controllerList in _itemControllers.values) {
+      for (var controller in controllerList) {
+        controller.dispose();
+      }
+    }
+    super.dispose();
+  }
+
+  void _animateItems(String sectionTitle, bool isExpanded) {
+    final items = _itemControllers[sectionTitle] ?? [];
+
+    if (isExpanded) {
+      // Staggered animation forward for each item
+      for (int i = 0; i < items.length; i++) {
+        Future.delayed(_staggerDelay * i, () {
+          if (mounted) {
+            items[i].forward();
+          }
+        });
+      }
+    } else {
+      // Reverse all item animations at once when closing
+      for (var controller in items) {
+        controller.reverse();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +134,28 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar> {
 
     widget.menuItems.forEach((sectionTitle, subItems) {
       bool isExpanded = expandedSections.contains(sectionTitle);
+      final rotationController = _rotationControllers[sectionTitle]!;
+      final expansionController = _expansionControllers[sectionTitle]!;
+
+      // Update controllers based on expansion state
+      if (isExpanded) {
+        rotationController.forward();
+        expansionController.forward();
+        _animateItems(sectionTitle, true);
+      } else {
+        rotationController.reverse();
+        expansionController.duration = Duration(milliseconds: 150);
+        expansionController.reverse();
+        expansionController.duration = _expansionDuration;
+        _animateItems(sectionTitle, false);
+      }
+
+      // Rotation animation for the arrow icon
+      final rotationAnimation =
+          Tween<double>(begin: 0, end: 0.5).animate(CurvedAnimation(
+        parent: rotationController,
+        curve: Curves.easeInOut,
+      ));
 
       // Add section header
       sections.add(
@@ -76,11 +182,17 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar> {
                     color: widget.textColor,
                   ),
                 ),
-                Icon(
-                  isExpanded
-                      ? Icons.keyboard_arrow_up
-                      : Icons.keyboard_arrow_down,
-                  color: widget.textColor,
+                AnimatedBuilder(
+                  animation: rotationAnimation,
+                  builder: (context, child) {
+                    return Transform.rotate(
+                      angle: rotationAnimation.value * 3.14159 * 2,
+                      child: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: widget.textColor,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -88,11 +200,56 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar> {
         ),
       );
 
-      // Add sub-items if section is expanded
-      if (isExpanded) {
-        for (var item in subItems) {
-          sections.add(
-            MaterialButton(
+      // Create container for the items with a smooth slide animation
+      sections.add(
+        AnimatedBuilder(
+          animation: expansionController,
+          builder: (context, child) {
+            return ClipRect(
+              child: Align(
+                alignment: Alignment.topCenter,
+                heightFactor: expansionController.value,
+                child: Container(
+                  color: widget.expandedSectionColor,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: _buildSubItems(sectionTitle, subItems),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      );
+
+      sections.add(divider);
+    });
+
+    return sections;
+  }
+
+  List<Widget> _buildSubItems(
+      String sectionTitle, List<ConfigurationMenuSubType> subItems) {
+    List<Widget> itemWidgets = [];
+    final itemControllerList = _itemControllers[sectionTitle] ?? [];
+
+    for (int i = 0; i < subItems.length; i++) {
+      if (i < itemControllerList.length) {
+        final item = subItems[i];
+        final itemController = itemControllerList[i];
+
+        // Fade animation for individual item
+        final fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+          CurvedAnimation(
+            parent: itemController,
+            curve: Curves.easeIn,
+          ),
+        );
+
+        itemWidgets.add(
+          FadeTransition(
+            opacity: fadeAnimation,
+            child: MaterialButton(
               onPressed: item.onPressed,
               child: Padding(
                 padding:
@@ -109,13 +266,11 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar> {
                 ),
               ),
             ),
-          );
-        }
+          ),
+        );
       }
+    }
 
-      sections.add(divider);
-    });
-
-    return sections;
+    return itemWidgets;
   }
 }

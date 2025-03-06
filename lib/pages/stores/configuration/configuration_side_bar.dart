@@ -92,21 +92,18 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar> {
       if (isExpanded) {
         for (var item in subItems) {
           sections.add(
-            Container(
-              color: widget.expandedSectionColor,
-              child: InkWell(
-                onTap: item.onPressed,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      item.title,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: widget.textColor,
-                      ),
+            MaterialButton(
+              onPressed: item.onPressed,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    item.title,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: widget.textColor,
                     ),
                   ),
                 ),

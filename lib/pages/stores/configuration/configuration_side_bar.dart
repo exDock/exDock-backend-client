@@ -120,7 +120,9 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
   }
 
   List<Widget> _buildMenuSections() {
-    List<Widget> sections = [];
+    List<Widget> sections = [
+      const SizedBox(height: 24),
+    ];
 
     const Widget divider = Padding(
       padding: EdgeInsets.symmetric(horizontal: 24),

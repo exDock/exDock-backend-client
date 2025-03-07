@@ -48,8 +48,8 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
                 buttonText: "category",
               ),
               SimpleHoverMenuButton(
-                route: "/catalog/products",
-                buttonText: "products",
+                route: "/catalog/product",
+                buttonText: "product",
               ),
             ],
           ),

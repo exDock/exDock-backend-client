@@ -1,7 +1,7 @@
 import 'package:exdock_backend_client/globals/styling.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_products_block/category_product_card/category_product_card_price.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_products_block/category_product_card/category_product_card_stock_overlay.dart';
-import 'package:exdock_backend_client/widgets/exdock_copy_button.dart';
+import 'package:exdock_backend_client/widgets/buttons/exdock_copy_button.dart';
 import 'package:flutter/material.dart';
 
 class CategoryProductCardSynchronous extends StatelessWidget {

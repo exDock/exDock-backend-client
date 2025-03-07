@@ -4,7 +4,7 @@ import 'package:exdock_backend_client/pages/catalog/category/edit/header/categor
 import 'package:exdock_backend_client/pages/catalog/category/edit/header/category_edit_title.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/header/save_category_changes.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:exdock_backend_client/widgets/exdock_save_button.dart';
+import 'package:exdock_backend_client/widgets/buttons/exdock_save_button.dart';
 import 'package:flutter/material.dart';
 
 class CategoryEditHeader extends StatefulWidget {

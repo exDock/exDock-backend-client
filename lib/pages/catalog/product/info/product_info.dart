@@ -1,10 +1,14 @@
-import 'package:exdock_backend_client/pages/catalog/product/info/product_info_data.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_synchronous.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:flutter/material.dart';
 
 class ProductInfo extends StatefulWidget {
-  const ProductInfo({super.key});
+  const ProductInfo({
+    super.key,
+    this.productId,
+  });
+
+  final int? productId;
 
   @override
   State<ProductInfo> createState() => _ProductInfoState();
@@ -134,42 +138,10 @@ class _ProductInfoState extends State<ProductInfo> {
     };
   }
 
-  Future<ProductInfoData> getProductData() async {
-    return ProductInfoData(
-      idData: IdData(
-        sku: "123232",
-        location: "G23.15",
-        ean: "1234567890123",
-        manufacturer: "manufacturer",
-        categories: [
-          CategoryData(
-            name: "test name",
-          ),
-        ],
-      ),
-      priceData: PriceData(
-        costPrice: 18.99,
-        taxClass: "standard VAT",
-        price: 12.99,
-        salePrice: 15.99,
-        saleDateStart: DateTime(2024, 12, 05),
-        saleDateEnd: DateTime(2024, 12, 20),
-      ),
-      contentData: ContentData(
-        description: "test description",
-        shortDescription: "short description",
-      ),
-      imageData: ImageData(
-        url: "test",
-        extensions: [],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getJsonProductData(1),
+      future: getJsonProductData(widget.productId!),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Placeholder();

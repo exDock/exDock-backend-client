@@ -11,7 +11,7 @@ List<GoRoute> getCatalogRoutes() {
       builder: (context, state) => const Placeholder(),
     ),
     GoRoute(
-      path: '/catalog/products',
+      path: '/catalog/product',
       builder: (context, state) => Product(),
     ),
     GoRoute(
@@ -31,10 +31,15 @@ List<GoRoute> getCatalogRoutes() {
       },
     ),
     GoRoute(
-      path: '/catalog/product/:id',
+      path: '/catalog/product/:selectedProduct',
       builder: (context, state) {
-        final id = state.pathParameters['id'];
-        return ProductInfo();
+        int? productId;
+        try {
+          productId = int.parse(state.pathParameters['selectedProduct']!);
+        } catch (_) {}
+        return ProductInfo(
+          productId: productId,
+        );
       },
     ),
   ];

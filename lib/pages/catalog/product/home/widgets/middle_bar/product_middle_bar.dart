@@ -1,5 +1,5 @@
-import 'package:exdock_backend_client/pages/catalog/products/widgets/middle_bar/product_view_size.dart';
-import 'package:exdock_backend_client/pages/catalog/products/widgets/middle_bar/remove_filter_button.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/middle_bar/product_view_size.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/middle_bar/remove_filter_button.dart';
 import 'package:flutter/material.dart';
 
 import 'filter_list.dart';

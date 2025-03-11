@@ -1,7 +1,7 @@
-import 'package:exdock_backend_client/pages/catalog/products/widgets/top_bar/dropdown_button_columns.dart';
-import 'package:exdock_backend_client/pages/catalog/products/widgets/top_bar/product_search.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/product_search.dart';
 import 'package:flutter/material.dart';
 
+import 'dropdown_button_columns.dart';
 import 'dropdown_button_filters.dart';
 import 'dropdown_button_icon.dart';
 

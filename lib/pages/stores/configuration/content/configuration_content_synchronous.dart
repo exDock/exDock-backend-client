@@ -6,7 +6,7 @@ class ConfigurationContentSynchronous extends StatelessWidget {
     required this.configurationSettings,
   });
 
-  final Map<String, List<Map<String, dynamic>>> configurationSettings;
+  final Map<String, Map<String, dynamic>> configurationSettings;
 
   @override
   Widget build(BuildContext context) {

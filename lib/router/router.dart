@@ -1,14 +1,29 @@
 import 'package:exdock_backend_client/globals/variables.dart';
+import 'package:exdock_backend_client/pages/login/login.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/scope.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/top_bar.dart';
 import 'package:exdock_backend_client/router/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 
 final GoRouter router = GoRouter(
   routes: [
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => const Login(),
+    ),
     ShellRoute(
+      redirect: (context, state) {
+        try {
+          authData.email;
+          authData.password;
+          return null;
+        } on NotAuthenticatedException catch (_) {
+          return '/login';
+        }
+      },
       builder: (context, GoRouterState state, child) {
         pathNotifier.value = state.uri.path;
         return Scaffold(

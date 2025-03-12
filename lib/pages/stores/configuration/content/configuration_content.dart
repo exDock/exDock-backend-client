@@ -19,25 +19,25 @@ class ConfigurationContent extends StatelessWidget {
           "attributes": [
             {
               "attribute_type": "switch",
-              "attribute_key": "enable_onepage_checkout",
+              "attribute_id": "enable_onepage_checkout",
               "attribute_name": "Enable Onepage Checkout",
               "current_value": false,
             },
             {
               "attribute_type": "switch",
-              "attribute_key": "allow_guest_checkout",
+              "attribute_id": "allow_guest_checkout",
               "attribute_name": "Allow Guest Checkout",
               "current_value": true,
             },
             {
               "attribute_type": "switch",
-              "attribute_key": "enable_terms_conditions",
+              "attribute_id": "enable_terms_conditions",
               "attribute_name": "Enable Terms & Conditions",
               "current_value": true,
             },
             {
               "attribute_type": "int",
-              "attribute_key": "max_no_items_in_order_summary",
+              "attribute_id": "max_no_items_in_order_summary",
               "attribute_name":
                   "Maximum Number of Items to Display in Order Summary",
               "current_value": 10,
@@ -47,35 +47,33 @@ class ConfigurationContent extends StatelessWidget {
         "Shopping cart": {
           "block_type": "standard",
           "attributes": [
-            [
-              {
-                "attribute_type": "switch",
-                "attribute_key": "after_add_product_redirect_to_cart",
-                "attribute_name":
-                    "After Adding a Product Redirect to Shopping Cart",
-                "current_value": false,
-              },
-              {
-                "attribute_type": "dropdown",
-                "attribute_key": "configurable_product_image_in_cart",
-                "attribute_name":
-                    "Image to show for configurable product in cart",
-                "possible_values": [
-                  {
-                    'value': 'simple_product_thumbnail',
-                    'label': 'Simple product thumbnail',
-                  },
-                  {
-                    'value': 'configurable_product_thumbnail',
-                    'label': 'Configurable product thumbnail',
-                  },
-                ],
-                "current_value": {
+            {
+              "attribute_type": "switch",
+              "attribute_id": "after_add_product_redirect_to_cart",
+              "attribute_name":
+                  "After Adding a Product Redirect to Shopping Cart",
+              "current_value": false,
+            },
+            {
+              "attribute_type": "dropdown",
+              "attribute_id": "configurable_product_image_in_cart",
+              "attribute_name":
+                  "Image to show for configurable product in cart",
+              "possible_values": [
+                {
+                  'value': 'simple_product_thumbnail',
+                  'label': 'Simple product thumbnail',
+                },
+                {
                   'value': 'configurable_product_thumbnail',
                   'label': 'Configurable product thumbnail',
                 },
+              ],
+              "current_value": {
+                'value': 'configurable_product_thumbnail',
+                'label': 'Configurable product thumbnail',
               },
-            ],
+            },
           ],
         },
       };

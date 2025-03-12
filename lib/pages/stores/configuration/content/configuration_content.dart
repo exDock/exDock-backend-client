@@ -21,26 +21,26 @@ class ConfigurationContent extends StatelessWidget {
               "attribute_type": "switch",
               "attribute_id": "enable_onepage_checkout",
               "attribute_name": "Enable Onepage Checkout",
-              "current_value": false,
+              "current_attribute_value": false,
             },
             {
               "attribute_type": "switch",
               "attribute_id": "allow_guest_checkout",
               "attribute_name": "Allow Guest Checkout",
-              "current_value": true,
+              "current_attribute_value": true,
             },
             {
               "attribute_type": "switch",
               "attribute_id": "enable_terms_conditions",
               "attribute_name": "Enable Terms & Conditions",
-              "current_value": true,
+              "current_attribute_value": true,
             },
             {
               "attribute_type": "int",
               "attribute_id": "max_no_items_in_order_summary",
               "attribute_name":
                   "Maximum Number of Items to Display in Order Summary",
-              "current_value": 10,
+              "current_attribute_value": 10,
             },
           ],
         },
@@ -52,7 +52,7 @@ class ConfigurationContent extends StatelessWidget {
               "attribute_id": "after_add_product_redirect_to_cart",
               "attribute_name":
                   "After Adding a Product Redirect to Shopping Cart",
-              "current_value": false,
+              "current_attribute_value": false,
             },
             {
               "attribute_type": "dropdown",
@@ -69,7 +69,7 @@ class ConfigurationContent extends StatelessWidget {
                   'label': 'Configurable product thumbnail',
                 },
               ],
-              "current_value": {
+              "current_attribute_value": {
                 'value': 'configurable_product_thumbnail',
                 'label': 'Configurable product thumbnail',
               },

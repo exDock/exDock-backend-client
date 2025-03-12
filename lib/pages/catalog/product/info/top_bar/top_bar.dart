@@ -1,6 +1,6 @@
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:exdock_backend_client/widgets/exdock_save_button.dart';
+import 'package:exdock_backend_client/widgets/buttons/exdock_save_button.dart';
 import 'package:exdock_backend_client/widgets/exdock_switch.dart';
 import 'package:flutter/material.dart';
 

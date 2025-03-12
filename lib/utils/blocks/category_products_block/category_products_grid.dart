@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_products_block/category_product_card/category_product_card.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/blocks/category_products_block/category_product_card/category_product_card.dart';
 import 'package:flutter/material.dart';
 
 class CategoryProductsGrid extends StatefulWidget {

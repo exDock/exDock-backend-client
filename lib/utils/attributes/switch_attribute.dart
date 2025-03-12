@@ -17,7 +17,7 @@ class SwitchAttribute extends StatefulWidget {
 }
 
 class _SwitchAttributeState extends State<SwitchAttribute> {
-  late bool switchValue = widget.attribute['current_value'];
+  late bool switchValue = widget.attribute['current_attribute_value'] ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class _SwitchAttributeState extends State<SwitchAttribute> {
           onChanged: (value) {
             switchValue = value;
 
-            if (value == widget.attribute['current_value']) {
+            if (value == widget.attribute['current_attribute_value']) {
               widget.changeAttributeMap
                   .removeEntry(widget.attribute['attribute_id']);
               return;

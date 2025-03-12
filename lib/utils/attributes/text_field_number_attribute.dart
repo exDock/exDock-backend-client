@@ -1,5 +1,6 @@
 import 'package:exdock_backend_client/widgets/exdock_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../utils/MapNotifier.dart';
 
@@ -8,10 +9,14 @@ class TextFieldNumberAttribute extends StatefulWidget {
     super.key,
     required this.attribute,
     required this.changeAttributeMap,
+    this.signed = false,
+    this.decimal = false,
   });
 
   final Map<String, dynamic> attribute;
   final MapNotifier changeAttributeMap;
+  final bool signed;
+  final bool decimal;
 
   @override
   State<TextFieldNumberAttribute> createState() =>
@@ -20,6 +25,7 @@ class TextFieldNumberAttribute extends StatefulWidget {
 
 class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
   final TextEditingController controller = TextEditingController();
+  late final FilteringTextInputFormatter inputFormatter;
 
   @override
   void initState() {
@@ -33,7 +39,10 @@ class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
       height: 56,
       child: TextField(
         controller: controller,
-        keyboardType: TextInputType.number,
+        keyboardType: TextInputType.numberWithOptions(
+          signed: widget.signed,
+          decimal: widget.decimal,
+        ),
         onChanged: (value) {
           if (value == widget.attribute["current_attribute_value"]) {
             widget.changeAttributeMap.removeEntry(

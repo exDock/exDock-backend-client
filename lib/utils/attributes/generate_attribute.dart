@@ -41,8 +41,20 @@ class GenerateAttribute extends StatelessWidget {
         changeAttributeMap: changeAttributeMap,
       );
     }
-    if (attribute["attribute"] == "number") {
+    // "number" is for backwards compatibility and should not be used
+    if (attribute["attribute_type"] == "float" ||
+        attribute["attribute_type"] == "number") {
       return TextFieldNumberAttribute(
+        signed: true,
+        decimal: true,
+        attribute: attribute,
+        changeAttributeMap: changeAttributeMap,
+      );
+    }
+    if (attribute["attribute_type"] == "int") {
+      return TextFieldNumberAttribute(
+        signed: true,
+        decimal: false,
         attribute: attribute,
         changeAttributeMap: changeAttributeMap,
       );

@@ -1,12 +1,9 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:exdock_backend_client/globals/styling.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:exdock_backend_client/utils/attributes/generate_attribute.dart';
 import 'package:flutter/material.dart';
-import 'package:exdock_backend_client/globals/styling.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
-import 'package:exdock_backend_client/pages/catalog/attributes/generate_attribute.dart';
 
 class ProductPriceCard extends StatefulWidget {
   const ProductPriceCard({

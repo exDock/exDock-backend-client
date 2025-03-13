@@ -1,7 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:exdock_backend_client/utils/attributes/dropdown/case_sensitive_icon_button.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
 class DropdownAttribute extends StatefulWidget {
@@ -27,7 +27,7 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
 
   @override
   Widget build(BuildContext context) {
-    final List<DropdownMenuItem<String>> items = List.from(
+    List<DropdownMenuItem<String>> items = List.from(
       widget.attribute['possible_values'].map(
         (Map<String, String> value) {
           return DropdownMenuItem<String>(
@@ -41,7 +41,7 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
     return Row(
       children: [
         Text(widget.attribute['attribute_name']),
-        SizedBox(width: 24),
+        const SizedBox(width: 24),
         Card(
           clipBehavior: Clip.hardEdge,
           elevation: 4,
@@ -59,8 +59,8 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
             value: currentValue,
             items: items,
             underline: const SizedBox(),
-            buttonStyleData: ButtonStyleData(
-              padding: const EdgeInsets.only(right: 8, left: 4),
+            buttonStyleData: const ButtonStyleData(
+              padding: EdgeInsets.only(right: 8, left: 4),
             ),
             dropdownStyleData: DropdownStyleData(
               decoration: BoxDecoration(
@@ -90,15 +90,15 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
                       Expanded(
                         child: TextField(
                           controller: searchTextEditingController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                             isDense: true,
-                            contentPadding: const EdgeInsets.all(8),
+                            contentPadding: EdgeInsets.all(8),
                             hintText: "search",
                           ),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       CaseSensitiveIconButton(onChanged: (newValue) {
                         setState(() {
                           caseSensitiveSearch = newValue;
@@ -120,8 +120,9 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
                 ),
               ),
               searchMatchFn: (item, searchValue) {
-                if (!caseSensitiveSearch)
+                if (!caseSensitiveSearch) {
                   searchValue = searchValue.toLowerCase();
+                }
 
                 // Compares against the value
                 if (item.value.toString().contains(searchValue)) return true;

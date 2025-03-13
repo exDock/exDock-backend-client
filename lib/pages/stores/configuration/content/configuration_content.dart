@@ -10,7 +10,7 @@ class ConfigurationContent extends StatelessWidget {
   Future<Map<String, Map<String, dynamic>>> getConfigurationSettings(
     String configKey,
   ) async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
 
     if (configKey == 'sales/checkout') {
       return {
@@ -82,7 +82,7 @@ class ConfigurationContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (configurationDataKey == null) {
-      return Center(
+      return const Center(
         child: Text("Please select a configuration"),
       );
     }
@@ -96,7 +96,7 @@ class ConfigurationContent extends StatelessWidget {
           );
         }
         if (snapshot.connectionState != ConnectionState.done) {
-          return ExdockLoadingPageAnimation();
+          return const ExdockLoadingPageAnimation();
         }
 
         return ConfigurationContentSynchronous(

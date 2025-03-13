@@ -1,4 +1,4 @@
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:exdock_backend_client/widgets/exdock_switch.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +24,7 @@ class _SwitchAttributeState extends State<SwitchAttribute> {
     return Row(
       children: [
         Text(widget.attribute['attribute_name']),
-        SizedBox(width: 24),
+        const SizedBox(width: 24),
         ExDockSwitch(
           value: switchValue,
           onChanged: (value) {

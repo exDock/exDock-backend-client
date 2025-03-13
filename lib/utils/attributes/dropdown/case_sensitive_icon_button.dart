@@ -27,11 +27,11 @@ class _CaseSensitiveIconButtonState extends State<CaseSensitiveIconButton> {
       padding: const EdgeInsets.all(0),
       style: ButtonStyle(
         backgroundColor:
-            caseSensitiveSearch ? WidgetStatePropertyAll(mainColour) : null,
+            caseSensitiveSearch ? const WidgetStatePropertyAll(mainColour) : null,
         foregroundColor:
-            caseSensitiveSearch ? WidgetStatePropertyAll(Colors.white) : null,
+            caseSensitiveSearch ? const WidgetStatePropertyAll(Colors.white) : null,
       ),
-      icon: Icon(Symbols.match_case_rounded),
+      icon: const Icon(Symbols.match_case_rounded),
     );
   }
 }

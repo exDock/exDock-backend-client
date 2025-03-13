@@ -34,7 +34,7 @@ class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
     controller.text = lastValidValue;
 
     // Initialize the appropriate regex pattern based on properties
-    final RegExp pattern;
+    RegExp pattern;
     if (widget.decimal) {
       pattern = widget.signed
           ? RegExp(r'^-?\d*\.?\d*$') // Signed decimal

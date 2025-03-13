@@ -1,6 +1,6 @@
 import 'package:exdock_backend_client/pages/stores/configuration/content/configuration_save_widget.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:exdock_backend_client/utils/blocks/generate_block.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -23,11 +23,11 @@ class _ConfigurationContentSynchronousState
 
   @override
   Widget build(BuildContext context) {
-    final List<MapEntry<String, Map<String, dynamic>>> configBlocks =
+    List<MapEntry<String, Map<String, dynamic>>> configBlocks =
         widget.configurationSettings.entries.toList();
 
     // This makes room for the SizedBox on the top right
-    configBlocks.insert(1, MapEntry(',', <String, dynamic>{}));
+    configBlocks.insert(1, const MapEntry(',', <String, dynamic>{}));
 
     return Stack(
       children: [
@@ -42,7 +42,7 @@ class _ConfigurationContentSynchronousState
             itemCount: configBlocks.length,
             itemBuilder: (context, index) {
               if (index == 1) {
-                return SizedBox(height: 114);
+                return const SizedBox(height: 114);
               }
 
               return GenerateBlock(

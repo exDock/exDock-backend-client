@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_products_block/category_product_card/category_product_card.dart';
+import 'package:exdock_backend_client/pages/catalog/category/category_blocks/category_products_block/category_product_card/category_product_card.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -37,9 +37,9 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
       width: double.infinity,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final int columnCount =
+          int columnCount =
               (constraints.maxWidth / (productCardWidth + 12)).floor();
-          final double spacing =
+          double spacing =
               (constraints.maxWidth / columnCount - productCardWidth) /
                   columnCount *
                   (columnCount + 1);
@@ -53,7 +53,7 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                 onAcceptWithDetails: (draggedIndex) {
                   // move logic
                   setState(() {
-                    final draggedItem = _localProducts[draggedIndex.data];
+                    var draggedItem = _localProducts[draggedIndex.data];
                     _localProducts.removeAt(draggedIndex.data);
                     _localProducts.insert(index, draggedItem);
                   });

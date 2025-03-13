@@ -7,6 +7,6 @@ class ExdockLoadingAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     // Ability to customise in the future
     // Should always fit in the form factor of a standard CircularProgressIndicator
-    return CircularProgressIndicator();
+    return const CircularProgressIndicator();
   }
 }

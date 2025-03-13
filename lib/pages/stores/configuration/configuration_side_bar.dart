@@ -57,7 +57,7 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
       );
 
       // Individual controllers for each item in the section
-      final items = widget.menuItems[sectionTitle] ?? [];
+      var items = widget.menuItems[sectionTitle] ?? [];
       _itemControllers[sectionTitle] = List.generate(
         items.length,
         (index) => AnimationController(
@@ -88,7 +88,7 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
   }
 
   void _animateItems(String sectionTitle, bool isExpanded) {
-    final items = _itemControllers[sectionTitle] ?? [];
+    var items = _itemControllers[sectionTitle] ?? [];
 
     if (isExpanded) {
       // Staggered animation forward for each item
@@ -136,8 +136,8 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
 
     widget.menuItems.forEach((sectionTitle, subItems) {
       bool isExpanded = expandedSections.contains(sectionTitle);
-      final rotationController = _rotationControllers[sectionTitle]!;
-      final expansionController = _expansionControllers[sectionTitle]!;
+      var rotationController = _rotationControllers[sectionTitle]!;
+      var expansionController = _expansionControllers[sectionTitle]!;
 
       // Update controllers based on expansion state
       if (isExpanded) {
@@ -146,14 +146,14 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
         _animateItems(sectionTitle, true);
       } else {
         rotationController.reverse();
-        expansionController.duration = Duration(milliseconds: 150);
+        expansionController.duration = const Duration(milliseconds: 150);
         expansionController.reverse();
         expansionController.duration = _expansionDuration;
         _animateItems(sectionTitle, false);
       }
 
       // Rotation animation for the arrow icon
-      final rotationAnimation =
+      var rotationAnimation =
           Tween<double>(begin: 0, end: 0.5).animate(CurvedAnimation(
         parent: rotationController,
         curve: Curves.easeInOut,
@@ -233,15 +233,15 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
   List<Widget> _buildSubItems(
       String sectionTitle, List<ConfigurationMenuSubType> subItems) {
     List<Widget> itemWidgets = [];
-    final itemControllerList = _itemControllers[sectionTitle] ?? [];
+    var itemControllerList = _itemControllers[sectionTitle] ?? [];
 
     for (int i = 0; i < subItems.length; i++) {
       if (i < itemControllerList.length) {
-        final item = subItems[i];
-        final itemController = itemControllerList[i];
+        var item = subItems[i];
+        var itemController = itemControllerList[i];
 
         // Fade animation for individual item
-        final fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+        var fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
           CurvedAnimation(
             parent: itemController,
             curve: Curves.easeIn,

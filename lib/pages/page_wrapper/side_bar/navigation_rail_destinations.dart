@@ -79,7 +79,6 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
       label: const Text("reports"),
     ),
     "/stores": HoverableNavigationRailDestination(
-      onHoverStateChange: noHoverMenuOnHoverStateChange,
       icon: const Icon(Symbols.storefront_rounded),
       label: const Text("stores"),
       onHoverStateChange: onHoverStateChangeHoverMenu(
@@ -100,7 +99,7 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
                       ?.copyWith(color: Colors.white),
                 ),
               ),
-              SimpleHoverMenuButton(
+              const SimpleHoverMenuButton(
                 route: "/stores/configuration",
                 buttonText: "configuration",
               ),
@@ -108,8 +107,6 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
           ),
         ),
       ),
-      icon: Icon(Symbols.storefront_rounded),
-      label: Text("stores"),
     ),
     "/system": HoverableNavigationRailDestination(
       onHoverStateChange: noHoverMenuOnHoverStateChange,

@@ -1,5 +1,5 @@
 import 'package:exdock_backend_client/globals/styling.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_save_button.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class ConfigurationSaveWidget extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       child: Container(
         width: (MediaQuery.of(context).size.width - 100 - 250 - 3 * 24) / 2,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: darkColour,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12),

@@ -7,7 +7,7 @@ class ExdockLoadingPageAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Ability to customise in the future
-    return Center(
+    return const Center(
       child: ExdockLoadingAnimation(),
     );
   }

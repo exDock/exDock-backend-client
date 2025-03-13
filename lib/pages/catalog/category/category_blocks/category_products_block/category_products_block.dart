@@ -1,5 +1,5 @@
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_products_block/category_products_grid.dart';
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/category_edit_group_card.dart';
+import 'package:exdock_backend_client/pages/catalog/category/category_blocks/category_products_block/category_products_grid.dart';
+import 'package:exdock_backend_client/utils/blocks/group_cards/category_edit_group_card.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 

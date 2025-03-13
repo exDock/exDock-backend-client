@@ -42,7 +42,7 @@ class _ConfigurationContentSynchronousState
             itemCount: configBlocks.length,
             itemBuilder: (context, index) {
               if (index == 1) {
-                return SizedBox(height: 88);
+                return SizedBox(height: 114);
               }
 
               return GenerateBlock(

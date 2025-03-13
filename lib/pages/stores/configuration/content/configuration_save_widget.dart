@@ -16,7 +16,6 @@ class ConfigurationSaveWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Container(
-        height: 88,
         width: (MediaQuery.of(context).size.width - 100 - 250 - 3 * 24) / 2,
         decoration: BoxDecoration(
           color: darkColour,
@@ -26,18 +25,21 @@ class ConfigurationSaveWidget extends StatelessWidget {
             bottomLeft: Radius.circular(36),
             bottomRight: Radius.circular(12),
           ),
+          boxShadow: kBoxShadowList,
         ),
-        child: Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: ExDockSaveButton(
-              somethingToSaveNotifier: somethingToSaveNotifier,
-              onPressed: () {
-                // TODO: Save the configuration
-              },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(24),
+              child: ExDockSaveButton(
+                somethingToSaveNotifier: somethingToSaveNotifier,
+                onPressed: () {
+                  // TODO: Save the configuration
+                },
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

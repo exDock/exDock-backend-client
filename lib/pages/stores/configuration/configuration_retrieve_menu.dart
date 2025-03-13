@@ -4,41 +4,41 @@ Map<String, List<ConfigurationMenuSubType>> getConfigurationMenu(
   Function(String) switchToConfigurationsSettingsPage,
 ) {
   return {
-    'General': [],
-    'Catalog': [],
-    'Customers': [],
-    'Sales': [
+    'general': [],
+    'catalog': [],
+    'customers': [],
+    'sales': [
       ConfigurationMenuSubType(
         title: 'orders',
         onPressed: () {
-          switchToConfigurationsSettingsPage('orders');
+          switchToConfigurationsSettingsPage('sales/orders');
         },
       ),
       ConfigurationMenuSubType(
         title: 'shipments',
         onPressed: () {
-          switchToConfigurationsSettingsPage('shipments');
+          switchToConfigurationsSettingsPage('sales/shipments');
         },
       ),
       ConfigurationMenuSubType(
         title: 'tax',
         onPressed: () {
-          switchToConfigurationsSettingsPage('tax');
+          switchToConfigurationsSettingsPage('sales/tax');
         },
       ),
       ConfigurationMenuSubType(
         title: 'checkout',
         onPressed: () {
-          switchToConfigurationsSettingsPage('checkout');
+          switchToConfigurationsSettingsPage('sales/checkout');
         },
       ),
       ConfigurationMenuSubType(
         title: 'payments',
         onPressed: () {
-          switchToConfigurationsSettingsPage('payments');
+          switchToConfigurationsSettingsPage('sales/payments');
         },
       ),
     ],
-    'Services': [],
+    'services': [],
   };
 }

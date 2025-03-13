@@ -12,7 +12,7 @@ class ConfigurationContent extends StatelessWidget {
   ) async {
     await Future.delayed(Duration(seconds: 1));
 
-    if (configKey == 'checkout') {
+    if (configKey == 'sales/checkout') {
       return {
         "Checkout options": {
           "block_type": "standard",

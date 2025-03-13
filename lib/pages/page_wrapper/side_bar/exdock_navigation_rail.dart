@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hoverable_navigation_rail/hoverable_navigation_rail.dart';
 import 'package:hoverable_navigation_rail/hoverable_navigation_rail_destination.dart';
 
-import 'navigation_rail_destinations.dart';
+import 'package:exdock_backend_client/pages/page_wrapper/side_bar/navigation_rail_destinations.dart';
 
 class ExDockNavigationRail extends StatefulWidget {
   const ExDockNavigationRail({super.key});

@@ -24,15 +24,15 @@ packages:
       sha256: "8aab1771e1243a5063b8b0ff68042d67334e3feab9e95b9490f9a6ebf73b42ea"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.2"
   calendar_date_picker2:
     dependency: "direct main"
     description:
       name: calendar_date_picker2
-      sha256: b5169b1e6aea0890ff4acaa037c81b697e985b149da64ae53e96afcfebb2e18e
+      sha256: "7b5f20f2a02768df70b3d1fb181c217ab9f8992f39fd6c3fc2ff95b0885820a2"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "1.1.9"
   chalkdart:
     dependency: transitive
     description:
@@ -449,7 +449,7 @@ packages:
     dependency: transitive
     description: flutter
     source: sdk
-    version: "0.0.99"
+    version: "0.0.0"
   source_span:
     dependency: transitive
     description:

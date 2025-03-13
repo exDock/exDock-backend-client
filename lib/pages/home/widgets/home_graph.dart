@@ -11,7 +11,7 @@ class HomeGraph extends StatelessWidget {
         color: Theme.of(context).canvasColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
-          BoxShadow(blurRadius: 15, color: Colors.black.withOpacity(.5))
+          BoxShadow(blurRadius: 15, color: Colors.black.withAlpha(128))
         ],
       ),
       child: const Center(

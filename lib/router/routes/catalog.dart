@@ -12,11 +12,11 @@ List<GoRoute> getCatalogRoutes() {
     ),
     GoRoute(
       path: '/catalog/product',
-      builder: (context, state) => Product(),
+      builder: (context, state) => const Product(),
     ),
     GoRoute(
       path: '/catalog/category',
-      builder: (context, state) => Category(),
+      builder: (context, state) => const Category(),
     ),
     GoRoute(
       path: '/catalog/category/:selectedCategory',

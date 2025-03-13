@@ -39,7 +39,6 @@ class Category extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("selectedCategory: $selectedCategory");
     return FutureBuilder(
       future: getCategoryTree(),
       builder: (context, snapshot) {
@@ -53,7 +52,7 @@ class Category extends StatelessWidget {
         if (snapshot.hasError) {
           //
         }
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

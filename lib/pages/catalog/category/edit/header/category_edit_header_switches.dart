@@ -26,7 +26,7 @@ class _CategoryEditHeaderSwitchesState
             value: true, // TODO: add changing functionality
             onChanged: (value) {},
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           CategoryEditHeaderSwitch(
             title: "include in menu",
             value: false, // TODO: aad changing functionality
@@ -56,7 +56,7 @@ class CategoryEditHeaderSwitch extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(title),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         ExDockSwitch(
           value: value,
           onChanged: onChanged,

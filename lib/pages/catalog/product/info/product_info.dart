@@ -1,5 +1,5 @@
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_synchronous.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
 class ProductInfo extends StatefulWidget {

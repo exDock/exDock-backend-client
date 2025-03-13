@@ -3,7 +3,7 @@ import 'package:exdock_backend_client/pages/catalog/attributes/text_field_attrib
 import 'package:exdock_backend_client/pages/catalog/attributes/text_field_number_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/attributes/text_field_price_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/attributes/wysiwyg_attribute.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
 class GenerateAttribute extends StatelessWidget {

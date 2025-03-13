@@ -1,4 +1,4 @@
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
 import 'package:flutter/material.dart';
 

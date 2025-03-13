@@ -1,6 +1,6 @@
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/category_edit_content_synchronous.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
 class CategoryEditContent extends StatefulWidget {
@@ -71,7 +71,7 @@ class _CategoryEditContentState extends State<CategoryEditContent> {
       future: getCategoryAttributes(widget.selectedCategoryLeaf.id),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Placeholder();
+          return const Placeholder();
         }
         if (snapshot.connectionState == ConnectionState.done) {
           return CategoryEditContentSynchronous(
@@ -79,7 +79,7 @@ class _CategoryEditContentState extends State<CategoryEditContent> {
             changeAttributeMap: widget.changeAttributeMap,
           );
         }
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

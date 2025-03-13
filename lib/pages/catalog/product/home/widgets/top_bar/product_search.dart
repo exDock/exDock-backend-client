@@ -53,12 +53,12 @@ class _ProductSearchState extends State<ProductSearch> {
                   controller: _controller,
                   focusNode: _focusNode,
                   onChanged: (value) => setState(() {}),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                   ),
                 ),
               ),
-              Icon(
+              const Icon(
                 Icons.search,
                 color: Colors.grey,
               ),

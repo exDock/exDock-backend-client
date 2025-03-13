@@ -1,9 +1,9 @@
 import 'package:exdock_backend_client/pages/catalog/product/info/id_data/category_list.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../attributes/generate_attribute.dart';
+import 'package:exdock_backend_client/pages/catalog/attributes/generate_attribute.dart';
 
 class IdDataBlock extends StatefulWidget {
   const IdDataBlock({

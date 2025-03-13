@@ -18,7 +18,7 @@ class CategoryProductCardStockOverlay extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
             color: stock != 0 ? Theme.of(context).indicatorColor : Colors.red,
-            borderRadius: BorderRadius.only(bottomRight: Radius.circular(10)),
+            borderRadius: const BorderRadius.only(bottomRight: Radius.circular(10)),
             boxShadow: kBoxShadowList),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

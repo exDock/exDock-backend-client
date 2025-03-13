@@ -26,7 +26,7 @@ class _ExDockSwitchState extends State<ExDockSwitch> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               offset: Offset(0, 2),
               blurRadius: 5,

@@ -22,12 +22,12 @@ class CategoryEditTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle mainTitleStyle =
+    TextStyle mainTitleStyle =
         Theme.of(context).textTheme.headlineLarge ??
-            TextStyle(
+            const TextStyle(
               fontSize: 48,
             );
-    final TextStyle parentLeavesTextStyle = TextStyle();
+    TextStyle parentLeavesTextStyle = const TextStyle();
     if (categorySelection.isEmpty) {
       return Text(
         "No category selected",

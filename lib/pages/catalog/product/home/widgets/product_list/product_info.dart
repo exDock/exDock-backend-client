@@ -27,8 +27,8 @@ class _ProductInfoState extends State<ProductInfoWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
+      decoration: const BoxDecoration(
         color: Color(0xFF264653),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -45,7 +45,7 @@ class _ProductInfoState extends State<ProductInfoWidget> {
             child: Container(
               height: 40,
               width: 70,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   right: BorderSide(color: Colors.white),
                 ),
@@ -72,7 +72,7 @@ class _ProductInfoState extends State<ProductInfoWidget> {
                 },
                 child: Container(
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       right: BorderSide(color: Colors.white),
                     ),
@@ -81,7 +81,7 @@ class _ProductInfoState extends State<ProductInfoWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Center(
+                      const Center(
                         child: Text(
                           "ID",
                           style: TextStyle(color: Colors.white),
@@ -105,12 +105,12 @@ class _ProductInfoState extends State<ProductInfoWidget> {
               child: GestureDetector(
                 child: Container(
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       right: BorderSide(color: Colors.white),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -134,7 +134,7 @@ class _ProductInfoState extends State<ProductInfoWidget> {
                 },
                 child: Container(
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       right: BorderSide(color: Colors.white),
                     ),
@@ -143,7 +143,7 @@ class _ProductInfoState extends State<ProductInfoWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Center(
+                      const Center(
                         child: Text(
                           "NAME",
                           style: TextStyle(color: Colors.white),
@@ -170,7 +170,7 @@ class _ProductInfoState extends State<ProductInfoWidget> {
                 },
                 child: Container(
                   height: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       right: BorderSide(color: Colors.white),
                     ),
@@ -179,7 +179,7 @@ class _ProductInfoState extends State<ProductInfoWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Center(
+                      const Center(
                         child: Text(
                           "PRICE",
                           style: TextStyle(color: Colors.white),
@@ -201,8 +201,8 @@ class _ProductInfoState extends State<ProductInfoWidget> {
             flex: 15,
             child: Container(
               height: 40,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: const Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(

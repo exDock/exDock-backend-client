@@ -14,13 +14,13 @@ class _ScopeState extends State<Scope> {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).canvasColor,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomRight: Radius.circular(10),
         ),
         boxShadow: kBoxShadowList,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         child: Text("scope"),
       ),
     );

@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../../../../../globals/styling.dart';
-import 'column_list.dart';
+import 'package:exdock_backend_client/globals/styling.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/column_list.dart';
 
 class DropdownButtonColumns extends StatefulWidget {
   const DropdownButtonColumns({
@@ -37,8 +37,8 @@ class _DropdownButtonColumnsState extends State<DropdownButtonColumns> {
   OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlayEntry() {
-    final renderBox = context.findRenderObject() as RenderBox;
-    final position = renderBox.localToGlobal(Offset(-100.0, -100.0));
+    var renderBox = context.findRenderObject() as RenderBox;
+    var position = renderBox.localToGlobal(const Offset(-100.0, -100.0));
 
     return OverlayEntry(
       builder: (context) => Positioned(
@@ -82,7 +82,7 @@ class _DropdownButtonColumnsState extends State<DropdownButtonColumns> {
         Overlay.of(context).insert(_overlayEntry!);
       }
 
-      Timer(Duration(milliseconds: 100), () => isExpanded = !isExpanded);
+      Timer(const Duration(milliseconds: 100), () => isExpanded = !isExpanded);
     });
   }
 
@@ -107,12 +107,12 @@ class _DropdownButtonColumnsState extends State<DropdownButtonColumns> {
             borderRadius: BorderRadius.circular(10),
             boxShadow: kBoxShadowList,
           ),
-          padding: EdgeInsets.all(14),
+          padding: const EdgeInsets.all(14),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               if (widget.isIconAtStart) widget.icon,
-              Expanded(
+              const Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12.0),
                   child: Text(

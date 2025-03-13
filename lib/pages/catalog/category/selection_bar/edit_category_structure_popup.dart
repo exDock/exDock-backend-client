@@ -12,7 +12,7 @@ class EditCategoryStructurePopup extends StatelessWidget {
     return ExdockBigPopup(
       pop: pop,
       title: "Edit category structure",
-      child: Placeholder(),
+      child: const Placeholder(),
     );
   }
 }

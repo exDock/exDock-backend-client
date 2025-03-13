@@ -27,8 +27,8 @@ class _DropdownButtonIconState extends State<DropdownButtonIcon> {
   OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlayEntry() {
-    final renderBox = context.findRenderObject() as RenderBox;
-    final position = renderBox.localToGlobal(Offset(-100.0, -100.0));
+    var renderBox = context.findRenderObject() as RenderBox;
+    var position = renderBox.localToGlobal(const Offset(-100.0, -100.0));
 
     return OverlayEntry(
       builder: (context) => Positioned(
@@ -59,7 +59,7 @@ class _DropdownButtonIconState extends State<DropdownButtonIcon> {
                       });
                     },
                     child: Container(
-                      padding: EdgeInsets.only(left: 16.0, top: 16.0),
+                      padding: const EdgeInsets.only(left: 16.0, top: 16.0),
                       child: Text(widget.list[index]),
                     ),
                   );
@@ -104,17 +104,17 @@ class _DropdownButtonIconState extends State<DropdownButtonIcon> {
             borderRadius: BorderRadius.circular(10),
             boxShadow: kBoxShadowList,
           ),
-          padding: EdgeInsets.all(14),
+          padding: const EdgeInsets.all(14),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               if (widget.isIconAtStart) widget.icon,
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Text(
                     selectedValue,
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ),

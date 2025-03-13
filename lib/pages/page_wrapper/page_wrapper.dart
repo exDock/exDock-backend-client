@@ -13,7 +13,7 @@ class MainPageWrapper extends StatefulWidget {
 class _MainPageWrapperState extends State<MainPageWrapper> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Row(
         children: [
           SideBar(width: 100),

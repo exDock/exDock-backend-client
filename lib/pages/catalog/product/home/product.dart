@@ -23,12 +23,12 @@ class Product extends StatelessWidget {
 
   // Generate random string
   String getRandomString(int length) {
-    const _chars =
+    const chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    Random _rnd = Random();
+    Random rnd = Random();
 
     return String.fromCharCodes(Iterable.generate(
-        length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+        length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
   }
 
   @override

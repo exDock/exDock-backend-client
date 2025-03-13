@@ -15,29 +15,29 @@ class CategoryProductCardPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget child = const SizedBox();
-    final Color stripedColour = Colors.grey.shade500;
+    Color stripedColour = Colors.grey.shade500;
 
     TextStyle priceTextStyle =
-        (Theme.of(context).textTheme.bodyMedium ?? TextStyle())
+        (Theme.of(context).textTheme.bodyMedium ?? const TextStyle())
             .copyWith(color: Colors.white);
     TextStyle stripedPriceTextStyle =
-        (Theme.of(context).textTheme.bodyMedium ?? TextStyle()).copyWith(
+        (Theme.of(context).textTheme.bodyMedium ?? const TextStyle()).copyWith(
       color: stripedColour,
       decoration: TextDecoration.lineThrough,
       decorationColor: stripedColour,
     );
 
     // Measure text width using formatted prices
-    final String formattedPrice = formatPrice(price);
-    final String formattedSalePrice =
+    String formattedPrice = formatPrice(price);
+    String formattedSalePrice =
         salePrice != null ? formatPrice(salePrice!) : '';
 
-    final TextPainter pricePainter = TextPainter(
+    TextPainter pricePainter = TextPainter(
       text: TextSpan(text: formattedPrice, style: priceTextStyle),
       textDirection: TextDirection.ltr,
     )..layout();
 
-    final TextPainter salePainter = TextPainter(
+    TextPainter salePainter = TextPainter(
       text: TextSpan(text: formattedSalePrice, style: priceTextStyle),
       textDirection: TextDirection.ltr,
     )..layout();
@@ -81,7 +81,7 @@ class CategoryProductCardPrice extends StatelessWidget {
 
     return Container(
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
       ),
       child: child,

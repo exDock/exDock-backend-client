@@ -1,7 +1,7 @@
 import 'package:exdock_backend_client/widgets/exdock_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class TextFieldNumberAttribute extends StatefulWidget {
   const TextFieldNumberAttribute({
@@ -46,7 +46,7 @@ class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
             value,
           );
         },
-        style: TextStyle(fontSize: 14, height: 1.5),
+        style: const TextStyle(fontSize: 14, height: 1.5),
         decoration: InputDecoration(
           labelText: widget.attribute["attribute_name"] ??
               widget.attribute["attribute_id"],

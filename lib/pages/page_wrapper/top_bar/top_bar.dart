@@ -22,8 +22,8 @@ class TopBar extends StatelessWidget {
         color: Theme.of(context).indicatorColor,
         boxShadow: kBoxShadowList,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
+      child: const Padding(
+        padding: EdgeInsets.all(24),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

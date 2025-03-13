@@ -3,6 +3,6 @@ import 'package:go_router/go_router.dart';
 
 List<GoRoute> getHomeRoutes() {
   return [
-    GoRoute(path: '/home', builder: (context, state) => Home()),
+    GoRoute(path: '/home', builder: (context, state) => const Home()),
   ];
 }

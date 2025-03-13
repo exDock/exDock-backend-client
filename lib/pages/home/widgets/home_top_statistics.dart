@@ -2,7 +2,7 @@ import 'package:exdock_backend_client/pages/home/home_data.dart';
 import 'package:exdock_backend_client/pages/home/widgets/dashboard_table_2_columns.dart';
 import 'package:flutter/material.dart';
 
-import 'dashboard_table_3_columns.dart';
+import 'package:exdock_backend_client/pages/home/widgets/dashboard_table_3_columns.dart';
 
 class HomeTopStatistics extends StatelessWidget {
   const HomeTopStatistics({

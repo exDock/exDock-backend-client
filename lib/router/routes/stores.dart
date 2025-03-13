@@ -12,5 +12,13 @@ List<GoRoute> getStoresRoutes() {
       path: '/stores/configuration',
       builder: (context, state) => const Configuration(),
     ),
+    GoRoute(
+      path:
+          '/stores/configuration/:configurationDataHeadKey/:configurationDataSubKey',
+      builder: (context, state) => Configuration(
+        configurationDataKey:
+            '${state.pathParameters['configurationDataHeadKey']}/${state.pathParameters['configurationDataSubKey']}',
+      ),
+    ),
   ];
 }

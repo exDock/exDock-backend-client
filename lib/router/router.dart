@@ -35,11 +35,11 @@ final GoRouter router = GoRouter(
                 child: Stack(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 100),
+                      padding: const EdgeInsets.only(top: 100),
                       child: Stack(
                         children: [
                           child,
-                          Align(
+                          const Align(
                             alignment: Alignment.topLeft,
                             child: Scope(),
                           ),

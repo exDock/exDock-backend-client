@@ -32,7 +32,7 @@ class SubCategoryRow extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Flexible(
+          const Flexible(
             child: SizedBox(width: double.infinity),
           ),
           Flexible(
@@ -64,7 +64,7 @@ class SubCategoryRow extends StatelessWidget {
               ),
             ),
           ),
-          Flexible(
+          const Flexible(
             child: SizedBox(width: double.infinity),
           ),
         ],

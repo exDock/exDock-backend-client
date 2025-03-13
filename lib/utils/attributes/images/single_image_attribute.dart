@@ -1,6 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:exdock_backend_client/utils/attributes/images/single_image_attribute_popup.dart';
+import 'package:exdock_backend_client/pages/catalog/attributes/images/single_image_attribute_popup.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:kumi_popup_window/kumi_popup_window.dart';
 
@@ -42,11 +42,6 @@ class _SingleImageAttributeState extends State<SingleImageAttribute> {
 
   @override
   Widget build(BuildContext context) {
-    print("widget.attribute: ${widget.attribute}");
-    print("_localAttribute: $_localAttributeValue");
-    print("currentDevice: $currentDevice");
-    print(
-        "_localAttribute[currentDevice]: ${_localAttributeValue[currentDevice]}");
     return IntrinsicHeight(
       child: Row(
         children: [
@@ -84,11 +79,6 @@ class _SingleImageAttributeState extends State<SingleImageAttribute> {
           Expanded(
             child: InkWell(
               onTap: () {
-                print("currentDevice: $currentDevice");
-                print(
-                    "_localAttribute[currentDevice]: ${_localAttributeValue[currentDevice]}");
-                print(
-                    "currentAttributeValue[currentDevice]: ${currentAttributeValue[currentDevice]}");
                 showPopupWindow(
                   context,
                   childFun: (pop) {
@@ -126,10 +116,10 @@ class _SingleImageAttributeState extends State<SingleImageAttribute> {
               },
               child: _localAttributeValue[currentDevice] != null
                   ? ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: 500),
+                      constraints: const BoxConstraints(maxHeight: 500),
                       child: Image.network(_localAttributeValue[currentDevice]),
                     )
-                  : NoImagePresent(),
+                  : const NoImagePresent(),
             ),
           ),
         ],
@@ -145,11 +135,11 @@ class NoImagePresent extends StatelessWidget {
   Widget build(BuildContext context) {
     return DottedBorder(
       borderType: BorderType.RRect,
-      radius: Radius.circular(5),
-      dashPattern: [10, 10],
+      radius: const Radius.circular(5),
+      dashPattern: const [10, 10],
       strokeWidth: 2,
       color: Theme.of(context).disabledColor,
-      child: SizedBox(
+      child: const SizedBox(
         height: 100,
         child: Center(
           child: Text("no image uploaded"),

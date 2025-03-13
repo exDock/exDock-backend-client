@@ -2,7 +2,7 @@ import 'package:exdock_backend_client/pages/catalog/product/home/widgets/product
 import 'package:exdock_backend_client/pages/catalog/product/home/widgets/product_list/product_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../product_data.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/product_data.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({

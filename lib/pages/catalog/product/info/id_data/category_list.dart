@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../globals/styling.dart';
+import 'package:exdock_backend_client/globals/styling.dart';
 
 class CategoryList extends StatefulWidget {
   const CategoryList({
@@ -23,11 +23,11 @@ class _CategoryListState extends State<CategoryList> {
 
     for (String categoryName in widget.categories) {
       categoryWidgets.add(Container(
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxWidth: 125,
         ),
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(12),
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           boxShadow: lightKBoxShadowList,
           color: Colors.white,
@@ -35,15 +35,15 @@ class _CategoryListState extends State<CategoryList> {
         child: Row(
           children: [
             Text(categoryName),
-            Icon(Icons.close),
+            const Icon(Icons.close),
           ],
         ),
       ));
     }
 
     return Container(
-      padding: EdgeInsets.all(24),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.all(24),
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         boxShadow: lightKBoxShadowList,
         color: Colors.white,
@@ -54,20 +54,20 @@ class _CategoryListState extends State<CategoryList> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(Icons.category_outlined),
-              Expanded(
+              const Icon(Icons.category_outlined),
+              const Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 12),
+                  padding: EdgeInsets.only(left: 12),
                   child: Text("Categories"),
                 ),
               ),
               GestureDetector(
                 onTap: () {},
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           Wrap(

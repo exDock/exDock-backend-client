@@ -1,6 +1,6 @@
-import 'package:exdock_backend_client/pages/catalog/product/info/blocks/generate_block.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:exdock_backend_client/utils/blocks/category_edit_content_blocks.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_edit_content_blocks.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/generate_block.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
 class CategoryEditContentSynchronous extends StatefulWidget {

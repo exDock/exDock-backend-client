@@ -21,7 +21,7 @@ class SingleImageAttributePopup extends StatelessWidget {
     return ExdockBigPopup(
       pop: pop,
       title: "Category image [$scope]",
-      child: Placeholder(),
+      child: const Placeholder(),
       // TODO: upload new image button
       // TODO: search grid with all images that are currently on the server (paged)
       // TODO: save button -> calls widget.onNewImage(image) with the url of the selected image

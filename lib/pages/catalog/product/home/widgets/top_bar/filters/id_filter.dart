@@ -25,7 +25,7 @@ class IdFilterState extends State<IdFilter> {
     }
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(
           top: BorderSide(
@@ -33,15 +33,15 @@ class IdFilterState extends State<IdFilter> {
           ),
         ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'ID',
                   style: TextStyle(
                     color: Color(0xFF264653),
@@ -53,7 +53,7 @@ class IdFilterState extends State<IdFilter> {
                       idController.clear();
                     });
                   },
-                  child: Text(
+                  child: const Text(
                     'RESET',
                     style: TextStyle(
                       color: Color(0xFF2A9D8F),

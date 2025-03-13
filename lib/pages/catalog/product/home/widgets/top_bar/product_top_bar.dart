@@ -1,9 +1,9 @@
 import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/product_search.dart';
 import 'package:flutter/material.dart';
 
-import 'dropdown_button_columns.dart';
-import 'dropdown_button_filters.dart';
-import 'dropdown_button_icon.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/dropdown_button_columns.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/dropdown_button_filters.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/dropdown_button_icon.dart';
 
 class ProductTopBar extends StatefulWidget {
   const ProductTopBar({
@@ -43,7 +43,7 @@ class _ProductTopBarState extends State<ProductTopBar> {
     return SizedBox(
       height: widget.height,
       child: Padding(
-        padding: EdgeInsets.only(left: 16.0, top: 20.0),
+        padding: const EdgeInsets.only(left: 16.0, top: 20.0),
         child: Row(
           children: [
             Flexible(
@@ -52,18 +52,18 @@ class _ProductTopBarState extends State<ProductTopBar> {
                 searchCallback: widget.searchCallback,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 40,
             ),
             Flexible(
               child: DropdownButtonIcon(
                 list: actions,
                 title: "ACTIONS",
-                icon: Icon(Icons.bolt_outlined),
+                icon: const Icon(Icons.bolt_outlined),
                 isIconAtStart: false,
               ),
             ),
-            Expanded(
+            const Expanded(
               child: SizedBox(
                 width: 120,
               ),
@@ -71,13 +71,13 @@ class _ProductTopBarState extends State<ProductTopBar> {
             Flexible(
               child: DropdownButtonFilters(
                 title: "FILTERS",
-                icon: Icon(Icons.filter_alt_outlined),
+                icon: const Icon(Icons.filter_alt_outlined),
                 isIconAtStart: false,
                 width: 150.0,
                 filterCallback: widget.filterCallback,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 40,
             ),
             Flexible(
@@ -88,21 +88,21 @@ class _ProductTopBarState extends State<ProductTopBar> {
                       columnList: columns,
                       selectedColumns: val,
                       title: "COLUMNS",
-                      icon: Icon(Icons.view_column_outlined),
+                      icon: const Icon(Icons.view_column_outlined),
                       isIconAtStart: false,
                       deselectColumn: removeColumn,
                       setSelectedColumns: widget.setSelectedColumns,
                     );
                   }),
             ),
-            SizedBox(
+            const SizedBox(
               width: 40,
             ),
             Flexible(
               child: DropdownButtonIcon(
                 list: filters,
                 title: "VIEWS",
-                icon: Icon(Icons.remove_red_eye_outlined),
+                icon: const Icon(Icons.remove_red_eye_outlined),
                 isIconAtStart: false,
               ),
             ),

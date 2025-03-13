@@ -80,7 +80,7 @@ class DashboardTable3Columns extends StatelessWidget {
                   height: 2,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(.25),
+                    color: Colors.black.withAlpha(64),
                   ),
                 ),
               ),

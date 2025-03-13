@@ -8,16 +8,16 @@ class PagesOverview extends StatelessWidget {
 
   Future<List<OverviewPageColumn>> getPagesColumns() async {
     return [
-      OverviewPageColumn(columnKey: "column_1", name: "Column 1"),
-      OverviewPageColumn(columnKey: "column_2", name: "Column 2"),
-      OverviewPageColumn(columnKey: "column_3", name: "Column 3"),
-      OverviewPageColumn(columnKey: "column_4", name: "Column 4"),
+      const OverviewPageColumn(columnKey: "column_1", name: "Column 1"),
+      const OverviewPageColumn(columnKey: "column_2", name: "Column 2"),
+      const OverviewPageColumn(columnKey: "column_3", name: "Column 3"),
+      const OverviewPageColumn(columnKey: "column_4", name: "Column 4"),
     ];
   }
 
   Future<List<OverviewPageRow>> getPagesRows() async {
     return [
-      OverviewPageRow(
+      const OverviewPageRow(
         id: 'page_1',
         name: "Page 1",
         columnValues: {
@@ -26,7 +26,7 @@ class PagesOverview extends StatelessWidget {
           "column_3": "value_3",
         },
       ),
-      OverviewPageRow(
+      const OverviewPageRow(
         id: 'page_2',
         name: "Page 2",
         columnValues: {
@@ -34,7 +34,7 @@ class PagesOverview extends StatelessWidget {
           "column_2": "value_2",
         },
       ),
-      OverviewPageRow(
+      const OverviewPageRow(
         id: 'page_3',
         name: "Page 3",
         columnValues: {
@@ -68,7 +68,7 @@ class PagesOverview extends StatelessWidget {
         }
 
         // TODO: replace this with ExdockLoadingPageAnimation once available on the main branch
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       },

@@ -37,67 +37,75 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
       ),
     );
 
-    return DropdownButton2<String>(
-      onChanged: (value) {
-        widget.changeAttributeMap.updateAttributeEntry(widget.attribute, value);
-        setState(() {
-          currentValue = value;
-        });
-      },
-      value: currentValue,
-      items: items,
-      dropdownSearchData: DropdownSearchData(
-        searchController: searchTextEditingController,
-        searchInnerWidgetHeight: 50,
-        searchInnerWidget: Container(
-          height: 50,
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              Expanded(
-                child: TextFormField(
-                  controller: searchTextEditingController,
-                ),
+    return Row(
+      children: [
+        Text(widget.attribute['attribute_name']),
+        SizedBox(width: 24),
+        DropdownButton2<String>(
+          onChanged: (value) {
+            widget.changeAttributeMap
+                .updateAttributeEntry(widget.attribute, value);
+            setState(() {
+              currentValue = value;
+            });
+          },
+          value: currentValue,
+          items: items,
+          dropdownSearchData: DropdownSearchData(
+            searchController: searchTextEditingController,
+            searchInnerWidgetHeight: 50,
+            searchInnerWidget: Container(
+              height: 50,
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: searchTextEditingController,
+                    ),
+                  ),
+                  SizedBox(width: 12),
+                  CaseSensitiveIconButton(onChanged: (newValue) {
+                    setState(() {
+                      caseSensitiveSearch = newValue;
+
+                      // The text needs to be changed in order to trigger the search functionality
+                      // Add a space, because you cannot see the space
+                      searchTextEditingController.text =
+                          "${searchTextEditingController.text} ";
+
+                      searchTextEditingController.text =
+                          searchTextEditingController.text.substring(
+                        0,
+                        searchTextEditingController.text.length - 1,
+                      );
+                    });
+                  }),
+                ],
               ),
-              CaseSensitiveIconButton(onChanged: (newValue) {
-                setState(() {
-                  caseSensitiveSearch = newValue;
+            ),
+            searchMatchFn: (item, searchValue) {
+              if (!caseSensitiveSearch) searchValue = searchValue.toLowerCase();
 
-                  // The text needs to be changed in order to trigger the search functionality
-                  // Add a space, because you cannot see the space
-                  searchTextEditingController.text =
-                      "${searchTextEditingController.text} ";
+              // Compares against the value
+              if (item.value.toString().contains(searchValue)) return true;
 
-                  searchTextEditingController.text =
-                      searchTextEditingController.text.substring(
-                    0,
-                    searchTextEditingController.text.length - 1,
-                  );
-                });
-              }),
-            ],
+              // Compares against the label
+              String? labelText = (item.child as Text).data;
+              if (!caseSensitiveSearch) labelText = labelText?.toLowerCase();
+              if (labelText?.contains(searchValue) ?? false) return true;
+
+              return false;
+            },
           ),
+          //This to clear the search value when you close the menu
+          onMenuStateChange: (isOpen) {
+            if (!isOpen) {
+              searchTextEditingController.clear();
+            }
+          },
         ),
-        searchMatchFn: (item, searchValue) {
-          if (!caseSensitiveSearch) searchValue = searchValue.toLowerCase();
-
-          // Compares against the value
-          if (item.value.toString().contains(searchValue)) return true;
-
-          // Compares against the label
-          String? labelText = (item.child as Text).data;
-          if (!caseSensitiveSearch) labelText = labelText?.toLowerCase();
-          if (labelText?.contains(searchValue) ?? false) return true;
-
-          return false;
-        },
-      ),
-      //This to clear the search value when you close the menu
-      onMenuStateChange: (isOpen) {
-        if (!isOpen) {
-          searchTextEditingController.clear();
-        }
-      },
+      ],
     );
   }
 }

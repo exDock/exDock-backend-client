@@ -1,6 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:exdock_backend_client/pages/catalog/attributes/images/single_image_attribute_popup.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/attributes/images/single_image_attribute_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:kumi_popup_window/kumi_popup_window.dart';
 

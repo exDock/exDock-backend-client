@@ -79,7 +79,32 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
       label: Text("reports"),
     ),
     "/stores": HoverableNavigationRailDestination(
-      onHoverStateChange: noHoverMenuOnHoverStateChange,
+      onHoverStateChange: onHoverStateChangeHoverMenu(
+        sideBarHoverMenuData,
+        context,
+        SizedBox(
+          width: 200,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(
+                  "Settings",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: Colors.white),
+                ),
+              ),
+              SimpleHoverMenuButton(
+                route: "/stores/configuration",
+                buttonText: "configuration",
+              ),
+            ],
+          ),
+        ),
+      ),
       icon: Icon(Symbols.storefront_rounded),
       label: Text("stores"),
     ),

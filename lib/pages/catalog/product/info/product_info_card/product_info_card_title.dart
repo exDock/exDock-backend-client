@@ -27,7 +27,7 @@ class ProductInfoCardTitle extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           child,
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:exdock_backend_client/pages/catalog/attributes/generate_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/category_edit_group_card_with_title.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
 class StandardBlock extends StatefulWidget {

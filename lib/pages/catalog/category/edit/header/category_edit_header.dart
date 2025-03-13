@@ -3,7 +3,7 @@ import 'package:exdock_backend_client/pages/catalog/category/category_data.dart'
 import 'package:exdock_backend_client/pages/catalog/category/edit/header/category_edit_header_switches.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/header/category_edit_title.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/header/save_category_changes.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_save_button.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +62,7 @@ class _CategoryEditHeaderState extends State<CategoryEditHeader> {
                 },
               ),
             ),
-            Flexible(
+            const Flexible(
               flex: 3,
               child: CategoryEditHeaderSwitches(),
             ),

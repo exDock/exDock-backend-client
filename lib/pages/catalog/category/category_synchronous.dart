@@ -93,7 +93,7 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
             iconSize: 24,
             padding: const EdgeInsets.all(12),
             color: Colors.white,
-            icon: Icon(Icons.edit_rounded),
+            icon: const Icon(Icons.edit_rounded),
           ),
         ),
         SizedBox(

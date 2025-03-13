@@ -30,13 +30,13 @@ class TopCategoryRow extends StatelessWidget {
 
     return Container(
       height: 72,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0xff264653),
         boxShadow: kBoxShadowList,
       ),
       child: Row(
         children: [
-          Flexible(
+          const Flexible(
             flex: 9,
             child: SizedBox(
               width: double.infinity,
@@ -70,7 +70,7 @@ class TopCategoryRow extends StatelessWidget {
               ),
             ),
           ),
-          Flexible(
+          const Flexible(
             flex: 9,
             child: SizedBox(
               width: double.infinity,

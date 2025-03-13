@@ -25,7 +25,7 @@ class _SideBarState extends State<SideBar> {
         verticalDirection: VerticalDirection.up,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Expanded(
+          const Expanded(
             child: ExDockNavigationRail(),
           ),
           Container(

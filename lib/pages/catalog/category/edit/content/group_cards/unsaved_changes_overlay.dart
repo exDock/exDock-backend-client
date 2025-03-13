@@ -22,11 +22,11 @@ class _UnsavedChangesOverlayState extends State<UnsavedChangesOverlay> {
         valueListenable: widget.unsavedChangesNotifier,
         builder: (context, value, child) {
           if (!value) {
-            return SizedBox();
+            return const SizedBox();
           }
           return Container(
             height: 36,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: darkColour,
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5)),
               boxShadow: kBoxShadowList,

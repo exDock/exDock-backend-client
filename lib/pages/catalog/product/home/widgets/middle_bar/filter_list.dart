@@ -23,13 +23,13 @@ class _FilterListState extends State<FilterList> {
   @override
   Widget build(BuildContext context) {
     filterWidgets = [];
-    filterWidgets.add(Text("active filters: "));
+    filterWidgets.add(const Text("active filters: "));
 
     // Add a filter widget for each filter in the list
     for (var filter in widget.filters) {
       filterWidgets.add(Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
             color: Theme.of(context).indicatorColor,
             borderRadius: BorderRadius.circular(20),
@@ -37,9 +37,9 @@ class _FilterListState extends State<FilterList> {
         child: Row(
           children: [
             Text(filter),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             IconButton(
-              icon: Icon(Icons.close),
+              icon: const Icon(Icons.close),
               onPressed: () {
                 setState(() {
                   widget.filters.remove(filter);
@@ -55,8 +55,8 @@ class _FilterListState extends State<FilterList> {
     return Container(
       width: 1150,
       height: 70,
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: const BoxDecoration(
           border: Border(
         top: BorderSide(width: 2.0, color: Colors.grey),
         bottom: BorderSide(width: 2.0, color: Colors.grey),

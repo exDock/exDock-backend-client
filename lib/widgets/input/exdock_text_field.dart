@@ -20,7 +20,7 @@ class ExdockTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         onChanged: onChanged,
-        style: TextStyle(fontSize: 14, height: 1.5),
+        style: const TextStyle(fontSize: 14, height: 1.5),
         decoration: InputDecoration(
           labelText: labelText,
           labelStyle: Theme.of(context).textTheme.bodyMedium,

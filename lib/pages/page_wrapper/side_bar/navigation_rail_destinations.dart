@@ -92,7 +92,7 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
                       ?.copyWith(color: Colors.white),
                 ),
               ),
-              SimpleHoverMenuButton(
+              const SimpleHoverMenuButton(
                 route: "/content/pages",
                 buttonText: "pages",
               ),

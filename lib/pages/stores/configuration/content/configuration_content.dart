@@ -69,10 +69,7 @@ class ConfigurationContent extends StatelessWidget {
                   'label': 'Configurable product thumbnail',
                 },
               ],
-              "current_attribute_value": {
-                'value': 'configurable_product_thumbnail',
-                'label': 'Configurable product thumbnail',
-              },
+              "current_attribute_value": 'configurable_product_thumbnail',
             },
           ],
         },

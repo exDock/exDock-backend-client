@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/pages/stores/configuration/content/configuration_save_widget.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
 import 'package:exdock_backend_client/utils/blocks/generate_block.dart';
 import 'package:flutter/material.dart';
@@ -25,22 +26,38 @@ class _ConfigurationContentSynchronousState
     final List<MapEntry<String, Map<String, dynamic>>> configBlocks =
         widget.configurationSettings.entries.toList();
 
-    return Align(
-      alignment: Alignment.topCenter,
-      child: MasonryGridView.count(
-        padding: const EdgeInsets.all(24),
-        mainAxisSpacing: 24,
-        crossAxisSpacing: 24,
-        shrinkWrap: true,
-        crossAxisCount: 2,
-        itemCount: configBlocks.length,
-        itemBuilder: (context, index) {
-          return GenerateBlock(
-            block: configBlocks[index],
-            changeAttributeMap: changeAttributeMap,
-          );
-        },
-      ),
+    // This makes room for the SizedBox on the top right
+    configBlocks.insert(1, MapEntry(',', <String, dynamic>{}));
+
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.topCenter,
+          child: MasonryGridView.count(
+            padding: const EdgeInsets.all(24),
+            mainAxisSpacing: 24,
+            crossAxisSpacing: 24,
+            shrinkWrap: true,
+            crossAxisCount: 2,
+            itemCount: configBlocks.length,
+            itemBuilder: (context, index) {
+              if (index == 1) {
+                return SizedBox(height: 88);
+              }
+
+              return GenerateBlock(
+                block: configBlocks[index],
+                changeAttributeMap: changeAttributeMap,
+              );
+            },
+          ),
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: ConfigurationSaveWidget(
+              somethingToSaveNotifier: changeAttributeMap),
+        ),
+      ],
     );
   }
 }

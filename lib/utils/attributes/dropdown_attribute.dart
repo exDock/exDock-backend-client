@@ -27,11 +27,7 @@ class DropdownAttribute extends StatelessWidget {
 
     return DropdownButtonFormField2(
       onChanged: (value) {
-        if (value == attribute['current_attribute_value']) {
-          changeAttributeMap.removeEntry(attribute['attribute_id']);
-          return;
-        }
-        changeAttributeMap.addEntry(attribute['attribute_id'], value);
+        changeAttributeMap.updateAttributeEntry(attribute, value);
       },
       value: attribute['current_attribute_value'],
       items: items,

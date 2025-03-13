@@ -21,7 +21,7 @@ class HomeLastStatistics extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             blurRadius: 15,
-            color: Colors.black.withOpacity(.5),
+            color: Colors.black.withAlpha(128),
             offset: const Offset(0, 4),
           ),
         ],

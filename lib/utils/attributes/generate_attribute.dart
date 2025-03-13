@@ -1,5 +1,5 @@
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:exdock_backend_client/utils/attributes/dropdown_attribute.dart';
+import 'package:exdock_backend_client/utils/attributes/dropdown/dropdown_attribute.dart';
 import 'package:exdock_backend_client/utils/attributes/switch_attribute.dart';
 import 'package:exdock_backend_client/utils/attributes/text_field_attribute.dart';
 import 'package:exdock_backend_client/utils/attributes/text_field_number_attribute.dart';

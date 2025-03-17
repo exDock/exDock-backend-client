@@ -8,6 +8,12 @@ class OverviewPageContentBodySynchronous extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: rows.length,
+      itemBuilder: (context, index) {
+        return rows[index];
+      },
+    );
   }
 }

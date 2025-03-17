@@ -1,4 +1,5 @@
 import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_search_bar.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
@@ -56,8 +57,11 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
             Row(
               children: [
                 // TODO: bulk actions
+                ExdockButton(label: "bulk actions", onPressed: () {}),
                 // TODO: filters
+                ExdockButton(label: "filters", onPressed: () {}),
                 // TODO: add new page button
+                ExdockButton(label: "add new page", onPressed: () {}),
               ],
             ),
           ],

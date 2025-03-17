@@ -25,11 +25,13 @@ class OverviewPageContent extends StatelessWidget {
     return Column(
       children: [
         OverviewPageContentHeader(visibleColumns: visibleColumns),
-        OverviewPageContentBody(
-          // TODO: reconsider if columnsToRetrieve should be the same as visibleColumns
-          columnsToRetrieve: visibleColumns,
-          getRows: getRows,
-          filters: filters,
+        Expanded(
+          child: OverviewPageContentBody(
+            // TODO: reconsider if columnsToRetrieve should be the same as visibleColumns
+            columnsToRetrieve: visibleColumns,
+            getRows: getRows,
+            filters: filters,
+          ),
         ),
       ],
     );

@@ -10,11 +10,13 @@ class OverviewPageHeader extends StatefulWidget {
   const OverviewPageHeader({
     super.key,
     required this.columns,
+    required this.visibleColumns,
     required this.bulkActions,
     required this.filters,
   });
 
   final List<OverviewPageColumn> columns;
+  final List<OverviewPageColumn> visibleColumns;
   final List<BulkAction> bulkActions;
   final List<Filter> filters;
 

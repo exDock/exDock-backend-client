@@ -1,6 +1,6 @@
-import 'package:exdock_backend_client/widgets/overview_page/columns/overview_page_column.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
 import 'package:exdock_backend_client/widgets/overview_page/overview_page.dart';
-import 'package:exdock_backend_client/widgets/overview_page/row/overview_page_row.dart';
 import 'package:flutter/material.dart';
 
 class PagesOverview extends StatelessWidget {

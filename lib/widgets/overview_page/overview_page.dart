@@ -1,9 +1,9 @@
-import 'package:exdock_backend_client/widgets/overview_page/columns/overview_page_column.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter.dart';
 import 'package:exdock_backend_client/widgets/overview_page/overview_page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
-import 'package:exdock_backend_client/widgets/overview_page/row/overview_page_row.dart';
 
 class OverviewPage extends StatelessWidget {
   const OverviewPage({

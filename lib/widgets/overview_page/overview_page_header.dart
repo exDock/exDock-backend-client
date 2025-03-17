@@ -1,6 +1,6 @@
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
-import 'package:exdock_backend_client/widgets/overview_page/columns/overview_page_column.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter.dart';
 import 'package:flutter/material.dart';
 

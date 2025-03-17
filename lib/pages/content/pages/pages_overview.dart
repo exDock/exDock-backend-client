@@ -1,5 +1,6 @@
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
+import 'package:exdock_backend_client/widgets/overview_page/filters/filter.dart';
 import 'package:exdock_backend_client/widgets/overview_page/overview_page.dart';
 import 'package:flutter/material.dart';
 
@@ -15,43 +16,52 @@ class PagesOverview extends StatelessWidget {
     ];
   }
 
-  Future<List<OverviewPageRow>> getPagesRows() async {
-    return [
-      const OverviewPageRow(
-        id: 'page_1',
-        name: "Page 1",
-        columnValues: {
-          "column_1": "value_1",
-          "column_2": "value_2",
-          "column_3": "value_3",
-        },
-      ),
-      const OverviewPageRow(
-        id: 'page_2',
-        name: "Page 2",
-        columnValues: {
-          "column_1": "value_1",
-          "column_2": "value_2",
-        },
-      ),
-      const OverviewPageRow(
-        id: 'page_3',
-        name: "Page 3",
-        columnValues: {
-          "column_1": "value_1",
-          "column_2": "value_2",
-          "column_3": "value_3",
-          "column_4": "value_4",
-          "column_5": "value_5",
-        },
-      )
-    ];
+  Future<List<OverviewPageRow>> Function(
+    List<Filter> filters,
+    List<OverviewPageColumn>? columns,
+  ) getPagesRows() {
+    Future<List<OverviewPageRow>> getRows(
+      List<Filter> filters,
+      List<OverviewPageColumn>? columns,
+    ) async =>
+        [
+          const OverviewPageRow(
+            id: 'page_1',
+            name: "Page 1",
+            columnValues: {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+            },
+          ),
+          const OverviewPageRow(
+            id: 'page_2',
+            name: "Page 2",
+            columnValues: {
+              "column_1": "value_1",
+              "column_2": "value_2",
+            },
+          ),
+          const OverviewPageRow(
+            id: 'page_3',
+            name: "Page 3",
+            columnValues: {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+          )
+        ];
+
+    return getRows;
   }
 
   Future<Map<String, dynamic>> getPagesOverviewData() async {
     return {
       "columns": await getPagesColumns(),
-      "rows": await getPagesRows(),
+      "rows": getPagesRows(),
     };
   }
 
@@ -63,7 +73,7 @@ class PagesOverview extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return OverviewPage(
             columns: snapshot.data!['columns'],
-            rows: snapshot.data!['rows'],
+            getRows: snapshot.data!['rows'],
           );
         }
 

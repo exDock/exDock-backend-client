@@ -1,5 +1,5 @@
-import 'package:exdock_backend_client/pages/catalog/products/widgets/product_list/product_info.dart';
-import 'package:exdock_backend_client/pages/catalog/products/widgets/product_list/product_item.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/product_list/product_info.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/product_list/product_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../product_data.dart';
@@ -126,8 +126,7 @@ class _ProductListState extends State<ProductList> {
             },
           ),
           if (finalList.isNotEmpty)
-            SizedBox(
-              height: 400,
+            Expanded(
               child: ListView.builder(
                 itemCount:
                     filteredListLength % 50 == 0 ? 50 : filteredListLength % 50,

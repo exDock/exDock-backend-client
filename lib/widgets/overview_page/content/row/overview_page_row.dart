@@ -41,7 +41,7 @@ class OverviewPageRow extends StatelessWidget {
           if (index == 0) {
             return OverviewPageRowCell(
               cellValue: id,
-              width: 50,
+              width: 75,
             );
           }
           if (index == 1) {

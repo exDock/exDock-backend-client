@@ -47,7 +47,7 @@ class IdSetNotifier extends ValueNotifier<Set<String>> {
   bool? get selectAllState {
     if (value.isEmpty) return false;
     if (value.contains("_all")) return true;
-    if (value.difference(allIds).isEmpty) return true;
+    if (allIds.difference(value).isEmpty) return true;
     return null;
   }
 

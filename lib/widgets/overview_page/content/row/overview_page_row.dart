@@ -1,16 +1,19 @@
 import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row_cell.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row_cell_string.dart';
 import 'package:flutter/material.dart';
 
-class OverviewPageRow extends StatelessWidget {
+class OverviewPageRow extends StatefulWidget {
   const OverviewPageRow({
     super.key,
     required this.id,
     required this.name,
     required this.visibleColumns,
     required this.columnValues,
+    required this.allIds,
+    required this.selectedIds,
   });
 
   final String id;
@@ -22,11 +25,25 @@ class OverviewPageRow extends StatelessWidget {
   /// All column values | {key: value}
   final Map<String, dynamic> columnValues;
 
+  final Set<String> allIds;
+  final IdSetNotifier selectedIds;
+
+  @override
+  State<OverviewPageRow> createState() => _OverviewPageRowState();
+}
+
+class _OverviewPageRowState extends State<OverviewPageRow> {
+  @override
+  void initState() {
+    widget.allIds.add(widget.id);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double contentWidth =
-        175; // Initial width for id and name columns (75 + 100)
-    for (var column in visibleColumns) {
+        225; // Initial width: 50 (selectAll) + 75 (id) + 100 (name)
+    for (var column in widget.visibleColumns) {
       contentWidth += column.width;
     }
 
@@ -44,21 +61,28 @@ class OverviewPageRow extends StatelessWidget {
       child: IntrinsicHeight(
         child: Row(
           children: [
+            OverviewPageRowCell(
+              cellValue: Checkbox(
+                value: false,
+                onChanged: (value) {},
+              ),
+              width: 50,
+            ),
             OverviewPageRowCellString(
-              cellValue: id,
+              cellValue: widget.id,
               width: 75,
             ),
             OverviewPageRowCellString(
-              cellValue: name,
+              cellValue: widget.name,
               width: 100,
             ),
-            ...visibleColumns.asMap().entries.map((entry) {
+            ...widget.visibleColumns.asMap().entries.map((entry) {
               int index = entry.key;
               OverviewPageColumn column = entry.value;
               return OverviewPageRowCellString(
-                cellValue: columnValues[column.columnKey],
+                cellValue: widget.columnValues[column.columnKey],
                 width: column.width,
-                isLast: index == visibleColumns.length - 1,
+                isLast: index == widget.visibleColumns.length - 1,
               );
             }),
           ],

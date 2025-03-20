@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/overview_page_content.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
@@ -21,6 +22,8 @@ class OverviewPage extends StatefulWidget {
   final Future<List<OverviewPageRow>> Function(
     List<Filter> filters,
     List<OverviewPageColumn>? columns,
+    Set<String> allIds,
+    IdSetNotifier selectedIds,
   ) getRows;
   final List<BulkAction> bulkActions;
   final List<Filter> filters;

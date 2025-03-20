@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter.dart';
@@ -26,10 +27,14 @@ class _PagesOverviewState extends State<PagesOverview> {
   Future<List<OverviewPageRow>> Function(
     List<Filter> filters,
     List<OverviewPageColumn>? columns,
+    Set<String> allIds,
+    IdSetNotifier selectedIds,
   ) getPagesRows() {
     Future<List<OverviewPageRow>> getRows(
       List<Filter> filters,
       List<OverviewPageColumn>? columns,
+      Set<String> allIds,
+      IdSetNotifier selectedIds,
     ) async =>
         [
           OverviewPageRow(
@@ -41,6 +46,8 @@ class _PagesOverviewState extends State<PagesOverview> {
               "column_2": "value_2",
               "column_3": "value_3",
             },
+            allIds: allIds,
+            selectedIds: selectedIds,
           ),
           OverviewPageRow(
             id: 'page_2',
@@ -50,6 +57,8 @@ class _PagesOverviewState extends State<PagesOverview> {
               "column_1": "value_1",
               "column_2": "value_2",
             },
+            allIds: allIds,
+            selectedIds: selectedIds,
           ),
           OverviewPageRow(
             id: 'page_3',
@@ -62,6 +71,8 @@ class _PagesOverviewState extends State<PagesOverview> {
               "column_4": "value_4",
               "column_5": "value_5",
             },
+            allIds: allIds,
+            selectedIds: selectedIds,
           )
         ];
 

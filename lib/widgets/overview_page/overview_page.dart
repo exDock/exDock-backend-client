@@ -10,12 +10,14 @@ class OverviewPage extends StatefulWidget {
   const OverviewPage({
     super.key,
     required this.columns,
+    required this.visibleColumns,
     required this.getRows,
     this.bulkActions = const [],
     this.filters = const [],
   });
 
   final List<OverviewPageColumn> columns;
+  final List<OverviewPageColumn> visibleColumns;
   final Future<List<OverviewPageRow>> Function(
     List<Filter> filters,
     List<OverviewPageColumn>? columns,
@@ -28,7 +30,16 @@ class OverviewPage extends StatefulWidget {
 }
 
 class _OverviewPageState extends State<OverviewPage> {
-  final List<OverviewPageColumn> visibleColumns = [];
+  @override
+  void initState() {
+    super.initState();
+
+    for (OverviewPageColumn column in widget.columns) {
+      if (!widget.visibleColumns.contains(column)) {
+        widget.visibleColumns.add(column);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +47,14 @@ class _OverviewPageState extends State<OverviewPage> {
       children: [
         OverviewPageHeader(
           columns: widget.columns,
-          visibleColumns: visibleColumns,
+          visibleColumns: widget.visibleColumns,
           bulkActions: widget.bulkActions,
           filters: widget.filters,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 100),
           child: OverviewPageContent(
-            visibleColumns: visibleColumns,
+            visibleColumns: widget.visibleColumns,
             getRows: widget.getRows,
             filters: widget.filters,
           ),

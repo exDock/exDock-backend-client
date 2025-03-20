@@ -22,18 +22,21 @@ class OverviewPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        OverviewPageContentHeader(visibleColumns: visibleColumns),
-        Expanded(
-          child: OverviewPageContentBody(
-            // TODO: reconsider if columnsToRetrieve should be the same as visibleColumns
-            columnsToRetrieve: visibleColumns,
-            getRows: getRows,
-            filters: filters,
+    return Padding(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        children: [
+          OverviewPageContentHeader(visibleColumns: visibleColumns),
+          Expanded(
+            child: OverviewPageContentBody(
+              // TODO: reconsider if columnsToRetrieve should be the same as visibleColumns
+              columnsToRetrieve: visibleColumns,
+              getRows: getRows,
+              filters: filters,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

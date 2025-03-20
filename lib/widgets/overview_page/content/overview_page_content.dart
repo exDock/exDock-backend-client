@@ -22,17 +22,26 @@ class OverviewPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double tableWidth = visibleColumns.fold(
+      176, // 75 (id) + 100 (name) + 1 (left table border)
+      (previousValue, element) => previousValue + element.width,
+    );
+
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
         children: [
-          OverviewPageContentHeader(visibleColumns: visibleColumns),
+          OverviewPageContentHeader(
+            visibleColumns: visibleColumns,
+            tableWidth: tableWidth,
+          ),
           Expanded(
             child: OverviewPageContentBody(
               // TODO: reconsider if columnsToRetrieve should be the same as visibleColumns
               columnsToRetrieve: visibleColumns,
               getRows: getRows,
               filters: filters,
+              tableWidth: tableWidth,
             ),
           ),
         ],

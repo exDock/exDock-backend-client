@@ -10,6 +10,7 @@ class OverviewPageContentBody extends StatelessWidget {
     required this.columnsToRetrieve,
     required this.getRows,
     required this.filters,
+    required this.tableWidth,
   });
 
   final List<OverviewPageColumn> columnsToRetrieve;
@@ -18,6 +19,7 @@ class OverviewPageContentBody extends StatelessWidget {
     List<OverviewPageColumn>? columns,
   ) getRows;
   final List<Filter> filters;
+  final double tableWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class OverviewPageContentBody extends StatelessWidget {
             !snapshot.hasError) {
           return OverviewPageContentBodySynchronous(
             rows: snapshot.data!,
+            tableWidth: tableWidth,
           );
         }
         if (snapshot.hasError) {

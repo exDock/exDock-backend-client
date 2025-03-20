@@ -1,4 +1,4 @@
-import 'package:dotted_border/dotted_border.dart';
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:exdock_backend_client/pages/catalog/attributes/images/single_image_attribute_popup.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
@@ -133,12 +133,14 @@ class NoImagePresent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DottedBorder(
-      borderType: BorderType.RRect,
-      radius: const Radius.circular(5),
-      dashPattern: const [10, 10],
-      strokeWidth: 2,
-      color: Theme.of(context).disabledColor,
+    return Container(
+      decoration: DottedDecoration(
+        shape: Shape.box,
+        borderRadius: BorderRadius.circular(5),
+        dash: const [10, 10],
+        strokeWidth: 2,
+        color: Theme.of(context).disabledColor,
+      ),
       child: const SizedBox(
         height: 100,
         child: Center(

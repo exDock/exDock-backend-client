@@ -23,7 +23,14 @@ class OverviewPageRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double contentWidth =
+        175; // Initial width for id and name columns (75 + 100)
+    for (var column in visibleColumns) {
+      contentWidth += column.width;
+    }
+
     return Container(
+      width: contentWidth,
       constraints: const BoxConstraints(minHeight: 50, maxHeight: 150),
       decoration: BoxDecoration(
         border: Border(

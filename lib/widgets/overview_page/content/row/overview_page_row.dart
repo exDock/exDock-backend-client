@@ -1,6 +1,7 @@
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row_cell.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row_cell_string.dart';
 import 'package:flutter/material.dart';
 
 class OverviewPageRow extends StatelessWidget {
@@ -43,18 +44,18 @@ class OverviewPageRow extends StatelessWidget {
       child: IntrinsicHeight(
         child: Row(
           children: [
-            OverviewPageRowCell(
+            OverviewPageRowCellString(
               cellValue: id,
               width: 75,
             ),
-            OverviewPageRowCell(
+            OverviewPageRowCellString(
               cellValue: name,
               width: 100,
             ),
             ...visibleColumns.asMap().entries.map((entry) {
               int index = entry.key;
               OverviewPageColumn column = entry.value;
-              return OverviewPageRowCell(
+              return OverviewPageRowCellString(
                 cellValue: columnValues[column.columnKey],
                 width: column.width,
                 isLast: index == visibleColumns.length - 1,

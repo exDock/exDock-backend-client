@@ -10,7 +10,7 @@ class OverviewPageRowCell extends StatelessWidget {
     this.isLast = false,
   });
 
-  final String? cellValue;
+  final Widget? cellValue;
   final double width;
   final bool isLast;
 
@@ -33,7 +33,7 @@ class OverviewPageRowCell extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: Text(cellValue ?? "-"),
+        child: cellValue ?? const Text("-"),
       ),
     );
 

@@ -24,7 +24,7 @@ class OverviewPageRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100, // TODO: find a way to make this dynamic
+      constraints: const BoxConstraints(minHeight: 50, maxHeight: 150),
       decoration: BoxDecoration(
         border: Border(
           left: BorderSide(
@@ -33,29 +33,28 @@ class OverviewPageRow extends StatelessWidget {
           ),
         ),
       ),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: visibleColumns.length + 2,
-        itemBuilder: (context, index) {
-          if (index == 0) {
-            return OverviewPageRowCell(
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            OverviewPageRowCell(
               cellValue: id,
               width: 75,
-            );
-          }
-          if (index == 1) {
-            return OverviewPageRowCell(
+            ),
+            OverviewPageRowCell(
               cellValue: name,
               width: 100,
-            );
-          }
-          return OverviewPageRowCell(
-            cellValue: columnValues[visibleColumns[index - 2].columnKey],
-            width: visibleColumns[index - 2].width,
-            isLast: index == visibleColumns.length + 1,
-          );
-        },
+            ),
+            ...visibleColumns.asMap().entries.map((entry) {
+              final index = entry.key;
+              final column = entry.value;
+              return OverviewPageRowCell(
+                cellValue: columnValues[column.columnKey],
+                width: column.width,
+                isLast: index == visibleColumns.length - 1,
+              );
+            }),
+          ],
+        ),
       ),
     );
   }

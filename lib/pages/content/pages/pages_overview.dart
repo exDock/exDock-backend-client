@@ -4,8 +4,15 @@ import 'package:exdock_backend_client/widgets/overview_page/filters/filter.dart'
 import 'package:exdock_backend_client/widgets/overview_page/overview_page.dart';
 import 'package:flutter/material.dart';
 
-class PagesOverview extends StatelessWidget {
+class PagesOverview extends StatefulWidget {
   const PagesOverview({super.key});
+
+  @override
+  State<PagesOverview> createState() => _PagesOverviewState();
+}
+
+class _PagesOverviewState extends State<PagesOverview> {
+  final List<OverviewPageColumn> visibleColumns = [];
 
   Future<List<OverviewPageColumn>> getPagesColumns() async {
     return [
@@ -25,27 +32,30 @@ class PagesOverview extends StatelessWidget {
       List<OverviewPageColumn>? columns,
     ) async =>
         [
-          const OverviewPageRow(
+          OverviewPageRow(
             id: 'page_1',
             name: "Page 1",
-            columnValues: {
+            visibleColumns: visibleColumns,
+            columnValues: const {
               "column_1": "value_1",
               "column_2": "value_2",
               "column_3": "value_3",
             },
           ),
-          const OverviewPageRow(
+          OverviewPageRow(
             id: 'page_2',
             name: "Page 2",
-            columnValues: {
+            visibleColumns: visibleColumns,
+            columnValues: const {
               "column_1": "value_1",
               "column_2": "value_2",
             },
           ),
-          const OverviewPageRow(
+          OverviewPageRow(
             id: 'page_3',
             name: "Page 3",
-            columnValues: {
+            visibleColumns: visibleColumns,
+            columnValues: const {
               "column_1": "value_1",
               "column_2": "value_2",
               "column_3": "value_3",
@@ -73,6 +83,7 @@ class PagesOverview extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return OverviewPage(
             columns: snapshot.data!['columns'],
+            visibleColumns: visibleColumns,
             getRows: snapshot.data!['rows'],
           );
         }

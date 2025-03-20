@@ -12,7 +12,7 @@ class OverviewPageContentHeader extends StatelessWidget {
     return Row(
       children: [
         // TODO: select all
-        const OverviewPageColumnCell(columnName: "ID", width: 50),
+        const OverviewPageColumnCell(columnName: "ID", width: 75),
         const OverviewPageColumnCell(columnName: "name", width: 100),
         for (OverviewPageColumn column in visibleColumns)
           OverviewPageColumnCell(

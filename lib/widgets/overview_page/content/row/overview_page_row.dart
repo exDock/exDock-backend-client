@@ -45,8 +45,8 @@ class OverviewPageRow extends StatelessWidget {
               width: 100,
             ),
             ...visibleColumns.asMap().entries.map((entry) {
-              final index = entry.key;
-              final column = entry.value;
+              int index = entry.key;
+              OverviewPageColumn column = entry.value;
               return OverviewPageRowCell(
                 cellValue: columnValues[column.columnKey],
                 width: column.width,

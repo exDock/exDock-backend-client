@@ -53,6 +53,7 @@ class OverviewPageRow extends StatelessWidget {
           return OverviewPageRowCell(
             cellValue: columnValues[visibleColumns[index - 2].columnKey],
             width: visibleColumns[index - 2].width,
+            isLast: index == visibleColumns.length + 1,
           );
         },
       ),

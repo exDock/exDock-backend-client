@@ -35,6 +35,7 @@ class _SelectAllCheckboxState extends State<SelectAllCheckbox> {
           ),
           onChanged: (value) {
             bool newValue = value ?? false;
+            if (value == false) newValue = true;
             if (newValue) {
               widget.selectedIds.addAllId();
             } else {

@@ -26,11 +26,16 @@ class IdSetNotifier extends ValueNotifier<Set<String>> {
     return wasInSet;
   }
 
-  /// Clears all the ids in the set and add "_all" to set
+  /// Clears the set and add all the ids in [allIds] to the set
   void addAllId() {
-    value.clear();
-    value.add("_all");
+    print("[BEFORE]");
+    print("-- allIds: $allIds");
+    print("-- selectedIds: $value");
+    value = Set<String>.from(allIds);
     notifyListeners();
+    print("[AFTER]");
+    print("-- allIds: $allIds");
+    print("-- selectedIds: $value");
   }
 
   /// Clears the set
@@ -46,7 +51,6 @@ class IdSetNotifier extends ValueNotifier<Set<String>> {
   /// Will return false if allIds and selectedIds is empty
   bool? get selectAllState {
     if (value.isEmpty) return false;
-    if (value.contains("_all")) return true;
     if (allIds.difference(value).isEmpty) return true;
     return null;
   }

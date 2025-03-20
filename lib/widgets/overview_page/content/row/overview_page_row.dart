@@ -33,6 +33,8 @@ class OverviewPageRow extends StatefulWidget {
 }
 
 class _OverviewPageRowState extends State<OverviewPageRow> {
+  bool isSelected = false;
+
   @override
   void initState() {
     widget.allIds.add(widget.id);
@@ -62,9 +64,22 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
         child: Row(
           children: [
             OverviewPageRowCell(
-              cellValue: Checkbox(
-                value: false,
-                onChanged: (value) {},
+              cellValue: ValueListenableBuilder(
+                valueListenable: widget.selectedIds,
+                builder: (context, set, child) => Checkbox(
+                  value: widget.selectedIds.value.contains(widget.id),
+                  onChanged: (value) {
+                    value ??= false;
+                    if (value) {
+                      widget.selectedIds.addId(widget.id);
+                    } else {
+                      widget.selectedIds.removeId(widget.id);
+                    }
+                    setState(() {
+                      // isSelected = value!;
+                    });
+                  },
+                ),
               ),
               width: 50,
             ),

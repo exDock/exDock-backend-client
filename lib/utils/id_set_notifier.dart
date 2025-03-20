@@ -28,14 +28,8 @@ class IdSetNotifier extends ValueNotifier<Set<String>> {
 
   /// Clears the set and add all the ids in [allIds] to the set
   void addAllId() {
-    print("[BEFORE]");
-    print("-- allIds: $allIds");
-    print("-- selectedIds: $value");
     value = Set<String>.from(allIds);
     notifyListeners();
-    print("[AFTER]");
-    print("-- allIds: $allIds");
-    print("-- selectedIds: $value");
   }
 
   /// Clears the set

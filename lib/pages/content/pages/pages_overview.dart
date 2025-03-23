@@ -96,6 +96,7 @@ class _PagesOverviewState extends State<PagesOverview> {
             columns: snapshot.data!['columns'],
             visibleColumns: visibleColumns,
             getRows: snapshot.data!['rows'],
+            individualName: "page",
           );
         }
 

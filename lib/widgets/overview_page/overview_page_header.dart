@@ -13,12 +13,14 @@ class OverviewPageHeader extends StatefulWidget {
     required this.visibleColumns,
     required this.bulkActions,
     required this.filters,
+    this.individualName,
   });
 
   final List<OverviewPageColumn> columns;
   final List<OverviewPageColumn> visibleColumns;
   final List<BulkAction> bulkActions;
   final List<Filter> filters;
+  final String? individualName;
 
   @override
   State<OverviewPageHeader> createState() => _OverviewPageHeaderState();
@@ -31,6 +33,9 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
 
   @override
   Widget build(BuildContext context) {
+    String addNewText = widget.individualName == null
+        ? "add new"
+        : "add new ${widget.individualName}";
     return Container(
       height: 100,
       decoration: BoxDecoration(
@@ -59,11 +64,25 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
             Row(
               children: [
                 // TODO: bulk actions
-                ExdockButton(label: "bulk actions", onPressed: () {}),
+                ExdockButton(
+                  label: "bulk actions",
+                  onPressed: () {},
+                  icon: Icons.bolt_rounded,
+                ),
+                const SizedBox(width: 12),
                 // TODO: filters
-                ExdockButton(label: "filters", onPressed: () {}),
+                ExdockButton(
+                  label: "filters",
+                  onPressed: () {},
+                  icon: Icons.filter_alt_rounded,
+                ),
+                const SizedBox(width: 12),
                 // TODO: add new page button
-                ExdockButton(label: "add new page", onPressed: () {}),
+                ExdockButton(
+                  label: addNewText,
+                  onPressed: () {},
+                  icon: Icons.add_rounded,
+                ),
               ],
             ),
           ],

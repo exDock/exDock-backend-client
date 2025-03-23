@@ -8,12 +8,14 @@ class ExdockButton extends StatefulWidget {
     required this.onPressed,
     this.backgroundColor,
     this.hoverColor,
+    this.icon,
   });
 
   final String label;
   final Function() onPressed;
   final Color? backgroundColor;
   final Color? hoverColor;
+  final IconData? icon;
 
   @override
   State<ExdockButton> createState() => _ExdockButtonState();
@@ -24,6 +26,22 @@ class _ExdockButtonState extends State<ExdockButton> {
 
   @override
   Widget build(BuildContext context) {
+    Widget child = Text(
+      widget.label,
+      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: Theme.of(context).indicatorColor,
+          ),
+    );
+    if (widget.icon != null) {
+      child = Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          child,
+          const SizedBox(width: 12),
+          Icon(widget.icon!, color: Theme.of(context).indicatorColor),
+        ],
+      );
+    }
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
@@ -48,12 +66,7 @@ class _ExdockButtonState extends State<ExdockButton> {
             elevation:
                 WidgetStateProperty.all(0), // Remove default button elevation
           ),
-          child: Text(
-            widget.label,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).indicatorColor,
-                ),
-          ),
+          child: child,
         ),
       ),
     );

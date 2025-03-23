@@ -20,8 +20,14 @@ class OverviewPageContentHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: darkColour,
       width: tableWidth,
+      decoration: const BoxDecoration(
+          color: darkColour,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+          )),
+      clipBehavior: Clip.hardEdge,
       child: Row(
         children: [
           const SizedBox(width: 1), // compensate for left border

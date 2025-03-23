@@ -14,6 +14,7 @@ class OverviewPageRowCellString extends StatelessWidget {
     return OverviewPageRowCell(
       cellValue: cellValue != null ? Text(cellValue!) : null,
       width: width,
+      isLast: isLast ?? false,
     );
   }
 }

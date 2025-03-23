@@ -77,6 +77,16 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
                   icon: Icons.filter_alt_rounded,
                 ),
                 const SizedBox(width: 12),
+                // TODO: view settings
+                ExdockButton(
+                  label: "view",
+                  onPressed: () {
+                    // TODO: rows per page
+                    // TODO: columns visible
+                  },
+                  icon: Icons.visibility_rounded,
+                ),
+                const SizedBox(width: 12),
                 // TODO: add new page button
                 ExdockButton(
                   label: addNewText,

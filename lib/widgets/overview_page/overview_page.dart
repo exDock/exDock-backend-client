@@ -15,6 +15,7 @@ class OverviewPage extends StatefulWidget {
     required this.getRows,
     this.bulkActions = const [],
     this.filters = const [],
+    this.individualName,
   });
 
   final List<OverviewPageColumn> columns;
@@ -27,6 +28,7 @@ class OverviewPage extends StatefulWidget {
   ) getRows;
   final List<BulkAction> bulkActions;
   final List<Filter> filters;
+  final String? individualName;
 
   @override
   State<OverviewPage> createState() => _OverviewPageState();
@@ -53,6 +55,7 @@ class _OverviewPageState extends State<OverviewPage> {
           visibleColumns: widget.visibleColumns,
           bulkActions: widget.bulkActions,
           filters: widget.filters,
+          individualName: widget.individualName,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 100),

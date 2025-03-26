@@ -68,7 +68,10 @@ class _OverviewPageState extends State<OverviewPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Expanded(child: ActiveFilters(filters: allFilters)),
+                Expanded(
+                    child: ActiveFilters(
+                  filters: allFilters,
+                )),
                 const SizedBox(width: 24),
                 // TODO: current page
               ],

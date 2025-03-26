@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/widgets/overview_page/filters/filter_widget_close_button.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/filter.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:flutter/material.dart';
@@ -26,22 +27,10 @@ class FilterWidget extends StatelessWidget {
           children: [
             Text("${filter.name}: ${filter.displayValue}"),
             const SizedBox(width: 12),
-            IconButton(
+            FilterWidgetCloseButton(
               onPressed: () {
                 allFilters.removeFilter(filter);
               },
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(
-                maxHeight: 36,
-              ),
-              style: const ButtonStyle(
-                padding: WidgetStatePropertyAll(EdgeInsets.zero),
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-              icon: const Icon(
-                Icons.close,
-                size: 16,
-              ),
             ),
           ],
         ),

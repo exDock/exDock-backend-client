@@ -21,8 +21,6 @@ class _ActiveFiltersState extends State<ActiveFilters> {
 
   @override
   Widget build(BuildContext context) {
-    List<Filter> sortedFilters = getSortedFilters();
-
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -44,20 +42,25 @@ class _ActiveFiltersState extends State<ActiveFilters> {
           Expanded(
             child: ValueListenableBuilder(
               valueListenable: widget.filters,
-              builder: (context, value, child) => ListView.builder(
-                controller: _scrollController,
-                shrinkWrap: true,
-                itemCount: sortedFilters.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 12),
-                    child: FilterWidget(
-                      allFilters: widget.filters,
-                      filter: sortedFilters[index],
-                    ),
-                  );
-                },
-              ),
+              builder: (context, value, child) {
+                List<Filter> sortedFilters = getSortedFilters();
+
+                return ListView.builder(
+                  controller: _scrollController,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: sortedFilters.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 12),
+                      child: FilterWidget(
+                        allFilters: widget.filters,
+                        filter: sortedFilters[index],
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         ],

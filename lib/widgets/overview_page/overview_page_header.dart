@@ -6,7 +6,7 @@ import 'package:exdock_backend_client/widgets/input/exdock_search_bar.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/string_filter.dart';
+import 'package:exdock_backend_client/widgets/overview_page/filters/types/string_filter.dart';
 import 'package:flutter/material.dart';
 
 class OverviewPageHeader extends StatefulWidget {

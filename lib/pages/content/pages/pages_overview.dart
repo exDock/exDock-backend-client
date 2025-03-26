@@ -1,7 +1,7 @@
 import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/filter.dart';
+import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/overview_page.dart';
 import 'package:flutter/material.dart';
 
@@ -25,13 +25,13 @@ class _PagesOverviewState extends State<PagesOverview> {
   }
 
   Future<List<OverviewPageRow>> Function(
-    List<Filter> filters,
+    FilterNotifier filters,
     List<OverviewPageColumn>? columns,
     Set<String> allIds,
     IdSetNotifier selectedIds,
   ) getPagesRows() {
     Future<List<OverviewPageRow>> getRows(
-      List<Filter> filters,
+      FilterNotifier filters,
       List<OverviewPageColumn>? columns,
       Set<String> allIds,
       IdSetNotifier selectedIds,

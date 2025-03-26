@@ -34,7 +34,7 @@ class _FilterWidgetCloseButtonState extends State<FilterWidgetCloseButton> {
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         icon: TweenAnimationBuilder<Color?>(
-          duration: const Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 150),
           tween: ColorTween(
             begin: null,
             end: _isHovered

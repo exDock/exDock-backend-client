@@ -27,7 +27,9 @@ class FilterWidget extends StatelessWidget {
             Text("${filter.name}: ${filter.displayValue}"),
             const SizedBox(width: 12),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                allFilters.removeFilter(filter);
+              },
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(
                 maxHeight: 36,

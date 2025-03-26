@@ -1,15 +1,28 @@
+import 'package:exdock_backend_client/widgets/overview_page/filters/filter.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_widget.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/string_filter.dart';
 import 'package:flutter/material.dart';
 
-class ActiveFilters extends StatelessWidget {
+class ActiveFilters extends StatefulWidget {
   const ActiveFilters({super.key, required this.filters});
 
   final FilterNotifier filters;
 
   @override
+  State<ActiveFilters> createState() => _ActiveFiltersState();
+}
+
+class _ActiveFiltersState extends State<ActiveFilters> {
+  final ScrollController _scrollController = ScrollController();
+
+  List<Filter> getSortedFilters() {
+    return widget.filters.value.values.toList();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    List<Filter> sortedFilters = getSortedFilters();
+
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -25,15 +38,26 @@ class ActiveFilters extends StatelessWidget {
         ),
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.max,
         children: [
           const Text("active filters:"),
-          const SizedBox(width: 12),
-          FilterWidget(
-            allFilters: filters,
-            filter: StringFilter(
-              name: "filterName",
-              key: "filter_key",
-              value: "filter value",
+          Expanded(
+            child: ValueListenableBuilder(
+              valueListenable: widget.filters,
+              builder: (context, value, child) => ListView.builder(
+                controller: _scrollController,
+                shrinkWrap: true,
+                itemCount: sortedFilters.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: FilterWidget(
+                      allFilters: widget.filters,
+                      filter: sortedFilters[index],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ],

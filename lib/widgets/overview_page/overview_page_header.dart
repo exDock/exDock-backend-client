@@ -3,7 +3,7 @@ import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_search_bar.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/filter.dart';
+import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:flutter/material.dart';
 
 class OverviewPageHeader extends StatefulWidget {
@@ -19,7 +19,7 @@ class OverviewPageHeader extends StatefulWidget {
   final List<OverviewPageColumn> columns;
   final List<OverviewPageColumn> visibleColumns;
   final List<BulkAction> bulkActions;
-  final List<Filter> filters;
+  final FilterNotifier filters;
   final String? individualName;
 
   @override

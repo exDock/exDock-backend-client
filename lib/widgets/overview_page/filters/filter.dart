@@ -12,4 +12,6 @@ abstract class Filter {
 
   /// Returns the parameter that is added to the request
   MapEntry<String, dynamic> get filterParameter;
+
+  String get displayValue;
 }

@@ -7,4 +7,7 @@ class StringFilter extends Filter {
 
   @override
   MapEntry<String, dynamic> get filterParameter => MapEntry(key, value);
+
+  @override
+  String get displayValue => value;
 }

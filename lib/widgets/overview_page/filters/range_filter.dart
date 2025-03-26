@@ -20,4 +20,7 @@ class RangeFilter extends Filter {
 
     return MapEntry(key, value);
   }
+
+  @override
+  String get displayValue => "$min - $max";
 }

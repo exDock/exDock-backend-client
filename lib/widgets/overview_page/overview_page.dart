@@ -63,7 +63,7 @@ class _OverviewPageState extends State<OverviewPage> {
         Padding(
           padding: const EdgeInsets.only(top: 124, left: 24, right: 24),
           child: SizedBox(
-            height: 100,
+            height: 75,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
@@ -79,7 +79,7 @@ class _OverviewPageState extends State<OverviewPage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 224),
+          padding: const EdgeInsets.only(top: 199),
           child: OverviewPageContent(
             visibleColumns: widget.visibleColumns,
             getRows: widget.getRows,

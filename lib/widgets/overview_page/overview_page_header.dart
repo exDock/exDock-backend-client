@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_search_bar.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
+import 'package:exdock_backend_client/widgets/overview_page/filters/string_filter.dart';
 import 'package:flutter/material.dart';
 
 class OverviewPageHeader extends StatefulWidget {
@@ -73,7 +76,23 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
                 // TODO: filters
                 ExdockButton(
                   label: "filters",
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODO: remove this test functionality
+                    print("filter button pressed");
+                    int testNumber = Random().nextInt(100);
+                    while (widget.filters.value.keys
+                        .contains("filter_key_$testNumber")) {
+                      testNumber = Random().nextInt(100);
+                    }
+                    widget.filters.addFilter(
+                      StringFilter(
+                        name: "filterName_$testNumber",
+                        key: "filter_key_$testNumber",
+                        value: "filter value_$testNumber",
+                      ),
+                    );
+                    print("filters: ${widget.filters.value.toString()}");
+                  },
                   icon: Icons.filter_alt_rounded,
                 ),
                 const SizedBox(width: 12),

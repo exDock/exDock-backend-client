@@ -1,10 +1,13 @@
 import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/globals/variables.dart';
+import 'package:exdock_backend_client/utils/HTTP/HttpData.dart';
+import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 import 'package:exdock_backend_client/utils/snackbar/exdock_snackbar.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../utils/HTTP/login_requests.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -23,15 +26,17 @@ class _LoginState extends State<Login> {
   }
 
   Future<int> loginServer(String email, String password) async {
-    // TODO: check login credentials
-    // return 403 if credentials are incorrect
-    // return 500 if there is a server error
-    // return 503 if there is a connection error
-
+    AuthenticationData authData = AuthenticationData();
     authData.setAuthEmail(email);
     authData.setAuthPassword(password);
-    // return 200 if login is successful
-    return 200;
+
+    HttpData httpGetData = await loginRequest(
+      authData,
+    );
+
+    print(httpGetData.statusCode);
+
+    return httpGetData.statusCode;
   }
 
   void loginButtonFunction() async {
@@ -47,11 +52,25 @@ class _LoginState extends State<Login> {
         }
         context.go("/");
       }
+    } else if (statusCode == 401) {
+      if (mounted) {
+        showExDockSnackBar(
+          context: context,
+          child: Text("401 has been thrown | invalid credentials"),
+        );
+      }
     } else if (statusCode == 403) {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: Text("403 has been thrown | invalid credentials"),
+          child: Text("403 has been thrown | user does not have permission"),
+        );
+      }
+    } else if (statusCode == 404) {
+      if (mounted) {
+        showExDockSnackBar(
+          context: context,
+          child: Text("404 has been thrown | server not found"),
         );
       }
     } else if (statusCode == 500) {

@@ -1,9 +1,9 @@
-class HttpGetData {
-  final String responseCode;
-  final String responseBody;
+class HttpData {
+  final int statusCode;
+  final String? responseBody;
 
-  HttpGetData({
-    required this.responseCode,
+  HttpData({
+    required this.statusCode,
     required this.responseBody,
   });
 }

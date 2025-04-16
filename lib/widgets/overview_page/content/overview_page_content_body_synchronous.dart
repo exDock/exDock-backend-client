@@ -1,14 +1,14 @@
-import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_page.dart';
 import 'package:flutter/material.dart';
 
 class OverviewPageContentBodySynchronous extends StatelessWidget {
   const OverviewPageContentBodySynchronous({
     super.key,
-    required this.rows,
+    required this.page,
     required this.tableWidth,
   });
 
-  final List<OverviewPageRow> rows;
+  final OverviewPagePage page;
   final double tableWidth;
 
   @override
@@ -19,9 +19,9 @@ class OverviewPageContentBodySynchronous extends StatelessWidget {
         width: tableWidth,
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: rows.length,
+          itemCount: page.rows.length,
           itemBuilder: (context, index) {
-            return rows[index];
+            return page.rows[index];
           },
         ),
       ),

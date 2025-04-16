@@ -1,7 +1,7 @@
 import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/overview_page_content_body_synchronous.dart';
-import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/row/retrieve_overview_page_pages.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +9,7 @@ class OverviewPageContentBody extends StatelessWidget {
   const OverviewPageContentBody({
     super.key,
     required this.columnsToRetrieve,
-    required this.getRows,
+    required this.getPages,
     required this.filters,
     required this.tableWidth,
     required this.allIds,
@@ -17,12 +17,7 @@ class OverviewPageContentBody extends StatelessWidget {
   });
 
   final List<OverviewPageColumn> columnsToRetrieve;
-  final Future<List<OverviewPageRow>> Function(
-    FilterNotifier filters,
-    List<OverviewPageColumn>? columns,
-    Set<String> allIds,
-    IdSetNotifier selectedIds,
-  ) getRows;
+  final RetrieveOverviewPagePages getPages;
   final FilterNotifier filters;
   final double tableWidth;
   final Set<String> allIds;
@@ -31,12 +26,12 @@ class OverviewPageContentBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getRows(filters, columnsToRetrieve, allIds, selectedIds),
+      future: getPages.getOverviewPagePage(1), // TODO: make page number dynamic
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             !snapshot.hasError) {
           return OverviewPageContentBodySynchronous(
-            rows: snapshot.data!,
+            page: snapshot.data!,
             tableWidth: tableWidth,
           );
         }

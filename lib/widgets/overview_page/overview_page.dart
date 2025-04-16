@@ -1,7 +1,6 @@
-import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/overview_page_content.dart';
-import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/row/retrieve_overview_page_pages.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/active_filters.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/overview_page_header.dart';
@@ -13,22 +12,17 @@ class OverviewPage extends StatefulWidget {
     super.key,
     required this.columns,
     required this.visibleColumns,
-    required this.getRows,
+    required this.getPages,
     this.bulkActions = const [],
-    this.filters,
+    required this.filters,
     this.individualName,
   });
 
   final List<OverviewPageColumn> columns;
   final List<OverviewPageColumn> visibleColumns;
-  final Future<List<OverviewPageRow>> Function(
-    FilterNotifier filters,
-    List<OverviewPageColumn>? columns,
-    Set<String> allIds,
-    IdSetNotifier selectedIds,
-  ) getRows;
+  final RetrieveOverviewPagePages getPages;
   final List<BulkAction> bulkActions;
-  final FilterNotifier? filters;
+  final FilterNotifier filters;
   final String? individualName;
 
   @override
@@ -36,8 +30,6 @@ class OverviewPage extends StatefulWidget {
 }
 
 class _OverviewPageState extends State<OverviewPage> {
-  late final FilterNotifier allFilters = widget.filters ?? FilterNotifier();
-
   @override
   void initState() {
     super.initState();
@@ -57,7 +49,7 @@ class _OverviewPageState extends State<OverviewPage> {
           columns: widget.columns,
           visibleColumns: widget.visibleColumns,
           bulkActions: widget.bulkActions,
-          filters: allFilters,
+          filters: widget.filters,
           individualName: widget.individualName,
         ),
         Padding(
@@ -69,9 +61,10 @@ class _OverviewPageState extends State<OverviewPage> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Expanded(
-                    child: ActiveFilters(
-                  filters: allFilters,
-                )),
+                  child: ActiveFilters(
+                    filters: widget.filters,
+                  ),
+                ),
                 const SizedBox(width: 24),
                 // TODO: current page
               ],
@@ -82,8 +75,8 @@ class _OverviewPageState extends State<OverviewPage> {
           padding: const EdgeInsets.only(top: 199),
           child: OverviewPageContent(
             visibleColumns: widget.visibleColumns,
-            getRows: widget.getRows,
-            filters: allFilters,
+            getPages: widget.getPages,
+            filters: widget.filters,
           ),
         ),
       ].reversed.toList(),

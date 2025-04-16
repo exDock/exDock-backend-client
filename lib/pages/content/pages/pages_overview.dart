@@ -1,6 +1,7 @@
 import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
+import 'package:exdock_backend_client/widgets/overview_page/content/row/retrieve_overview_page_pages.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/overview_page.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class _PagesOverviewState extends State<PagesOverview> {
     ];
   }
 
+  // TODO: fix getRows signature everywhere
   Future<List<OverviewPageRow>> Function(
     FilterNotifier filters,
     List<OverviewPageColumn>? columns,
@@ -86,6 +88,8 @@ class _PagesOverviewState extends State<PagesOverview> {
     };
   }
 
+  final FilterNotifier filters = FilterNotifier();
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -95,7 +99,11 @@ class _PagesOverviewState extends State<PagesOverview> {
           return OverviewPage(
             columns: snapshot.data!['columns'],
             visibleColumns: visibleColumns,
-            getRows: snapshot.data!['rows'],
+            filters: filters,
+            getPages: RetrieveOverviewPagePages(
+              getRows: snapshot.data!['rows'],
+              filters: filters,
+            ),
             individualName: "page",
           );
         }

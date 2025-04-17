@@ -22,8 +22,6 @@ class OverviewPageContentHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("is OverviewPageContentHeader reached?");
-
     return Container(
       width: tableWidth,
       decoration: const BoxDecoration(

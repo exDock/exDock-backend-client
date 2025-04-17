@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -19,6 +20,8 @@ class OverviewPage extends StatefulWidget {
     this.bulkActions = const [],
     required this.filters,
     this.individualName,
+    required this.allIds,
+    required this.selectedIds,
   });
 
   final List<OverviewPageColumn> columns;
@@ -27,6 +30,8 @@ class OverviewPage extends StatefulWidget {
   final List<BulkAction> bulkActions;
   final FilterNotifier filters;
   final String? individualName;
+  final Set<String> allIds;
+  final IdSetNotifier selectedIds;
 
   @override
   State<OverviewPage> createState() => _OverviewPageState();
@@ -46,8 +51,6 @@ class _OverviewPageState extends State<OverviewPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("is OverviewPage reached?");
-
     return Stack(
       children: [
         OverviewPageHeader(
@@ -82,6 +85,8 @@ class _OverviewPageState extends State<OverviewPage> {
             visibleColumns: widget.visibleColumns,
             getPages: widget.getPages,
             filters: widget.filters,
+            allIds: widget.allIds,
+            selectedIds: widget.selectedIds,
           ),
         ),
       ].reversed.toList(),

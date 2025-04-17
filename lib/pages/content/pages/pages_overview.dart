@@ -18,6 +18,8 @@ class PagesOverview extends StatefulWidget {
 
 class _PagesOverviewState extends State<PagesOverview> {
   final List<OverviewPageColumn> visibleColumns = [];
+  Set<String> allIds = {};
+  late IdSetNotifier selectedIds = IdSetNotifier(allIds);
 
   Future<List<OverviewPageColumn>> getPagesColumns() async {
     return [
@@ -28,7 +30,6 @@ class _PagesOverviewState extends State<PagesOverview> {
     ];
   }
 
-  // TODO: fix getRows signature everywhere
   Future<List<OverviewPageRow>> Function(
     FilterNotifier filters,
     List<OverviewPageColumn>? columns,
@@ -107,8 +108,12 @@ class _PagesOverviewState extends State<PagesOverview> {
             getPages: RetrieveOverviewPagePages(
               getRows: snapshot.data!['rows'],
               filters: filters,
+              allIds: allIds,
+              selectedIds: selectedIds,
             ),
             individualName: "page",
+            allIds: allIds,
+            selectedIds: selectedIds,
           );
         }
 

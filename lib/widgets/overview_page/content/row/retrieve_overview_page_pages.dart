@@ -9,6 +9,8 @@ class RetrieveOverviewPagePages {
   RetrieveOverviewPagePages({
     required this.getRows,
     required this.filters,
+    required this.allIds,
+    required this.selectedIds,
     this.columns,
     this.pageSize = 10,
     this.currentPage = 1,
@@ -20,16 +22,19 @@ class RetrieveOverviewPagePages {
     }
   }
 
-  final int pageSize;
-  int currentPage;
-  final FilterNotifier filters;
-  final List<OverviewPageColumn>? columns;
   final Future<List<OverviewPageRow>> Function(
     FilterNotifier filters,
     List<OverviewPageColumn>? columns,
     Set<String> allIds,
     IdSetNotifier selectedIds,
   ) getRows;
+  final FilterNotifier filters;
+  final Set<String> allIds;
+  final IdSetNotifier selectedIds;
+
+  final int pageSize;
+  int currentPage;
+  final List<OverviewPageColumn>? columns;
   final int cacheForwards;
   final int cacheBackwards;
   final List<OverviewPagePage?> pages = const [];

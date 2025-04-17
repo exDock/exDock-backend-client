@@ -15,24 +15,23 @@ class OverviewPageContent extends StatefulWidget {
     required this.visibleColumns,
     required this.getPages,
     required this.filters,
+    required this.allIds,
+    required this.selectedIds,
   });
 
   final List<OverviewPageColumn> visibleColumns;
   final RetrieveOverviewPagePages getPages;
   final FilterNotifier filters;
+  final Set<String> allIds;
+  final IdSetNotifier selectedIds;
 
   @override
   State<OverviewPageContent> createState() => _OverviewPageContentState();
 }
 
 class _OverviewPageContentState extends State<OverviewPageContent> {
-  Set<String> allIds = {};
-  late IdSetNotifier selectedIds = IdSetNotifier(allIds);
-
   @override
   Widget build(BuildContext context) {
-    print("is OverviewPageContent reached?");
-
     double tableWidth = widget.visibleColumns.fold(
       226, // 50 (selectAll) + 75 (id) + 100 (name) + 1 (left table border)
       (previousValue, element) => previousValue + element.width,
@@ -45,7 +44,7 @@ class _OverviewPageContentState extends State<OverviewPageContent> {
           OverviewPageContentHeader(
             visibleColumns: widget.visibleColumns,
             tableWidth: tableWidth,
-            selectedIds: selectedIds,
+            selectedIds: widget.selectedIds,
           ),
           Expanded(
             child: OverviewPageContentBody(
@@ -54,8 +53,8 @@ class _OverviewPageContentState extends State<OverviewPageContent> {
               getPages: widget.getPages,
               filters: widget.filters,
               tableWidth: tableWidth,
-              allIds: allIds,
-              selectedIds: selectedIds,
+              allIds: widget.allIds,
+              selectedIds: widget.selectedIds,
             ),
           ),
         ],

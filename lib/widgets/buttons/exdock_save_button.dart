@@ -1,6 +1,9 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
-import 'package:flutter/material.dart';
 
 class ExDockSaveButton extends StatefulWidget {
   const ExDockSaveButton({

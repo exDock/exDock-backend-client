@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:exdock_backend_client/globals/variables.dart';
 
 class AuthenticationData {

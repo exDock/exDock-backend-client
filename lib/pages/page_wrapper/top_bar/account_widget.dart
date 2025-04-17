@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:material_symbols_icons/symbols.dart';
 
 class AccountWidget extends StatefulWidget {

@@ -1,9 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/home/home_data.dart';
 import 'package:exdock_backend_client/pages/home/widgets/home_global_statistics.dart';
 import 'package:exdock_backend_client/pages/home/widgets/home_graph.dart';
 import 'package:exdock_backend_client/pages/home/widgets/home_last_statistics.dart';
 import 'package:exdock_backend_client/pages/home/widgets/home_top_statistics.dart';
-import 'package:flutter/material.dart';
 
 class HomeSynchronous extends StatelessWidget {
   const HomeSynchronous({super.key, required this.homeData});

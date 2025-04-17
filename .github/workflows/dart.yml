@@ -12,6 +12,49 @@ on:
     branches: [ "main" ]
 
 jobs:
+  sort_imports:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}  # Checkout the PR source branch
+          repository: ${{ github.event.pull_request.head.repo.full_name }}  # Handle forks too
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install import_sorter
+        run: flutter pub add import_sorter --dev
+
+      - name: Sort imports
+        run: flutter pub run import_sorter:main
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          # Only commit if there are changes
+          git diff --quiet && git diff --staged --quiet || git commit -m "Automatically sort imports"
+          # Use conditional logic to handle PR vs direct push
+          if [[ -n "$GITHUB_HEAD_REF" ]]; then
+            # For PR
+            git push origin HEAD:${GITHUB_HEAD_REF}
+          else
+            # For direct push
+            git push origin HEAD:${GITHUB_REF#refs/heads/}
+          fi
+
+
   build:
     runs-on: ubuntu-latest
 

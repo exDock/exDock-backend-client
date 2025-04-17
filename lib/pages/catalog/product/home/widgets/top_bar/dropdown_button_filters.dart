@@ -1,8 +1,11 @@
+// Dart imports:
 import 'dart:async';
 
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/catalog/product/home/product_home_synchronous.dart';
 import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/filters/bottom_filter_menu.dart';
 import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/filters/id_filter.dart';

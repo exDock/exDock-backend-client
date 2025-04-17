@@ -1,7 +1,10 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:exdock_backend_client/globals/styling.dart';
 import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/column_list.dart';
 

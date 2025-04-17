@@ -1,8 +1,8 @@
 // Flutter imports:
-import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/overview_page_content.dart';

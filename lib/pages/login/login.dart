@@ -56,14 +56,14 @@ class _LoginState extends State<Login> {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: Text("401 has been thrown | invalid credentials"),
+          child: Text("401 has been thrown | user does not have permission"),
         );
       }
     } else if (statusCode == 403) {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: Text("403 has been thrown | user does not have permission"),
+          child: Text("403 has been thrown | invalid credentials"),
         );
       }
     } else if (statusCode == 404) {

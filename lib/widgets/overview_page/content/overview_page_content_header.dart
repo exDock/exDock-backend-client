@@ -1,9 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column_cell.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/utils/select_all_checkbox.dart';
-import 'package:flutter/material.dart';
 
 class OverviewPageContentHeader extends StatelessWidget {
   const OverviewPageContentHeader({

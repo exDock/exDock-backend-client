@@ -1,7 +1,10 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_widget.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/filter.dart';
-import 'package:flutter/material.dart';
 
 class ActiveFilters extends StatefulWidget {
   const ActiveFilters({super.key, required this.filters});

@@ -1,5 +1,10 @@
+// Dart imports:
 import 'dart:math';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_search_bar.dart';
@@ -7,7 +12,6 @@ import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dar
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/string_filter.dart';
-import 'package:flutter/material.dart';
 
 class OverviewPageHeader extends StatefulWidget {
   const OverviewPageHeader({

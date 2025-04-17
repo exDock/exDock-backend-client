@@ -2,6 +2,8 @@
 import 'dart:math';
 
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_selection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -12,6 +14,7 @@ import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dar
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/string_filter.dart';
+import 'package:kumi_popup_window/kumi_popup_window.dart';
 
 class OverviewPageHeader extends StatefulWidget {
   const OverviewPageHeader({
@@ -82,7 +85,9 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
                   label: "filters",
                   onPressed: () {
                     // TODO: remove this test functionality
-                    print("filter button pressed");
+                    if (kDebugMode) {
+                      print("filter button pressed");
+                    }
                     int testNumber = Random().nextInt(100);
                     while (widget.filters.value.keys
                         .contains("filter_key_$testNumber")) {
@@ -95,7 +100,9 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
                         value: "filter value_$testNumber",
                       ),
                     );
-                    print("filters: ${widget.filters.value.toString()}");
+                    if (kDebugMode) {
+                      print("filters: ${widget.filters.value.toString()}");
+                    }
                   },
                   icon: Icons.filter_alt_rounded,
                 ),
@@ -104,8 +111,14 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
                 ExdockButton(
                   label: "view",
                   onPressed: () {
+                    showPopupWindow(context, childFun: (pop) {
+                      return VisibleColumnsSelection(
+                        key: GlobalKey(),
+                        columns: widget.columns,
+                        visibleColumns: widget.visibleColumns,
+                      );
+                    });
                     // TODO: rows per page
-                    // TODO: columns visible
                   },
                   icon: Icons.visibility_rounded,
                 ),

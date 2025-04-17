@@ -1,3 +1,4 @@
+import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_page.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
@@ -23,14 +24,22 @@ class RetrieveOverviewPagePages {
   final FilterNotifier filters;
   final List<OverviewPageColumn>? columns;
   final Future<List<OverviewPageRow>> Function(
-    int pageSize,
-    int currentPage,
     FilterNotifier filters,
     List<OverviewPageColumn>? columns,
+    Set<String> allIds,
+    IdSetNotifier selectedIds,
   ) getRows;
   final int cacheForwards;
   final int cacheBackwards;
   final List<OverviewPagePage?> pages = const [];
+
+  /// This function can be placed on a variable or parameter whose value is yet to be implemented.
+  Never TODO(String? reason) {
+    throw UnimplementedError(
+      reason ??
+          'TODO: Implementation missing (an empty todo() has been called)',
+    );
+  }
 
   Future<OverviewPagePage> getOverviewPagePage(
     int pageNumber, {
@@ -44,21 +53,33 @@ class RetrieveOverviewPagePages {
       return pages[pageNumber - 1]!;
     }
 
+    // List<OverviewPageRow> rows = await getRows(
+    //   pageSize,
+    //   pageNumber,
+    //   filters,
+    //   columns,
+    // );
     List<OverviewPageRow> rows = await getRows(
-      pageSize,
-      pageNumber,
       filters,
       columns,
+      TODO("get the global set for all the ID's"),
+      TODO("get the global notifier for all the selected ID's"),
     );
     OverviewPagePage overviewPagePage = OverviewPagePage(
       pageNumber: pageNumber,
       rows: rows,
       getRows: () {
+        // return getRows(
+        //   pageSize,
+        //   pageNumber,
+        //   filters,
+        //   columns,
+        // );
         return getRows(
-          pageSize,
-          pageNumber,
           filters,
           columns,
+          TODO("get the global set for all the ID's"),
+          TODO("get the global notifier for all the selected ID's"),
         );
       },
     );

@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
 
 class OverviewPagePage {
   OverviewPagePage({

@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/filter.dart';
 
 class StringFilter extends Filter {

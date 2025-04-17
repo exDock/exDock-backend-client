@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/utils/blocks/group_cards/category_edit_group_card.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/category_edit_group_card.dart';
 
 class CategoryEditGroupCardWithTitle extends StatelessWidget {
   const CategoryEditGroupCardWithTitle({
@@ -27,7 +30,7 @@ class CategoryEditGroupCardWithTitle extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           child,
         ],
       ),

@@ -1,11 +1,16 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:go_router/go_router.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/pages/login/login.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/scope.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/top_bar.dart';
 import 'package:exdock_backend_client/router/routes/routes.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 
 final GoRouter router = GoRouter(
@@ -35,11 +40,11 @@ final GoRouter router = GoRouter(
                 child: Stack(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 100),
+                      padding: const EdgeInsets.only(top: 100),
                       child: Stack(
                         children: [
                           child,
-                          Align(
+                          const Align(
                             alignment: Alignment.topLeft,
                             child: Scope(),
                           ),

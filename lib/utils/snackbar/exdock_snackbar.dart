@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 /// Shows a custom snackbar with a card layout and fade in/out animations
@@ -6,24 +7,23 @@ void showExDockSnackBar({
   required Widget child,
   Duration? duration,
 }) {
-  print("showExDockSnackBar called");
   // Default duration if not provided
-  final snackBarDuration = duration ?? const Duration(seconds: 3);
+  var snackBarDuration = duration ?? const Duration(seconds: 3);
 
   // Get the scaffold messenger
-  final scaffoldMessenger = ScaffoldMessenger.of(context);
+  var scaffoldMessenger = ScaffoldMessenger.of(context);
 
   // Hide any existing snackbars
   scaffoldMessenger.hideCurrentSnackBar();
 
   // Create a widget that handles its own animations
-  final snackBarContent = _FadingSnackBarContent(
-    child: child,
+  var snackBarContent = _FadingSnackBarContent(
     duration: snackBarDuration,
+    child: child,
   );
 
   // Create the custom snackbar
-  final snackBar = SnackBar(
+  var snackBar = SnackBar(
     content: snackBarContent,
     duration: snackBarDuration +
         const Duration(milliseconds: 600), // Add time for fade in/out

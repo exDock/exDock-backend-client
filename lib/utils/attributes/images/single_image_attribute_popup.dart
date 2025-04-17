@@ -1,6 +1,11 @@
-import 'package:exdock_backend_client/widgets/popup/exdock_big_popup.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:kumi_popup_window/kumi_popup_window.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/widgets/popup/exdock_big_popup.dart';
 
 class SingleImageAttributePopup extends StatelessWidget {
   const SingleImageAttributePopup({
@@ -21,7 +26,7 @@ class SingleImageAttributePopup extends StatelessWidget {
     return ExdockBigPopup(
       pop: pop,
       title: "Category image [$scope]",
-      child: Placeholder(),
+      child: const Placeholder(),
       // TODO: upload new image button
       // TODO: search grid with all images that are currently on the server (paged)
       // TODO: save button -> calls widget.onNewImage(image) with the url of the selected image

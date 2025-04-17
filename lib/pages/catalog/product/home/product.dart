@@ -1,8 +1,12 @@
+// Dart imports:
 import 'dart:math';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/product/home/product_data.dart';
 import 'package:exdock_backend_client/pages/catalog/product/home/product_home_synchronous.dart';
-import 'package:flutter/material.dart';
 
 class Product extends StatelessWidget {
   const Product({super.key});
@@ -23,12 +27,12 @@ class Product extends StatelessWidget {
 
   // Generate random string
   String getRandomString(int length) {
-    const _chars =
+    const chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    Random _rnd = Random();
+    Random rnd = Random();
 
     return String.fromCharCodes(Iterable.generate(
-        length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+        length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
   }
 
   @override

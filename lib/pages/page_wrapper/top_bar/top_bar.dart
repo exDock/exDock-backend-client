@@ -1,9 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/account_widget.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/notifications.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/page_name.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/top_bar/search.dart';
-import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({
@@ -22,8 +25,8 @@ class TopBar extends StatelessWidget {
         color: Theme.of(context).indicatorColor,
         boxShadow: kBoxShadowList,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
+      child: const Padding(
+        padding: EdgeInsets.all(24),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -1,6 +1,11 @@
-import 'package:exdock_backend_client/widgets/popup/exdock_big_popup.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:kumi_popup_window/kumi_popup_window.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/widgets/popup/exdock_big_popup.dart';
 
 class EditCategoryStructurePopup extends StatelessWidget {
   const EditCategoryStructurePopup({super.key, required this.pop});
@@ -12,7 +17,7 @@ class EditCategoryStructurePopup extends StatelessWidget {
     return ExdockBigPopup(
       pop: pop,
       title: "Edit category structure",
-      child: Placeholder(),
+      child: const Placeholder(),
     );
   }
 }

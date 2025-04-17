@@ -1,9 +1,14 @@
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:exdock_backend_client/globals/styling.dart';
-import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:exdock_backend_client/utils/attributes/generate_attribute.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/styling.dart';
+import 'package:exdock_backend_client/pages/catalog/attributes/generate_attribute.dart';
+import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class ProductPriceCard extends StatefulWidget {
   const ProductPriceCard({
@@ -97,11 +102,11 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
               return child;
             },
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 24, top: 24),
+                padding: EdgeInsets.only(left: 24, top: 24),
                 child: Text("Sale price date range"),
               ),
             ],
@@ -144,8 +149,9 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
                 }
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   boxShadow: lightKBoxShadowList,
                   color: Colors.white,
@@ -158,14 +164,14 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
                             child: Text(
                                 '${startDate!.toLocal().toString().split(' ')[0]} - ${endDate!.toLocal().toString().split(' ')[0]}'),
                           )
-                        : Padding(
-                            padding: const EdgeInsets.only(left: 12),
+                        : const Padding(
+                            padding: EdgeInsets.only(left: 12),
                             child: Text("No active or planned sales."),
                           ),
-                    Expanded(
+                    const Expanded(
                       child: SizedBox(),
                     ),
-                    Icon(Icons.event_note_outlined)
+                    const Icon(Icons.event_note_outlined)
                   ],
                 ),
               ),

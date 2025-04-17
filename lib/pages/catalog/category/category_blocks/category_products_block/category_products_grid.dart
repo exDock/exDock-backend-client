@@ -1,8 +1,13 @@
-import 'package:collection/collection.dart';
-import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/pages/catalog/category/category_blocks/category_products_block/category_product_card/category_product_card.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:collection/collection.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_products_block/category_product_card/category_product_card.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class CategoryProductsGrid extends StatefulWidget {
   const CategoryProductsGrid({
@@ -37,9 +42,9 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
       width: double.infinity,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final int columnCount =
+          int columnCount =
               (constraints.maxWidth / (productCardWidth + 12)).floor();
-          final double spacing =
+          double spacing =
               (constraints.maxWidth / columnCount - productCardWidth) /
                   columnCount *
                   (columnCount + 1);
@@ -53,13 +58,13 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                 onAcceptWithDetails: (draggedIndex) {
                   // move logic
                   setState(() {
-                    final draggedItem = _localProducts[draggedIndex.data];
+                    var draggedItem = _localProducts[draggedIndex.data];
                     _localProducts.removeAt(draggedIndex.data);
                     _localProducts.insert(index, draggedItem);
                   });
 
                   // detect if there is change
-                  if (!ListEquality()
+                  if (!const ListEquality()
                       .equals(widget.categoryProducts, _localProducts)) {
                     widget.changeAttributeMap.addEntry(
                       attributeName,
@@ -113,13 +118,13 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).indicatorColor,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(10),
                                   ),
                                   boxShadow: kBoxShadowList,
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
                                   child: Icon(
                                     Icons.drag_indicator,
                                     color: Colors.grey,

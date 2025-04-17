@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 class ColumnList extends StatefulWidget {
@@ -41,7 +42,7 @@ class ColumnListState extends State<ColumnList> {
               widget.deselectColumn(columnName);
             },
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -62,12 +63,12 @@ class ColumnListState extends State<ColumnList> {
                           : Icons.check_box_outline_blank,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
                     columnName,
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ],
               ),

@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -35,7 +36,7 @@ class PriceFilterState extends State<PriceFilter> {
     }
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(
           top: BorderSide(
@@ -43,15 +44,15 @@ class PriceFilterState extends State<PriceFilter> {
           ),
         ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'PRICE',
                   style: TextStyle(
                     color: Color(0xFF264653),
@@ -64,7 +65,7 @@ class PriceFilterState extends State<PriceFilter> {
                       highPriceController.clear();
                     });
                   },
-                  child: Text(
+                  child: const Text(
                     'RESET',
                     style: TextStyle(
                       color: Color(0xFF2A9D8F),
@@ -93,7 +94,7 @@ class PriceFilterState extends State<PriceFilter> {
                   controller: lowPriceController,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 50,
                 child: Icon(Icons.arrow_forward),
               ),

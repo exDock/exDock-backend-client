@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 class RemoveFilterButton extends StatelessWidget {
@@ -14,13 +15,13 @@ class RemoveFilterButton extends StatelessWidget {
       child: Container(
         height: 70,
         width: 200,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: const BoxDecoration(
             border: Border(
           top: BorderSide(width: 2.0, color: Colors.grey),
           bottom: BorderSide(width: 2.0, color: Colors.grey),
         )),
-        child: Row(
+        child: const Row(
           children: [
             Text("clear filters"),
             Padding(padding: EdgeInsets.only(right: 20)),

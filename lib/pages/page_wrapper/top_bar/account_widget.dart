@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:material_symbols_icons/symbols.dart';
 
 class AccountWidget extends StatefulWidget {
@@ -10,7 +13,7 @@ class AccountWidget extends StatefulWidget {
 
 class _AccountWidgetState extends State<AccountWidget> {
   bool attentionRequired = true;
-  Widget accountIcon = Icon(
+  Widget accountIcon = const Icon(
     size: 48,
     Symbols.account_circle_rounded,
   );
@@ -24,7 +27,7 @@ class _AccountWidgetState extends State<AccountWidget> {
             Theme.of(context).textTheme.bodyMedium?.color),
         textStyle:
             WidgetStatePropertyAll(Theme.of(context).textTheme.bodyMedium),
-        padding: WidgetStatePropertyAll(EdgeInsets.zero),
+        padding: const WidgetStatePropertyAll(EdgeInsets.zero),
       ),
       onPressed: () {},
       child: AspectRatio(

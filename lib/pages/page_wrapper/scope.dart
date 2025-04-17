@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class Scope extends StatefulWidget {
   const Scope({super.key});
@@ -14,13 +17,13 @@ class _ScopeState extends State<Scope> {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).canvasColor,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomRight: Radius.circular(10),
         ),
         boxShadow: kBoxShadowList,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         child: Text("scope"),
       ),
     );

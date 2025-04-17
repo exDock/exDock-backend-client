@@ -1,6 +1,11 @@
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_switch/flutter_switch.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class ExDockSwitch extends StatefulWidget {
   const ExDockSwitch({
@@ -26,7 +31,7 @@ class _ExDockSwitchState extends State<ExDockSwitch> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               offset: Offset(0, 2),
               blurRadius: 5,

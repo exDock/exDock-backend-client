@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
 
 class CategoryEditTitle extends StatelessWidget {
   const CategoryEditTitle({
@@ -22,12 +25,12 @@ class CategoryEditTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle mainTitleStyle =
+    TextStyle mainTitleStyle =
         Theme.of(context).textTheme.headlineLarge ??
-            TextStyle(
+            const TextStyle(
               fontSize: 48,
             );
-    final TextStyle parentLeavesTextStyle = TextStyle();
+    TextStyle parentLeavesTextStyle = const TextStyle();
     if (categorySelection.isEmpty) {
       return Text(
         "No category selected",

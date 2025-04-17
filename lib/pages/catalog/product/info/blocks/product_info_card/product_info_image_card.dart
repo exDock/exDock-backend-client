@@ -37,8 +37,8 @@ class _ProductInfoImageCardState extends State<ProductInfoImageCard> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> imagesDynamic = widget.block.value['images'];
-    List<Map<String, dynamic>> images = imagesDynamic.map((image) {
+    List<Map<String, dynamic>> images =
+        widget.block.value['images'].map((image) {
       return image as Map<String, dynamic>;
     }).toList();
     List<Widget> imageWidgets = [];

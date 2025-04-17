@@ -54,6 +54,10 @@ class _PagesOverviewState extends State<PagesOverview> {
             },
             allIds: allIds,
             selectedIds: selectedIds,
+            onSelect: () {
+              // ignore: avoid_print
+              print("row selected: 1");
+            },
           ),
           OverviewPageRow(
             id: 'page_2',

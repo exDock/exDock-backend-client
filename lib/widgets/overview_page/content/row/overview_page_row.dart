@@ -17,6 +17,7 @@ class OverviewPageRow extends StatefulWidget {
     required this.columnValues,
     required this.allIds,
     required this.selectedIds,
+    this.onSelect,
   });
 
   final String id;
@@ -30,6 +31,8 @@ class OverviewPageRow extends StatefulWidget {
 
   final Set<String> allIds;
   final IdSetNotifier selectedIds;
+
+  final Function()? onSelect;
 
   @override
   State<OverviewPageRow> createState() => _OverviewPageRowState();
@@ -48,11 +51,11 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
   Widget build(BuildContext context) {
     double contentWidth =
         225; // Initial width: 50 (selectAll) + 75 (id) + 100 (name)
-    for (var column in widget.visibleColumns) {
+    for (OverviewPageColumn column in widget.visibleColumns) {
       contentWidth += column.width;
     }
 
-    return Container(
+    Widget child = Container(
       width: contentWidth,
       constraints: const BoxConstraints(minHeight: 50, maxHeight: 150),
       decoration: BoxDecoration(
@@ -107,5 +110,19 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
         ),
       ),
     );
+
+    if (widget.onSelect != null) {
+      return MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () {
+            widget.onSelect!();
+          },
+          child: child,
+        ),
+      );
+    }
+
+    return child;
   }
 }

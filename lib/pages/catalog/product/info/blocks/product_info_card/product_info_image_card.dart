@@ -43,8 +43,8 @@ class _ProductInfoImageCardState extends State<ProductInfoImageCard> {
     }).toList();
     List<Widget> imageWidgets = [];
     for (var image in images) {
-      List<dynamic> extensionsDynamic = jsonDecode(image['extensions']);
-      List<String> extensions = extensionsDynamic.map((extension) {
+      List<String> extensions =
+          jsonDecode(image['extensions']).map((extension) {
         return extension as String;
       }).toList();
       imageWidgets.add(

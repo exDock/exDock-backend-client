@@ -1,6 +1,11 @@
-import 'package:exdock_backend_client/globals/styling.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/styling.dart';
 
 class CaseSensitiveIconButton extends StatefulWidget {
   const CaseSensitiveIconButton({super.key, required this.onChanged});

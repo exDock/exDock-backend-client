@@ -1,8 +1,13 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/stores/configuration/content/configuration_save_widget.dart';
 import 'package:exdock_backend_client/utils/blocks/generate_block.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class ConfigurationContentSynchronous extends StatefulWidget {
   const ConfigurationContentSynchronous({

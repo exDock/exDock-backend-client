@@ -1,8 +1,11 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/stores/configuration/configuration_retrieve_menu.dart';
 import 'package:exdock_backend_client/pages/stores/configuration/configuration_side_bar.dart';
 import 'package:exdock_backend_client/pages/stores/configuration/content/configuration_content.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class Configuration extends StatefulWidget {
   const Configuration({super.key, this.configurationDataKey});

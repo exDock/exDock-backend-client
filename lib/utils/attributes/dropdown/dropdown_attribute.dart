@@ -1,8 +1,13 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:dropdown_button2/dropdown_button2.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/utils/attributes/dropdown/case_sensitive_icon_button.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
-import 'package:flutter/material.dart';
 
 class DropdownAttribute extends StatefulWidget {
   const DropdownAttribute({

@@ -1,7 +1,10 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/utils/attributes/generate_attribute.dart';
 import 'package:exdock_backend_client/utils/blocks/group_cards/category_edit_group_card_with_title.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
-import 'package:flutter/material.dart';
 
 class StandardBlock extends StatefulWidget {
   const StandardBlock(

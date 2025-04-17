@@ -39,15 +39,6 @@ class RetrieveOverviewPagePages {
   final int cacheBackwards;
   final List<OverviewPagePage?> pages = const [];
 
-  /// This function can be placed on a variable or parameter whose value is yet to be implemented.
-  // ignore: non_constant_identifier_names
-  Never TODO(String? reason) {
-    throw UnimplementedError(
-      reason ??
-          'TODO: Implementation missing (an empty todo() has been called)',
-    );
-  }
-
   Future<OverviewPagePage> getOverviewPagePage(
     int pageNumber, {
     bool strict = true,

@@ -95,7 +95,8 @@ class _PagesOverviewState extends State<PagesOverview> {
     return FutureBuilder(
       future: getPagesOverviewData(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            !snapshot.hasError) {
           return OverviewPage(
             columns: snapshot.data!['columns'],
             visibleColumns: visibleColumns,
@@ -105,6 +106,12 @@ class _PagesOverviewState extends State<PagesOverview> {
               filters: filters,
             ),
             individualName: "page",
+          );
+        }
+
+        if (snapshot.hasError) {
+          return Center(
+            child: Text("An error has occurred: ${snapshot.error.toString()}"),
           );
         }
 

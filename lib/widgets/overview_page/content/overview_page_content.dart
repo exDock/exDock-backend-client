@@ -28,6 +28,8 @@ class _OverviewPageContentState extends State<OverviewPageContent> {
 
   @override
   Widget build(BuildContext context) {
+    print("is OverviewPageContent reached?");
+
     double tableWidth = widget.visibleColumns.fold(
       226, // 50 (selectAll) + 75 (id) + 100 (name) + 1 (left table border)
       (previousValue, element) => previousValue + element.width,

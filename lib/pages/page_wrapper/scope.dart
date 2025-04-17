@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
 
 class Scope extends StatefulWidget {

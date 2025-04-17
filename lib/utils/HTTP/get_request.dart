@@ -24,7 +24,9 @@ Future<HttpData> standardGetRequest(String endpoint) async {
 
     statusCode = response.statusCode;
     responseBody = String.fromCharCodes(response.bodyBytes);
-  } catch (_) {}
+  } catch (_) {
+    return HttpData(statusCode: 404, responseBody: "");
+  }
 
   return HttpData(statusCode: statusCode, responseBody: responseBody);
 }

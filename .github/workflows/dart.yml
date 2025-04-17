@@ -14,15 +14,38 @@ on:
 jobs:
   sort_imports:
     runs-on: ubuntu-latest
+    # Note: This job only works on non-protected branches
+    # For protected branches, you would need to use a token with write permissions
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          # This is needed to ensure we have full git history for commits
+          fetch-depth: 0
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable' # or 'beta', 'dev'
 
+      - name: Install import_sorter
+        run: flutter pub add import_sorter --dev
+
       - name: Sort imports
         run: flutter pub run import_sorter:main
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          # Only commit if there are changes
+          git diff --quiet && git diff --staged --quiet || git commit -m "Automatically sort imports"
+          # Push to the same branch that triggered the workflow
+          git push origin HEAD:${GITHUB_REF#refs/heads/}
+
 
   build:
     runs-on: ubuntu-latest

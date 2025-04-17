@@ -14,20 +14,18 @@ on:
 jobs:
   sort_imports:
     runs-on: ubuntu-latest
-    # This job now uses a token with write permissions
     permissions:
-      contents: write  # This is the key addition - grant write permission to repository contents
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
         with:
-          # This is needed to ensure we have full git history for commits
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use the built-in token
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable' # or 'beta', 'dev'
+          channel: 'stable'
 
       - name: Install import_sorter
         run: flutter pub add import_sorter --dev
@@ -45,8 +43,8 @@ jobs:
           git add .
           # Only commit if there are changes
           git diff --quiet && git diff --staged --quiet || git commit -m "Automatically sort imports"
-          # Push to the same branch that triggered the workflow
-          git push
+          # Handle detached HEAD by pushing to the proper branch
+          git push origin HEAD:${GITHUB_REF#refs/heads/}
 
 
   build:

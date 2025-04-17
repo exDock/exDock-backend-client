@@ -1,6 +1,11 @@
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_switch/flutter_switch.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class ExDockSwitch extends StatefulWidget {
   const ExDockSwitch({

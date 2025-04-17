@@ -1,6 +1,9 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
 import 'package:exdock_backend_client/pages/catalog/category/category_synchronous.dart';
-import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {
   const Category({super.key, this.selectedCategory});

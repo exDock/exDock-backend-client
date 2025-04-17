@@ -1,6 +1,11 @@
-import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:shared_preferences/shared_preferences.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 
 late final SharedPreferences prefs;
 

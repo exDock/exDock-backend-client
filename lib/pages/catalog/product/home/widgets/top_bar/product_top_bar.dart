@@ -1,9 +1,11 @@
-import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/product_search.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/dropdown_button_columns.dart';
 import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/dropdown_button_filters.dart';
 import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/dropdown_button_icon.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/product_search.dart';
 
 class ProductTopBar extends StatefulWidget {
   const ProductTopBar({

@@ -1,6 +1,9 @@
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class ExdockCopyButton extends StatefulWidget {
   const ExdockCopyButton({

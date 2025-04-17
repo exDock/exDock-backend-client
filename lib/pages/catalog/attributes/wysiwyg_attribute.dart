@@ -1,8 +1,13 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:fleather/fleather.dart';
+import 'package:parchment_to_html/parachment_to_html.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:exdock_backend_client/widgets/exdock_card.dart';
-import 'package:fleather/fleather.dart';
-import 'package:flutter/material.dart';
-import 'package:parchment_to_html/parachment_to_html.dart';
 
 class WysiwygAttribute extends StatefulWidget {
   const WysiwygAttribute({

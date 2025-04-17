@@ -1,8 +1,13 @@
-import 'package:exdock_backend_client/router/router.dart';
-import 'package:exdock_backend_client/utils/startup.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:go_router/go_router.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/router/router.dart';
+import 'package:exdock_backend_client/utils/startup.dart';
 
 void main() async {
   GoRouter.optionURLReflectsImperativeAPIs = true;

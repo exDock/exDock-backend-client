@@ -1,8 +1,12 @@
+// Dart imports:
 import 'dart:math';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/product/home/product_data.dart';
 import 'package:exdock_backend_client/pages/catalog/product/home/product_home_synchronous.dart';
-import 'package:flutter/material.dart';
 
 class Product extends StatelessWidget {
   const Product({super.key});

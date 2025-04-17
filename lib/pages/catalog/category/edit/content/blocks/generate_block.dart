@@ -1,7 +1,10 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_products_block/category_products_block.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/standard_block.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
-import 'package:flutter/material.dart';
 
 class GenerateBlock extends StatelessWidget {
   const GenerateBlock(

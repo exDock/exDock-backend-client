@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:exdock_backend_client/globals/globals.dart';
+
+// Package imports:
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});

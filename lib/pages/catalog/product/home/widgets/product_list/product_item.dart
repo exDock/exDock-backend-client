@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/product/home/product_data.dart';
 
 class ProductItem extends StatefulWidget {

@@ -1,8 +1,10 @@
-import 'package:exdock_backend_client/widgets/exdock_card.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Project imports:
 import 'package:exdock_backend_client/utils/map_notifier.dart';
+import 'package:exdock_backend_client/widgets/exdock_card.dart';
 
 class TextFieldPriceAttribute extends StatefulWidget {
   const TextFieldPriceAttribute({

@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 /// Shows a custom snackbar with a card layout and fade in/out animations

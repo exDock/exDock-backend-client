@@ -12,6 +12,15 @@ on:
     branches: [ "main" ]
 
 jobs:
+  sort_imports:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sort imports
+        run: flutter pub run import_sorter:main
+
   build:
     runs-on: ubuntu-latest
 

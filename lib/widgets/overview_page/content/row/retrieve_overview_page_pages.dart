@@ -60,33 +60,21 @@ class RetrieveOverviewPagePages {
       return pages[pageNumber - 1]!;
     }
 
-    // List<OverviewPageRow> rows = await getRows(
-    //   pageSize,
-    //   pageNumber,
-    //   filters,
-    //   columns,
-    // );
     List<OverviewPageRow> rows = await getRows(
       filters,
       columns,
-      TODO("get the global set for all the ID's"),
-      TODO("get the global notifier for all the selected ID's"),
+      allIds,
+      selectedIds,
     );
     OverviewPagePage overviewPagePage = OverviewPagePage(
       pageNumber: pageNumber,
       rows: rows,
       getRows: () {
-        // return getRows(
-        //   pageSize,
-        //   pageNumber,
-        //   filters,
-        //   columns,
-        // );
         return getRows(
           filters,
           columns,
-          TODO("get the global set for all the ID's"),
-          TODO("get the global notifier for all the selected ID's"),
+          allIds,
+          selectedIds,
         );
       },
     );

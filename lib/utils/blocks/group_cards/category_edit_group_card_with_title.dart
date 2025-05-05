@@ -1,8 +1,8 @@
 // Flutter imports:
+import 'package:exdock_backend_client/utils/blocks/group_cards/category_edit_group_card.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/category_edit_group_card.dart';
 
 class CategoryEditGroupCardWithTitle extends StatelessWidget {
   const CategoryEditGroupCardWithTitle({

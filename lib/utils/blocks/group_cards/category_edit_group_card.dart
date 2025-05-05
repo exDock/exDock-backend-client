@@ -1,9 +1,9 @@
 // Flutter imports:
+import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/unsaved_changes_overlay.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/unsaved_changes_overlay.dart';
 
 class CategoryEditGroupCard extends StatelessWidget {
   const CategoryEditGroupCard({

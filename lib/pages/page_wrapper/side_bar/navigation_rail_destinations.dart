@@ -74,7 +74,32 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
       label: const Text("marketing"),
     ),
     "/content": HoverableNavigationRailDestination(
-      onHoverStateChange: noHoverMenuOnHoverStateChange,
+      onHoverStateChange: onHoverStateChangeHoverMenu(
+        sideBarHoverMenuData,
+        context,
+        SizedBox(
+          width: 200,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(
+                  "Catalog",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: Colors.white),
+                ),
+              ),
+              const SimpleHoverMenuButton(
+                route: "/content/pages",
+                buttonText: "pages",
+              ),
+            ],
+          ),
+        ),
+      ),
       icon: const Icon(Symbols.newspaper_rounded),
       label: const Text("content"),
     ),

@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/pages/catalog/attributes/images/single_image_attribute.dart';
-import 'package:exdock_backend_client/pages/catalog/attributes/text_field_attribute.dart';
-import 'package:exdock_backend_client/pages/catalog/attributes/text_field_number_attribute.dart';
-import 'package:exdock_backend_client/pages/catalog/attributes/text_field_price_attribute.dart';
-import 'package:exdock_backend_client/pages/catalog/attributes/wysiwyg_attribute.dart';
+import 'package:exdock_backend_client/utils/attributes/images/single_image_attribute.dart';
+import 'package:exdock_backend_client/utils/attributes/text_field_attribute.dart';
+import 'package:exdock_backend_client/utils/attributes/text_field_number_attribute.dart';
+import 'package:exdock_backend_client/utils/attributes/text_field_price_attribute.dart';
+import 'package:exdock_backend_client/utils/attributes/wysiwyg_attribute.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class GenerateAttribute extends StatelessWidget {

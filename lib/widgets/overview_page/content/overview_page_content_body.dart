@@ -19,7 +19,7 @@ class OverviewPageContentBody extends StatelessWidget {
     required this.selectedIds,
   });
 
-  final List<OverviewPageColumn> columnsToRetrieve;
+  final List<OverviewPageColumnData> columnsToRetrieve;
   final RetrieveOverviewPagePages getPages;
   final FilterNotifier filters;
   final double tableWidth;

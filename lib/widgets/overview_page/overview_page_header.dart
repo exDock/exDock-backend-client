@@ -28,8 +28,8 @@ class OverviewPageHeader extends StatefulWidget {
     this.individualName,
   });
 
-  final List<OverviewPageColumn> columns;
-  final List<OverviewPageColumn> visibleColumns;
+  final List<OverviewPageColumnData> columns;
+  final List<OverviewPageColumnData> visibleColumns;
   final List<BulkAction> bulkActions;
   final FilterNotifier filters;
   final String? individualName;
@@ -96,7 +96,7 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
                       testNumber = Random().nextInt(100);
                     }
                     widget.filters.addFilter(
-                      StringFilter(
+                      StringFilterData(
                         name: "filterName_$testNumber",
                         key: "filter_key_$testNumber",
                         value: "filter value_$testNumber",

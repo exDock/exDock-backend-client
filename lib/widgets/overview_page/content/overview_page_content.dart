@@ -19,7 +19,7 @@ class OverviewPageContent extends StatefulWidget {
     required this.selectedIds,
   });
 
-  final List<OverviewPageColumn> visibleColumns;
+  final List<OverviewPageColumnData> visibleColumns;
   final RetrieveOverviewPagePages getPages;
   final FilterNotifier filters;
   final Set<String> allIds;

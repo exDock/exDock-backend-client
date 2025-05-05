@@ -1,5 +1,5 @@
-class OverviewPageColumn {
-  const OverviewPageColumn({
+class OverviewPageColumnData {
+  const OverviewPageColumnData({
     required this.columnKey,
     required this.name,
     this.width = 100,

@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/filter.dart';
 
-class FilterNotifier extends ValueNotifier<Map<String, Filter>> {
+class FilterNotifier extends ValueNotifier<Map<String, FilterData>> {
   FilterNotifier() : super({});
 
-  void addFilter(Filter newValue) {
+  void addFilter(FilterData newValue) {
     value[newValue.key] = newValue;
     notifyListeners();
   }
 
   /// Returns true if the filter existed
-  bool removeFilter(Filter filter) {
+  bool removeFilter(FilterData filter) {
     bool output = value.remove(filter.key) != null;
     notifyListeners();
     return output;

@@ -1,8 +1,8 @@
 // Project imports:
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/filter.dart';
 
-class RangeFilter extends Filter {
-  RangeFilter({
+class RangeFilterData extends FilterData {
+  RangeFilterData({
     required super.name,
     required super.key,
     this.min,

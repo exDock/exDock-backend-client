@@ -24,7 +24,7 @@ class OverviewPageRow extends StatefulWidget {
   final String name;
 
   /// All the columns that are visible in the table
-  final List<OverviewPageColumn> visibleColumns;
+  final List<OverviewPageColumnData> visibleColumns;
 
   /// All column values | {key: value}
   final Map<String, dynamic> columnValues;
@@ -51,7 +51,7 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
   Widget build(BuildContext context) {
     double contentWidth =
         225; // Initial width: 50 (selectAll) + 75 (id) + 100 (name)
-    for (OverviewPageColumn column in widget.visibleColumns) {
+    for (OverviewPageColumnData column in widget.visibleColumns) {
       contentWidth += column.width;
     }
 
@@ -99,7 +99,7 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
             ),
             ...widget.visibleColumns.asMap().entries.map((entry) {
               int index = entry.key;
-              OverviewPageColumn column = entry.value;
+              OverviewPageColumnData column = entry.value;
               return OverviewPageRowCellString(
                 cellValue: widget.columnValues[column.columnKey],
                 width: column.width,

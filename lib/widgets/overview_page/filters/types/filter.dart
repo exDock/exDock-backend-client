@@ -1,5 +1,5 @@
-abstract class Filter {
-  const Filter({
+abstract class FilterData {
+  const FilterData({
     required this.name,
     required this.key,
   });

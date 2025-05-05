@@ -24,7 +24,7 @@ class RetrieveOverviewPagePages {
 
   final Future<List<OverviewPageRow>> Function(
     FilterNotifier filters,
-    List<OverviewPageColumn>? columns,
+    List<OverviewPageColumnData>? columns,
     Set<String> allIds,
     IdSetNotifier selectedIds,
   ) getRows;
@@ -34,7 +34,7 @@ class RetrieveOverviewPagePages {
 
   final int pageSize;
   int currentPage;
-  final List<OverviewPageColumn>? columns;
+  final List<OverviewPageColumnData>? columns;
   final int cacheForwards;
   final int cacheBackwards;
   final List<OverviewPagePage?> pages = [];

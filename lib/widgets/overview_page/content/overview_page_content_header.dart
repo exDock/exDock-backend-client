@@ -16,7 +16,7 @@ class OverviewPageContentHeader extends StatelessWidget {
     required this.selectedIds,
   });
 
-  final List<OverviewPageColumn> visibleColumns;
+  final List<OverviewPageColumnData> visibleColumns;
   final double tableWidth;
   final IdSetNotifier selectedIds;
 
@@ -40,7 +40,7 @@ class OverviewPageContentHeader extends StatelessWidget {
           ),
           const OverviewPageColumnCell(columnName: "ID", width: 75),
           const OverviewPageColumnCell(columnName: "name", width: 100),
-          for (OverviewPageColumn column in visibleColumns)
+          for (OverviewPageColumnData column in visibleColumns)
             OverviewPageColumnCell(
               columnName: column.name,
               columnKey: column.columnKey,

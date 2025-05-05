@@ -18,7 +18,7 @@ class ActiveFilters extends StatefulWidget {
 class _ActiveFiltersState extends State<ActiveFilters> {
   final ScrollController _scrollController = ScrollController();
 
-  List<Filter> getSortedFilters() {
+  List<FilterData> getSortedFilters() {
     return widget.filters.value.values.toList();
   }
 
@@ -46,7 +46,7 @@ class _ActiveFiltersState extends State<ActiveFilters> {
             child: ValueListenableBuilder(
               valueListenable: widget.filters,
               builder: (context, value, child) {
-                List<Filter> sortedFilters = getSortedFilters();
+                List<FilterData> sortedFilters = getSortedFilters();
 
                 return ListView.builder(
                   controller: _scrollController,

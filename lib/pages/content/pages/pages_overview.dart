@@ -17,28 +17,28 @@ class PagesOverview extends StatefulWidget {
 }
 
 class _PagesOverviewState extends State<PagesOverview> {
-  final List<OverviewPageColumn> visibleColumns = [];
+  final List<OverviewPageColumnData> visibleColumns = [];
   Set<String> allIds = {};
   late IdSetNotifier selectedIds = IdSetNotifier(allIds);
 
-  Future<List<OverviewPageColumn>> getPagesColumns() async {
+  Future<List<OverviewPageColumnData>> getPagesColumns() async {
     return [
-      const OverviewPageColumn(columnKey: "column_1", name: "Column 1"),
-      const OverviewPageColumn(columnKey: "column_2", name: "Column 2"),
-      const OverviewPageColumn(columnKey: "column_3", name: "Column 3"),
-      const OverviewPageColumn(columnKey: "column_4", name: "Column 4"),
+      const OverviewPageColumnData(columnKey: "column_1", name: "Column 1"),
+      const OverviewPageColumnData(columnKey: "column_2", name: "Column 2"),
+      const OverviewPageColumnData(columnKey: "column_3", name: "Column 3"),
+      const OverviewPageColumnData(columnKey: "column_4", name: "Column 4"),
     ];
   }
 
   Future<List<OverviewPageRow>> Function(
     FilterNotifier filters,
-    List<OverviewPageColumn>? columns,
+    List<OverviewPageColumnData>? columns,
     Set<String> allIds,
     IdSetNotifier selectedIds,
   ) getPagesRows() {
     Future<List<OverviewPageRow>> getRows(
       FilterNotifier filters,
-      List<OverviewPageColumn>? columns,
+      List<OverviewPageColumnData>? columns,
       Set<String> allIds,
       IdSetNotifier selectedIds,
     ) async =>

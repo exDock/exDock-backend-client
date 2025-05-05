@@ -13,7 +13,7 @@ class FilterWidget extends StatelessWidget {
     required this.allFilters,
   });
 
-  final Filter filter;
+  final FilterData filter;
   final FilterNotifier allFilters;
 
   @override

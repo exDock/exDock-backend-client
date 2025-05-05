@@ -24,8 +24,8 @@ class OverviewPage extends StatefulWidget {
     required this.selectedIds,
   });
 
-  final List<OverviewPageColumn> columns;
-  final List<OverviewPageColumn> visibleColumns;
+  final List<OverviewPageColumnData> columns;
+  final List<OverviewPageColumnData> visibleColumns;
   final RetrieveOverviewPagePages getPages;
   final List<BulkAction> bulkActions;
   final FilterNotifier filters;
@@ -42,7 +42,7 @@ class _OverviewPageState extends State<OverviewPage> {
   void initState() {
     super.initState();
 
-    for (OverviewPageColumn column in widget.columns) {
+    for (OverviewPageColumnData column in widget.columns) {
       if (!widget.visibleColumns.contains(column)) {
         widget.visibleColumns.add(column);
       }

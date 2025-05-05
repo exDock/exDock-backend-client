@@ -11,8 +11,8 @@ class VisibleColumnsSelection extends StatelessWidget {
     required this.visibleColumns,
   });
 
-  final List<OverviewPageColumn> columns;
-  final List<OverviewPageColumn> visibleColumns;
+  final List<OverviewPageColumnData> columns;
+  final List<OverviewPageColumnData> visibleColumns;
 
   @override
   Widget build(BuildContext context) {

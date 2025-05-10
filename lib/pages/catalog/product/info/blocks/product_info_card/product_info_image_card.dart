@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
 import 'package:flutter/material.dart';
 
@@ -35,10 +37,16 @@ class _ProductInfoImageCardState extends State<ProductInfoImageCard> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> images = widget.block.value['images'];
+    List<Map<String, dynamic>> images =
+        widget.block.value['images'].map((image) {
+      return image as Map<String, dynamic>;
+    }).toList();
     List<Widget> imageWidgets = [];
     for (var image in images) {
-      List<String> extensions = image['extensions'];
+      List<String> extensions =
+          jsonDecode(image['extensions']).map((extension) {
+        return extension as String;
+      }).toList();
       imageWidgets.add(
         Column(
           children: [

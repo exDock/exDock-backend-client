@@ -50,6 +50,8 @@ dependencies:
   calendar_date_picker2: ^1.1.8
   shared_preferences: ^2.5.2
   web_socket_channel: ^3.0.3
+  flutter_secure_storage: ^9.2.4
+  http: ^1.3.0
 
 dev_dependencies:
   flutter_test:

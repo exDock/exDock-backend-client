@@ -15,22 +15,7 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   bool isExpanded = false; // To track whether the list is expanded
-  List<String> notifications = [
-    "Notification 1",
-    "Notification 2",
-    "Notification 3",
-    "Notification 4",
-    "Notification 5",
-    "Notification 6",
-    "Notification 7",
-    "Notification 8",
-    "Notification 9",
-    "Notification 10",
-    "Notification 11",
-    "Notification 12",
-    "Notification 13",
-    "Notification 14",
-  ]; // Sample notifications
+  List<String> notifications = []; // Sample notifications
 
   OverlayEntry? _overlayEntry;
   Stream<String>? _notificationStream;

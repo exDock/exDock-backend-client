@@ -15,11 +15,9 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   bool isExpanded = false; // To track whether the list is expanded
-  List<String> notifications = []; // Sample notifications
+  List<String> _notifications = []; // Sample notifications
 
   OverlayEntry? _overlayEntry;
-  Stream<String>? _notificationStream;
-  StreamSubscription? _subscription;
   ValueNotifier<List<String>>? _notificationsNotifier;
 
   void connectToWebsocket() {}
@@ -38,7 +36,7 @@ class _NotificationsState extends State<Notifications> {
   @override
   void initState() {
     super.initState();
-    _notificationsNotifier = ValueNotifier<List<String>>(notifications);
+    _notificationsNotifier = ValueNotifier<List<String>>(_notifications);
     getWebsocketChannel(
         "ws://127.0.0.1/api/v1/ws/error", _notificationsNotifier!);
   }
@@ -46,7 +44,7 @@ class _NotificationsState extends State<Notifications> {
   @override
   void dispose() {
     _overlayEntry?.remove();
-    _subscription?.cancel();
+    _notificationsNotifier?.dispose();
     super.dispose();
   }
 
@@ -71,24 +69,15 @@ class _NotificationsState extends State<Notifications> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              // child: ListView.builder(
-              //   padding: EdgeInsets.zero,
-              //   itemCount: notifications.length,
-              //   itemBuilder: (context, index) {
-              //     return ListTile(
-              //       title: Text(notifications[index]),
-              //     );
-              //   },
-              // ),
               child: ValueListenableBuilder<List<String>>(
                 valueListenable: _notificationsNotifier!,
-                builder: (context, notifications, child) {
+                builder: (context, value, child) {
                   return ListView.builder(
                     padding: EdgeInsets.zero,
-                    itemCount: notifications.length,
+                    itemCount: value.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text(notifications[index]),
+                        title: Text(value[index]),
                       );
                     },
                   );
@@ -119,42 +108,42 @@ class _NotificationsState extends State<Notifications> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 400,
-      child: GestureDetector(
-        onTap: _toggleOverlay,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: kBoxShadowList,
-          ),
-          padding: EdgeInsets.all(14),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              if (notifications.isEmpty)
-                notificationIcon
-              else
-                Badge(
-                    label: Text("${notifications.length}"),
-                    child: notificationIcon),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: Text(
-                    notifications.isEmpty
-                        ? "No unread notifications"
-                        : notifications.first,
-                    style: TextStyle(color: Colors.black),
+      child: ValueListenableBuilder(
+        valueListenable: _notificationsNotifier!,
+        builder: (context, value, child) => GestureDetector(
+          onTap: _toggleOverlay,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: kBoxShadowList,
+            ),
+            padding: EdgeInsets.all(14),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (value.isEmpty)
+                  notificationIcon
+                else
+                  Badge(
+                      label: Text("${value.length}"), child: notificationIcon),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text(
+                      value.isEmpty ? "No unread notifications" : value.first,
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
-              ),
-              Icon(
-                isExpanded
-                    ? Symbols.keyboard_arrow_up_rounded
-                    : Symbols.keyboard_arrow_down_rounded,
-                color: Colors.black,
-              ),
-            ],
+                Icon(
+                  isExpanded
+                      ? Symbols.keyboard_arrow_up_rounded
+                      : Symbols.keyboard_arrow_down_rounded,
+                  color: Colors.black,
+                ),
+              ],
+            ),
           ),
         ),
       ),

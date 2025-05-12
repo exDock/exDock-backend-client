@@ -43,6 +43,7 @@ Future<HttpData> loginRequest(AuthenticationData authData) async {
 }
 
 Future<String> refreshTokens(String refreshToken) async {
+  FlutterSecureStorage storage = FlutterSecureStorage();
   // TODO: add server from config
   String baseUrl = "http://127.0.0.1";
   Uri uri = Uri.parse("$baseUrl/api/v1/refresh");
@@ -56,6 +57,9 @@ Future<String> refreshTokens(String refreshToken) async {
     );
 
     Map<String, dynamic> data = jsonDecode(response.body);
+
+    await storage.write(key: "access_token", value: data["access_token"]);
+
     return data["access_token"];
   } catch (_) {
     throw NotAuthenticatedException("Failed to refresh tokens");

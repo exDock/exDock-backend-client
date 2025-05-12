@@ -6,7 +6,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:kumi_popup_window/kumi_popup_window.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/pages/catalog/attributes/images/single_image_attribute_popup.dart';
+import 'package:exdock_backend_client/utils/attributes/images/single_image_attribute_popup.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class SingleImageAttribute extends StatefulWidget {

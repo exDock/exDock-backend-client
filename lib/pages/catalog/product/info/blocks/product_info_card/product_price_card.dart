@@ -6,8 +6,8 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 
 // Project imports:
 import 'package:exdock_backend_client/globals/styling.dart';
-import 'package:exdock_backend_client/pages/catalog/attributes/generate_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
+import 'package:exdock_backend_client/utils/attributes/generate_attribute.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class ProductPriceCard extends StatefulWidget {

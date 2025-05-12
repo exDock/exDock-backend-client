@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // Project imports:
 import 'package:exdock_backend_client/utils/map_notifier.dart';
@@ -10,10 +11,14 @@ class TextFieldNumberAttribute extends StatefulWidget {
     super.key,
     required this.attribute,
     required this.changeAttributeMap,
+    this.signed = false,
+    this.decimal = false,
   });
 
   final Map<String, dynamic> attribute;
   final MapNotifier changeAttributeMap;
+  final bool signed;
+  final bool decimal;
 
   @override
   State<TextFieldNumberAttribute> createState() =>
@@ -22,10 +27,40 @@ class TextFieldNumberAttribute extends StatefulWidget {
 
 class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
   final TextEditingController controller = TextEditingController();
+  late final TextInputFormatter inputFormatter;
+  String lastValidValue = '';
 
   @override
   void initState() {
-    controller.text = widget.attribute['current_attribute_value'].toString();
+    lastValidValue = widget.attribute['current_attribute_value'].toString();
+    controller.text = lastValidValue;
+
+    // Initialize the appropriate regex pattern based on properties
+    RegExp pattern;
+    if (widget.decimal) {
+      pattern = widget.signed
+          ? RegExp(r'^-?\d*\.?\d*$') // Signed decimal
+          : RegExp(r'^\d*\.?\d*$'); // Unsigned decimal
+    } else {
+      pattern = widget.signed
+          ? RegExp(r'^-?\d*$') // Signed integer
+          : RegExp(r'^\d*$'); // Unsigned integer
+    }
+
+    // Create input formatter using TextInputFormatter.withFunction
+    inputFormatter = TextInputFormatter.withFunction(
+      (oldValue, newValue) {
+        // If the new value matches our pattern or is empty, accept it
+        if (pattern.hasMatch(newValue.text) || newValue.text.isEmpty) {
+          lastValidValue = newValue.text;
+          return newValue;
+        }
+
+        // Otherwise, reject the change and keep the last valid value
+        return oldValue;
+      },
+    );
+
     super.initState();
   }
 
@@ -35,9 +70,15 @@ class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
       height: 56,
       child: TextField(
         controller: controller,
-        keyboardType: TextInputType.number,
+        inputFormatters: [inputFormatter],
+        keyboardType: TextInputType.numberWithOptions(
+          signed: widget.signed,
+          decimal: widget.decimal,
+        ),
         onChanged: (value) {
-          if (value == widget.attribute["current_attribute_value"]) {
+          num numValue =
+              widget.decimal ? double.parse(value) : int.parse(value);
+          if (numValue == widget.attribute["current_attribute_value"]) {
             widget.changeAttributeMap.removeEntry(
               widget.attribute["attribute_id"],
             );

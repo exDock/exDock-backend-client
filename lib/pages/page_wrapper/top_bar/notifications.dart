@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class Notifications extends StatefulWidget {
@@ -33,6 +35,12 @@ class _NotificationsState extends State<Notifications> {
     color: Theme.of(context).primaryColor,
   );
 
+  Future<String> getToken() async {
+    FlutterSecureStorage storage = FlutterSecureStorage();
+    String? token = await storage.read(key: "jwt");
+    return token!;
+  }
+
   OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlayEntry() {
@@ -56,15 +64,37 @@ class _NotificationsState extends State<Notifications> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: notifications.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(notifications[index]),
-                  );
-                },
-              ),
+              // child: ListView.builder(
+              //   padding: EdgeInsets.zero,
+              //   itemCount: notifications.length,
+              //   itemBuilder: (context, index) {
+              //     return ListTile(
+              //       title: Text(notifications[index]),
+              //     );
+              //   },
+              // ),
+              child: FutureBuilder(
+                  future: getWebsocketChannel("ws://127.0.0.1/api/v1/ws/error"),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState != ConnectionState.done) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (snapshot.hasError) {
+                      // TODO: handle error
+                    }
+
+                    return StreamBuilder(
+                      stream: snapshot.data!.stream,
+                      builder: (context, snapshot) {
+                        return ListTile(
+                          title: Text(snapshot.hasData
+                              ? "${snapshot.data}"
+                              : "No new notifications"),
+                        );
+                      },
+                    );
+                    return const Center(child: CircularProgressIndicator());
+                  }),
             ),
           ),
         ),

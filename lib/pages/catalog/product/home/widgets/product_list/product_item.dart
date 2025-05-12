@@ -1,6 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-import '../../product_data.dart';
+// Project imports:
+import 'package:exdock_backend_client/pages/catalog/product/home/product_data.dart';
 
 class ProductItem extends StatefulWidget {
   const ProductItem({
@@ -34,12 +36,12 @@ class _ProductItemState extends State<ProductItem> {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
+      margin: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color(0xFF264653),
+          color: const Color(0xFF264653),
         ),
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(7.5),
         ),
       ),
@@ -51,7 +53,7 @@ class _ProductItemState extends State<ProductItem> {
             child: Container(
               width: 70,
               height: 40,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   right: BorderSide(
                     color: Color(0xFF264653),
@@ -71,7 +73,7 @@ class _ProductItemState extends State<ProductItem> {
                   selectedIcon
                       ? Icons.check_box_outlined
                       : Icons.check_box_outline_blank,
-                  color: Color(0xFF264653),
+                  color: const Color(0xFF264653),
                 ),
               ),
             ),
@@ -81,7 +83,7 @@ class _ProductItemState extends State<ProductItem> {
               flex: 1,
               child: Container(
                 height: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(
                     right: BorderSide(
                       color: Color(0xFF264653),
@@ -94,7 +96,7 @@ class _ProductItemState extends State<ProductItem> {
                   children: [
                     Text(
                       widget.product.id.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF264653),
                       ),
                     )
@@ -107,7 +109,7 @@ class _ProductItemState extends State<ProductItem> {
               flex: 3,
               child: Container(
                 height: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(
                     right: BorderSide(
                       color: Color(0xFF264653),
@@ -120,7 +122,7 @@ class _ProductItemState extends State<ProductItem> {
                   children: [
                     Text(
                       widget.product.thumbnail,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF264653),
                       ),
                     )
@@ -133,7 +135,7 @@ class _ProductItemState extends State<ProductItem> {
               flex: 8,
               child: Container(
                 height: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(
                     right: BorderSide(
                       color: Color(0xFF264653),
@@ -146,7 +148,7 @@ class _ProductItemState extends State<ProductItem> {
                   children: [
                     Text(
                       widget.product.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF264653),
                       ),
                     )
@@ -159,7 +161,7 @@ class _ProductItemState extends State<ProductItem> {
               flex: 3,
               child: Container(
                 height: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(
                     right: BorderSide(
                       color: Color(0xFF264653),
@@ -172,7 +174,7 @@ class _ProductItemState extends State<ProductItem> {
                   children: [
                     Text(
                       widget.product.price.toStringAsFixed(2),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF264653),
                       ),
                     )
@@ -184,8 +186,8 @@ class _ProductItemState extends State<ProductItem> {
             flex: 15,
             child: Container(
               height: 40,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: const Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(

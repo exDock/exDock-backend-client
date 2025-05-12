@@ -1,10 +1,13 @@
-import 'package:exdock_backend_client/widgets/exdock_card.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import '../../../utils/MapNotifier.dart';
+// Project imports:
+import 'package:exdock_backend_client/utils/map_notifier.dart';
+import 'package:exdock_backend_client/widgets/exdock_card.dart';
 
-class TextFieldNumberAttribute extends StatefulWidget {
-  const TextFieldNumberAttribute({
+class TextFieldPriceAttribute extends StatefulWidget {
+  const TextFieldPriceAttribute({
     super.key,
     required this.attribute,
     required this.changeAttributeMap,
@@ -14,11 +17,11 @@ class TextFieldNumberAttribute extends StatefulWidget {
   final MapNotifier changeAttributeMap;
 
   @override
-  State<TextFieldNumberAttribute> createState() =>
-      _TextFieldNumberAttributeState();
+  State<TextFieldPriceAttribute> createState() =>
+      _TextFieldPriceAttributeState();
 }
 
-class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
+class _TextFieldPriceAttributeState extends State<TextFieldPriceAttribute> {
   final TextEditingController controller = TextEditingController();
 
   @override
@@ -34,6 +37,11 @@ class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
       child: TextField(
         controller: controller,
         keyboardType: TextInputType.number,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(
+            RegExp(r'^(\d+)?\.?\d{0,2}'),
+          ),
+        ],
         onChanged: (value) {
           if (value == widget.attribute["current_attribute_value"]) {
             widget.changeAttributeMap.removeEntry(
@@ -46,7 +54,7 @@ class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
             value,
           );
         },
-        style: TextStyle(fontSize: 14, height: 1.5),
+        style: const TextStyle(fontSize: 14, height: 1.5),
         decoration: InputDecoration(
           labelText: widget.attribute["attribute_name"] ??
               widget.attribute["attribute_id"],
@@ -58,6 +66,7 @@ class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
             borderRadius: BorderRadius.circular(10),
           ),
           fillColor: Colors.blue,
+          prefixText: "€ ",
         ),
       ),
     );

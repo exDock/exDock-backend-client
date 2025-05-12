@@ -1,12 +1,15 @@
+// Dart imports:
 import 'dart:async';
 
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-import '../../product_home_synchronous.dart';
-import 'filters/bottom_filter_menu.dart';
-import 'filters/id_filter.dart';
-import 'filters/price_filter.dart';
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/product_home_synchronous.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/filters/bottom_filter_menu.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/filters/id_filter.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/filters/price_filter.dart';
 
 class DropdownButtonFilters extends StatefulWidget {
   const DropdownButtonFilters(
@@ -70,8 +73,8 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
   OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlayEntry() {
-    final renderBox = context.findRenderObject() as RenderBox;
-    final position = renderBox.localToGlobal(Offset(-100.0, -100.0));
+    var renderBox = context.findRenderObject() as RenderBox;
+    var position = renderBox.localToGlobal(const Offset(-100.0, -100.0));
 
     return OverlayEntry(
       builder: (context) => Positioned(
@@ -99,8 +102,8 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
                     Flexible(
                       flex: 1,
                       child: Container(
-                        padding: EdgeInsets.all(14),
-                        decoration: BoxDecoration(
+                        padding: const EdgeInsets.all(14),
+                        decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
@@ -112,10 +115,10 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
                           children: [
                             Text(
                               widget.title,
-                              style: TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.black),
                             ),
                             IconButton(
-                              icon: Icon(Icons.close),
+                              icon: const Icon(Icons.close),
                               onPressed: _toggleOverlay,
                             ),
                           ],
@@ -179,7 +182,7 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
         Overlay.of(context).insert(_overlayEntry!);
       }
 
-      Timer(Duration(milliseconds: 100), () => isExpanded = !isExpanded);
+      Timer(const Duration(milliseconds: 100), () => isExpanded = !isExpanded);
     });
   }
 
@@ -205,12 +208,12 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
             borderRadius: BorderRadius.circular(10),
             boxShadow: kBoxShadowList,
           ),
-          padding: EdgeInsets.all(14),
+          padding: const EdgeInsets.all(14),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               if (widget.isIconAtStart) widget.icon,
-              Expanded(
+              const Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12.0),
                   child: Text(

@@ -1,10 +1,14 @@
+// Flutter imports:
 import 'dart:async';
 
+// Package imports:
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:flutter/material.dart';
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -49,8 +53,8 @@ class _NotificationsState extends State<Notifications> {
   }
 
   OverlayEntry _createOverlayEntry() {
-    final renderBox = context.findRenderObject() as RenderBox;
-    final position = renderBox.localToGlobal(Offset.zero);
+    var renderBox = context.findRenderObject() as RenderBox;
+    var position = renderBox.localToGlobal(Offset.zero);
 
     return OverlayEntry(
       builder: (context) => Positioned(

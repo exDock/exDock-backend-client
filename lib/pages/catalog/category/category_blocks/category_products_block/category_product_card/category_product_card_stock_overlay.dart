@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class CategoryProductCardStockOverlay extends StatelessWidget {
   const CategoryProductCardStockOverlay({
@@ -18,7 +21,7 @@ class CategoryProductCardStockOverlay extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
             color: stock != 0 ? Theme.of(context).indicatorColor : Colors.red,
-            borderRadius: BorderRadius.only(bottomRight: Radius.circular(10)),
+            borderRadius: const BorderRadius.only(bottomRight: Radius.circular(10)),
             boxShadow: kBoxShadowList),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

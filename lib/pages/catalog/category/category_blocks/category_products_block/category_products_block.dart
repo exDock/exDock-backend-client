@@ -1,7 +1,10 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/blocks/category_products_block/category_products_grid.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/content/group_cards/category_edit_group_card.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:flutter/material.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class CategoryProductsBlock extends StatefulWidget {
   const CategoryProductsBlock({
@@ -42,10 +45,10 @@ class _CategoryProductsBlockState extends State<CategoryProductsBlock> {
                 "Products",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              Text("TODO: search"),
+              const Text("TODO: search"),
             ],
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           CategoryProductsGrid(
             categoryProducts: widget.currentProducts,
             changeAttributeMap: widget.changeAttributeMap,

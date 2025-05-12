@@ -1,8 +1,11 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_save_button.dart';
 import 'package:exdock_backend_client/widgets/exdock_switch.dart';
-import 'package:flutter/material.dart';
 
 class TopBar extends StatefulWidget {
   const TopBar({
@@ -25,18 +28,18 @@ class _TopBarState extends State<TopBar> {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: darkColour,
         boxShadow: kBoxShadowList,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             width: 35,
           ),
-          Padding(
-            padding: const EdgeInsets.all(12),
+          const Padding(
+            padding: EdgeInsets.all(12),
             child: Text(
               "Product Name",
               style: TextStyle(
@@ -45,7 +48,7 @@ class _TopBarState extends State<TopBar> {
               ),
             ),
           ),
-          Expanded(
+          const Expanded(
             child: SizedBox(),
           ),
           ExDockSaveButton(
@@ -55,10 +58,10 @@ class _TopBarState extends State<TopBar> {
             },
           ),
           Container(
-            padding: EdgeInsets.only(left: 64, right: 12, top: 12),
+            padding: const EdgeInsets.only(left: 64, right: 12, top: 12),
             child: Row(
               children: [
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
@@ -74,7 +77,7 @@ class _TopBarState extends State<TopBar> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 24,
                 ),
                 Column(
@@ -85,7 +88,7 @@ class _TopBarState extends State<TopBar> {
                         return !e;
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     ExDockSwitch(
@@ -96,7 +99,7 @@ class _TopBarState extends State<TopBar> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12,
                 ),
               ],

@@ -1,8 +1,11 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/product/info/blocks/generate_block.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/blocks/product_info_block.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/top_bar/top_bar.dart';
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:flutter/material.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class ProductInfoSynchronous extends StatelessWidget {
   const ProductInfoSynchronous({

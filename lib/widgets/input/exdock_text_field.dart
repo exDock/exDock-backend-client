@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/widgets/exdock_card.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/widgets/exdock_card.dart';
 
 class ExdockTextField extends StatelessWidget {
   const ExdockTextField({
@@ -20,7 +23,7 @@ class ExdockTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         onChanged: onChanged,
-        style: TextStyle(fontSize: 14, height: 1.5),
+        style: const TextStyle(fontSize: 14, height: 1.5),
         decoration: InputDecoration(
           labelText: labelText,
           labelStyle: Theme.of(context).textTheme.bodyMedium,

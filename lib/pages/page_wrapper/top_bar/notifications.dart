@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +32,13 @@ class _NotificationsState extends State<Notifications> {
     "Notification 14",
   ]; // Sample notifications
 
+  OverlayEntry? _overlayEntry;
+  Stream<String>? _notificationStream;
+  StreamSubscription? _subscription;
+  ValueNotifier<List<String>>? _notificationsNotifier;
+
+  void connectToWebsocket() {}
+
   late Widget notificationIcon = Icon(
     Symbols.notifications_rounded,
     color: Theme.of(context).primaryColor,
@@ -41,7 +50,20 @@ class _NotificationsState extends State<Notifications> {
     return token!;
   }
 
-  OverlayEntry? _overlayEntry;
+  @override
+  void initState() {
+    super.initState();
+    _notificationsNotifier = ValueNotifier<List<String>>(notifications);
+    getWebsocketChannel(
+        "ws://127.0.0.1/api/v1/ws/error", _notificationsNotifier!);
+  }
+
+  @override
+  void dispose() {
+    _overlayEntry?.remove();
+    _subscription?.cancel();
+    super.dispose();
+  }
 
   OverlayEntry _createOverlayEntry() {
     final renderBox = context.findRenderObject() as RenderBox;
@@ -73,28 +95,20 @@ class _NotificationsState extends State<Notifications> {
               //     );
               //   },
               // ),
-              child: FutureBuilder(
-                  future: getWebsocketChannel("ws://127.0.0.1/api/v1/ws/error"),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState != ConnectionState.done) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    if (snapshot.hasError) {
-                      // TODO: handle error
-                    }
-
-                    return StreamBuilder(
-                      stream: snapshot.data!.stream,
-                      builder: (context, snapshot) {
-                        return ListTile(
-                          title: Text(snapshot.hasData
-                              ? "${snapshot.data}"
-                              : "No new notifications"),
-                        );
-                      },
-                    );
-                    return const Center(child: CircularProgressIndicator());
-                  }),
+              child: ValueListenableBuilder<List<String>>(
+                valueListenable: _notificationsNotifier!,
+                builder: (context, notifications, child) {
+                  return ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: notifications.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(notifications[index]),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ),
@@ -114,12 +128,6 @@ class _NotificationsState extends State<Notifications> {
       }
       isExpanded = !isExpanded;
     });
-  }
-
-  @override
-  void dispose() {
-    _overlayEntry?.remove();
-    super.dispose();
   }
 
   @override

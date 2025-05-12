@@ -53,10 +53,19 @@ void getWebsocketChannel(String url, ValueNotifier values) async {
           throw NotAuthenticatedException("Authentication failed");
         }
       } else {
-        print("Received message: $message");
-        List<dynamic> existingValues = values.value;
-        existingValues.add(message.toString());
-        values.value = existingValues;
+        if (!isAuthenticated) {
+          channel.sink.close(1000, "Not authenticated");
+          throw NotAuthenticatedException("Not authenticated");
+        }
+        Map<String, dynamic> data = jsonDecode(message);
+        switch (data["type"]) {
+          case "errorNotification":
+            List<dynamic> existingValues = values.value;
+            String errorMessage = data["error"]["errorMessage"];
+            existingValues.add(errorMessage);
+            values.value = existingValues;
+            break;
+        }
       }
     },
     onError: (error) {

@@ -111,7 +111,11 @@ class _NotificationsState extends State<Notifications> {
       child: ValueListenableBuilder(
         valueListenable: _notificationsNotifier!,
         builder: (context, value, child) => GestureDetector(
-          onTap: _toggleOverlay,
+          onTap: () {
+            if (value.isNotEmpty) {
+              _toggleOverlay();
+            }
+          },
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -136,12 +140,13 @@ class _NotificationsState extends State<Notifications> {
                     ),
                   ),
                 ),
-                Icon(
-                  isExpanded
-                      ? Symbols.keyboard_arrow_up_rounded
-                      : Symbols.keyboard_arrow_down_rounded,
-                  color: Colors.black,
-                ),
+                if (value.isNotEmpty)
+                  Icon(
+                    isExpanded
+                        ? Symbols.keyboard_arrow_up_rounded
+                        : Symbols.keyboard_arrow_down_rounded,
+                    color: Colors.black,
+                  ),
               ],
             ),
           ),

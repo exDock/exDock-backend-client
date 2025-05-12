@@ -1,18 +1,14 @@
 // Dart imports:
 import 'dart:async';
 
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-
-// Project imports:
-import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -23,7 +19,7 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   bool isExpanded = false; // To track whether the list is expanded
-  List<String> _notifications = []; // Sample notifications
+  final List<String> _notifications = []; // Sample notifications
 
   OverlayEntry? _overlayEntry;
   ValueNotifier<List<String>>? _notificationsNotifier;
@@ -36,7 +32,7 @@ class _NotificationsState extends State<Notifications> {
   );
 
   Future<String> getToken() async {
-    FlutterSecureStorage storage = FlutterSecureStorage();
+    FlutterSecureStorage storage = const FlutterSecureStorage();
     String? token = await storage.read(key: "jwt");
     return token!;
   }
@@ -130,7 +126,7 @@ class _NotificationsState extends State<Notifications> {
               borderRadius: BorderRadius.circular(10),
               boxShadow: kBoxShadowList,
             ),
-            padding: EdgeInsets.all(14),
+            padding: const EdgeInsets.all(14),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -141,10 +137,10 @@ class _NotificationsState extends State<Notifications> {
                       label: Text("${value.length}"), child: notificationIcon),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Text(
                       value.isEmpty ? "No unread notifications" : value.first,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                   ),
                 ),

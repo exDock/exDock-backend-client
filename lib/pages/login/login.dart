@@ -1,17 +1,15 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:go_router/go_router.dart';
-
 // Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/utils/HTTP/HttpData.dart';
+import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
+import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 import 'package:exdock_backend_client/utils/snackbar/exdock_snackbar.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
-import '../../utils/HTTP/login_requests.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:go_router/go_router.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -38,8 +36,6 @@ class _LoginState extends State<Login> {
       authData,
     );
 
-    print(httpGetData.statusCode);
-
     return httpGetData.statusCode;
   }
 
@@ -60,7 +56,8 @@ class _LoginState extends State<Login> {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: Text("401 has been thrown | user does not have permission"),
+          child:
+              const Text("401 has been thrown | user does not have permission"),
         );
       }
     } else if (statusCode == 403) {
@@ -74,14 +71,15 @@ class _LoginState extends State<Login> {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: Text("404 has been thrown | server not found"),
+          child: const Text("404 has been thrown | server not found"),
         );
       }
     } else if (statusCode == 500) {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: const Text("500 has been thrown | server experienced an error"),
+          child:
+              const Text("500 has been thrown | server experienced an error"),
         );
       }
     } else if (statusCode == 503) {

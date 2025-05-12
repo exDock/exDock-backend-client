@@ -1,11 +1,10 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:exdock_backend_client/pages/catalog/attributes/generate_attribute.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/id_data/category_list.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
+// Project imports:
+import 'package:exdock_backend_client/utils/attributes/generate_attribute.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
+import 'package:flutter/material.dart';
 
 class IdDataBlock extends StatefulWidget {
   const IdDataBlock({
@@ -33,7 +32,6 @@ class _IdDataBlockState extends State<IdDataBlock> {
 
   @override
   void initState() {
-    print(widget.block);
     super.initState();
 
     widget.changeAttributeMap.addListener(

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -36,11 +37,13 @@ void getWebsocketChannel(String url, ValueNotifier values) async {
             channel.sink.close(1000, "No refresh token found");
             throw NotAuthenticatedException("No refresh token found");
           }
+          await refreshTokens(refreshToken);
+          accessToken = await storage.read(key: "access_token");
           channel.sink.add(
             jsonEncode(
               {
                 "type": "authenticate",
-                "token": refreshToken,
+                "token": accessToken,
               },
             ),
           );

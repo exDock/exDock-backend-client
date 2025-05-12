@@ -27,7 +27,7 @@ Future<HttpData> loginRequest(AuthenticationData authData) async {
 
     if (statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
-      Map<String, dynamic> tokens = data["tokens"];
+      Map<String, dynamic> tokens = jsonDecode(data["tokens"]);
       String accessToken = tokens["access_token"];
       String refreshToken = tokens["refresh_token"];
 

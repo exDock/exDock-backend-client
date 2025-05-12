@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class ProductViewSize extends StatelessWidget {
   const ProductViewSize(
@@ -16,9 +19,9 @@ class ProductViewSize extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 140,
-      margin: EdgeInsets.only(left: 42),
-      padding: EdgeInsets.symmetric(horizontal: 27, vertical: 10),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(left: 42),
+      padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 10),
+      decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(20)),
           boxShadow: kBoxShadowList),
@@ -30,22 +33,22 @@ class ProductViewSize extends StatelessWidget {
                   onTap: () {
                     pageNumCallback(size - 1);
                   },
-                  child: Icon(Icons.arrow_back_ios),
+                  child: const Icon(Icons.arrow_back_ios),
                 )
-              : Padding(
+              : const Padding(
                   padding: EdgeInsets.only(right: 24),
                 ),
           size > 9
-              ? Padding(
+              ? const Padding(
                   padding: EdgeInsets.only(right: 2),
                 )
-              : Padding(
+              : const Padding(
                   padding: EdgeInsets.only(right: 10),
                 ),
           Text(
             size.toString(),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 10),
           ),
           size < maxSize
@@ -53,9 +56,9 @@ class ProductViewSize extends StatelessWidget {
                   onTap: () {
                     pageNumCallback(size + 1);
                   },
-                  child: Icon(Icons.arrow_forward_ios),
+                  child: const Icon(Icons.arrow_forward_ios),
                 )
-              : Padding(
+              : const Padding(
                   padding: EdgeInsets.only(right: 17),
                 ),
         ],

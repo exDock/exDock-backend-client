@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class UnsavedChangesOverlay extends StatefulWidget {
   const UnsavedChangesOverlay({
@@ -22,11 +25,11 @@ class _UnsavedChangesOverlayState extends State<UnsavedChangesOverlay> {
         valueListenable: widget.unsavedChangesNotifier,
         builder: (context, value, child) {
           if (!value) {
-            return SizedBox();
+            return const SizedBox();
           }
           return Container(
             height: 36,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: darkColour,
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5)),
               boxShadow: kBoxShadowList,

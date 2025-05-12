@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card.dart';
 
 class ProductInfoCardTitle extends StatelessWidget {
   const ProductInfoCardTitle({
@@ -27,7 +30,7 @@ class ProductInfoCardTitle extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           child,
         ],
       ),

@@ -1,10 +1,16 @@
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/pages/catalog/product/info/product_info_synchronous.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_synchronous.dart';
 import 'package:exdock_backend_client/utils/HTTP/HttpData.dart';
 import 'package:exdock_backend_client/utils/HTTP/post_requests.dart';
 import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:flutter/material.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class ProductInfo extends StatefulWidget {
   const ProductInfo({

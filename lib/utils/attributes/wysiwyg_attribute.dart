@@ -1,8 +1,13 @@
-import 'package:exdock_backend_client/utils/MapNotifier.dart';
-import 'package:exdock_backend_client/widgets/exdock_card.dart';
-import 'package:fleather/fleather.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:fleather/fleather.dart';
 import 'package:parchment_to_html/parachment_to_html.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/utils/map_notifier.dart';
+import 'package:exdock_backend_client/widgets/exdock_card.dart';
 
 class WysiwygAttribute extends StatefulWidget {
   const WysiwygAttribute({
@@ -21,7 +26,7 @@ class WysiwygAttribute extends StatefulWidget {
 class _WysiwygAttributeState extends State<WysiwygAttribute> {
   // TODO: make raw HTML editable
   late FleatherController controller;
-  final ParchmentHtmlCodec converter = ParchmentHtmlCodec();
+  ParchmentHtmlCodec converter = const ParchmentHtmlCodec();
 
   @override
   void initState() {
@@ -68,7 +73,7 @@ class _WysiwygAttributeState extends State<WysiwygAttribute> {
           Padding(
             padding: const EdgeInsets.only(left: 24, right: 24, bottom: 12),
             child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: 75),
+              constraints: const BoxConstraints(minHeight: 75),
               child: FleatherEditor(controller: controller),
             ),
           ),

@@ -1,13 +1,19 @@
+// Dart imports:
 import 'dart:math';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:kumi_popup_window/kumi_popup_window.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
 import 'package:exdock_backend_client/pages/catalog/category/edit/category_edit.dart';
 import 'package:exdock_backend_client/pages/catalog/category/selection_bar/edit_category_structure_popup.dart';
 import 'package:exdock_backend_client/pages/catalog/category/selection_bar/sub_category_row.dart';
 import 'package:exdock_backend_client/pages/catalog/category/selection_bar/top_category_row.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:kumi_popup_window/kumi_popup_window.dart';
 
 class CategorySynchronous extends StatefulWidget {
   const CategorySynchronous({
@@ -93,7 +99,7 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
             iconSize: 24,
             padding: const EdgeInsets.all(12),
             color: Colors.white,
-            icon: Icon(Icons.edit_rounded),
+            icon: const Icon(Icons.edit_rounded),
           ),
         ),
         SizedBox(

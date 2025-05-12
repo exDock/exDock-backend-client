@@ -1,4 +1,11 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:go_router/go_router.dart';
+
 // Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
@@ -7,9 +14,6 @@ import 'package:exdock_backend_client/utils/authentication/authentication_data.d
 import 'package:exdock_backend_client/utils/snackbar/exdock_snackbar.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
-import 'package:flutter/material.dart';
-// Package imports:
-import 'package:go_router/go_router.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

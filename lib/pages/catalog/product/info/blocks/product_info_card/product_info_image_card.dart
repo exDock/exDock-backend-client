@@ -1,9 +1,12 @@
+// Dart imports:
 import 'dart:convert';
-import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:exdock_backend_client/globals/styling.dart';
+import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 

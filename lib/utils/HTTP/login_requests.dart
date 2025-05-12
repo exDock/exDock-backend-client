@@ -21,7 +21,6 @@ Future<HttpData> loginRequest(AuthenticationData authData) async {
         {"email": authData.email, "password": authData.password},
       ),
     );
-    print(response.statusCode);
 
     statusCode = response.statusCode;
 
@@ -31,8 +30,8 @@ Future<HttpData> loginRequest(AuthenticationData authData) async {
       String accessToken = tokens["access_token"];
       String refreshToken = tokens["refresh_token"];
 
-      storage.write(key: "access_token", value: accessToken);
-      storage.write(key: "refresh_token", value: refreshToken);
+      await storage.write(key: "access_token", value: accessToken);
+      await storage.write(key: "refresh_token", value: refreshToken);
     }
   } catch (error) {
     if (kDebugMode) {

@@ -43,8 +43,8 @@ Future<HttpData> standardGetRequest(String endpoint) async {
 
     statusCode = response.statusCode;
     responseBody = response.body;
-  } catch (_) {
-    return HttpData(statusCode: 404, responseBody: "");
+  } catch (e) {
+    throw Exception("Error making GET request: $e");
   }
 
   return HttpData(statusCode: statusCode, responseBody: responseBody);

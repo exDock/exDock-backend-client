@@ -1,19 +1,18 @@
 // Dart imports:
 import 'dart:io';
 
+// Project imports:
+import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
+import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
+import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 // Package imports:
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-// Project imports:
-import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
-import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
-import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
-
 Future<HttpData> standardPostRequest(String endpoint, String body) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
-  int statusCode = 404;
+  int statusCode;
   String responseBody = "";
   String? accessToken = await storage.read(key: "access_token");
   String? refreshToken = await storage.read(key: "refresh_token");
@@ -45,7 +44,9 @@ Future<HttpData> standardPostRequest(String endpoint, String body) async {
 
     statusCode = response.statusCode;
     responseBody = String.fromCharCodes(response.bodyBytes);
-  } catch (_) {}
+  } catch (error) {
+    throw Exception("Error making POST request: $error");
+  }
 
   return HttpData(statusCode: statusCode, responseBody: responseBody);
 }

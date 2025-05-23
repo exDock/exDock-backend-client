@@ -1,7 +1,10 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Project imports:
 import 'package:exdock_backend_client/pages/catalog/category/category_blocks/category_products_block/category_product_card/category_product_card_synchronous.dart';
-import 'package:flutter/material.dart';
 
 class CategoryProductCard extends StatefulWidget {
   const CategoryProductCard({

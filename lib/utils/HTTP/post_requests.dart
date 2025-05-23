@@ -1,8 +1,12 @@
+// Dart imports:
 import 'dart:io';
 
-import 'package:exdock_backend_client/utils/HTTP/HttpData.dart';
+// Package imports:
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+
+// Project imports:
+import 'package:exdock_backend_client/utils/HTTP/HttpData.dart';
 
 Future<HttpData> standardPostRequest(String endpoint, String body) async {
   FlutterSecureStorage storage = FlutterSecureStorage();

@@ -1,6 +1,9 @@
-import 'package:exdock_backend_client/globals/styling.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/styling.dart';
 
 class ProductSearch extends StatefulWidget {
   const ProductSearch({super.key, required this.searchCallback});
@@ -53,12 +56,12 @@ class _ProductSearchState extends State<ProductSearch> {
                   controller: _controller,
                   focusNode: _focusNode,
                   onChanged: (value) => setState(() {}),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                   ),
                 ),
               ),
-              Icon(
+              const Icon(
                 Icons.search,
                 color: Colors.grey,
               ),

@@ -1,10 +1,13 @@
 import 'dart:convert';
 
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-import '../../../../../../globals/styling.dart';
-import '../../../../../../utils/MapNotifier.dart';
+// Project imports:
+import 'package:exdock_backend_client/globals/styling.dart';
+import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 
 class ProductInfoImageCard extends StatefulWidget {
   const ProductInfoImageCard({
@@ -51,7 +54,7 @@ class _ProductInfoImageCardState extends State<ProductInfoImageCard> {
         Column(
           children: [
             ConstrainedBox(
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxHeight: 200,
                 maxWidth: 200,
                 minHeight: 200,
@@ -63,20 +66,20 @@ class _ProductInfoImageCardState extends State<ProductInfoImageCard> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 24),
+              padding: const EdgeInsets.only(top: 24),
               height: 200,
               width: 200,
               child: ListView.builder(
                 itemCount: extensions.length,
                 itemBuilder: (content, index) {
                   return Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                       boxShadow: lightKBoxShadowList,
                       color: Colors.white,
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 5),
-                    margin: EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    margin: const EdgeInsets.only(bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

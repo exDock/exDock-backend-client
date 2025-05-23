@@ -1,9 +1,14 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:hoverable_navigation_rail/hoverable_navigation_rail_destination.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar_hover_menu.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar_hover_menu_data.dart';
 import 'package:exdock_backend_client/pages/page_wrapper/side_bar/simple_hover_menu_button.dart';
-import 'package:flutter/material.dart';
-import 'package:hoverable_navigation_rail/hoverable_navigation_rail_destination.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
   BuildContext context,
@@ -16,13 +21,13 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
   return {
     "/home": HoverableNavigationRailDestination(
       onHoverStateChange: noHoverMenuOnHoverStateChange,
-      icon: Icon(Icons.home_rounded),
-      label: Text("home"),
+      icon: const Icon(Icons.home_rounded),
+      label: const Text("home"),
     ),
     "/sales": HoverableNavigationRailDestination(
       onHoverStateChange: noHoverMenuOnHoverStateChange,
-      icon: Icon(Symbols.request_quote_rounded),
-      label: Text("sales"),
+      icon: const Icon(Symbols.request_quote_rounded),
+      label: const Text("sales"),
     ),
     "/catalog": HoverableNavigationRailDestination(
       onHoverStateChange: onHoverStateChangeHoverMenu(
@@ -43,11 +48,11 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
                       ?.copyWith(color: Colors.white),
                 ),
               ),
-              SimpleHoverMenuButton(
+              const SimpleHoverMenuButton(
                 route: "/catalog/category",
                 buttonText: "category",
               ),
-              SimpleHoverMenuButton(
+              const SimpleHoverMenuButton(
                 route: "/catalog/product",
                 buttonText: "product",
               ),
@@ -55,38 +60,63 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
           ),
         ),
       ),
-      icon: Icon(Symbols.package_2_rounded),
-      label: Text("catalog"),
+      icon: const Icon(Symbols.package_2_rounded),
+      label: const Text("catalog"),
     ),
     "/customers": HoverableNavigationRailDestination(
       onHoverStateChange: noHoverMenuOnHoverStateChange,
-      icon: Icon(Symbols.emoji_people_rounded),
-      label: Text("customers"),
+      icon: const Icon(Symbols.emoji_people_rounded),
+      label: const Text("customers"),
     ),
     "/marketing": HoverableNavigationRailDestination(
       onHoverStateChange: noHoverMenuOnHoverStateChange,
-      icon: Icon(Symbols.campaign_sharp),
-      label: Text("marketing"),
+      icon: const Icon(Symbols.campaign_sharp),
+      label: const Text("marketing"),
     ),
     "/content": HoverableNavigationRailDestination(
       onHoverStateChange: noHoverMenuOnHoverStateChange,
-      icon: Icon(Symbols.newspaper_rounded),
-      label: Text("content"),
+      icon: const Icon(Symbols.newspaper_rounded),
+      label: const Text("content"),
     ),
     "/reports": HoverableNavigationRailDestination(
       onHoverStateChange: noHoverMenuOnHoverStateChange,
-      icon: Icon(Symbols.monitoring_rounded),
-      label: Text("reports"),
+      icon: const Icon(Symbols.monitoring_rounded),
+      label: const Text("reports"),
     ),
     "/stores": HoverableNavigationRailDestination(
-      onHoverStateChange: noHoverMenuOnHoverStateChange,
-      icon: Icon(Symbols.storefront_rounded),
-      label: Text("stores"),
+      icon: const Icon(Symbols.storefront_rounded),
+      label: const Text("stores"),
+      onHoverStateChange: onHoverStateChangeHoverMenu(
+        sideBarHoverMenuData,
+        context,
+        SizedBox(
+          width: 200,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(
+                  "Settings",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: Colors.white),
+                ),
+              ),
+              const SimpleHoverMenuButton(
+                route: "/stores/configuration",
+                buttonText: "configuration",
+              ),
+            ],
+          ),
+        ),
+      ),
     ),
     "/system": HoverableNavigationRailDestination(
       onHoverStateChange: noHoverMenuOnHoverStateChange,
-      icon: Icon(Symbols.host_rounded),
-      label: Text("system"),
+      icon: const Icon(Symbols.host_rounded),
+      label: const Text("system"),
     ),
   };
 }

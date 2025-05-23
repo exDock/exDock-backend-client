@@ -1,6 +1,9 @@
-import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class ExdockCopyButton extends StatefulWidget {
   const ExdockCopyButton({
@@ -29,8 +32,8 @@ class ExdockCopyButton extends StatefulWidget {
 }
 
 class _ExdockCopyButtonState extends State<ExdockCopyButton> {
-  final Widget copyIcon = Icon(Icons.copy);
-  final Widget copiedIcon = Icon(Icons.check, color: mainColour);
+  Widget copyIcon = const Icon(Icons.copy);
+  Widget copiedIcon = const Icon(Icons.check, color: mainColour);
   late Widget activeIcon = copyIcon;
 
   @override
@@ -56,7 +59,7 @@ class _ExdockCopyButtonState extends State<ExdockCopyButton> {
               ),
             );
           }
-          await Future.delayed(Duration(seconds: 2));
+          await Future.delayed(const Duration(seconds: 2));
           setState(() {
             activeIcon = copyIcon;
           });

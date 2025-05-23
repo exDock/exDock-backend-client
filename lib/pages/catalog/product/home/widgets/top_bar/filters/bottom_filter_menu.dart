@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 class BottomFilterMenu extends StatefulWidget {
@@ -15,7 +16,7 @@ class _BottomFilterMenuState extends State<BottomFilterMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(
           top: BorderSide(
@@ -23,11 +24,11 @@ class _BottomFilterMenuState extends State<BottomFilterMenu> {
           ),
         ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -36,14 +37,14 @@ class _BottomFilterMenuState extends State<BottomFilterMenu> {
                     widget.resetFilters();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color(0xFF2A9D8F),
+                        color: const Color(0xFF2A9D8F),
                       ),
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Reset all',
                         style: TextStyle(
@@ -58,15 +59,15 @@ class _BottomFilterMenuState extends State<BottomFilterMenu> {
                     widget.applyFilters();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color(0xFF2A9D8F),
+                        color: const Color(0xFF2A9D8F),
                       ),
                       borderRadius: BorderRadius.circular(5),
-                      color: Color(0xFF2A9D8F),
+                      color: const Color(0xFF2A9D8F),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'APPLY',
                         style: TextStyle(

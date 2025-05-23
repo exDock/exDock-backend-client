@@ -1,6 +1,9 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/category/category_data.dart';
 import 'package:exdock_backend_client/pages/catalog/category/category_synchronous.dart';
-import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {
   const Category({super.key, this.selectedCategory});
@@ -39,7 +42,6 @@ class Category extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("selectedCategory: $selectedCategory");
     return FutureBuilder(
       future: getCategoryTree(),
       builder: (context, snapshot) {
@@ -53,7 +55,7 @@ class Category extends StatelessWidget {
         if (snapshot.hasError) {
           //
         }
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

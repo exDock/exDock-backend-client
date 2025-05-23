@@ -1,8 +1,13 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:go_router/go_router.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/pages/catalog/category/category.dart';
 import 'package:exdock_backend_client/pages/catalog/product/home/product.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 List<GoRoute> getCatalogRoutes() {
   return [
@@ -12,11 +17,11 @@ List<GoRoute> getCatalogRoutes() {
     ),
     GoRoute(
       path: '/catalog/product',
-      builder: (context, state) => Product(),
+      builder: (context, state) => const Product(),
     ),
     GoRoute(
       path: '/catalog/category',
-      builder: (context, state) => Category(),
+      builder: (context, state) => const Category(),
     ),
     GoRoute(
       path: '/catalog/category/:selectedCategory',

@@ -1,11 +1,16 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:go_router/go_router.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/utils/HTTP/HttpData.dart';
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 import 'package:exdock_backend_client/utils/snackbar/exdock_snackbar.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../utils/HTTP/login_requests.dart';
 
@@ -40,7 +45,7 @@ class _LoginState extends State<Login> {
   }
 
   void loginButtonFunction() async {
-    final int statusCode = await loginServer(
+    int statusCode = await loginServer(
       emailController.text,
       passwordController.text,
     );
@@ -63,7 +68,7 @@ class _LoginState extends State<Login> {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: Text("403 has been thrown | invalid credentials"),
+          child: const Text("403 has been thrown | invalid credentials"),
         );
       }
     } else if (statusCode == 404) {
@@ -77,14 +82,14 @@ class _LoginState extends State<Login> {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: Text("500 has been thrown | server experienced an error"),
+          child: const Text("500 has been thrown | server experienced an error"),
         );
       }
     } else if (statusCode == 503) {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: Text("503 has been thrown | connection error"),
+          child: const Text("503 has been thrown | connection error"),
         );
       }
     }
@@ -105,7 +110,7 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("exDock login"),
+              const Text("exDock login"),
               Text(
                 "website name",
                 style: Theme.of(context).textTheme.headlineLarge,

@@ -1,8 +1,10 @@
-import 'package:exdock_backend_client/pages/catalog/product/home/widgets/middle_bar/product_view_size.dart';
-import 'package:exdock_backend_client/pages/catalog/product/home/widgets/middle_bar/remove_filter_button.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-import 'filter_list.dart';
+// Project imports:
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/middle_bar/filter_list.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/middle_bar/product_view_size.dart';
+import 'package:exdock_backend_client/pages/catalog/product/home/widgets/middle_bar/remove_filter_button.dart';
 
 class ProductMiddleBar extends StatelessWidget {
   const ProductMiddleBar({
@@ -28,7 +30,7 @@ class ProductMiddleBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      padding: EdgeInsets.only(left: 16.0, top: 40.0),
+      padding: const EdgeInsets.only(left: 16.0, top: 40.0),
       child: Row(
         children: [
           Expanded(

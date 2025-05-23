@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:exdock_backend_client/globals/globals.dart';
+
+// Package imports:
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/globals.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -36,8 +41,8 @@ class _NotificationsState extends State<Notifications> {
   OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlayEntry() {
-    final renderBox = context.findRenderObject() as RenderBox;
-    final position = renderBox.localToGlobal(Offset.zero);
+    var renderBox = context.findRenderObject() as RenderBox;
+    var position = renderBox.localToGlobal(Offset.zero);
 
     return OverlayEntry(
       builder: (context) => Positioned(
@@ -104,7 +109,7 @@ class _NotificationsState extends State<Notifications> {
             borderRadius: BorderRadius.circular(10),
             boxShadow: kBoxShadowList,
           ),
-          padding: EdgeInsets.all(14),
+          padding: const EdgeInsets.all(14),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -116,12 +121,12 @@ class _NotificationsState extends State<Notifications> {
                     child: notificationIcon),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
                     notifications.isEmpty
                         ? "No unread notifications"
                         : notifications.first,
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ),

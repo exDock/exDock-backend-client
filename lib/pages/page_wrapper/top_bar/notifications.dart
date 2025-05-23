@@ -1,11 +1,16 @@
+// Dart imports:
+import 'dart:async';
+
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 // Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -16,29 +21,42 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   bool isExpanded = false; // To track whether the list is expanded
-  List<String> notifications = [
-    "Notification 1",
-    "Notification 2",
-    "Notification 3",
-    "Notification 4",
-    "Notification 5",
-    "Notification 6",
-    "Notification 7",
-    "Notification 8",
-    "Notification 9",
-    "Notification 10",
-    "Notification 11",
-    "Notification 12",
-    "Notification 13",
-    "Notification 14",
-  ]; // Sample notifications
+  final List<String> _notifications = [];
+
+  OverlayEntry? _overlayEntry;
+  ValueNotifier<List<String>>? _notificationsNotifier;
 
   late Widget notificationIcon = Icon(
     Symbols.notifications_rounded,
     color: Theme.of(context).primaryColor,
   );
 
-  OverlayEntry? _overlayEntry;
+  Future<String> getToken() async {
+    FlutterSecureStorage storage = const FlutterSecureStorage();
+    String? token = await storage.read(key: "jwt");
+    return token!;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _notificationsNotifier = ValueNotifier<List<String>>(_notifications);
+    //TODO: Get uri from config
+    String baseUri = "127.0.0.1";
+    try {
+      Uri uri = Uri.parse("http://$baseUri/api/v1/ws/error");
+      getWebsocketChannel(uri, _notificationsNotifier!);
+    } catch (e) {
+      throw Exception("Error parsing URI: $e");
+    }
+  }
+
+  @override
+  void dispose() {
+    _overlayEntry?.remove();
+    _notificationsNotifier?.dispose();
+    super.dispose();
+  }
 
   OverlayEntry _createOverlayEntry() {
     var renderBox = context.findRenderObject() as RenderBox;
@@ -61,12 +79,17 @@ class _NotificationsState extends State<Notifications> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: notifications.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(notifications[index]),
+              child: ValueListenableBuilder<List<String>>(
+                valueListenable: _notificationsNotifier!,
+                builder: (context, value, child) {
+                  return ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: value.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(value[index]),
+                      );
+                    },
                   );
                 },
               ),
@@ -92,51 +115,50 @@ class _NotificationsState extends State<Notifications> {
   }
 
   @override
-  void dispose() {
-    _overlayEntry?.remove();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 400,
-      child: GestureDetector(
-        onTap: _toggleOverlay,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: kBoxShadowList,
-          ),
-          padding: const EdgeInsets.all(14),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              if (notifications.isEmpty)
-                notificationIcon
-              else
-                Badge(
-                    label: Text("${notifications.length}"),
-                    child: notificationIcon),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Text(
-                    notifications.isEmpty
-                        ? "No unread notifications"
-                        : notifications.first,
-                    style: const TextStyle(color: Colors.black),
+      child: ValueListenableBuilder(
+        valueListenable: _notificationsNotifier!,
+        builder: (context, value, child) => GestureDetector(
+          onTap: () {
+            if (value.isNotEmpty) {
+              _toggleOverlay();
+            }
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: kBoxShadowList,
+            ),
+            padding: const EdgeInsets.all(14),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (value.isEmpty)
+                  notificationIcon
+                else
+                  Badge(
+                      label: Text("${value.length}"), child: notificationIcon),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Text(
+                      value.isEmpty ? "No unread notifications" : value.first,
+                      style: const TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
-              ),
-              Icon(
-                isExpanded
-                    ? Symbols.keyboard_arrow_up_rounded
-                    : Symbols.keyboard_arrow_down_rounded,
-                color: Colors.black,
-              ),
-            ],
+                if (value.isNotEmpty)
+                  Icon(
+                    isExpanded
+                        ? Symbols.keyboard_arrow_up_rounded
+                        : Symbols.keyboard_arrow_down_rounded,
+                    color: Colors.black,
+                  ),
+              ],
+            ),
           ),
         ),
       ),

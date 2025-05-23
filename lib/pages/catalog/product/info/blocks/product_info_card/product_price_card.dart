@@ -1,4 +1,6 @@
 // Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -61,18 +63,15 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
       },
     );
 
-    if (widget.block.value['sale_dates'] != null) {
-      List<String> startDateSplit = widget
-          .block.value['sale_dates'][0]['current_attribute_value']
-          .split('-');
+    if (widget.block.value['product_sale_dates'] != null) {
+      List<String> startDateSplit =
+          widget.block.value['product_sale_dates'][0].split('-');
       startDate = DateTime.utc(int.parse(startDateSplit[0]),
           int.parse(startDateSplit[1]), int.parse(startDateSplit[2]));
     }
-    if (widget.block.value['sale_dates'][1]['current_attribute_value'] !=
-        null) {
-      List<String> endDateSplit = widget
-          .block.value['sale_dates'][1]['current_attribute_value']
-          .split('-');
+    if (widget.block.value['product_sale_dates'][1] != null) {
+      List<String> endDateSplit =
+          widget.block.value['product_sale_dates'][1].split('-');
       endDate = DateTime.utc(int.parse(endDateSplit[0]),
           int.parse(endDateSplit[1]), int.parse(endDateSplit[2]));
     }

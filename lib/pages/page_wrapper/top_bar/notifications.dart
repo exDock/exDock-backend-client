@@ -24,8 +24,6 @@ class _NotificationsState extends State<Notifications> {
   OverlayEntry? _overlayEntry;
   ValueNotifier<List<String>>? _notificationsNotifier;
 
-  void connectToWebsocket() {}
-
   late Widget notificationIcon = Icon(
     Symbols.notifications_rounded,
     color: Theme.of(context).primaryColor,

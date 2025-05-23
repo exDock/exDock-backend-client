@@ -39,8 +39,10 @@ class _NotificationsState extends State<Notifications> {
   void initState() {
     super.initState();
     _notificationsNotifier = ValueNotifier<List<String>>(_notifications);
+    //TODO: Get uri from config
+    String baseUri = "127.0.0.1";
     getWebsocketChannel(
-        "ws://127.0.0.1/api/v1/ws/error", _notificationsNotifier!);
+        "ws://$baseUri/api/v1/ws/error", _notificationsNotifier!);
   }
 
   @override

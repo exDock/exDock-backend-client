@@ -1,15 +1,14 @@
 // Dart imports:
 import 'dart:io';
 
-// Package imports:
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
-import 'package:jwt_decoder/jwt_decoder.dart';
-
 // Project imports:
 import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
 import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
+// Package imports:
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 Future<HttpData> standardGetRequest(String endpoint) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
@@ -43,7 +42,7 @@ Future<HttpData> standardGetRequest(String endpoint) async {
     );
 
     statusCode = response.statusCode;
-    responseBody = String.fromCharCodes(response.bodyBytes);
+    responseBody = response.body;
   } catch (_) {
     return HttpData(statusCode: 404, responseBody: "");
   }

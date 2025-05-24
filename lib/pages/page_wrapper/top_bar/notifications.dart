@@ -42,7 +42,10 @@ class _NotificationsState extends State<Notifications> {
     _notificationsNotifier = ValueNotifier<List<String>>(_notifications);
 
     try {
-      Uri uri = Uri.parse("ws://$baseUrl/api/v1/ws/error");
+      String websocketUrl = baseUrl.contains("http")
+          ? baseUrl.replaceFirst("http", "ws")
+          : baseUrl.replaceFirst("https", "wss");
+      Uri uri = Uri.parse("$websocketUrl/api/v1/ws/error");
       getWebsocketChannel(uri, _notificationsNotifier!);
     } catch (e) {
       throw Exception("Error parsing URI: $e");

@@ -14,7 +14,20 @@ class _SystemState extends State<System> {
   Future<Map<String, dynamic>> getSystemData() async {
     // Simulate a network request or data fetching
     await Future.delayed(const Duration(seconds: 2));
-    return {};
+    return {
+      "Back Office settings": {
+        "block_type": "standard",
+        "attributes": [
+          {
+            "attribute_id": "backend_url",
+            "attribute_name": "Backend URL",
+            "attribute_type": "text",
+            "current_attribute_value": "127.0.0.1",
+          }
+        ]
+      },
+      "Backend settings": {"block_type": "standard", "attributes": []},
+    };
   }
 
   @override

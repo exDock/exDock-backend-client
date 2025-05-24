@@ -19,10 +19,6 @@ class _SystemState extends State<System> {
     // Simulate a network request or data fetching
     HttpData httpData = await standardGetRequest("/api/v1/system/test");
 
-    if (httpData.statusCode != 200) {
-      throw Exception("Failed to load system data");
-    }
-
     return jsonDecode(httpData.responseBody!) as Map<String, dynamic>;
   }
 
@@ -32,7 +28,7 @@ class _SystemState extends State<System> {
         future: getSystemData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return const Center(child: Text("Error loading system data"));
+            return const Placeholder();
           }
 
           if (snapshot.connectionState == ConnectionState.done) {

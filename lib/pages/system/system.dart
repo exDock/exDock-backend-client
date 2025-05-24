@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:exdock_backend_client/pages/system/system_synchronous.dart';
+import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
 class System extends StatefulWidget {
@@ -9,10 +11,10 @@ class System extends StatefulWidget {
 }
 
 class _SystemState extends State<System> {
-  Future<String> getSystemData() async {
+  Future<Map<String, dynamic>> getSystemData() async {
     // Simulate a network request or data fetching
     await Future.delayed(const Duration(seconds: 2));
-    return "System Data Loaded";
+    return {};
   }
 
   @override
@@ -25,11 +27,9 @@ class _SystemState extends State<System> {
           }
 
           if (snapshot.connectionState == ConnectionState.done) {
-            return Center(
-              child: Text(
-                snapshot.data ?? "No data available",
-                style: const TextStyle(fontSize: 20),
-              ),
+            return SystemSynchronous(
+              blocks: snapshot.data!,
+              changeSettingsMap: MapNotifier(),
             );
           }
           return const Center(child: CircularProgressIndicator());

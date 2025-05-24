@@ -18,7 +18,7 @@ Future<HttpData> standardGetRequest(String endpoint) async {
   String? accessToken = await storage.read(key: "access_token");
   String? refreshToken = await storage.read(key: "refresh_token");
 
-  Uri uri = Uri.http(baseUrl, endpoint);
+  Uri uri = Uri.parse(baseUrl + endpoint);
   if (accessToken == null) {
     return HttpData(statusCode: 401, responseBody: null);
   }

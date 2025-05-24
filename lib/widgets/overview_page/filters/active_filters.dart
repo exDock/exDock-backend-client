@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
+import 'package:exdock_backend_client/widgets/pagination/pagination_selector_simple.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -7,9 +9,14 @@ import 'package:exdock_backend_client/widgets/overview_page/filters/filter_widge
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/filter.dart';
 
 class ActiveFilters extends StatefulWidget {
-  const ActiveFilters({super.key, required this.filters});
+  const ActiveFilters({
+    super.key,
+    required this.filters,
+    required this.pageNotifier,
+  });
 
   final FilterNotifier filters;
+  final PageNotifier pageNotifier;
 
   @override
   State<ActiveFilters> createState() => _ActiveFiltersState();
@@ -66,6 +73,15 @@ class _ActiveFiltersState extends State<ActiveFilters> {
               },
             ),
           ),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                widget.filters.reset();
+              });
+            },
+            child: const Text("Clear all"),
+          ),
+          PaginationSelectorSimple(pageNotifier: widget.pageNotifier),
         ],
       ),
     );

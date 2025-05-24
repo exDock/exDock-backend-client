@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -17,6 +18,7 @@ class OverviewPageContentBody extends StatelessWidget {
     required this.tableWidth,
     required this.allIds,
     required this.selectedIds,
+    required this.pageNotifier,
   });
 
   final List<OverviewPageColumnData> columnsToRetrieve;
@@ -25,28 +27,32 @@ class OverviewPageContentBody extends StatelessWidget {
   final double tableWidth;
   final Set<String> allIds;
   final IdSetNotifier selectedIds;
+  final PageNotifier pageNotifier;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getPages.getOverviewPagePage(1), // TODO: make page number dynamic
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            !snapshot.hasError) {
-          return OverviewPageContentBodySynchronous(
-            page: snapshot.data!,
-            tableWidth: tableWidth,
-          );
-        }
-        if (snapshot.hasError) {
-          return Center(
-            child: Text("an error occurred: ${snapshot.error.toString()}"),
-          );
-        }
+    return ValueListenableBuilder(
+      valueListenable: pageNotifier,
+      builder: (context, value, child) => FutureBuilder(
+        future: getPages.getOverviewPagePage(value + 1),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              !snapshot.hasError) {
+            return OverviewPageContentBodySynchronous(
+              page: snapshot.data!,
+              tableWidth: tableWidth,
+            );
+          }
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("an error occurred: ${snapshot.error.toString()}"),
+            );
+          }
 
-        // TODO: replace with exdock page loading widget once available on main
-        return const Center(child: CircularProgressIndicator());
-      },
+          // TODO: replace with exdock page loading widget once available on main
+          return const Center(child: CircularProgressIndicator());
+        },
+      ),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:exdock_backend_client/widgets/overview_page/content/columns/over
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_page.dart';
 import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
+import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
 
 class RetrieveOverviewPagePages {
   RetrieveOverviewPagePages({
@@ -11,9 +12,10 @@ class RetrieveOverviewPagePages {
     required this.filters,
     required this.allIds,
     required this.selectedIds,
+    required this.pageNotifier,
     this.columns,
     this.pageSize = 10,
-    this.currentPage = 1,
+    this.currentPage = 0,
     this.cacheForwards = 0,
     this.cacheBackwards = 0,
   }) {
@@ -27,10 +29,12 @@ class RetrieveOverviewPagePages {
     List<OverviewPageColumnData>? columns,
     Set<String> allIds,
     IdSetNotifier selectedIds,
+    PageNotifier pageNotifier,
   ) getRows;
   final FilterNotifier filters;
   final Set<String> allIds;
   final IdSetNotifier selectedIds;
+  final PageNotifier pageNotifier;
 
   final int pageSize;
   int currentPage;
@@ -43,19 +47,8 @@ class RetrieveOverviewPagePages {
     int pageNumber, {
     bool strict = true,
   }) async {
-    if (pages.isNotEmpty) {
-      int returnedPageNumber = pageNumber;
-      while (returnedPageNumber >= pages.length) {
-        returnedPageNumber -= 1;
-      }
-
-      if (returnedPageNumber != pageNumber) {
-        return pages[returnedPageNumber]!;
-      }
-
-      if (pages[pageNumber - 1] != null) {
-        return pages[pageNumber - 1]!;
-      }
+    if (pages.length >= pageNumber && pages[pageNumber - 1] != null) {
+      return pages[pageNumber - 1]!;
     }
 
     List<OverviewPageRow> rows = await getRows(
@@ -63,6 +56,7 @@ class RetrieveOverviewPagePages {
       columns,
       allIds,
       selectedIds,
+      pageNotifier,
     );
     OverviewPagePage overviewPagePage = OverviewPagePage(
       pageNumber: pageNumber,
@@ -73,6 +67,7 @@ class RetrieveOverviewPagePages {
           columns,
           allIds,
           selectedIds,
+          pageNotifier,
         );
       },
     );

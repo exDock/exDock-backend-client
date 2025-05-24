@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -17,6 +18,7 @@ class OverviewPageContent extends StatefulWidget {
     required this.filters,
     required this.allIds,
     required this.selectedIds,
+    required this.pageNotifier,
   });
 
   final List<OverviewPageColumnData> visibleColumns;
@@ -24,6 +26,7 @@ class OverviewPageContent extends StatefulWidget {
   final FilterNotifier filters;
   final Set<String> allIds;
   final IdSetNotifier selectedIds;
+  final PageNotifier pageNotifier;
 
   @override
   State<OverviewPageContent> createState() => _OverviewPageContentState();
@@ -55,6 +58,7 @@ class _OverviewPageContentState extends State<OverviewPageContent> {
               tableWidth: tableWidth,
               allIds: widget.allIds,
               selectedIds: widget.selectedIds,
+              pageNotifier: widget.pageNotifier,
             ),
           ),
         ],

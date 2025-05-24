@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -35,14 +36,18 @@ class _PagesOverviewState extends State<PagesOverview> {
     List<OverviewPageColumnData>? columns,
     Set<String> allIds,
     IdSetNotifier selectedIds,
+    PageNotifier pageNotifier,
   ) getPagesRows() {
     Future<List<OverviewPageRow>> getRows(
       FilterNotifier filters,
       List<OverviewPageColumnData>? columns,
       Set<String> allIds,
       IdSetNotifier selectedIds,
-    ) async =>
-        [
+      PageNotifier pageNotifier,
+    ) async {
+      pageNotifier.maxPage = 1;
+      if (pageNotifier.value == 0) {
+        return [
           OverviewPageRow(
             id: 'page_1',
             name: "Page 1",
@@ -83,20 +88,203 @@ class _PagesOverviewState extends State<PagesOverview> {
             },
             allIds: allIds,
             selectedIds: selectedIds,
-          )
+          ),
+          OverviewPageRow(
+            id: 'page_4',
+            name: "Page 4",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_5',
+            name: "Page 5",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_6',
+            name: "Page 6",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_7',
+            name: "Page 7",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_8',
+            name: "Page 8",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_9',
+            name: "Page 9",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_10',
+            name: "Page 10",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
         ];
+      }
+      if (pageNotifier.value == 1) {
+        return [
+          OverviewPageRow(
+            id: 'page_11',
+            name: "Page 11",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_12',
+            name: "Page 12",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_13',
+            name: "Page 13",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_14',
+            name: "Page 14",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+          OverviewPageRow(
+            id: 'page_15',
+            name: "Page 15",
+            visibleColumns: visibleColumns,
+            columnValues: const {
+              "column_1": "value_1",
+              "column_2": "value_2",
+              "column_3": "value_3",
+              "column_4": "value_4",
+              "column_5": "value_5",
+            },
+            allIds: allIds,
+            selectedIds: selectedIds,
+          ),
+        ];
+      }
+      throw Exception("In this mock data, only 2 pages exist");
+    }
 
     return getRows;
   }
 
-  Future<Map<String, dynamic>> getPagesOverviewData() async {
-    return {
-      "columns": await getPagesColumns(),
-      "rows": getPagesRows(),
-    };
+  Future<
+      (
+        List<OverviewPageColumnData>,
+        Future<List<OverviewPageRow>> Function(
+          FilterNotifier filters,
+          List<OverviewPageColumnData>? columns,
+          Set<String> allIds,
+          IdSetNotifier selectedIds,
+          PageNotifier pageNotifier,
+        )
+      )> getPagesOverviewData() async {
+    return (await getPagesColumns(), getPagesRows());
   }
 
   final FilterNotifier filters = FilterNotifier();
+  final PageNotifier pageNotifier = PageNotifier(pageSize: 10);
 
   @override
   Widget build(BuildContext context) {
@@ -106,14 +294,16 @@ class _PagesOverviewState extends State<PagesOverview> {
         if (snapshot.connectionState == ConnectionState.done &&
             !snapshot.hasError) {
           return OverviewPage(
-            columns: snapshot.data!['columns'],
+            columns: snapshot.data!.$1,
             visibleColumns: visibleColumns,
             filters: filters,
+            pageNotifier: pageNotifier,
             getPages: RetrieveOverviewPagePages(
-              getRows: snapshot.data!['rows'],
+              getRows: snapshot.data!.$2,
               filters: filters,
               allIds: allIds,
               selectedIds: selectedIds,
+              pageNotifier: pageNotifier,
             ),
             individualName: "page",
             allIds: allIds,

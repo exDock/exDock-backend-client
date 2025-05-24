@@ -3,8 +3,8 @@ import 'package:exdock_backend_client/pages/system/blocks/standard_system_block.
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
-class GenerateBlock extends StatelessWidget {
-  const GenerateBlock({
+class GenerateSystemBlock extends StatelessWidget {
+  const GenerateSystemBlock({
     super.key,
     required this.block,
     required this.changeSettingsMap,

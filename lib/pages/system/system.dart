@@ -1,5 +1,9 @@
 // Flutter imports:
+import 'dart:convert';
+
 import 'package:exdock_backend_client/pages/system/system_synchronous.dart';
+import 'package:exdock_backend_client/utils/HTTP/get_request.dart';
+import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -13,21 +17,13 @@ class System extends StatefulWidget {
 class _SystemState extends State<System> {
   Future<Map<String, dynamic>> getSystemData() async {
     // Simulate a network request or data fetching
-    await Future.delayed(const Duration(seconds: 2));
-    return {
-      "Back Office settings": {
-        "block_type": "standard",
-        "attributes": [
-          {
-            "attribute_id": "backend_url",
-            "attribute_name": "Backend URL",
-            "attribute_type": "text",
-            "current_attribute_value": "127.0.0.1",
-          }
-        ]
-      },
-      "Backend settings": {"block_type": "standard", "attributes": []},
-    };
+    HttpData httpData = await standardGetRequest("/api/v1/system/test");
+
+    if (httpData.statusCode != 200) {
+      throw Exception("Failed to load system data");
+    }
+
+    return jsonDecode(httpData.responseBody!) as Map<String, dynamic>;
   }
 
   @override

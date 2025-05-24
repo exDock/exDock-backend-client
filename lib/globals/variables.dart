@@ -1,11 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_preferences/shared_preferences.dart';
-
 // Project imports:
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:shared_preferences/shared_preferences.dart';
 
 late final SharedPreferences prefs;
 
@@ -28,3 +26,6 @@ class StringNotifier extends ChangeNotifier {
 }
 
 StringNotifier pathNotifier = StringNotifier(Uri.base.path);
+
+//TODO: Make it so that the base URL is set in the backend
+String baseUrl = "127.0.0.1:80";

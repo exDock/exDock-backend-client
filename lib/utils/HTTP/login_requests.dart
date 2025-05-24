@@ -2,19 +2,17 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
-
+import 'package:exdock_backend_client/globals/variables.dart';
 // Project imports:
 import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
 
 Future<HttpData> loginRequest(AuthenticationData authData) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
   int statusCode;
-  String baseUrl = "http://127.0.0.1:80";
 
-  // TODO: add server from config
   Uri uri = Uri.parse("$baseUrl/api/v1/token");
   try {
     http.Response response = await http.post(

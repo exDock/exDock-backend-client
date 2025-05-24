@@ -2,14 +2,14 @@
 import 'dart:io';
 
 // Package imports:
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:http/http.dart' as http;
-import 'package:jwt_decoder/jwt_decoder.dart';
-
+import 'package:exdock_backend_client/globals/variables.dart';
 // Project imports:
 import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
 import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 Future<HttpData> standardPostRequest(String endpoint, String body) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
@@ -18,8 +18,7 @@ Future<HttpData> standardPostRequest(String endpoint, String body) async {
   String? accessToken = await storage.read(key: "access_token");
   String? refreshToken = await storage.read(key: "refresh_token");
 
-  // TODO: add server from config
-  Uri uri = Uri.http("127.0.0.1", endpoint);
+  Uri uri = Uri.http(baseUrl, endpoint);
   if (accessToken == null) {
     throw NotAuthenticatedException("No access token found");
   }

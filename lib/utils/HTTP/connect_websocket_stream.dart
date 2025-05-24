@@ -1,21 +1,22 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-
-// Package imports:
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
-
 // Project imports:
 import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+// Package imports:
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 void getWebsocketChannel(Uri wsUrl, ValueNotifier values) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
   String? accessToken = await storage.read(key: "access_token");
   String? refreshToken = await storage.read(key: "refresh_token");
+  if (wsUrl.scheme != "ws" && wsUrl.scheme != "wss") {
+    throw ArgumentError("WebSocket URL must start with 'ws://' or 'wss://'");
+  }
   var channel = WebSocketChannel.connect(wsUrl);
   bool isFirstAttempt = true;
   bool isAuthenticated = false;

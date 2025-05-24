@@ -45,10 +45,10 @@ class _StandardSystemBlockState extends State<StandardSystemBlock> {
       unsavedChangesNotifier: unsavedChangesNotifier,
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: widget.block.value['settings'].length,
+        itemCount: widget.block.value['attributes'].length,
         itemBuilder: (context, index) {
           Widget child = GenerateAttribute(
-            attribute: widget.block.value['settings'][index],
+            attribute: widget.block.value['attributes'][index],
             changeAttributeMap: widget.changeSettingsMap,
           );
           if (index != 0) {

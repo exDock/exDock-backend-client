@@ -43,6 +43,7 @@ class _OverviewPageContentState extends State<OverviewPageContent> {
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           OverviewPageContentHeader(
             visibleColumns: widget.visibleColumns,

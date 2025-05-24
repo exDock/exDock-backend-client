@@ -16,6 +16,7 @@ class GenerateSystemBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (block.value["block_type"] == "standard") {
+      print(block.value["attributes"]);
       return StandardSystemBlock(
         block: block,
         changeSettingsMap: changeSettingsMap,

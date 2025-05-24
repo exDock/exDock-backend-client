@@ -1,16 +1,14 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
-
 // Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -44,7 +42,7 @@ class _NotificationsState extends State<Notifications> {
     //TODO: Get uri from config
     String baseUri = "127.0.0.1";
     try {
-      Uri uri = Uri.parse("http://$baseUri/api/v1/ws/error");
+      Uri uri = Uri.parse("ws://$baseUri/api/v1/ws/error");
       getWebsocketChannel(uri, _notificationsNotifier!);
     } catch (e) {
       throw Exception("Error parsing URI: $e");

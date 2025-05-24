@@ -3,6 +3,7 @@ import 'dart:async';
 
 // Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
+import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -39,10 +40,9 @@ class _NotificationsState extends State<Notifications> {
   void initState() {
     super.initState();
     _notificationsNotifier = ValueNotifier<List<String>>(_notifications);
-    //TODO: Get uri from config
-    String baseUri = "127.0.0.1";
+
     try {
-      Uri uri = Uri.parse("ws://$baseUri/api/v1/ws/error");
+      Uri uri = Uri.parse("ws://$baseUrl/api/v1/ws/error");
       getWebsocketChannel(uri, _notificationsNotifier!);
     } catch (e) {
       throw Exception("Error parsing URI: $e");

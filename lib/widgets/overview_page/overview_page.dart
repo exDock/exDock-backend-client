@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
 import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class OverviewPage extends StatefulWidget {
   });
 
   final List<OverviewPageColumnData> columns;
-  final List<OverviewPageColumnData> visibleColumns;
+  final VisibleColumnsNotifier visibleColumns;
   final RetrieveOverviewPagePages getPages;
   final List<BulkAction> bulkActions;
   final FilterNotifier filters;
@@ -46,8 +47,8 @@ class _OverviewPageState extends State<OverviewPage> {
     super.initState();
 
     for (OverviewPageColumnData column in widget.columns) {
-      if (!widget.visibleColumns.contains(column)) {
-        widget.visibleColumns.add(column);
+      if (!widget.visibleColumns.containsColumn(column)) {
+        widget.visibleColumns.addColumn(column);
       }
     }
   }

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -24,7 +25,7 @@ class OverviewPageRow extends StatefulWidget {
   final String name;
 
   /// All the columns that are visible in the table
-  final List<OverviewPageColumnData> visibleColumns;
+  final VisibleColumnsNotifier visibleColumns;
 
   /// All column values | {key: value}
   final Map<String, dynamic> columnValues;
@@ -51,7 +52,7 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
   Widget build(BuildContext context) {
     double contentWidth =
         225; // Initial width: 50 (selectAll) + 75 (id) + 100 (name)
-    for (OverviewPageColumnData column in widget.visibleColumns) {
+    for (OverviewPageColumnData column in widget.visibleColumns.value) {
       contentWidth += column.width;
     }
 
@@ -97,13 +98,13 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
               cellValue: widget.name,
               width: 100,
             ),
-            ...widget.visibleColumns.asMap().entries.map((entry) {
+            ...widget.visibleColumns.value.asMap().entries.map((entry) {
               int index = entry.key;
               OverviewPageColumnData column = entry.value;
               return OverviewPageRowCellString(
                 cellValue: widget.columnValues[column.columnKey],
                 width: column.width,
-                isLast: index == widget.visibleColumns.length - 1,
+                isLast: index == widget.visibleColumns.value.length - 1,
               );
             }),
           ],

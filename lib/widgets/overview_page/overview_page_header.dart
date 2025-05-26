@@ -2,6 +2,7 @@
 import 'dart:math';
 
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class OverviewPageHeader extends StatefulWidget {
   });
 
   final List<OverviewPageColumnData> columns;
-  final List<OverviewPageColumnData> visibleColumns;
+  final VisibleColumnsNotifier visibleColumns;
   final List<BulkAction> bulkActions;
   final FilterNotifier filters;
   final String? individualName;
@@ -109,17 +110,22 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
                   icon: Icons.filter_alt_rounded,
                 ),
                 const SizedBox(width: 12),
-                // TODO: view settings
                 ExdockButton(
                   label: "view",
                   onPressed: () {
-                    showPopupWindow(context, childFun: (pop) {
-                      return VisibleColumnsSelection(
-                        key: GlobalKey(),
-                        columns: widget.columns,
-                        visibleColumns: widget.visibleColumns,
-                      );
-                    });
+                    showPopupWindow(
+                      context,
+                      onDismissStart: (pop) {
+                        widget.visibleColumns.notify(onlyIfChanged: true);
+                      },
+                      childFun: (pop) {
+                        return VisibleColumnsSelection(
+                          key: GlobalKey(),
+                          columns: widget.columns,
+                          visibleColumns: widget.visibleColumns,
+                        );
+                      },
+                    );
                     // TODO: rows per page
                   },
                   icon: Icons.visibility_rounded,

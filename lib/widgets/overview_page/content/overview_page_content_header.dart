@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -16,7 +17,7 @@ class OverviewPageContentHeader extends StatelessWidget {
     required this.selectedIds,
   });
 
-  final List<OverviewPageColumnData> visibleColumns;
+  final VisibleColumnsNotifier visibleColumns;
   final double tableWidth;
   final IdSetNotifier selectedIds;
 
@@ -40,7 +41,7 @@ class OverviewPageContentHeader extends StatelessWidget {
           ),
           const OverviewPageColumnCell(columnName: "ID", width: 75),
           const OverviewPageColumnCell(columnName: "name", width: 100),
-          for (OverviewPageColumnData column in visibleColumns)
+          for (OverviewPageColumnData column in visibleColumns.value)
             OverviewPageColumnCell(
               columnName: column.name,
               columnKey: column.columnKey,

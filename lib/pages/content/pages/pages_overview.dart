@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
 import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,8 @@ class PagesOverview extends StatefulWidget {
 }
 
 class _PagesOverviewState extends State<PagesOverview> {
-  final List<OverviewPageColumnData> visibleColumns = [];
+  final VisibleColumnsNotifier visibleColumns =
+      VisibleColumnsNotifier(visibleColumns: []);
   Set<String> allIds = {};
   late IdSetNotifier selectedIds = IdSetNotifier(allIds);
 

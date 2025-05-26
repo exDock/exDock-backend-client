@@ -40,8 +40,14 @@ class OverviewPageHeader extends StatefulWidget {
 }
 
 class _OverviewPageHeaderState extends State<OverviewPageHeader> {
-  void applyKeywordFilter(String searchResult) {
-    // TODO: create or edit the "keyword" filter
+  void applyKeywordFilter(String searchString) {
+    widget.filters.addFilter(
+      StringFilterData(
+        name: "Keyword",
+        key: "keyword",
+        value: searchString,
+      ),
+    );
   }
 
   @override

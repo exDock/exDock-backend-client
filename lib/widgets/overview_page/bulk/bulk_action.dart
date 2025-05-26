@@ -1,13 +1,22 @@
-class BulkAction {
+import 'package:exdock_backend_client/utils/id_set_notifier.dart';
+import 'package:exdock_backend_client/utils/user_parameters/user_parameter_collection.dart';
+
+abstract class BulkAction {
   const BulkAction({
     required this.name,
-    required this.executeOnRow,
+    required this.selectedIds,
+    required this.userParameterCollection,
   });
 
   /// The name of the bulk action
   final String name;
 
-  /// When the bulk action is executed on a row, this function is called<br>
-  /// The String is the id of the row
-  final Function(String) executeOnRow;
+  /// The ids of the rows that are selected
+  final IdSetNotifier selectedIds;
+
+  /// The user parameters for this bulk action
+  final UserParameterCollection userParameterCollection;
+
+  /// The function that is called when the bulk action is executed
+  void execute();
 }

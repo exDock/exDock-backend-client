@@ -2,6 +2,7 @@
 import 'dart:math';
 
 // Flutter imports:
+import 'package:exdock_backend_client/utils/id_set_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class OverviewPageHeader extends StatefulWidget {
     required this.visibleColumns,
     required this.bulkActions,
     required this.filters,
+    required this.selectedIds,
     this.individualName,
   });
 
@@ -33,6 +35,7 @@ class OverviewPageHeader extends StatefulWidget {
   final VisibleColumnsNotifier visibleColumns;
   final List<BulkAction> bulkActions;
   final FilterNotifier filters;
+  final IdSetNotifier selectedIds;
   final String? individualName;
 
   @override
@@ -82,13 +85,15 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
             ),
             Row(
               children: [
-                // TODO: bulk actions
-                ExdockButton(
-                  label: "bulk actions",
-                  onPressed: () {},
-                  icon: Icons.bolt_rounded,
-                ),
-                const SizedBox(width: 12),
+                if (widget.bulkActions.isNotEmpty)
+                  ExdockButton(
+                    label: "bulk actions",
+                    onPressed: () {
+                      // TODO: bulk actions
+                    },
+                    icon: Icons.bolt_rounded,
+                  ),
+                if (widget.bulkActions.isNotEmpty) const SizedBox(width: 12),
                 // TODO: filters
                 ExdockButton(
                   label: "filters",

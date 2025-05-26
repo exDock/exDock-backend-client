@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:exdock_backend_client/pages/content/pages/bulk_actions/delete_pages_bulk_action.dart';
+import 'package:exdock_backend_client/utils/user_parameters/text_user_parameter.dart';
+import 'package:exdock_backend_client/utils/user_parameters/user_parameter_collection.dart';
 import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
 import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
 import 'package:flutter/material.dart';
@@ -290,6 +293,15 @@ class _PagesOverviewState extends State<PagesOverview> {
 
   @override
   Widget build(BuildContext context) {
+    UserParameterCollection userParameterCollection = UserParameterCollection();
+
+    userParameterCollection.addParameter(
+      TextUserParameter(
+        "key",
+        userParameterCollection.parameterValueStorage,
+      ),
+    );
+
     return FutureBuilder(
       future: getPagesOverviewData(),
       builder: (context, snapshot) {
@@ -310,6 +322,12 @@ class _PagesOverviewState extends State<PagesOverview> {
             individualName: "page",
             allIds: allIds,
             selectedIds: selectedIds,
+            bulkActions: [
+              DeletePagesBulkAction(
+                selectedIds: selectedIds,
+                userParameterCollection: userParameterCollection,
+              ),
+            ],
           );
         }
 

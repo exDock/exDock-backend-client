@@ -62,6 +62,7 @@ class _OverviewPageState extends State<OverviewPage> {
           visibleColumns: widget.visibleColumns,
           bulkActions: widget.bulkActions,
           filters: widget.filters,
+          selectedIds: widget.selectedIds,
           individualName: widget.individualName,
         ),
         Padding(

@@ -7,23 +7,58 @@ import 'package:exdock_backend_client/widgets/overview_page/filters/types/filter
 class FilterNotifier extends ValueNotifier<Map<String, FilterData>> {
   FilterNotifier() : super({});
 
-  void addFilter(FilterData newValue) {
+  bool _isChanged = false;
+
+  /// Are there any un-notified changes?
+  bool get isChanged => _isChanged;
+
+  void addFilter(FilterData newValue, {bool silent = false}) {
     value[newValue.key] = newValue;
+
+    if (silent) {
+      _isChanged = true;
+      return;
+    }
+
     notifyListeners();
   }
 
   /// Returns true if the filter existed
-  bool removeFilter(FilterData filter) {
+  bool removeFilter(FilterData filter, {bool silent = false}) {
     bool output = value.remove(filter.key) != null;
+
+    if (silent) {
+      _isChanged = true;
+      return output;
+    }
+
     notifyListeners();
     return output;
   }
 
   /// Returns true if the key existed
-  bool removeKey(String key) {
+  bool removeKey(String key, {bool silent = false}) {
     bool output = value.remove(key) != null;
+
+    if (silent) {
+      _isChanged = true;
+      return output;
+    }
+
     notifyListeners();
     return output;
+  }
+
+  /// Returns true if there were un-notified changes
+  bool notify({bool onlyIfChanged = false}) {
+    bool isChanged = _isChanged;
+    if (onlyIfChanged && !_isChanged) {
+      return false;
+    }
+    notifyListeners();
+    _isChanged = false;
+
+    return isChanged;
   }
 
   void reset() {

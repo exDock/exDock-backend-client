@@ -49,7 +49,7 @@ class _SearchState extends State<Search> {
         width: widget.width,
         height: 56,
         decoration: BoxDecoration(
-          color: Theme.of(context).indicatorColor,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: _isHoveredOrFocused
               ? kBoxShadowList

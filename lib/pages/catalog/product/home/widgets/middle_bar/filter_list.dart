@@ -34,7 +34,7 @@ class _FilterListState extends State<FilterList> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-            color: Theme.of(context).indicatorColor,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(20),
             boxShadow: kBoxShadowList),
         child: Row(

@@ -54,7 +54,7 @@ class _ExdockButtonState extends State<ExdockButton> {
           child: Text(
             widget.label,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).indicatorColor,
+                  color: Theme.of(context).cardColor,
                 ),
           ),
         ),

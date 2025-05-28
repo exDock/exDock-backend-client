@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup.dart';
+import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup_type_data.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -288,6 +290,19 @@ class _PagesOverviewState extends State<PagesOverview> {
     return (await getPagesColumns(), getPagesRows());
   }
 
+  Future<List<FilterSetupData>> getFilters() async {
+    return [
+      FilterSetupData(
+          key: "string_filter_key",
+          name: "String Filter",
+          type: FilterSetupTypeData.string),
+      FilterSetupData(
+          key: "range_filter_key",
+          name: "Range Filter",
+          type: FilterSetupTypeData.range),
+    ];
+  }
+
   final FilterNotifier filters = FilterNotifier();
   final PageNotifier pageNotifier = PageNotifier(pageSize: 10);
 
@@ -332,6 +347,7 @@ class _PagesOverviewState extends State<PagesOverview> {
                 userParameterCollection: userParameterCollection,
               ),
             ],
+            getFilters: getFilters,
           );
         }
 

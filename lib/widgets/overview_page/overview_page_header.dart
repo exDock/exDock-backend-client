@@ -1,8 +1,6 @@
-// Dart imports:
-import 'dart:math';
-
 // Flutter imports:
-import 'package:flutter/foundation.dart';
+import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup.dart';
+import 'package:exdock_backend_client/widgets/overview_page/filters/popup/filters_popup.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -30,6 +28,7 @@ class OverviewPageHeader extends StatefulWidget {
     required this.filters,
     required this.selectedIds,
     this.individualName,
+    this.getFilters,
   });
 
   final List<OverviewPageColumnData> columns;
@@ -38,6 +37,7 @@ class OverviewPageHeader extends StatefulWidget {
   final FilterNotifier filters;
   final IdSetNotifier selectedIds;
   final String? individualName;
+  final Future<List<FilterSetupData>> Function()? getFilters;
 
   @override
   State<OverviewPageHeader> createState() => _OverviewPageHeaderState();
@@ -91,33 +91,59 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
                     bulkActions: widget.bulkActions,
                   ),
                 if (widget.bulkActions.isNotEmpty) const SizedBox(width: 12),
-                // TODO: filters
-                ExdockButton(
-                  label: "filters",
-                  onPressed: () {
-                    // TODO: remove this test functionality
-                    if (kDebugMode) {
-                      print("filter button pressed");
-                    }
-                    int testNumber = Random().nextInt(100);
-                    while (widget.filters.value.keys
-                        .contains("filter_key_$testNumber")) {
-                      testNumber = Random().nextInt(100);
-                    }
-                    widget.filters.addFilter(
-                      StringFilterData(
-                        name: "filterName_$testNumber",
-                        key: "filter_key_$testNumber",
-                        value: "filter value_$testNumber",
-                      ),
-                    );
-                    if (kDebugMode) {
-                      print("filters: ${widget.filters.value.toString()}");
-                    }
-                  },
-                  icon: Icons.filter_alt_rounded,
-                ),
-                const SizedBox(width: 12),
+                if (widget.getFilters != null)
+                  ExdockButton(
+                    label: "filters",
+                    onPressed: () {
+                      showPopupWindow(context, childFun: (pop) {
+                        return LayoutBuilder(
+                          key: GlobalKey(),
+                          builder: (context, constraints) {
+                            double height = constraints.maxHeight * .7;
+                            double width = constraints.maxWidth * .8;
+                            return SizedBox(
+                              height: height,
+                              width: width,
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    height: height,
+                                    width: width,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).cardColor,
+                                      boxShadow: kBoxShadowList,
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
+                                    clipBehavior: Clip.hardEdge,
+                                    padding: const EdgeInsets.all(24),
+                                    child: FiltersPopup(
+                                      filterNotifier: widget.filters,
+                                      pop: pop,
+                                      getFilters: widget.getFilters!,
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12),
+                                      child: IconButton(
+                                        onPressed: () {
+                                          pop.dismiss(context);
+                                        },
+                                        icon: const Icon(Icons.close_rounded),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      });
+                    },
+                    icon: Icons.filter_alt_rounded,
+                  ),
+                if (widget.getFilters != null) const SizedBox(width: 12),
                 ExdockButton(
                   label: "view",
                   onPressed: () {

@@ -35,7 +35,7 @@ class FilterNotifier extends ValueNotifier<Map<String, FilterData>> {
 
   /// Returns true if the filter existed
   bool removeFilter(FilterData filter, {bool silent = false}) {
-    bool output = value.remove(filter.key) != null;
+    final bool output = value.remove(filter.key) != null;
 
     if (silent) {
       _isChanged = true;
@@ -48,7 +48,7 @@ class FilterNotifier extends ValueNotifier<Map<String, FilterData>> {
 
   /// Returns true if the key existed
   bool removeKey(String key, {bool silent = false}) {
-    bool output = value.remove(key) != null;
+    final bool output = value.remove(key) != null;
 
     if (silent) {
       _isChanged = true;
@@ -61,7 +61,7 @@ class FilterNotifier extends ValueNotifier<Map<String, FilterData>> {
 
   /// Returns true if there were un-notified changes
   bool notify({bool onlyIfChanged = false}) {
-    bool isChanged = _isChanged;
+    final bool isChanged = _isChanged;
     if (onlyIfChanged && !_isChanged) {
       return false;
     }

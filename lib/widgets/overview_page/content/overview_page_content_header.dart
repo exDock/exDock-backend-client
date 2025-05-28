@@ -41,7 +41,7 @@ class OverviewPageContentHeader extends StatelessWidget {
           ),
           const OverviewPageColumnCell(columnName: "ID", width: 75),
           const OverviewPageColumnCell(columnName: "name", width: 100),
-          for (OverviewPageColumnData column in visibleColumns.value)
+          for (final OverviewPageColumnData column in visibleColumns.value)
             OverviewPageColumnCell(
               columnName: column.name,
               columnKey: column.columnKey,

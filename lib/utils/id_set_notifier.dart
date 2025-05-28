@@ -15,14 +15,14 @@ class IdSetNotifier extends ValueNotifier<Set<String>> {
   /// Throws if [!allIds.contains(id)] and [!force]
   bool addId(String id, {bool force = false}) {
     if (!force && !allIds.contains(id)) throw Exception("id not in allIds");
-    bool notInSet = value.add(id);
+    final bool notInSet = value.add(id);
     notifyListeners();
     return notInSet;
   }
 
   /// Returns true if the id was in the set
   bool removeId(String id) {
-    bool wasInSet = value.remove(id);
+    final bool wasInSet = value.remove(id);
     notifyListeners();
     return wasInSet;
   }
@@ -55,12 +55,12 @@ class IdSetNotifier extends ValueNotifier<Set<String>> {
   ///
   /// Returns true if no ids were removed
   bool sanitise() {
-    List<String> toRemove =
+    final List<String> toRemove =
         value.difference(allIds).where((id) => !id.startsWith("_")).toList();
 
     if (toRemove.isEmpty) return true;
 
-    for (var id in toRemove) {
+    for (final id in toRemove) {
       removeId(id);
     }
 

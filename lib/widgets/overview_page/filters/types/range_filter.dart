@@ -14,7 +14,7 @@ class RangeFilterData extends FilterData {
 
   @override
   MapEntry<String, dynamic> get filterParameter {
-    Map<String, num?> value = {};
+    final Map<String, num?> value = {};
 
     if (min != null) value['min'] = min;
     if (max != null) value['max'] = max;

@@ -21,7 +21,7 @@ class OverviewPageRowCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget cell = Container(
+    final Widget cell = Container(
       width: isLast ? width : null,
       decoration: BoxDecoration(
         border: Border(

@@ -51,14 +51,14 @@ class RetrieveOverviewPagePages {
       return pages[pageNumber - 1]!;
     }
 
-    List<OverviewPageRow> rows = await getRows(
+    final List<OverviewPageRow> rows = await getRows(
       filters,
       columns,
       allIds,
       selectedIds,
       pageNotifier,
     );
-    OverviewPagePage overviewPagePage = OverviewPagePage(
+    final OverviewPagePage overviewPagePage = OverviewPagePage(
       pageNumber: pageNumber,
       rows: rows,
       getRows: () {

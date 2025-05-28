@@ -56,7 +56,7 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
 
   @override
   Widget build(BuildContext context) {
-    String addNewText = widget.individualName == null
+    final String addNewText = widget.individualName == null
         ? "add new"
         : "add new ${widget.individualName}";
     return Container(
@@ -99,8 +99,8 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
                         return LayoutBuilder(
                           key: GlobalKey(),
                           builder: (context, constraints) {
-                            double height = constraints.maxHeight * .7;
-                            double width = constraints.maxWidth * .8;
+                            final double height = constraints.maxHeight * .7;
+                            final double width = constraints.maxWidth * .8;
                             return SizedBox(
                               height: height,
                               width: width,

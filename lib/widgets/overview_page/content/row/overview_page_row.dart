@@ -52,11 +52,11 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
   Widget build(BuildContext context) {
     double contentWidth =
         225; // Initial width: 50 (selectAll) + 75 (id) + 100 (name)
-    for (OverviewPageColumnData column in widget.visibleColumns.value) {
+    for (final OverviewPageColumnData column in widget.visibleColumns.value) {
       contentWidth += column.width;
     }
 
-    Widget child = Container(
+    final Widget child = Container(
       width: contentWidth,
       constraints: const BoxConstraints(minHeight: 50, maxHeight: 150),
       decoration: BoxDecoration(
@@ -99,8 +99,8 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
               width: 100,
             ),
             ...widget.visibleColumns.value.asMap().entries.map((entry) {
-              int index = entry.key;
-              OverviewPageColumnData column = entry.value;
+              final int index = entry.key;
+              final OverviewPageColumnData column = entry.value;
               return OverviewPageRowCellString(
                 cellValue: widget.columnValues[column.columnKey],
                 width: column.width,

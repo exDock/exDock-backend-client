@@ -49,7 +49,7 @@ class _OverviewPageState extends State<OverviewPage> {
   void initState() {
     super.initState();
 
-    for (OverviewPageColumnData column in widget.columns) {
+    for (final OverviewPageColumnData column in widget.columns) {
       if (!widget.visibleColumns.containsColumn(column)) {
         widget.visibleColumns.addColumn(column);
       }

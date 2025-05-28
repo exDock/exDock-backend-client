@@ -308,7 +308,7 @@ class _PagesOverviewState extends State<PagesOverview> {
 
   @override
   Widget build(BuildContext context) {
-    UserParameterCollection userParameterCollection = UserParameterCollection();
+    final UserParameterCollection userParameterCollection = UserParameterCollection();
 
     userParameterCollection.addParameter(
       TextUserParameter(

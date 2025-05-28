@@ -34,11 +34,11 @@ class FilterStagingGround {
 
   /// Returns true if there were un-notified changes
   bool commit() {
-    for (FilterData value in changedFilters.values) {
+    for (final FilterData value in changedFilters.values) {
       filterNotifier.addFilter(value, silent: true);
     }
 
-    for (String key in filtersToRemove) {
+    for (final String key in filtersToRemove) {
       filterNotifier.removeKey(key, silent: true);
     }
 

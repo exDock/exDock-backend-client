@@ -47,7 +47,7 @@ class _OverviewPageContentState extends State<OverviewPageContent> {
       child: ValueListenableBuilder(
         valueListenable: widget.visibleColumns,
         builder: (context, value, child) {
-          double tableWidth = getTableWidth();
+          final double tableWidth = getTableWidth();
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

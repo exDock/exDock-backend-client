@@ -53,7 +53,7 @@ class _ActiveFiltersState extends State<ActiveFilters> {
             child: ValueListenableBuilder(
               valueListenable: widget.filters,
               builder: (context, value, child) {
-                List<FilterData> sortedFilters = getSortedFilters();
+                final List<FilterData> sortedFilters = getSortedFilters();
 
                 return ListView.builder(
                   controller: _scrollController,

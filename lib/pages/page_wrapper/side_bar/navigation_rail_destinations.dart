@@ -109,9 +109,34 @@ Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
       label: const Text("reports"),
     ),
     "/stores": HoverableNavigationRailDestination(
-      onHoverStateChange: noHoverMenuOnHoverStateChange,
       icon: const Icon(Symbols.storefront_rounded),
       label: const Text("stores"),
+      onHoverStateChange: onHoverStateChangeHoverMenu(
+        sideBarHoverMenuData,
+        context,
+        SizedBox(
+          width: 200,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(
+                  "Settings",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: Colors.white),
+                ),
+              ),
+              const SimpleHoverMenuButton(
+                route: "/stores/configuration",
+                buttonText: "configuration",
+              ),
+            ],
+          ),
+        ),
+      ),
     ),
     "/system": HoverableNavigationRailDestination(
       onHoverStateChange: noHoverMenuOnHoverStateChange,

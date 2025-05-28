@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/widget_generator/filter_setup_range.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,10 @@ class FilterSetupWidgetGenerator extends StatelessWidget {
     }
 
     if (filterSetupData.type == FilterSetupTypeData.range) {
-      //
+      return FilterSetupRange(
+        filterStagingGround: filterStagingGround,
+        filterSetupData: filterSetupData,
+      );
     }
 
     if (kDebugMode) {

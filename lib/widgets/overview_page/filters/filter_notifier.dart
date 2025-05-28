@@ -23,6 +23,16 @@ class FilterNotifier extends ValueNotifier<Map<String, FilterData>> {
     notifyListeners();
   }
 
+  /// Returns true if a filter with this key exists
+  bool keyExists(String key) {
+    return value.containsKey(key);
+  }
+
+  /// Returns true if this filter exists
+  bool filterExists(FilterData filter) {
+    return keyExists(filter.key);
+  }
+
   /// Returns true if the filter existed
   bool removeFilter(FilterData filter, {bool silent = false}) {
     bool output = value.remove(filter.key) != null;

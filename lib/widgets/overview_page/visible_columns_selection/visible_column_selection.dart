@@ -98,7 +98,7 @@ class _VisibleColumnSelectionState extends State<VisibleColumnSelection>
                             end: Alignment.bottomRight,
                             colors: [
                               colorScheme.primary,
-                              colorScheme.primary.withOpacity(0.8),
+                              colorScheme.primary.withAlpha(204),
                             ],
                           )
                         : LinearGradient(
@@ -106,14 +106,14 @@ class _VisibleColumnSelectionState extends State<VisibleColumnSelection>
                             end: Alignment.bottomRight,
                             colors: [
                               theme.indicatorColor,
-                              theme.indicatorColor.withOpacity(0.7),
+                              theme.indicatorColor.withAlpha(179),
                             ],
                           ),
                     boxShadow: [
                       BoxShadow(
                         color: _isVisible
-                            ? colorScheme.primary.withOpacity(0.3)
-                            : Colors.black.withOpacity(0.1),
+                            ? colorScheme.primary.withAlpha(77)
+                            : Colors.black.withAlpha(25),
                         blurRadius: _isHovered ? 12 : 8,
                         offset: _isHovered
                             ? const Offset(0, 6)
@@ -124,8 +124,8 @@ class _VisibleColumnSelectionState extends State<VisibleColumnSelection>
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color: _isVisible
-                          ? colorScheme.primary.withOpacity(0.3)
-                          : theme.dividerColor.withOpacity(0.2),
+                          ? colorScheme.primary.withAlpha(77)
+                          : theme.dividerColor.withAlpha(51),
                       width: 1.5,
                     ),
                   ),
@@ -161,9 +161,9 @@ class _VisibleColumnSelectionState extends State<VisibleColumnSelection>
                               widget.column.columnKey,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: _isVisible
-                                    ? colorScheme.onPrimary.withOpacity(0.8)
+                                    ? colorScheme.onPrimary.withAlpha(204)
                                     : theme.textTheme.bodySmall?.color
-                                        ?.withOpacity(0.7),
+                                        ?.withAlpha(179),
                                 fontWeight: FontWeight.w500,
                                 letterSpacing: 0.5,
                               ),
@@ -184,7 +184,7 @@ class _VisibleColumnSelectionState extends State<VisibleColumnSelection>
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
+                              color: Colors.black.withAlpha(25),
                               blurRadius: 4,
                               offset: const Offset(0, 2),
                             ),

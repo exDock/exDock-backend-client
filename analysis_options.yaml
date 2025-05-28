@@ -27,7 +27,8 @@ linter:
     prefer_const_declarations: true
     prefer_const_literals_to_create_immutables: true
     unnecessary_const: true
-    unnecessary_final: true
+    prefer_final_locals: true
+    prefer_final_in_for_each: true
     use_rethrow_when_possible: true
     prefer_final_fields: true
     avoid_empty_else: true

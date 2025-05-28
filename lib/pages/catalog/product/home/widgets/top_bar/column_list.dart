@@ -32,8 +32,8 @@ class ColumnListState extends State<ColumnList> {
   Widget build(BuildContext context) {
     widgets = [];
 
-    for (String columnName in widget.columnList) {
-      bool isSelected = selectedColumns.contains(columnName);
+    for (final String columnName in widget.columnList) {
+      final bool isSelected = selectedColumns.contains(columnName);
       widgets.add(
         Flexible(
           flex: 1,

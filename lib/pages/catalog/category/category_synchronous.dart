@@ -34,9 +34,9 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
   int selectedCategory = -1;
 
   void updateUri() {
-    List<int> categorySelectionIds = [];
+    final List<int> categorySelectionIds = [];
 
-    for (CategoryLeaf category in categorySelection) {
+    for (final CategoryLeaf category in categorySelection) {
       categorySelectionIds.add(category.id);
     }
 
@@ -48,9 +48,9 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
   List<CategoryLeaf>? applySelectedCategory(List<CategoryLeaf>? categoryTree) {
     if (widget.selectedId == null || categoryTree == null) return null;
 
-    for (CategoryLeaf leaf in categoryTree) {
+    for (final CategoryLeaf leaf in categoryTree) {
       if (leaf.id == widget.selectedId) return [leaf];
-      List<CategoryLeaf>? foundSelection =
+      final List<CategoryLeaf>? foundSelection =
           applySelectedCategory(leaf.subLeaves);
       if (foundSelection != null) return [leaf, ...foundSelection];
     }
@@ -75,7 +75,7 @@ class _CategorySynchronousState extends State<CategorySynchronous> {
 
   @override
   Widget build(BuildContext context) {
-    double headerHeight = (categorySelection.isNotEmpty &&
+    final double headerHeight = (categorySelection.isNotEmpty &&
             categorySelection.last.subLeaves != null)
         ? 72 + categorySelection.length * 48
         : max(72 + (categorySelection.length - 1) * 48, 72);

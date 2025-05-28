@@ -8,22 +8,22 @@ void showExDockSnackBar({
   Duration? duration,
 }) {
   // Default duration if not provided
-  var snackBarDuration = duration ?? const Duration(seconds: 3);
+  final snackBarDuration = duration ?? const Duration(seconds: 3);
 
   // Get the scaffold messenger
-  var scaffoldMessenger = ScaffoldMessenger.of(context);
+  final scaffoldMessenger = ScaffoldMessenger.of(context);
 
   // Hide any existing snackbars
   scaffoldMessenger.hideCurrentSnackBar();
 
   // Create a widget that handles its own animations
-  var snackBarContent = _FadingSnackBarContent(
+  final snackBarContent = _FadingSnackBarContent(
     duration: snackBarDuration,
     child: child,
   );
 
   // Create the custom snackbar
-  var snackBar = SnackBar(
+  final snackBar = SnackBar(
     content: snackBarContent,
     duration: snackBarDuration +
         const Duration(milliseconds: 600), // Add time for fade in/out

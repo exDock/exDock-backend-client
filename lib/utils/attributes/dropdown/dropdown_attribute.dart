@@ -32,7 +32,7 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuItem<String>> items = List.from(
+    final List<DropdownMenuItem<String>> items = List.from(
       widget.attribute['possible_values'].map(
         (Map<String, String> value) {
           return DropdownMenuItem<String>(

@@ -31,7 +31,7 @@ class _ProductListState extends State<ProductList> {
 
   // Deselects the info widget when a product id gets deselected
   deselectInfoWidget() {
-    SortData sortData = SortData(
+    final SortData sortData = SortData(
         sortType: infoBarNotifier.value.sortType,
         isAscending: infoBarNotifier.value.isAscending,
         isInfoSelected: false);
@@ -40,7 +40,7 @@ class _ProductListState extends State<ProductList> {
 
   // Changes the state of the info widget id and all other products
   selectInfoWidget() {
-    SortData sortData = SortData(
+    final SortData sortData = SortData(
         sortType: infoBarNotifier.value.sortType,
         isAscending: infoBarNotifier.value.isAscending,
         isInfoSelected: !infoBarNotifier.value.isInfoSelected);
@@ -50,10 +50,10 @@ class _ProductListState extends State<ProductList> {
 
   // Sets the sort type of the product list
   setSortType(String? sortType) {
-    bool isAscending = infoBarNotifier.value.sortType == sortType
+    final bool isAscending = infoBarNotifier.value.sortType == sortType
         ? !infoBarNotifier.value.isAscending
         : true;
-    SortData sortData = SortData(
+    final SortData sortData = SortData(
         sortType: sortType,
         isAscending: isAscending,
         isInfoSelected: infoBarNotifier.value.isInfoSelected);
@@ -93,13 +93,13 @@ class _ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
-    List<ProductInfo> filteredList = widget.productList;
-    List<ProductInfo> finalList = [];
+    final List<ProductInfo> filteredList = widget.productList;
+    final List<ProductInfo> finalList = [];
 
     // Sorts the list based on the sort type
     sortList(filteredList);
 
-    int filteredListLength =
+    final int filteredListLength =
         filteredList.length > 50 + (50 * (widget.pageNum - 1))
             ? 50
             : filteredList.length;

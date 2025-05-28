@@ -48,21 +48,21 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
 
   // Sets the value of the price filter
   void setPriceValue(double? lowPrice, double? highPrice) {
-    PriceFilterValues temp =
+    final PriceFilterValues temp =
         PriceFilterValues(lowPrice: lowPrice, highPrice: highPrice);
     selectedPrice.value = temp;
   }
 
   // Resets the filters
   void resetFilters() {
-    PriceFilterValues temp = PriceFilterValues();
+    final PriceFilterValues temp = PriceFilterValues();
     selectedId.value = null;
     selectedPrice.value = temp;
   }
 
   // Applies the filters
   void applyFilters() {
-    Filters filters = Filters(
+    final Filters filters = Filters(
         searchInput: "",
         id: idFilterKey.currentState?.idValue,
         lowPrice: priceFilterKey.currentState?.lowPrice,
@@ -73,8 +73,8 @@ class _DropdownButtonFiltersState extends State<DropdownButtonFilters> {
   OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlayEntry() {
-    var renderBox = context.findRenderObject() as RenderBox;
-    var position = renderBox.localToGlobal(const Offset(-100.0, -100.0));
+    final renderBox = context.findRenderObject() as RenderBox;
+    final position = renderBox.localToGlobal(const Offset(-100.0, -100.0));
 
     return OverlayEntry(
       builder: (context) => Positioned(

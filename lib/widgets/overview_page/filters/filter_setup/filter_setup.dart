@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup_type_data.dart';
 
 class FilterSetupData {

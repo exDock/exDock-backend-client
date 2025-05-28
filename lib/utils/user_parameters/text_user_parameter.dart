@@ -1,6 +1,9 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/utils/user_parameters/user_parameter.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
-import 'package:flutter/material.dart';
 
 class TextUserParameter extends UserParameter {
   TextUserParameter(

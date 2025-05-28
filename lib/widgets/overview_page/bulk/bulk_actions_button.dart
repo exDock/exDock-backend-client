@@ -1,9 +1,14 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:kumi_popup_window/kumi_popup_window.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action_pop_up.dart';
-import 'package:flutter/material.dart';
-import 'package:kumi_popup_window/kumi_popup_window.dart';
 
 class BulkActionsButton extends StatelessWidget {
   const BulkActionsButton({super.key, required this.bulkActions});

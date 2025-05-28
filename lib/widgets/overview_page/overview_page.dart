@@ -1,6 +1,4 @@
 // Flutter imports:
-import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
-import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -12,6 +10,8 @@ import 'package:exdock_backend_client/widgets/overview_page/content/row/retrieve
 import 'package:exdock_backend_client/widgets/overview_page/filters/active_filters.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/overview_page_header.dart';
+import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
+import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
 
 class OverviewPage extends StatefulWidget {
   const OverviewPage({

@@ -1,5 +1,8 @@
-import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 
 class VisibleColumnsNotifier
     extends ValueNotifier<List<OverviewPageColumnData>> {

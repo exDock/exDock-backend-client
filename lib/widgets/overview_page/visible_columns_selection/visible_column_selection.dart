@@ -1,6 +1,9 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
 import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
-import 'package:flutter/material.dart';
 
 class VisibleColumnSelection extends StatefulWidget {
   const VisibleColumnSelection({

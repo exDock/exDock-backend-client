@@ -1,9 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_staging_ground.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/range_filter.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class FilterSetupRange extends StatefulWidget {
   const FilterSetupRange({

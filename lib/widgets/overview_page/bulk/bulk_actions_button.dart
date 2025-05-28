@@ -1,7 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
+import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action_pop_up.dart';
 import 'package:flutter/material.dart';
+import 'package:kumi_popup_window/kumi_popup_window.dart';
 
 class BulkActionsButton extends StatelessWidget {
   const BulkActionsButton({super.key, required this.bulkActions});
@@ -17,7 +19,15 @@ class BulkActionsButton extends StatelessWidget {
         child: DropdownButtonHideUnderline(
           child: DropdownButton2(
             onChanged: (value) {
-              // TODO: bulk action popup
+              if (value == null) return;
+
+              showPopupWindow(context, childFun: (pop) {
+                return BulkActionPopUp(
+                  key: GlobalKey(),
+                  bulkAction: value,
+                  pop: pop,
+                );
+              });
             },
             customButton: const ExdockButton(
               label: "bulk actions",

@@ -7,7 +7,7 @@ class DeletePagesBulkAction extends BulkAction {
   }) : super(name: "Delete Pages");
 
   @override
-  void execute() {
+  void execute({required Function() onSuccess, required Function() onFailure}) {
     // TODO: implement execute
     throw UnimplementedError(
         "TODO: implement the delete pages bulk actions server request");

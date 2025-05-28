@@ -6,14 +6,17 @@ class TextUserParameter extends UserParameter {
   TextUserParameter(
     super.key,
     super.parameterValueStorage, {
+    this.name,
     this.initialValue,
   });
 
+  final String? name;
   final String? initialValue;
 
   @override
   Widget getInputWidget() => ExdockTextField(
         controller: TextEditingController(text: initialValue),
+        labelText: name ?? key,
         onChanged: (value) {
           if (value == "") {
             parameterValueStorage.remove(key);

@@ -18,5 +18,8 @@ abstract class BulkAction {
   final UserParameterCollection userParameterCollection;
 
   /// The function that is called when the bulk action is executed
-  void execute();
+  void execute({
+    required Function() onSuccess,
+    required Function() onFailure,
+  });
 }

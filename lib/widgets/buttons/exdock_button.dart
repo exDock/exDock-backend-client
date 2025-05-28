@@ -60,24 +60,27 @@ class _ExdockButtonState extends State<ExdockButton> {
       );
     }
 
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-        decoration: BoxDecoration(
-          color: _isHovered
-              ? widget.hoverColor ?? darkColour
-              : widget.backgroundColor ?? mainColour,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        clipBehavior: Clip.hardEdge,
-        child: Material(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
-          child: child,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 48),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+          decoration: BoxDecoration(
+            color: _isHovered
+                ? widget.hoverColor ?? darkColour
+                : widget.backgroundColor ?? mainColour,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          clipBehavior: Clip.hardEdge,
+          child: Material(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(10),
+            child: child,
+          ),
         ),
       ),
     );

@@ -4,11 +4,13 @@ import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup
 class FilterSetupData {
   FilterSetupData({
     required this.key,
-    this.name,
+    name,
     required this.type,
-  });
+  }) : _name = name;
 
   final String key;
-  final String? name;
+  final String? _name;
   final FilterSetupTypeData type;
+
+  String get name => _name ?? key;
 }

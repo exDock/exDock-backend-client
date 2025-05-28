@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:exdock_backend_client/widgets/loading/exdock_loading_page_animation.dart';
+import 'package:exdock_backend_client/widgets/overview_page/filters/popup/filters_popup_sync.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -8,7 +10,7 @@ import 'package:kumi_popup_window/kumi_popup_window.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup.dart';
 
-class FiltersPopup extends StatefulWidget {
+class FiltersPopup extends StatelessWidget {
   const FiltersPopup({
     super.key,
     required this.filterNotifier,
@@ -21,23 +23,25 @@ class FiltersPopup extends StatefulWidget {
   final Future<List<FilterSetupData>> Function() getFilters;
 
   @override
-  State<FiltersPopup> createState() => _FiltersPopupState();
-}
-
-class _FiltersPopupState extends State<FiltersPopup> {
-  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: widget.getFilters(),
-      builder: (context, snapshot) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Filters",
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-        ],
-      ),
+      future: getFilters(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            !snapshot.hasError) {
+          return FiltersPopupSync(
+            filterNotifier: filterNotifier,
+            pop: pop,
+            filterSetupData: snapshot.data!,
+          );
+        }
+
+        if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
+
+        return const ExdockLoadingPageAnimation();
+      },
     );
   }
 }

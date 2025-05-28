@@ -1,10 +1,15 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:kumi_popup_window/kumi_popup_window.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/widget_generator/filter_setup_widget_generator.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_staging_ground.dart';
-import 'package:flutter/material.dart';
-import 'package:kumi_popup_window/kumi_popup_window.dart';
 
 class FiltersPopupSync extends StatefulWidget {
   const FiltersPopupSync({

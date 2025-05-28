@@ -1,8 +1,11 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/filter_staging_ground.dart';
 import 'package:exdock_backend_client/widgets/overview_page/filters/types/string_filter.dart';
-import 'package:flutter/material.dart';
 
 class FilterSetupString extends StatelessWidget {
   const FilterSetupString({

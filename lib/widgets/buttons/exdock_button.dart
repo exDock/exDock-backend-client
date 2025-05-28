@@ -32,7 +32,7 @@ class _ExdockButtonState extends State<ExdockButton> {
     Widget child = Text(
       widget.label,
       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).indicatorColor,
+            color: Theme.of(context).cardColor,
           ),
     );
     if (widget.icon != null) {
@@ -41,7 +41,7 @@ class _ExdockButtonState extends State<ExdockButton> {
         children: [
           child,
           const SizedBox(width: 12),
-          Icon(widget.icon!, color: Theme.of(context).indicatorColor),
+          Icon(widget.icon!, color: Theme.of(context).cardColor),
         ],
       );
     }

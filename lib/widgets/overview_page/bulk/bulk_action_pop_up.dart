@@ -22,7 +22,7 @@ class BulkActionPopUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).indicatorColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(10),
       ),
       constraints: const BoxConstraints(

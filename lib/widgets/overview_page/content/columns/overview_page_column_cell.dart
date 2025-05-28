@@ -30,7 +30,7 @@ class OverviewPageColumnCell extends StatelessWidget {
         child: Center(
           child: Text(
             columnName,
-            style: TextStyle(color: Theme.of(context).indicatorColor),
+            style: TextStyle(color: Theme.of(context).cardColor),
           ),
         ),
       ),

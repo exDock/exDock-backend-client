@@ -99,7 +99,7 @@ class _FadingSnackBarContentState extends State<_FadingSnackBarContent>
     return FadeTransition(
       opacity: _fadeAnimation,
       child: Card(
-        color: Theme.of(context).indicatorColor,
+        color: Theme.of(context).cardColor,
         elevation: 6,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),

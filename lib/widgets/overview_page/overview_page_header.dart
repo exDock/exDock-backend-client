@@ -62,7 +62,7 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
     return Container(
       height: 100,
       decoration: BoxDecoration(
-        color: Theme.of(context).indicatorColor,
+        color: Theme.of(context).cardColor,
         boxShadow: kBoxShadowList,
       ),
       child: Padding(

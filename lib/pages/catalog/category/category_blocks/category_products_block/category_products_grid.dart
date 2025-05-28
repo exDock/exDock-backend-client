@@ -117,7 +117,7 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                               cursor: SystemMouseCursors.grab,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).indicatorColor,
+                                  color: Theme.of(context).cardColor,
                                   borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(10),
                                   ),

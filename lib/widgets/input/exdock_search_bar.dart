@@ -15,11 +15,11 @@ class ExdockSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SearchAnchor(
       shrinkWrap: true,
-      viewBackgroundColor: Theme.of(context).indicatorColor,
+      viewBackgroundColor: Theme.of(context).cardColor,
       builder: (context, searchController) {
         return SearchBar(
           backgroundColor: WidgetStatePropertyAll(
-            Theme.of(context).indicatorColor,
+            Theme.of(context).cardColor,
           ),
           controller: searchController,
           onTap: () {

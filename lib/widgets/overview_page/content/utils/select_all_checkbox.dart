@@ -33,7 +33,7 @@ class _SelectAllCheckboxState extends State<SelectAllCheckbox> {
           value: widget.selectedIds.selectAllState,
           tristate: true,
           side: BorderSide(
-            color: Theme.of(context).indicatorColor,
+            color: Theme.of(context).cardColor,
             width: 1.5,
           ),
           onChanged: (value) {

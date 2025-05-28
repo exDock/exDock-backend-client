@@ -327,6 +327,10 @@ class _PagesOverviewState extends State<PagesOverview> {
                 selectedIds: selectedIds,
                 userParameterCollection: userParameterCollection,
               ),
+              DeletePagesBulkAction(
+                selectedIds: selectedIds,
+                userParameterCollection: userParameterCollection,
+              ),
             ],
           );
         }

@@ -3,6 +3,7 @@ import 'dart:math';
 
 // Flutter imports:
 import 'package:exdock_backend_client/utils/id_set_notifier.dart';
+import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_actions_button.dart';
 import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -86,12 +87,8 @@ class _OverviewPageHeaderState extends State<OverviewPageHeader> {
             Row(
               children: [
                 if (widget.bulkActions.isNotEmpty)
-                  ExdockButton(
-                    label: "bulk actions",
-                    onPressed: () {
-                      // TODO: bulk actions
-                    },
-                    icon: Icons.bolt_rounded,
+                  BulkActionsButton(
+                    bulkActions: widget.bulkActions,
                   ),
                 if (widget.bulkActions.isNotEmpty) const SizedBox(width: 12),
                 // TODO: filters

@@ -8,14 +8,14 @@ class ExdockButton extends StatefulWidget {
   const ExdockButton({
     super.key,
     required this.label,
-    required this.onPressed,
+    this.onPressed,
     this.backgroundColor,
     this.hoverColor,
     this.icon,
   });
 
   final String label;
-  final Function() onPressed;
+  final Function()? onPressed;
   final Color? backgroundColor;
   final Color? hoverColor;
   final IconData? icon;
@@ -45,7 +45,23 @@ class _ExdockButtonState extends State<ExdockButton> {
         ],
       );
     }
+
+    child = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      child: Center(
+        child: child,
+      ),
+    );
+
+    if (widget.onPressed != null) {
+      child = InkWell(
+        onTap: widget.onPressed,
+        child: child,
+      );
+    }
+
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: AnimatedContainer(
@@ -57,18 +73,10 @@ class _ExdockButtonState extends State<ExdockButton> {
               : widget.backgroundColor ?? mainColour,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: ElevatedButton(
-          onPressed: widget.onPressed,
-          style: ButtonStyle(
-            padding: const WidgetStatePropertyAll(EdgeInsets.all(24)),
-            backgroundColor: WidgetStateProperty.all(Colors
-                .transparent), // Transparent to show AnimatedContainer color
-            shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            )),
-            elevation:
-                WidgetStateProperty.all(0), // Remove default button elevation
-          ),
+        clipBehavior: Clip.hardEdge,
+        child: Material(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(10),
           child: child,
         ),
       ),

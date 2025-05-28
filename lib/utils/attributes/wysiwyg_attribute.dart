@@ -33,13 +33,13 @@ class _WysiwygAttributeState extends State<WysiwygAttribute> {
     super.initState();
 
     // Get the initial HTML value from the attribute
-    String initialHtml = widget.attribute['current_attribute_value'] ?? '';
+    final String initialHtml = widget.attribute['current_attribute_value'] ?? '';
 
     // Convert HTML to Delta
-    Delta delta = converter.decode(initialHtml);
+    final Delta delta = converter.decode(initialHtml);
 
     // Convert Delta to ParchmentDocument
-    ParchmentDocument document = ParchmentDocument.fromDelta(delta);
+    final ParchmentDocument document = ParchmentDocument.fromDelta(delta);
 
     // Initialize the controller
     controller = FleatherController(document: document);

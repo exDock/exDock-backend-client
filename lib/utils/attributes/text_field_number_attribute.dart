@@ -76,7 +76,7 @@ class _TextFieldNumberAttributeState extends State<TextFieldNumberAttribute> {
           decimal: widget.decimal,
         ),
         onChanged: (value) {
-          num numValue =
+          final num numValue =
               widget.decimal ? double.parse(value) : int.parse(value);
           if (numValue == widget.attribute["current_attribute_value"]) {
             widget.changeAttributeMap.removeEntry(

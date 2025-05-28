@@ -23,7 +23,7 @@ class _CategoryListState extends State<CategoryList> {
   Widget build(BuildContext context) {
     categoryWidgets = [];
 
-    for (String categoryName in widget.categories) {
+    for (final String categoryName in widget.categories) {
       categoryWidgets.add(Container(
         constraints: const BoxConstraints(
           maxWidth: 125,

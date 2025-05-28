@@ -37,10 +37,10 @@ class _ProductInfoImageCardState extends State<ProductInfoImageCard> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> images = widget.block.value['images'];
-    List<Widget> imageWidgets = [];
-    for (var image in images) {
-      List<String> extensions = image['extensions'];
+    final List<Map<String, dynamic>> images = widget.block.value['images'];
+    final List<Widget> imageWidgets = [];
+    for (final image in images) {
+      final List<String> extensions = image['extensions'];
       imageWidgets.add(
         Column(
           children: [

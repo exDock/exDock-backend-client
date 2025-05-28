@@ -35,15 +35,15 @@ class HomeGlobalStatistic extends StatelessWidget {
   final double amount;
 
   String formatDouble(double input) {
-    String inputString = input.toStringAsFixed(2);
-    List<String> splitInput = inputString.split(".");
+    final String inputString = input.toStringAsFixed(2);
+    final List<String> splitInput = inputString.split(".");
     if (splitInput[1] == "00") splitInput[1] = "-";
 
     // TODO: splitInput
-    String reversedInput = splitInput[0].split('').reversed.join('');
+    final String reversedInput = splitInput[0].split('').reversed.join('');
 
     // Add dots every 3 characters
-    String processed = reversedInput.replaceAllMapped(
+    final String processed = reversedInput.replaceAllMapped(
         RegExp(r'.{1,3}'), (match) => '${match.group(0)}.');
 
     // Reverse back and remove the trailing dot if present

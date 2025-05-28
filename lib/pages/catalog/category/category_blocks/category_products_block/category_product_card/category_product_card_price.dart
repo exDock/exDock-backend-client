@@ -18,12 +18,12 @@ class CategoryProductCardPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget child = const SizedBox();
-    Color stripedColour = Colors.grey.shade500;
+    final Color stripedColour = Colors.grey.shade500;
 
-    TextStyle priceTextStyle =
+    final TextStyle priceTextStyle =
         (Theme.of(context).textTheme.bodyMedium ?? const TextStyle())
             .copyWith(color: Colors.white);
-    TextStyle stripedPriceTextStyle =
+    final TextStyle stripedPriceTextStyle =
         (Theme.of(context).textTheme.bodyMedium ?? const TextStyle()).copyWith(
       color: stripedColour,
       decoration: TextDecoration.lineThrough,
@@ -31,16 +31,16 @@ class CategoryProductCardPrice extends StatelessWidget {
     );
 
     // Measure text width using formatted prices
-    String formattedPrice = formatPrice(price);
-    String formattedSalePrice =
+    final String formattedPrice = formatPrice(price);
+    final String formattedSalePrice =
         salePrice != null ? formatPrice(salePrice!) : '';
 
-    TextPainter pricePainter = TextPainter(
+    final TextPainter pricePainter = TextPainter(
       text: TextSpan(text: formattedPrice, style: priceTextStyle),
       textDirection: TextDirection.ltr,
     )..layout();
 
-    TextPainter salePainter = TextPainter(
+    final TextPainter salePainter = TextPainter(
       text: TextSpan(text: formattedSalePrice, style: priceTextStyle),
       textDirection: TextDirection.ltr,
     )..layout();

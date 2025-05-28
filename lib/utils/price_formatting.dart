@@ -1,5 +1,5 @@
 String formatPrice(double? price) {
-  String currencySymbol = "€ "; // TODO: implement currencies
+  const String currencySymbol = "€ "; // TODO: implement currencies
   if (price == null) return "$currencySymbol-";
 
   String priceString = price.toStringAsFixed(2);

@@ -19,7 +19,7 @@ class ExdockCard extends StatelessWidget {
       width: width,
       height: height,
       child: Card(
-        color: Theme.of(context).indicatorColor,
+        color: Theme.of(context).cardColor,
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: child,

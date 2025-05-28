@@ -40,8 +40,8 @@ class _DropdownButtonColumnsState extends State<DropdownButtonColumns> {
   OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlayEntry() {
-    var renderBox = context.findRenderObject() as RenderBox;
-    var position = renderBox.localToGlobal(const Offset(-100.0, -100.0));
+    final renderBox = context.findRenderObject() as RenderBox;
+    final position = renderBox.localToGlobal(const Offset(-100.0, -100.0));
 
     return OverlayEntry(
       builder: (context) => Positioned(

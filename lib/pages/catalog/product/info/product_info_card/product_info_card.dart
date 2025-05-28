@@ -22,7 +22,7 @@ class ProductInfoCard extends StatelessWidget {
     return Container(
       width: width,
       decoration: BoxDecoration(
-        color: Theme.of(context).indicatorColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(10),
         boxShadow: kBoxShadowList,
       ),

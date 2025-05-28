@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
   }
 
   void loginButtonFunction() async {
-    int statusCode = await loginServer(
+    final int statusCode = await loginServer(
       emailController.text,
       passwordController.text,
     );
@@ -63,7 +63,8 @@ class _LoginState extends State<Login> {
       if (mounted) {
         showExDockSnackBar(
           context: context,
-          child: const Text("500 has been thrown | server experienced an error"),
+          child:
+              const Text("500 has been thrown | server experienced an error"),
         );
       }
     } else if (statusCode == 503) {
@@ -83,7 +84,7 @@ class _LoginState extends State<Login> {
         child: Container(
           width: 450,
           decoration: BoxDecoration(
-            color: Theme.of(context).indicatorColor,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(20),
             boxShadow: kBoxShadowList,
           ),

@@ -62,7 +62,7 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
     );
 
     if (widget.block.value['sale_dates'] != null) {
-      List<String> startDateSplit = widget
+      final List<String> startDateSplit = widget
           .block.value['sale_dates'][0]['current_attribute_value']
           .split('-');
       startDate = DateTime.utc(int.parse(startDateSplit[0]),
@@ -70,7 +70,7 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
     }
     if (widget.block.value['sale_dates'][1]['current_attribute_value'] !=
         null) {
-      List<String> endDateSplit = widget
+      final List<String> endDateSplit = widget
           .block.value['sale_dates'][1]['current_attribute_value']
           .split('-');
       endDate = DateTime.utc(int.parse(endDateSplit[0]),
@@ -115,7 +115,7 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
             padding: const EdgeInsets.only(top: 8),
             child: GestureDetector(
               onTap: () async {
-                var result = await showCalendarDatePicker2Dialog(
+                final result = await showCalendarDatePicker2Dialog(
                   context: context,
                   config: CalendarDatePicker2WithActionButtonsConfig(
                     calendarType: CalendarDatePicker2Type.range,

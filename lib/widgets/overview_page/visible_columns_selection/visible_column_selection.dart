@@ -105,8 +105,8 @@ class _VisibleColumnSelectionState extends State<VisibleColumnSelection>
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              theme.indicatorColor,
-                              theme.indicatorColor.withAlpha(179),
+                              theme.cardColor,
+                              theme.cardColor.withAlpha(179),
                             ],
                           ),
                     boxShadow: [

@@ -125,7 +125,7 @@ class _LoginSettingsState extends State<LoginSettings> {
                         },
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             );

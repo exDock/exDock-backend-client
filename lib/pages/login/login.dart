@@ -1,19 +1,18 @@
 // Flutter imports:
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:go_router/go_router.dart';
-
 // Project imports:
 import 'package:exdock_backend_client/globals/globals.dart';
+// Flutter imports:
+import 'package:exdock_backend_client/pages/login/login_settings.dart';
 import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
 import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 import 'package:exdock_backend_client/utils/snackbar/exdock_snackbar.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:go_router/go_router.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -99,62 +98,74 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          width: 450,
-          decoration: BoxDecoration(
-            color: Theme.of(context).indicatorColor,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: kBoxShadowList,
+      body: Column(
+        children: [
+          Align(
+            alignment: Alignment.topRight,
+            child: LoginSettings(),
           ),
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("exDock login"),
-              Text(
-                "website name",
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
-              const SizedBox(height: 24),
-              ExdockTextField(
-                controller: emailController,
-                onChanged: (value) {
-                  //
-                },
-                labelText: "Email",
-              ),
-              const SizedBox(height: 12),
-              ExdockTextField(
-                controller: passwordController,
-                onChanged: (value) {
-                  //
-                },
-                labelText: "Password",
-              ),
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  Expanded(
-                    child: ExdockButton(
-                      label: "FORGOT PASSWORD",
-                      onPressed: () {
-                        // TODO: navigate to forgot password page
+          SizedBox(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height - 80,
+            child: Center(
+              child: Container(
+                width: 450,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).indicatorColor,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: kBoxShadowList,
+                ),
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text("exDock login"),
+                    Text(
+                      "website name",
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                    const SizedBox(height: 24),
+                    ExdockTextField(
+                      controller: emailController,
+                      onChanged: (value) {
+                        //
                       },
+                      labelText: "Email",
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: ExdockButton(
-                      label: "LOGIN",
-                      onPressed: loginButtonFunction,
+                    const SizedBox(height: 12),
+                    ExdockTextField(
+                      controller: passwordController,
+                      onChanged: (value) {
+                        //
+                      },
+                      labelText: "Password",
                     ),
-                  ),
-                ],
-              )
-            ],
+                    const SizedBox(height: 24),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ExdockButton(
+                            label: "FORGOT PASSWORD",
+                            onPressed: () {
+                              // TODO: navigate to forgot password page
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: ExdockButton(
+                            label: "LOGIN",
+                            onPressed: loginButtonFunction,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

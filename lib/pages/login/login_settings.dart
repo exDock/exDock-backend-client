@@ -6,13 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:kumi_popup_window/kumi_popup_window.dart';
 
-class LoginSettings extends StatelessWidget {
+class LoginSettings extends StatefulWidget {
   const LoginSettings({super.key});
 
+  @override
+  State<LoginSettings> createState() => _LoginSettingsState();
+}
+
+class _LoginSettingsState extends State<LoginSettings> {
   @override
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
     ValueNotifier<String?> errorNotifier = ValueNotifier<String?>(null);
+    ValueNotifier<bool> isValidated = ValueNotifier<bool>(false);
     controller.text = baseUrl;
 
     void handleCheckValues() async {
@@ -31,12 +37,14 @@ class LoginSettings extends StatelessWidget {
 
         baseUrl = controller.text;
         errorNotifier.value = null;
+        isValidated.value = true;
       } catch (e) {
         if (e is FormatException) {
           errorNotifier.value = "Invalid URL format";
         } else {
           errorNotifier.value = "Server not reachable";
         }
+        isValidated.value = false;
         return;
       }
     }
@@ -71,12 +79,52 @@ class LoginSettings extends StatelessWidget {
                   const Expanded(
                     child: SizedBox(),
                   ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: ExdockButton(
-                      label: "Check values",
-                      onPressed: handleCheckValues,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: ExdockButton(
+                          label: "Check values",
+                          onPressed: handleCheckValues,
+                        ),
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: isValidated,
+                        builder: (context, isValidated, child) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 12),
+                            child: isValidated
+                                ? Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: ExdockButton(
+                                      label: "Save",
+                                      onPressed: () {},
+                                    ),
+                                  )
+                                : Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color: Colors.red.withValues(
+                                          alpha: 150,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Text(
+                                        "Please check the server URL",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(color: Colors.red),
+                                      ),
+                                    ),
+                                  ),
+                          );
+                        },
+                      ),
+                    ],
                   )
                 ],
               ),

@@ -110,7 +110,7 @@ class _LoginSettingsState extends State<LoginSettings> {
                                         color: Colors.red.withValues(
                                           alpha: 150,
                                         ),
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Text(
                                         "Please check the server URL",

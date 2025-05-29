@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:exdock_backend_client/pages/system/blocks/generate_system_block.dart';
 import 'package:exdock_backend_client/pages/system/blocks/system_block.dart';
+import 'package:exdock_backend_client/pages/system/top_bar/system_top_bar.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,11 @@ class SystemSynchronous extends StatelessWidget {
 
     return Stack(
       children: [
+        SystemTopBar(
+          name: "Settings",
+          saveNotifier: changeSettingsMap,
+          saveValues: () {},
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 80),
           child: SystemBlock(

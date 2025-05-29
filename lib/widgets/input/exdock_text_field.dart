@@ -8,6 +8,7 @@ class ExdockTextField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.onChanged,
+    this.isPassword = false,
     this.labelText,
     this.errorText,
   });
@@ -16,6 +17,7 @@ class ExdockTextField extends StatelessWidget {
   final Function(String) onChanged;
   final String? labelText;
   final String? errorText;
+  final bool isPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class ExdockTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         onChanged: onChanged,
+        obscureText: isPassword,
         style: const TextStyle(fontSize: 14, height: 1.5),
         decoration: InputDecoration(
           labelText: labelText,

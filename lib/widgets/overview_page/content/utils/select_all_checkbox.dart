@@ -44,9 +44,6 @@ class _SelectAllCheckboxState extends State<SelectAllCheckbox> {
             } else {
               widget.selectedIds.reset();
             }
-            setState(() {
-              // currentSelectAllState = value;
-            });
           },
         );
       },

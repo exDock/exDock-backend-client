@@ -34,8 +34,6 @@ class _LoginSettingsState extends State<LoginSettings> {
         if (response.statusCode != 200) {
           throw Exception("Server not reachable");
         }
-
-        baseUrl = controller.text;
         errorNotifier.value = null;
         isValidated.value = true;
       } catch (e) {
@@ -99,7 +97,10 @@ class _LoginSettingsState extends State<LoginSettings> {
                                     alignment: Alignment.bottomRight,
                                     child: ExdockButton(
                                       label: "Save",
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        baseUrl = controller.text;
+                                        Navigator.pop(context);
+                                      },
                                     ),
                                   )
                                 : Align(

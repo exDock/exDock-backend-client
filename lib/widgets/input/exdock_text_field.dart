@@ -1,8 +1,7 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:exdock_backend_client/widgets/exdock_card.dart';
+import 'package:flutter/material.dart';
 
 class ExdockTextField extends StatelessWidget {
   const ExdockTextField({
@@ -10,11 +9,13 @@ class ExdockTextField extends StatelessWidget {
     required this.controller,
     required this.onChanged,
     this.labelText,
+    this.errorText,
   });
 
   final TextEditingController controller;
   final Function(String) onChanged;
   final String? labelText;
+  final String? errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class ExdockTextField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: labelText,
           labelStyle: Theme.of(context).textTheme.bodyMedium,
+          errorText: errorText,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
           border: OutlineInputBorder(

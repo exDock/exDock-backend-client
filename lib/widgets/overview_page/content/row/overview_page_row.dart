@@ -82,9 +82,6 @@ class _OverviewPageRowState extends State<OverviewPageRow> {
                     } else {
                       widget.selectedIds.removeId(widget.id);
                     }
-                    setState(() {
-                      // isSelected = value!;
-                    });
                   },
                 ),
               ),

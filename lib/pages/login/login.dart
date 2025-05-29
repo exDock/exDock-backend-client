@@ -100,7 +100,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: Column(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.topRight,
             child: LoginSettings(),
           ),

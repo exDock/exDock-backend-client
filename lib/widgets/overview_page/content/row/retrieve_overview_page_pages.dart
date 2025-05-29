@@ -14,10 +14,12 @@ class RetrieveOverviewPagePages {
     required this.selectedIds,
     required this.pageNotifier,
     this.columns,
-    this.pageSize = 10,
+    this.pageSize = 10, // TODO: Add this default values to the configuration
     this.currentPage = 0,
-    this.cacheForwards = 0,
-    this.cacheBackwards = 0,
+    this.cacheForwards =
+        0, // TODO: Add this default values to the configuration
+    this.cacheBackwards =
+        0, // TODO: Add this default values to the configuration
   }) {
     for (int i = 1; i < currentPage; i++) {
       pages.add(null);

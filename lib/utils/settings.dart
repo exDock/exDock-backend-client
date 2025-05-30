@@ -136,7 +136,7 @@ class Settings {
 class Setting<T> {
   final T defaultValue;
   T currentValue;
-  String clazz = T.runtimeType.toString();
+  String clazz = T.toString();
 
   Setting(this.defaultValue) : currentValue = defaultValue;
 }

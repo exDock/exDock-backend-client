@@ -22,14 +22,7 @@ class _SystemState extends State<System> {
     Map<String, dynamic> backOfficeSettings = {
       "BackOffice Settings": {
         "block_type": "standard",
-        "attributes": [
-          generateBackendAttribute(
-            "backend_url",
-            "Backend URL",
-            "text",
-            settings.getSetting("backend_url"),
-          ),
-        ]
+        "attributes": generateBackOfficeSettings(),
       },
     };
 
@@ -67,5 +60,37 @@ Map<String, dynamic> generateBackendAttribute(
     "attribute_name": name,
     "attribute_type": type,
     "current_attribute_value": value,
+  };
+}
+
+List<Map> generateBackOfficeSettings() {
+  List<Map> backOfficeSettings = [];
+  List<String> settingsKeys = settings.getSettingKeys();
+  for (String key in settingsKeys) {
+    backOfficeSettings.add({
+      "attribute_id": key,
+      "attribute_name": key.replaceAll("_", " ").capitalize(),
+      "attribute_type": classToAttribute(settings.getSetting(key)!.clazz),
+      "current_attribute_value": settings.getSettingValue(key),
+    });
+  }
+
+  return backOfficeSettings;
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+  }
+}
+
+String classToAttribute(String clazz) {
+  return switch (clazz) {
+    "int" => "number",
+    "double" => "number",
+    "String" => "text",
+    "bool" => "boolean",
+    "List<String>" => "list",
+    _ => clazz,
   };
 }

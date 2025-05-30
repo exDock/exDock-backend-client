@@ -21,10 +21,17 @@ class Settings {
     }
   }
 
-  /// Get a setting by its [key].
-  T getSetting<T>(String key) {
+  /// Get a setting value by its [key].
+  T getSettingValue<T>(String key) {
     if (_settings.containsKey(key)) {
       return _settings[key]!.currentValue as T;
+    }
+    throw Exception('Setting $key not found');
+  }
+
+  Setting<dynamic> getSetting(String key) {
+    if (_settings.containsKey(key)) {
+      return _settings[key]!;
     }
     throw Exception('Setting $key not found');
   }
@@ -129,6 +136,7 @@ class Settings {
 class Setting<T> {
   final T defaultValue;
   T currentValue;
+  String clazz = T.runtimeType.toString();
 
   Setting(this.defaultValue) : currentValue = defaultValue;
 }

@@ -110,16 +110,18 @@ class Settings {
   /// Save settings from a map and return the map without backoffice settings
   Map<String, dynamic> saveSettingsFromMap(Map<String, dynamic> settingsMap) {
     List<String> keys = getSettingKeys();
+    Map<String, dynamic> backEndSettings = {};
     settingsMap.forEach(
       (key, value) {
         if (keys.contains(key)) {
           setSetting(key, value);
-          settingsMap.remove(key);
+        } else {
+          backEndSettings[key] = value;
         }
       },
     );
 
-    return settingsMap;
+    return backEndSettings;
   }
 }
 

@@ -63,14 +63,14 @@ Map<String, dynamic> generateBackendAttribute(
   };
 }
 
-List<Map> generateBackOfficeSettings() {
-  List<Map> backOfficeSettings = [];
+List<Map<String, dynamic>> generateBackOfficeSettings() {
+  List<Map<String, dynamic>> backOfficeSettings = [];
   List<String> settingsKeys = settings.getSettingKeys();
   for (String key in settingsKeys) {
     backOfficeSettings.add({
       "attribute_id": key,
       "attribute_name": key.replaceAll("_", " ").capitalize(),
-      "attribute_type": classToAttribute(settings.getSetting(key)!.clazz),
+      "attribute_type": classToAttribute(settings.getSetting(key).clazz),
       "current_attribute_value": settings.getSettingValue(key),
     });
   }

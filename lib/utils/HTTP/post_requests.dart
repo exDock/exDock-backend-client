@@ -17,6 +17,7 @@ Future<HttpData> standardPostRequest(String endpoint, String body) async {
   String responseBody = "";
   String? accessToken = await storage.read(key: "access_token");
   String? refreshToken = await storage.read(key: "refresh_token");
+  String baseUrl = settings.getSetting("baseUrl");
 
   Uri uri = Uri.parse("$baseUrl$endpoint");
   if (accessToken == null) {

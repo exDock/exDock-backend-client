@@ -24,7 +24,11 @@ class _SystemState extends State<System> {
         "block_type": "standard",
         "attributes": [
           generateBackendAttribute(
-              "backend_url", "Backend URL", "text", baseUrl),
+            "backend_url",
+            "Backend URL",
+            "text",
+            settings.getSetting("baseUrl"),
+          ),
         ]
       },
     };

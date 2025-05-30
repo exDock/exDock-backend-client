@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 Future<HttpData> loginRequest(AuthenticationData authData) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
   int statusCode;
+  String baseUrl = settings.getSetting("baseUrl");
 
   Uri uri = Uri.parse("$baseUrl/api/v1/token");
   try {

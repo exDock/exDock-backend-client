@@ -1,6 +1,7 @@
 // Flutter imports:
 // Project imports:
 import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
+import 'package:exdock_backend_client/utils/settings.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,5 +28,4 @@ class StringNotifier extends ChangeNotifier {
 
 StringNotifier pathNotifier = StringNotifier(Uri.base.path);
 
-//TODO: Make it so that the base URL is set in the backend
-String baseUrl = "http://127.0.0.1:80";
+late final Settings settings;

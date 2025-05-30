@@ -19,7 +19,7 @@ class _LoginSettingsState extends State<LoginSettings> {
     TextEditingController controller = TextEditingController();
     ValueNotifier<String?> errorNotifier = ValueNotifier<String?>(null);
     ValueNotifier<bool> isValidated = ValueNotifier<bool>(false);
-    controller.text = baseUrl;
+    controller.text = settings.getSetting("baseUrl");
 
     void handleCheckValues() async {
       try {
@@ -98,7 +98,10 @@ class _LoginSettingsState extends State<LoginSettings> {
                                     child: ExdockButton(
                                       label: "Save",
                                       onPressed: () {
-                                        baseUrl = controller.text;
+                                        settings.setSetting(
+                                          "baseUrl",
+                                          controller.text,
+                                        );
                                         Navigator.pop(context);
                                       },
                                     ),

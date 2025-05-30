@@ -1,11 +1,7 @@
 // Flutter imports:
-import 'dart:convert';
-
-import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/pages/system/blocks/generate_system_block.dart';
 import 'package:exdock_backend_client/pages/system/blocks/system_block.dart';
 import 'package:exdock_backend_client/pages/system/top_bar/system_top_bar.dart';
-import 'package:exdock_backend_client/utils/HTTP/post_requests.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -20,32 +16,32 @@ class SystemSynchronous extends StatelessWidget {
   final MapNotifier changeSettingsMap;
 
   void saveValues() async {
-    Map<String, dynamic> serverRequestMap = {};
-    for (var entry in changeSettingsMap.value.entries) {
-      String key = entry.key;
-      dynamic value = entry.value;
-      switch (key) {
-        case "Backend URL":
-          baseUrl = value;
-          break;
-        default:
-          serverRequestMap[key] = value;
-          break;
-      }
-    }
-
-    standardPostRequest(
-      "/api/v1/system/saveSettings",
-      jsonEncode(serverRequestMap),
-    ).then(
-      (response) {
-        if (response.statusCode == 200) {
-          changeSettingsMap.reset();
-        } else {
-          // Handle error response
-        }
-      },
-    );
+    // Map<String, dynamic> serverRequestMap = {};
+    // for (var entry in changeSettingsMap.value.entries) {
+    //   String key = entry.key;
+    //   dynamic value = entry.value;
+    //   switch (key) {
+    //     case "Backend URL":
+    //       baseUrl = value;
+    //       break;
+    //     default:
+    //       serverRequestMap[key] = value;
+    //       break;
+    //   }
+    // }
+    //
+    // standardPostRequest(
+    //   "/api/v1/system/saveSettings",
+    //   jsonEncode(serverRequestMap),
+    // ).then(
+    //   (response) {
+    //     if (response.statusCode == 200) {
+    //       changeSettingsMap.reset();
+    //     } else {
+    //       // Handle error response
+    //     }
+    //   },
+    // );
   }
 
   @override

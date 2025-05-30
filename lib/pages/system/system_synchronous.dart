@@ -35,8 +35,9 @@ class SystemSynchronous extends StatelessWidget {
     }
 
     standardPostRequest(
-            "/api/v1/system/saveSettings", jsonEncode(serverRequestMap))
-        .then(
+      "/api/v1/system/saveSettings",
+      jsonEncode(serverRequestMap),
+    ).then(
       (response) {
         if (response.statusCode == 200) {
           changeSettingsMap.reset();

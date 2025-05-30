@@ -33,8 +33,6 @@ class SystemSynchronous extends StatelessWidget {
         serverRequestMap = settings.saveSettingsFromMap(serverRequestMap);
         changeSettingsMap.value.clear();
       }
-
-      print(serverRequestMap);
     }
 
     return Stack(

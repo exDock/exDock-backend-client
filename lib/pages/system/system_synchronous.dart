@@ -1,8 +1,11 @@
 // Flutter imports:
+import 'dart:convert';
+
 import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/pages/system/blocks/generate_system_block.dart';
 import 'package:exdock_backend_client/pages/system/blocks/system_block.dart';
 import 'package:exdock_backend_client/pages/system/top_bar/system_top_bar.dart';
+import 'package:exdock_backend_client/utils/HTTP/post_requests.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +35,19 @@ class SystemSynchronous extends StatelessWidget {
       if (serverRequestMap.isNotEmpty) {
         serverRequestMap = settings.saveSettingsFromMap(serverRequestMap);
         changeSettingsMap.value.clear();
+
+        var response = await standardPostRequest(
+          "/api/v1/system/setSettings",
+          jsonEncode(serverRequestMap),
+        );
+
+        if (response.statusCode == 200) {
+          // Handle successful response
+          print("Settings saved successfully.");
+        } else {
+          // Handle error response
+          print("Error saving settings: ${response.responseBody}");
+        }
       }
     }
 

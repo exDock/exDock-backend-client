@@ -42,7 +42,7 @@ class _NotificationsState extends State<Notifications> {
     _notificationsNotifier = ValueNotifier<List<String>>(_notifications);
 
     try {
-      String baseUrl = settings.getSetting("baseUrl");
+      String baseUrl = settings.getSetting("backend_url");
       String websocketUrl = baseUrl.contains("http")
           ? baseUrl.replaceFirst("http", "ws")
           : baseUrl.replaceFirst("https", "wss");

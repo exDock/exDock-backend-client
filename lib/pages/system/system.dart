@@ -27,7 +27,7 @@ class _SystemState extends State<System> {
             "backend_url",
             "Backend URL",
             "text",
-            settings.getSetting("baseUrl"),
+            settings.getSetting("backend_url"),
           ),
         ]
       },

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/pages/system/blocks/generate_system_block.dart';
 import 'package:exdock_backend_client/pages/system/blocks/system_block.dart';
 import 'package:exdock_backend_client/pages/system/top_bar/system_top_bar.dart';
@@ -15,39 +16,26 @@ class SystemSynchronous extends StatelessWidget {
   final Map<String, dynamic> blocks;
   final MapNotifier changeSettingsMap;
 
-  void saveValues() async {
-    // Map<String, dynamic> serverRequestMap = {};
-    // for (var entry in changeSettingsMap.value.entries) {
-    //   String key = entry.key;
-    //   dynamic value = entry.value;
-    //   switch (key) {
-    //     case "Backend URL":
-    //       baseUrl = value;
-    //       break;
-    //     default:
-    //       serverRequestMap[key] = value;
-    //       break;
-    //   }
-    // }
-    //
-    // standardPostRequest(
-    //   "/api/v1/system/saveSettings",
-    //   jsonEncode(serverRequestMap),
-    // ).then(
-    //   (response) {
-    //     if (response.statusCode == 200) {
-    //       changeSettingsMap.reset();
-    //     } else {
-    //       // Handle error response
-    //     }
-    //   },
-    // );
-  }
-
   @override
   Widget build(BuildContext context) {
     MapNotifier changeSettingsMap = MapNotifier();
     List<MapEntry<String, dynamic>> blocksEntriesList = blocks.entries.toList();
+
+    void saveValues() async {
+      Map<String, dynamic> serverRequestMap = {};
+      for (var entry in changeSettingsMap.value.entries) {
+        if (entry.value != null) {
+          serverRequestMap[entry.key] = entry.value;
+        }
+      }
+
+      if (serverRequestMap.isNotEmpty) {
+        serverRequestMap = settings.saveSettingsFromMap(serverRequestMap);
+        changeSettingsMap.value.clear();
+      }
+
+      print(serverRequestMap);
+    }
 
     return Stack(
       children: [

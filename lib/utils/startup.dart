@@ -12,5 +12,5 @@ Future<void> applicationStartUp() async {
   settings = Settings(); // uses prefs
 
   // Initialize default settings
-  settings.registerSetting("baseUrl", "http://127.0.0.1");
+  settings.registerSetting("backend_url", "http://127.0.0.1");
 }

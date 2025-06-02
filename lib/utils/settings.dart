@@ -41,6 +41,10 @@ class Settings {
     }
   }
 
+  Future<bool> containsSetting(String key) async {
+    return _settings.containsKey(key);
+  }
+
   List<String> getSettingKeys() {
     return _settings.keys.toList();
   }
@@ -53,9 +57,18 @@ class Settings {
     await _settings.remove(key);
   }
 
-  Future<void> setSettings(Map<String, String> settingsMap) async {
+  Future<Map<String, dynamic>> setSettings(
+      Map<String, dynamic> settingsMap) async {
+    Map<String, dynamic> settings = {};
     for (var entry in settingsMap.entries) {
-      await _settings.setString(entry.key, entry.value);
+      bool exists = await containsSetting(entry.key);
+      if (exists) {
+        setSetting(entry.key, entry.value);
+      } else {
+        settings[entry.key] = entry.value;
+      }
     }
+
+    return settings;
   }
 }

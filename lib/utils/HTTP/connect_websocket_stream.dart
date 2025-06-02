@@ -15,7 +15,8 @@ void getWebsocketChannel(Uri wsUrl, ValueNotifier values) async {
   String? accessToken = await storage.read(key: "access_token");
   String? refreshToken = await storage.read(key: "refresh_token");
   if (wsUrl.scheme != "ws" && wsUrl.scheme != "wss") {
-    throw ArgumentError("WebSocket URL must start with 'ws://' or 'wss://'");
+    throw NotAuthenticatedException(
+        "Invalid WebSocket URL scheme: ${wsUrl.scheme}");
   }
   var channel = WebSocketChannel.connect(wsUrl);
   bool isFirstAttempt = true;

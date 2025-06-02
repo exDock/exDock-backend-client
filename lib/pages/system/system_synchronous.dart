@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'dart:convert';
 
+import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/pages/system/blocks/generate_system_block.dart';
 import 'package:exdock_backend_client/pages/system/blocks/system_block.dart';
 import 'package:exdock_backend_client/pages/system/top_bar/system_top_bar.dart';
@@ -32,7 +33,7 @@ class SystemSynchronous extends StatelessWidget {
       }
 
       if (serverRequestMap.isNotEmpty) {
-        // serverRequestMap = settings.s;
+        serverRequestMap = await settings.setSettings(serverRequestMap);
         changeSettingsMap.value.clear();
 
         var response = await standardPostRequest(

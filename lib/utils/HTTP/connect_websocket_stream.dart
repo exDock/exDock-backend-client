@@ -40,8 +40,9 @@ void getWebsocketChannel(Uri wsUrl, ValueNotifier values) async {
         if (isFirstAttempt) {
           isFirstAttempt = false;
           if (refreshToken == null) {
+            // Error is already handled by the authentication function
             channel.sink.close(1000, "No refresh token found");
-            throw NotAuthenticatedException("No refresh token found");
+            return;
           }
           await refreshTokens(refreshToken);
           accessToken = await storage.read(key: "access_token");
@@ -54,13 +55,15 @@ void getWebsocketChannel(Uri wsUrl, ValueNotifier values) async {
             ),
           );
         } else {
+          // If the authentication fails again, close the channel
           channel.sink.close(1000, "Authentication failed");
-          throw NotAuthenticatedException("Authentication failed");
+          return;
         }
       } else {
         if (!isAuthenticated) {
+          // If the message is received before authentication is successful, close the channel
           channel.sink.close(1000, "Not authenticated");
-          throw NotAuthenticatedException("Not authenticated");
+          return;
         }
         Map<String, dynamic> data = jsonDecode(message);
         switch (data["type"]) {

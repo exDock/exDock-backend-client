@@ -70,8 +70,9 @@ List<Map<String, dynamic>> generateBackOfficeSettings() {
     backOfficeSettings.add({
       "attribute_id": key,
       "attribute_name": key.replaceAll("_", " ").capitalize(),
-      "attribute_type": classToAttribute(settings.getSetting(key).clazz),
-      "current_attribute_value": settings.getSettingValue(key),
+      "attribute_type":
+          classToAttribute(settings.getSetting(key).runtimeType.toString()),
+      "current_attribute_value": settings.getSetting(key),
     });
   }
 

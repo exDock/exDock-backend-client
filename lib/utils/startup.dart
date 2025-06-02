@@ -9,8 +9,8 @@ Future<void> applicationStartUp() async {
   prefs = await SharedPreferences.getInstance();
   authData = AuthenticationData(); // uses prefs
 
-  settings = Settings(); // uses prefs
-
-  // Initialize default settings
-  settings.registerSetting("backend_url", "http://127.0.0.1");
+  var cachedPrefs = await SharedPreferencesWithCache.create(
+    cacheOptions: const SharedPreferencesWithCacheOptions(),
+  ); // uses prefs
+  settings = Settings(cachedPrefs);
 }

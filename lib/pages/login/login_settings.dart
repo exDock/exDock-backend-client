@@ -19,7 +19,7 @@ class _LoginSettingsState extends State<LoginSettings> {
     TextEditingController controller = TextEditingController();
     ValueNotifier<String?> errorNotifier = ValueNotifier<String?>(null);
     ValueNotifier<bool> isValidated = ValueNotifier<bool>(false);
-    controller.text = settings.getSettingValue("backend_url");
+    controller.text = settings.getSetting<String>("baseUrl");
 
     void handleCheckValues() async {
       try {
@@ -99,7 +99,7 @@ class _LoginSettingsState extends State<LoginSettings> {
                                       label: "Save",
                                       onPressed: () {
                                         settings.setSetting(
-                                          "baseUrl",
+                                          "base_url",
                                           controller.text,
                                         );
                                         Navigator.pop(context);

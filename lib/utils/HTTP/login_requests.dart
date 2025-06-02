@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 Future<HttpData> loginRequest(AuthenticationData authData) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
   int statusCode;
-  String baseUrl = settings.getSettingValue("backend_url");
+  String baseUrl = settings.getSetting<String>("base_url");
 
   Uri uri = Uri.parse("$baseUrl/api/v1/token");
   try {
@@ -44,8 +44,7 @@ Future<HttpData> loginRequest(AuthenticationData authData) async {
 
 Future<String> refreshTokens(String refreshToken) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
-  // TODO: add server from config
-  String baseUrl = "http://127.0.0.1";
+  String baseUrl = settings.getSetting<String>("base_url");
   Uri uri = Uri.parse("$baseUrl/api/v1/refresh");
   try {
     http.Response response = await http.post(

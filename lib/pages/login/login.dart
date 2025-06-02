@@ -133,6 +133,7 @@ class _LoginState extends State<Login> {
                     ),
                     const SizedBox(height: 12),
                     ExdockTextField(
+                      isPassword: true,
                       controller: passwordController,
                       onChanged: (value) {
                         //

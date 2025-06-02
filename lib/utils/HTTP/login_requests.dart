@@ -9,7 +9,7 @@ import 'package:exdock_backend_client/utils/authentication/authentication_data.d
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-Future<HttpData> loginRequest(AuthenticationData authData) async {
+Future<HttpData> loginRequest(String email, String password) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
   int statusCode;
   String baseUrl = settings.getSetting<String>("base_url");
@@ -20,7 +20,7 @@ Future<HttpData> loginRequest(AuthenticationData authData) async {
       uri,
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(
-        {"email": authData.email, "password": authData.password},
+        {"email": email, "password": password},
       ),
     );
 

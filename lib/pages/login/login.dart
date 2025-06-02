@@ -6,7 +6,6 @@ import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/pages/login/login_settings.dart';
 import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
 import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
-import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 import 'package:exdock_backend_client/utils/snackbar/exdock_snackbar.dart';
 import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
 import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
@@ -31,12 +30,12 @@ class _LoginState extends State<Login> {
   }
 
   Future<int> loginServer(String email, String password) async {
-    AuthenticationData authData = AuthenticationData();
-    authData.setAuthEmail(email);
-    authData.setAuthPassword(password);
+    String email = emailController.text;
+    String password = passwordController.text;
 
     HttpData httpGetData = await loginRequest(
-      authData,
+      email,
+      password,
     );
 
     return httpGetData.statusCode;

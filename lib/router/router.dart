@@ -20,8 +20,6 @@ final GoRouter router = GoRouter(
     ShellRoute(
       redirect: (context, state) {
         try {
-          authData.email;
-          authData.password;
           return null;
         } on NotAuthenticatedException catch (_) {
           return '/login';

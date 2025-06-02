@@ -1,14 +1,7 @@
 // Flutter imports:
 // Project imports:
-import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 import 'package:exdock_backend_client/utils/settings.dart';
 import 'package:flutter/material.dart';
-// Package imports:
-import 'package:shared_preferences/shared_preferences.dart';
-
-late final SharedPreferences prefs;
-
-late final AuthenticationData authData;
 
 // Custom ChangeNotifier for a String value
 class StringNotifier extends ChangeNotifier {

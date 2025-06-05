@@ -33,12 +33,12 @@ class _PageNameState extends State<PageName> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> breadCrumbsList = pathNotifier.value.split("/");
+    final List<String> breadCrumbsList = pathNotifier.value.split("/");
     if (breadCrumbsList.isNotEmpty) breadCrumbsList.removeAt(0);
     if (breadCrumbsList.isNotEmpty) breadCrumbsList.removeLast();
-    String breadCrumbs = breadCrumbsList.join(" > ").replaceAll("-", " ");
+    final String breadCrumbs = breadCrumbsList.join(" > ").replaceAll("-", " ");
 
-    Widget pageNameWidget = Text(
+    final Widget pageNameWidget = Text(
       capitalise(pathNotifier.value.split("/").last).replaceAll("-", " "),
       style: Theme.of(context).textTheme.headlineLarge,
     );

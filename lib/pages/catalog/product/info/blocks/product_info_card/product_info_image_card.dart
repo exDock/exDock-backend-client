@@ -1,13 +1,12 @@
 // Dart imports:
+// Project imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Project imports:
 import 'package:exdock_backend_client/globals/styling.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 
 class ProductInfoImageCard extends StatefulWidget {
   const ProductInfoImageCard({
@@ -40,13 +39,13 @@ class _ProductInfoImageCardState extends State<ProductInfoImageCard> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> images =
+    final List<Map<String, dynamic>> images =
         widget.block.value['images'].map((image) {
       return image as Map<String, dynamic>;
     }).toList();
-    List<Widget> imageWidgets = [];
+    final List<Widget> imageWidgets = [];
     for (var image in images) {
-      List<String> extensions =
+      final List<String> extensions =
           jsonDecode(image['extensions']).map((extension) {
         return extension as String;
       }).toList();

@@ -35,7 +35,7 @@ class _ExDockSaveButtonState extends State<ExDockSaveButton> {
             height: widget.height,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: Theme.of(context).indicatorColor,
+              color: Theme.of(context).cardColor,
               boxShadow: kBoxShadowList,
             ),
             child: Center(

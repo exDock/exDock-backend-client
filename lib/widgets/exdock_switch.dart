@@ -49,7 +49,7 @@ class _ExDockSwitchState extends State<ExDockSwitch> {
           },
           activeColor: mainColour,
           activeToggleColor: Colors.white,
-          inactiveColor: Theme.of(context).indicatorColor,
+          inactiveColor: Theme.of(context).cardColor,
           inactiveToggleColor: darkColour,
           width: 44,
           height: 24,

@@ -41,8 +41,8 @@ class _NotificationsState extends State<Notifications> {
   OverlayEntry? _overlayEntry;
 
   OverlayEntry _createOverlayEntry() {
-    var renderBox = context.findRenderObject() as RenderBox;
-    var position = renderBox.localToGlobal(Offset.zero);
+    final renderBox = context.findRenderObject() as RenderBox;
+    final position = renderBox.localToGlobal(Offset.zero);
 
     return OverlayEntry(
       builder: (context) => Positioned(

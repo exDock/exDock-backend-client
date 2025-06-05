@@ -28,7 +28,7 @@ class _ConfigurationContentSynchronousState
 
   @override
   Widget build(BuildContext context) {
-    List<MapEntry<String, Map<String, dynamic>>> configBlocks =
+    final List<MapEntry<String, Map<String, dynamic>>> configBlocks =
         widget.configurationSettings.entries.toList();
 
     // This makes room for the SizedBox on the top right

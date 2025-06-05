@@ -30,7 +30,7 @@ class SubCategoryRow extends StatelessWidget {
     return Container(
       height: 48,
       decoration: BoxDecoration(
-        color: Theme.of(context).indicatorColor,
+        color: Theme.of(context).cardColor,
         boxShadow: kBoxShadowList,
       ),
       child: Row(

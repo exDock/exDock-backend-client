@@ -1,0 +1,4 @@
+enum FilterSetupTypeData {
+  string,
+  range;
+}

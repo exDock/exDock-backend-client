@@ -25,7 +25,7 @@ class _CategoryEditContentSynchronousState
     extends State<CategoryEditContentSynchronous> {
   @override
   Widget build(BuildContext context) {
-    List<MapEntry<String, dynamic>> blocksEntriesList =
+    final List<MapEntry<String, dynamic>> blocksEntriesList =
         widget.blocks.entries.toList();
     return CategoryEditContentBlocks(
       blocks: List<Widget>.generate(

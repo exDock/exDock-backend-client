@@ -52,7 +52,7 @@ class TopCategoryRow extends StatelessWidget {
               children: List<Widget>.generate(
                 categoryTree.leaves.length,
                 (rowIndex) {
-                  bool categoryIsSelected = isSelected(rowIndex);
+                  final bool categoryIsSelected = isSelected(rowIndex);
                   return TextButton(
                     onPressed: () {
                       onPressed(rowIndex);

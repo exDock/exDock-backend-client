@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'dart:convert';
 
+import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/pages/system/blocks/generate_system_block.dart';
 import 'package:exdock_backend_client/pages/system/blocks/system_block.dart';
 import 'package:exdock_backend_client/pages/system/top_bar/system_top_bar.dart';
@@ -32,20 +33,40 @@ class SystemSynchronous extends StatelessWidget {
       }
 
       if (serverRequestMap.isNotEmpty) {
-        // serverRequestMap = await settings.setSettings(serverRequestMap);
+        serverRequestMap = settings.setSettings(serverRequestMap);
         changeSettingsMap.value.clear();
 
-        var response = await standardPostRequest(
-          "/api/v1/system/setSettings",
-          jsonEncode(serverRequestMap),
-        );
+        try {
+          var response = await standardPostRequest(
+            "/api/v1/system/setSettings",
+            jsonEncode(serverRequestMap),
+          );
 
-        if (response.statusCode == 200) {
-          changeSettingsMap.reset();
-        } else {
-          // Handle error response
-          print("Error saving settings: ${response.responseBody}");
+          if (response.statusCode == 200) {
+            changeSettingsMap.reset();
+          } else {}
+        } catch (e) {
+          settings.restoreSettings();
+          if (context.mounted) {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Error"),
+                  content: const Text(
+                      "Incorrect server URL or server not reachable."),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("OK"),
+                    ),
+                  ],
+                );
+              },
+            );
+          }
         }
+        settings.removeOldSettings();
       }
     }
 

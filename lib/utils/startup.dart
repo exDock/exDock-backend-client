@@ -8,6 +8,5 @@ Future<void> applicationStartUp() async {
   var cachedPrefs = await SharedPreferencesWithCache.create(
     cacheOptions: const SharedPreferencesWithCacheOptions(),
   ); // uses prefs
-  settings = Settings(cachedPrefs);
-  settings.clearSettings();
+  settings = Settings();
 }

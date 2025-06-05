@@ -1,74 +1,35 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:localstorage/localstorage.dart';
 
 class Settings {
-  final SharedPreferencesWithCache _settings;
+  Settings();
 
-  Settings(this._settings);
-
-  String getSetting<T>(String key) {
-    switch (T.toString()) {
-      case "String":
-        return _settings.getString(key) ?? '';
-      case "int":
-        return _settings.getInt(key)?.toString() ?? '0';
-      case "double":
-        return _settings.getDouble(key)?.toString() ?? '0.0';
-      case "bool":
-        return _settings.getBool(key)?.toString() ?? 'false';
-      case "dynamic":
-        return _settings.getString(key) ?? '';
-      default:
-        throw ArgumentError('Unsupported type: $T');
+  T getSetting<T>(String key) {
+    try {
+      return localStorage.getItem(key) as T;
+    } catch (e) {
+      return ""
+          as T; // Return an empty string or a default value if the key does not exist
     }
   }
 
   void setSetting<T>(String key, T value) {
-    switch (T.toString()) {
-      case "String":
-        _settings.setString(key, value as String);
-        break;
-      case "int":
-        _settings.setInt(key, value as int);
-        break;
-      case "double":
-        _settings.setDouble(key, value as double);
-        break;
-      case "bool":
-        _settings.setBool(key, value as bool);
-        break;
-      default:
-        throw ArgumentError('Unsupported type: $T');
-    }
+    return localStorage.setItem(key, value.toString());
   }
 
-  Future<bool> containsSetting(String key) async {
-    return _settings.containsKey(key);
+  bool containsSetting(String key) {
+    return localStorage.getItem(key) != null;
   }
 
   List<String> getSettingKeys() {
-    return _settings.keys.toList();
-  }
-
-  Future<void> clearSettings() async {
-    await _settings.clear();
-  }
-
-  Future<void> removeSetting(String key) async {
-    await _settings.remove(key);
-  }
-
-  Future<Map<String, dynamic>> setSettings(
-      Map<String, dynamic> settingsMap) async {
-    Map<String, dynamic> settings = {};
-    for (var entry in settingsMap.entries) {
-      bool exists = await containsSetting(entry.key);
-      if (exists) {
-        setSetting(entry.key, entry.value);
-      } else {
-        settings[entry.key] = entry.value;
+    List<String> keys = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      String key = localStorage.key(i)!;
+      if (key.startsWith("Flutter") || key.startsWith("exdock_")) {
+        continue; // Skip keys that start with "exdock_" or "Flutter"
       }
+      keys.add(localStorage.key(i)!);
     }
 
-    return settings;
+    return keys;
   }
 }

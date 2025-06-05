@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:exdock_backend_client/globals/globals.dart';
 import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
+import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 // Package imports:
@@ -49,6 +50,9 @@ class _NotificationsState extends State<Notifications> {
       Uri uri = Uri.parse("$websocketUrl/api/v1/ws/error");
       getWebsocketChannel(uri, _notificationsNotifier!);
     } catch (e) {
+      if (e is NotAuthenticatedException) {
+        throw NotAuthenticatedException("");
+      }
       throw Exception("Error parsing URI: $e");
     }
   }

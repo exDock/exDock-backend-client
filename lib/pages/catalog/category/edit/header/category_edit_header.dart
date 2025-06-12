@@ -33,7 +33,7 @@ class _CategoryEditHeaderState extends State<CategoryEditHeader> {
       width: double.infinity,
       height: 104,
       decoration: BoxDecoration(
-        color: Theme.of(context).indicatorColor,
+        color: Theme.of(context).cardColor,
         boxShadow: kBoxShadowList,
       ),
       child: Padding(

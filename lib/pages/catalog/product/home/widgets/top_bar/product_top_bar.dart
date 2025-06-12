@@ -34,14 +34,14 @@ class _ProductTopBarState extends State<ProductTopBar> {
       ValueNotifier(["ID", "THUMBNAIL", "NAME", "PRICE"]);
 
   void removeColumn(String column) {
-    List<String> temp = columnNotifier.value;
+    final List<String> temp = columnNotifier.value;
     temp.remove(column);
     columnNotifier.value = temp;
   }
 
   @override
   Widget build(BuildContext context) {
-    List<String> filters = ["Test", "Test 2", "Test 3"];
+    final List<String> filters = ["Test", "Test 2", "Test 3"];
     return SizedBox(
       height: widget.height,
       child: Padding(

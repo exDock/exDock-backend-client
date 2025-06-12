@@ -75,6 +75,7 @@ class MyApp extends StatelessWidget {
       title: 'exDock backend client',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff264653)),
+        cardColor: Colors.white,
         useMaterial3: true,
       ),
     );

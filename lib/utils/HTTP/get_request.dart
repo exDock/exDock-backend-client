@@ -11,6 +11,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
 
+// Project imports:
+import 'package:exdock_backend_client/utils/HTTP/HttpData.dart';
+
 Future<HttpData> standardGetRequest(String endpoint) async {
   FlutterSecureStorage storage = const FlutterSecureStorage();
   int statusCode;

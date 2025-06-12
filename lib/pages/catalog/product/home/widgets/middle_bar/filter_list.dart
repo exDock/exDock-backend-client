@@ -29,12 +29,12 @@ class _FilterListState extends State<FilterList> {
     filterWidgets.add(const Text("active filters: "));
 
     // Add a filter widget for each filter in the list
-    for (var filter in widget.filters) {
+    for (final filter in widget.filters) {
       filterWidgets.add(Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-            color: Theme.of(context).indicatorColor,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(20),
             boxShadow: kBoxShadowList),
         child: Row(

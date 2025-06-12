@@ -47,9 +47,9 @@ class _IdDataBlockState extends State<IdDataBlock> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> categories = widget.block.value['product_categories'];
-    List<String> categoryNames = categories.map((element) {
-      return element as String;
+    final List<Map<String, dynamic>> categories = widget.block.value['categories'];
+    final List<String> categoryNames = categories.map((element) {
+      return element["category_name"].toString();
     }).toList();
 
     return ProductInfoCardTitle(

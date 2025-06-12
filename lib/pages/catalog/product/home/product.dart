@@ -13,8 +13,8 @@ class Product extends StatelessWidget {
 
   // Generate random product data
   Future<ProductData> getProductData() async {
-    List<ProductInfo> products = [];
-    Random random = Random();
+    final List<ProductInfo> products = [];
+    final Random random = Random();
     for (var i = 0; i < 71; i++) {
       products.add(ProductInfo(
           id: i,
@@ -29,7 +29,7 @@ class Product extends StatelessWidget {
   String getRandomString(int length) {
     const chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    Random rnd = Random();
+    final Random rnd = Random();
 
     return String.fromCharCodes(Iterable.generate(
         length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));

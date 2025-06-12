@@ -32,7 +32,7 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuItem<String>> items = List.from(
+    final List<DropdownMenuItem<String>> items = List.from(
       widget.attribute['possible_values'].map(
         (Map<String, String> value) {
           return DropdownMenuItem<String>(
@@ -50,7 +50,7 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
         Card(
           clipBehavior: Clip.hardEdge,
           elevation: 4,
-          color: Theme.of(context).indicatorColor,
+          color: Theme.of(context).cardColor,
           child: DropdownButton2<String>(
             onChanged: (value) {
               widget.changeAttributeMap.updateAttributeEntry(
@@ -69,7 +69,7 @@ class _DropdownAttributeState extends State<DropdownAttribute> {
             ),
             dropdownStyleData: DropdownStyleData(
               decoration: BoxDecoration(
-                color: Theme.of(context).indicatorColor,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(12),
               ),
               offset: const Offset(0, -4),

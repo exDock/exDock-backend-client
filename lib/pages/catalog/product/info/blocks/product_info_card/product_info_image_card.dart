@@ -40,13 +40,13 @@ class _ProductInfoImageCardState extends State<ProductInfoImageCard> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> images =
+    final List<Map<String, dynamic>> images =
         widget.block.value['images'].map((image) {
       return image as Map<String, dynamic>;
     }).toList();
-    List<Widget> imageWidgets = [];
+    final List<Widget> imageWidgets = [];
     for (var image in images) {
-      List<String> extensions =
+      final List<String> extensions =
           jsonDecode(image['extensions']).map((extension) {
         return extension as String;
       }).toList();

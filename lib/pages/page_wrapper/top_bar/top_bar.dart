@@ -22,7 +22,7 @@ class TopBar extends StatelessWidget {
       height: height,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).indicatorColor,
+        color: Theme.of(context).cardColor,
         boxShadow: kBoxShadowList,
       ),
       child: const Padding(

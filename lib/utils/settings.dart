@@ -1,7 +1,11 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:exdock_backend_client/globals/variables.dart';
+// Flutter imports:
 import 'package:flutter/services.dart';
+
+// Project imports:
+import 'package:exdock_backend_client/globals/variables.dart';
 
 class Settings {
   Map<String, dynamic> settingsMap = {};

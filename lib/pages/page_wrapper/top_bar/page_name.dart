@@ -1,7 +1,10 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Project imports:
 import 'package:exdock_backend_client/globals/variables.dart';
-import 'package:flutter/material.dart';
 
 class PageName extends StatefulWidget {
   const PageName({super.key});

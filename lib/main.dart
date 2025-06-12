@@ -1,15 +1,18 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:async';
 import 'dart:developer' as developer;
+
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:go_router/go_router.dart';
 
 // Project imports:
 import 'package:exdock_backend_client/router/router.dart';
 import 'package:exdock_backend_client/utils/startup.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-// Package imports:
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:go_router/go_router.dart';
 
 void main() async {
   // --- Use runZonedGuarded as the outermost error handler ---

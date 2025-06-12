@@ -19,7 +19,7 @@ class _LoginSettingsState extends State<LoginSettings> {
     TextEditingController controller = TextEditingController();
     ValueNotifier<String?> errorNotifier = ValueNotifier<String?>(null);
     ValueNotifier<bool> isValidated = ValueNotifier<bool>(false);
-    controller.text = settings.getSetting<String>("baseUrl");
+    controller.text = settings.getSetting<String>("base_url");
 
     void handleCheckValues() async {
       try {

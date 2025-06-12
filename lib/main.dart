@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:go_router/go_router.dart';
-import 'package:localstorage/localstorage.dart';
 
 void main() async {
   // --- Use runZonedGuarded as the outermost error handler ---
@@ -21,7 +20,6 @@ void main() async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       GoRouter.optionURLReflectsImperativeAPIs = true;
-      await initLocalStorage();
       usePathUrlStrategy();
 
       // Explicitly handle errors during application startup.

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:exdock_backend_client/globals/variables.dart';
 import 'package:flutter/services.dart';
-import 'package:localstorage/localstorage.dart';
 
 class Settings {
   Map<String, dynamic> settingsMap = {};

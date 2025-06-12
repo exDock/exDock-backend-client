@@ -60,22 +60,26 @@ class _LoginSettingsState extends State<LoginSettings> {
               title: "Login Settings",
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
-                  ValueListenableBuilder(
-                      valueListenable: errorNotifier,
-                      builder: (context, errorText, child) {
-                        return ExdockTextField(
-                          controller: controller,
-                          onChanged: (text) {},
-                          labelText: "Server URL",
-                          errorText: errorText,
-                        );
-                      }),
-                  const Expanded(
-                    child: SizedBox(),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: errorNotifier,
+                        builder: (context, errorText, child) {
+                          return ExdockTextField(
+                            controller: controller,
+                            onChanged: (text) {},
+                            labelText: "Server URL",
+                            errorText: errorText,
+                          );
+                        },
+                      ),
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

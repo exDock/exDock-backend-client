@@ -13,7 +13,6 @@ import 'package:exdock_backoffice/widgets/input/exdock_text_field.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:go_router/go_router.dart';
-import '../../utils/HTTP/login_requests.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -32,10 +31,10 @@ class _LoginState extends State<Login> {
   }
 
   Future<int> loginServer(String email, String password) async {
-    String email = emailController.text;
-    String password = passwordController.text;
+    final String email = emailController.text;
+    final String password = passwordController.text;
 
-    HttpData httpGetData = await loginRequest(
+    final HttpData httpGetData = await loginRequest(
       email,
       password,
     );

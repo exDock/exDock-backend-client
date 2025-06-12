@@ -24,7 +24,7 @@ class ProductInfo extends StatefulWidget {
 
 class _ProductInfoState extends State<ProductInfo> {
   Future<Map<String, dynamic>> getJsonProductData(int productId) async {
-    HttpData httpData = await standardPostRequest(
+    final HttpData httpData = await standardPostRequest(
       "/api/v1/getBlockData",
       jsonEncode(
         {

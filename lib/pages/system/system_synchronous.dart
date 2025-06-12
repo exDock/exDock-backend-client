@@ -21,12 +21,12 @@ class SystemSynchronous extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MapNotifier changeSettingsMap = MapNotifier();
-    List<MapEntry<String, dynamic>> blocksEntriesList = blocks.entries.toList();
+    final MapNotifier changeSettingsMap = MapNotifier();
+    final List<MapEntry<String, dynamic>> blocksEntriesList = blocks.entries.toList();
 
     void saveValues() async {
       Map<String, dynamic> serverRequestMap = {};
-      for (var entry in changeSettingsMap.value.entries) {
+      for (final entry in changeSettingsMap.value.entries) {
         if (entry.value != null) {
           serverRequestMap[entry.key] = entry.value;
         }
@@ -37,7 +37,7 @@ class SystemSynchronous extends StatelessWidget {
         changeSettingsMap.value.clear();
 
         try {
-          var response = await standardPostRequest(
+          final response = await standardPostRequest(
             "/api/v1/system/setSettings",
             jsonEncode(serverRequestMap),
           );

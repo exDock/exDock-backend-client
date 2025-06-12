@@ -1,5 +1,4 @@
 // Dart imports:
-import 'dart:async';
 
 // Project imports:
 import 'package:exdock_backoffice/globals/globals.dart';
@@ -9,7 +8,6 @@ import 'package:exdock_backoffice/utils/authentication/authentication_data.dart'
 // Flutter imports:
 import 'package:flutter/material.dart';
 // Package imports:
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class Notifications extends StatefulWidget {
@@ -37,8 +35,8 @@ class _NotificationsState extends State<Notifications> {
     _notificationsNotifier = ValueNotifier<List<String>>(_notifications);
 
     try {
-      String baseUrl = settings.getSetting("base_url");
-      Uri uri = Uri.parse("$baseUrl/api/v1/ws/error");
+      final String baseUrl = settings.getSetting("base_url");
+      final Uri uri = Uri.parse("$baseUrl/api/v1/ws/error");
       getWebsocketChannel(uri.convertToWs(), _notificationsNotifier!);
     } catch (e) {
       if (e is NotAuthenticatedException) {

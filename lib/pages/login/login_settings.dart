@@ -16,20 +16,20 @@ class LoginSettings extends StatefulWidget {
 class _LoginSettingsState extends State<LoginSettings> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
-    ValueNotifier<String?> errorNotifier = ValueNotifier<String?>(null);
-    ValueNotifier<bool> isValidated = ValueNotifier<bool>(false);
+    final TextEditingController controller = TextEditingController();
+    final ValueNotifier<String?> errorNotifier = ValueNotifier<String?>(null);
+    final ValueNotifier<bool> isValidated = ValueNotifier<bool>(false);
     controller.text = settings.getSetting<String>("base_url");
 
     void handleCheckValues() async {
       try {
-        String base = controller.text;
-        Uri uri = Uri.parse("$base/api/v1/ping");
+        final String base = controller.text;
+        final Uri uri = Uri.parse("$base/api/v1/ping");
         if (uri.scheme.isEmpty || uri.host.isEmpty) {
           throw const FormatException("Invalid URL format");
         }
 
-        var response = await get(uri);
+        final response = await get(uri);
 
         if (response.statusCode != 200) {
           throw Exception("Server not reachable");

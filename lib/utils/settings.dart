@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:exdock_backoffice/globals/variables.dart';
-import 'package:flutter/services.dart';
 
 class Settings {
   Map<String, dynamic> settingsMap = {};
@@ -67,12 +66,12 @@ class Settings {
   }
 
   Map<String, dynamic> saveSettings(Map<String, dynamic> settingsMap) {
-    Map<String, dynamic> serverSettings = {};
-    List<String> keys = getSettingsKeys();
+    final Map<String, dynamic> serverSettings = {};
+    final List<String> keys = getSettingsKeys();
 
-    for (MapEntry<String, dynamic> entry in settingsMap.entries) {
+    for (final MapEntry<String, dynamic> entry in settingsMap.entries) {
       if (keys.contains(entry.key)) {
-        dynamic currentValue = getSetting(entry.key);
+        final dynamic currentValue = getSetting(entry.key);
         oldSettings[entry.key] = currentValue;
 
         setSetting(entry.key, entry.value);

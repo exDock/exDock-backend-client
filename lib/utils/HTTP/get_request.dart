@@ -12,14 +12,14 @@ import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 Future<HttpData> standardGetRequest(String endpoint) async {
-  FlutterSecureStorage storage = const FlutterSecureStorage();
+  const FlutterSecureStorage storage = FlutterSecureStorage();
   int statusCode;
   String responseBody = "";
   String? accessToken = await storage.read(key: "access_token");
-  String? refreshToken = await storage.read(key: "refresh_token");
-  String baseUrl = settings.getSetting("base_url");
+  final String? refreshToken = await storage.read(key: "refresh_token");
+  final String baseUrl = settings.getSetting("base_url");
 
-  Uri uri = Uri.parse(baseUrl + endpoint);
+  final Uri uri = Uri.parse(baseUrl + endpoint);
   if (accessToken == null) {
     return HttpData(statusCode: 401, responseBody: null);
   }
@@ -37,7 +37,7 @@ Future<HttpData> standardGetRequest(String endpoint) async {
   }
 
   try {
-    http.Response response = await http.get(
+    final http.Response response = await http.get(
       uri,
       headers: {HttpHeaders.authorizationHeader: 'Bearer $accessToken'},
     );

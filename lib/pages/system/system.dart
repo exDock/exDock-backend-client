@@ -17,16 +17,16 @@ class System extends StatefulWidget {
 
 class _SystemState extends State<System> {
   Future<Map<String, dynamic>> getSystemData() async {
-    HttpData httpData = await standardGetRequest("/api/v1/system/getSettings");
+    final HttpData httpData = await standardGetRequest("/api/v1/system/getSettings");
 
-    Map<String, dynamic> backOfficeSettings = {
+    final Map<String, dynamic> backOfficeSettings = {
       "BackOffice Settings": {
         "block_type": "standard",
         "attributes": generateBackOfficeSettings(),
       },
     };
 
-    Map<String, dynamic> jsonData =
+    final Map<String, dynamic> jsonData =
         jsonDecode(httpData.responseBody!) as Map<String, dynamic>;
     jsonData.addAll(backOfficeSettings);
 
@@ -65,9 +65,9 @@ Map<String, dynamic> generateBackendAttribute(
 }
 
 List<Map<String, dynamic>> generateBackOfficeSettings() {
-  List<Map<String, dynamic>> backOfficeSettings = [];
-  List<String> settingsKeys = settings.getSettingsKeys();
-  for (String key in settingsKeys) {
+  final List<Map<String, dynamic>> backOfficeSettings = [];
+  final List<String> settingsKeys = settings.getSettingsKeys();
+  for (final String key in settingsKeys) {
     backOfficeSettings.add({
       "attribute_id": key,
       "attribute_name": key.replaceAll("_", " ").capitalize(),

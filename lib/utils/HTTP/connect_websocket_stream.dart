@@ -12,18 +12,16 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
-import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 
 void getWebsocketChannel(Uri wsUrl, ValueNotifier values) async {
-  FlutterSecureStorage storage = const FlutterSecureStorage();
+  const FlutterSecureStorage storage = FlutterSecureStorage();
   String? accessToken = await storage.read(key: "access_token");
-  String? refreshToken = await storage.read(key: "refresh_token");
+  final String? refreshToken = await storage.read(key: "refresh_token");
   if (wsUrl.scheme != "ws" && wsUrl.scheme != "wss") {
     throw NotAuthenticatedException(
         "Invalid WebSocket URL scheme: ${wsUrl.scheme}");
   }
-  var channel = WebSocketChannel.connect(wsUrl);
+  final channel = WebSocketChannel.connect(wsUrl);
   bool isFirstAttempt = true;
   bool isAuthenticated = false;
 
@@ -39,7 +37,7 @@ void getWebsocketChannel(Uri wsUrl, ValueNotifier values) async {
 
   channel.stream.listen(
     (message) async {
-      Map<String, dynamic> data = jsonDecode(message);
+      final Map<String, dynamic> data = jsonDecode(message);
       if (data["type"] == "auth_success") {
         isAuthenticated = true;
       } else if (data["type"] == "auth_failure") {
@@ -71,11 +69,11 @@ void getWebsocketChannel(Uri wsUrl, ValueNotifier values) async {
           channel.sink.close(1000, "Not authenticated");
           return;
         }
-        Map<String, dynamic> data = jsonDecode(message);
+        final Map<String, dynamic> data = jsonDecode(message);
         switch (data["type"]) {
           case "errorNotification":
-            List<String> existingValues = List<String>.from(values.value);
-            String errorMessage = data["error"]["errorMessage"];
+            final List<String> existingValues = List<String>.from(values.value);
+            final String errorMessage = data["error"]["errorMessage"];
             existingValues.add(errorMessage);
             values.value = existingValues;
             break;

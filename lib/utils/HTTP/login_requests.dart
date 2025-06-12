@@ -10,13 +10,13 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 Future<HttpData> loginRequest(String email, String password) async {
-  FlutterSecureStorage storage = const FlutterSecureStorage();
+  const FlutterSecureStorage storage = FlutterSecureStorage();
   int statusCode;
-  String baseUrl = settings.getSetting<String>("base_url");
+  final String baseUrl = settings.getSetting<String>("base_url");
 
-  Uri uri = Uri.parse("$baseUrl/api/v1/token");
+  final Uri uri = Uri.parse("$baseUrl/api/v1/token");
   try {
-    http.Response response = await http.post(
+    final http.Response response = await http.post(
       uri,
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(
@@ -27,10 +27,10 @@ Future<HttpData> loginRequest(String email, String password) async {
     statusCode = response.statusCode;
 
     if (statusCode == 200) {
-      Map<String, dynamic> data = jsonDecode(response.body);
-      Map<String, dynamic> tokens = jsonDecode(data["tokens"]);
-      String accessToken = tokens["access_token"];
-      String refreshToken = tokens["refresh_token"];
+      final Map<String, dynamic> data = jsonDecode(response.body);
+      final Map<String, dynamic> tokens = jsonDecode(data["tokens"]);
+      final String accessToken = tokens["access_token"];
+      final String refreshToken = tokens["refresh_token"];
 
       await storage.write(key: "access_token", value: accessToken);
       await storage.write(key: "refresh_token", value: refreshToken);
@@ -43,11 +43,11 @@ Future<HttpData> loginRequest(String email, String password) async {
 }
 
 Future<String> refreshTokens(String refreshToken) async {
-  FlutterSecureStorage storage = const FlutterSecureStorage();
-  String baseUrl = settings.getSetting<String>("base_url");
-  Uri uri = Uri.parse("$baseUrl/api/v1/refresh");
+  const FlutterSecureStorage storage = FlutterSecureStorage();
+  final String baseUrl = settings.getSetting<String>("base_url");
+  final Uri uri = Uri.parse("$baseUrl/api/v1/refresh");
   try {
-    http.Response response = await http.post(
+    final http.Response response = await http.post(
       uri,
       headers: {"content-type": "application/json"},
       body: jsonEncode(
@@ -55,7 +55,7 @@ Future<String> refreshTokens(String refreshToken) async {
       ),
     );
 
-    Map<String, dynamic> data = jsonDecode(response.body);
+    final Map<String, dynamic> data = jsonDecode(response.body);
 
     await storage.write(key: "access_token", value: data["access_token"]);
 

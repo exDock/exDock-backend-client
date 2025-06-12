@@ -1,7 +1,7 @@
 // Package imports:
 // Project imports:
-import 'package:exdock_backend_client/globals/variables.dart';
-import 'package:exdock_backend_client/utils/settings.dart';
+import 'package:exdock_backoffice/globals/variables.dart';
+import 'package:exdock_backoffice/utils/settings.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

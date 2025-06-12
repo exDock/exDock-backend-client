@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:exdock_backend_client/globals/variables.dart';
+import 'package:exdock_backoffice/globals/variables.dart';
 import 'package:flutter/services.dart';
 
 class Settings {

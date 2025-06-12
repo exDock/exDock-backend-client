@@ -2,8 +2,8 @@
 import 'dart:convert';
 
 // Project imports:
-import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
-import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
+import 'package:exdock_backoffice/utils/HTTP/login_requests.dart';
+import 'package:exdock_backoffice/utils/authentication/authentication_data.dart';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 // Package imports:

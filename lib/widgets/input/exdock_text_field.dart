@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/widgets/exdock_card.dart';
+import 'package:exdock_backoffice/widgets/exdock_card.dart';
 import 'package:flutter/material.dart';
 
 class ExdockTextField extends StatelessWidget {

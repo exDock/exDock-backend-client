@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/globals/styling.dart';
-import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
-import 'package:exdock_backend_client/utils/attributes/generate_attribute.dart';
-import 'package:exdock_backend_client/utils/map_notifier.dart';
+import 'package:exdock_backoffice/globals/styling.dart';
+import 'package:exdock_backoffice/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
+import 'package:exdock_backoffice/utils/attributes/generate_attribute.dart';
+import 'package:exdock_backoffice/utils/map_notifier.dart';
 
 class ProductPriceCard extends StatefulWidget {
   const ProductPriceCard({
@@ -70,7 +70,8 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
       startDate = DateTime.utc(int.parse(startDateSplit[0]),
           int.parse(startDateSplit[1]), int.parse(startDateSplit[2]));
     }
-    if (widget.block.value['product_sale_dates'][1]['current_attribute_value'] !=
+    if (widget.block.value['product_sale_dates'][1]
+            ['current_attribute_value'] !=
         null) {
       final List<String> endDateSplit = widget
           .block.value['product_sale_dates'][1]['current_attribute_value']

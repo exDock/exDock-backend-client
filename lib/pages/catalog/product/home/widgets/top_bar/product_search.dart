@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/globals/styling.dart';
+import 'package:exdock_backoffice/globals/styling.dart';
 
 class ProductSearch extends StatefulWidget {
   const ProductSearch({super.key, required this.searchCallback});

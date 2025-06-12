@@ -1,11 +1,11 @@
 // Flutter imports:
 import 'dart:convert';
 
-import 'package:exdock_backend_client/globals/variables.dart';
-import 'package:exdock_backend_client/pages/system/system_synchronous.dart';
-import 'package:exdock_backend_client/utils/HTTP/get_request.dart';
-import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
-import 'package:exdock_backend_client/utils/map_notifier.dart';
+import 'package:exdock_backoffice/globals/variables.dart';
+import 'package:exdock_backoffice/pages/system/system_synchronous.dart';
+import 'package:exdock_backoffice/utils/HTTP/get_request.dart';
+import 'package:exdock_backoffice/utils/HTTP/http_data.dart';
+import 'package:exdock_backoffice/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
 class System extends StatefulWidget {

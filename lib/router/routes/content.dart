@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/pages/content/pages/pages_overview.dart';
+import 'package:exdock_backoffice/pages/content/pages/pages_overview.dart';
 
 List<GoRoute> getContentRoutes() {
   return [

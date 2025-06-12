@@ -1,4 +1,4 @@
-name: exdock_backend_client
+name: exdock_backoffice
 description: "ExDock is an open source project with the goal of being the fastest E-commerce platform on the market. While being simple to use by non-technical people."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

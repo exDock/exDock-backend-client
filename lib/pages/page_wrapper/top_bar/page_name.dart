@@ -1,6 +1,6 @@
 // Flutter imports:
 // Project imports:
-import 'package:exdock_backend_client/globals/variables.dart';
+import 'package:exdock_backoffice/globals/variables.dart';
 import 'package:flutter/material.dart';
 
 class PageName extends StatefulWidget {

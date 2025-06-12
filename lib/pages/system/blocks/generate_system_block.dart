@@ -1,6 +1,6 @@
 // Flutter imports:
-import 'package:exdock_backend_client/pages/system/blocks/standard_system_block.dart';
-import 'package:exdock_backend_client/utils/map_notifier.dart';
+import 'package:exdock_backoffice/pages/system/blocks/standard_system_block.dart';
+import 'package:exdock_backoffice/utils/map_notifier.dart';
 import 'package:flutter/material.dart';
 
 class GenerateSystemBlock extends StatelessWidget {

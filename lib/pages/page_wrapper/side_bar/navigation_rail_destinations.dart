@@ -6,9 +6,9 @@ import 'package:hoverable_navigation_rail/hoverable_navigation_rail_destination.
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar_hover_menu.dart';
-import 'package:exdock_backend_client/pages/page_wrapper/side_bar/side_bar_hover_menu_data.dart';
-import 'package:exdock_backend_client/pages/page_wrapper/side_bar/simple_hover_menu_button.dart';
+import 'package:exdock_backoffice/pages/page_wrapper/side_bar/side_bar_hover_menu.dart';
+import 'package:exdock_backoffice/pages/page_wrapper/side_bar/side_bar_hover_menu_data.dart';
+import 'package:exdock_backoffice/pages/page_wrapper/side_bar/simple_hover_menu_button.dart';
 
 Map<String, HoverableNavigationRailDestination> navigationRailDestinations(
   BuildContext context,

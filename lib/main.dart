@@ -3,8 +3,8 @@ import 'dart:async';
 import 'dart:developer' as developer;
 
 // Project imports:
-import 'package:exdock_backend_client/router/router.dart';
-import 'package:exdock_backend_client/utils/startup.dart';
+import 'package:exdock_backoffice/router/router.dart';
+import 'package:exdock_backoffice/utils/startup.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // Package imports:

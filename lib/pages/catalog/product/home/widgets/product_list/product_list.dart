@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/pages/catalog/product/home/product_data.dart';
-import 'package:exdock_backend_client/pages/catalog/product/home/widgets/product_list/product_info.dart';
-import 'package:exdock_backend_client/pages/catalog/product/home/widgets/product_list/product_item.dart';
+import 'package:exdock_backoffice/pages/catalog/product/home/product_data.dart';
+import 'package:exdock_backoffice/pages/catalog/product/home/widgets/product_list/product_info.dart';
+import 'package:exdock_backoffice/pages/catalog/product/home/widgets/product_list/product_item.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({

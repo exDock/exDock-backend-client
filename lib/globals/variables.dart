@@ -1,6 +1,6 @@
 // Flutter imports:
 // Project imports:
-import 'package:exdock_backend_client/utils/settings.dart';
+import 'package:exdock_backoffice/utils/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

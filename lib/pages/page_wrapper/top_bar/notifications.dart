@@ -2,10 +2,10 @@
 import 'dart:async';
 
 // Project imports:
-import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/globals/variables.dart';
-import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
-import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
+import 'package:exdock_backoffice/globals/globals.dart';
+import 'package:exdock_backoffice/globals/variables.dart';
+import 'package:exdock_backoffice/utils/HTTP/connect_websocket_stream.dart';
+import 'package:exdock_backoffice/utils/authentication/authentication_data.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 // Package imports:

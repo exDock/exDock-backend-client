@@ -1,9 +1,14 @@
 // Package imports:
+
+// Flutter imports:
+import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:shared_preferences/shared_preferences.dart';
+
 // Project imports:
 import 'package:exdock_backoffice/globals/variables.dart';
 import 'package:exdock_backoffice/utils/settings.dart';
-import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> applicationStartUp() async {
   const SharedPreferencesWithCacheOptions preferencesWithCacheOptions =

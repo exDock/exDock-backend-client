@@ -1,4 +1,11 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:go_router/go_router.dart';
+
 // Project imports:
 import 'package:exdock_backoffice/globals/variables.dart';
 import 'package:exdock_backoffice/pages/login/login.dart';
@@ -7,9 +14,6 @@ import 'package:exdock_backoffice/pages/page_wrapper/side_bar/side_bar.dart';
 import 'package:exdock_backoffice/pages/page_wrapper/top_bar/top_bar.dart';
 import 'package:exdock_backoffice/router/routes/routes.dart';
 import 'package:exdock_backoffice/utils/authentication/authentication_data.dart';
-import 'package:flutter/material.dart';
-// Package imports:
-import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
   routes: [

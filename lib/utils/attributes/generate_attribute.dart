@@ -1,17 +1,18 @@
 // Flutter imports:
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Project imports:
 import 'package:exdock_backoffice/utils/attributes/dropdown/dropdown_attribute.dart';
 import 'package:exdock_backoffice/utils/attributes/images/single_image_attribute.dart';
 import 'package:exdock_backoffice/utils/attributes/switch_attribute.dart';
 import 'package:exdock_backoffice/utils/attributes/text_field_attribute.dart';
 import 'package:exdock_backoffice/utils/attributes/text_field_number_attribute.dart';
-// Flutter imports:
 import 'package:exdock_backoffice/utils/attributes/text_field_password.dart';
 import 'package:exdock_backoffice/utils/attributes/text_field_price_attribute.dart';
 import 'package:exdock_backoffice/utils/attributes/wysiwyg_attribute.dart';
 import 'package:exdock_backoffice/utils/map_notifier.dart';
-import 'package:flutter/material.dart';
 
 class GenerateAttribute extends StatelessWidget {
   const GenerateAttribute(

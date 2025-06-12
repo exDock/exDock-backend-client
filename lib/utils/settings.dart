@@ -1,5 +1,7 @@
+// Dart imports:
 import 'dart:convert';
 
+// Project imports:
 import 'package:exdock_backoffice/globals/variables.dart';
 
 class Settings {

@@ -1,8 +1,13 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:shared_preferences/shared_preferences.dart';
+
 // Project imports:
 import 'package:exdock_backoffice/utils/settings.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // Custom ChangeNotifier for a String value
 class StringNotifier extends ChangeNotifier {

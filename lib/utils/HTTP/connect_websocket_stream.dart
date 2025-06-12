@@ -83,3 +83,13 @@ void getWebsocketChannel(Uri wsUrl, ValueNotifier values) async {
     cancelOnError: true,
   );
 }
+
+extension UriExtension on Uri {
+  Uri convertToWs() {
+    if (scheme == "http") {
+      return replace(scheme: "ws");
+    } else {
+      return replace(scheme: "wss");
+    }
+  }
+}

@@ -44,11 +44,8 @@ class _NotificationsState extends State<Notifications> {
 
     try {
       String baseUrl = settings.getSetting("base_url");
-      String websocketUrl = baseUrl.contains("http")
-          ? baseUrl.replaceFirst("http", "ws")
-          : baseUrl.replaceFirst("https", "wss");
-      Uri uri = Uri.parse("$websocketUrl/api/v1/ws/error");
-      getWebsocketChannel(uri, _notificationsNotifier!);
+      Uri uri = Uri.parse("$baseUrl/api/v1/ws/error");
+      getWebsocketChannel(uri.convertToWs(), _notificationsNotifier!);
     } catch (e) {
       if (e is NotAuthenticatedException) {
         throw NotAuthenticatedException("");

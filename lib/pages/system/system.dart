@@ -65,7 +65,7 @@ Map<String, dynamic> generateBackendAttribute(
 
 List<Map<String, dynamic>> generateBackOfficeSettings() {
   List<Map<String, dynamic>> backOfficeSettings = [];
-  List<String> settingsKeys = settings.getSettingKeys();
+  List<String> settingsKeys = settings.getSettingsKeys();
   for (String key in settingsKeys) {
     backOfficeSettings.add({
       "attribute_id": key,

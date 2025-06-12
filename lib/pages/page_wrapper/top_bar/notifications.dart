@@ -31,12 +31,6 @@ class _NotificationsState extends State<Notifications> {
     color: Theme.of(context).primaryColor,
   );
 
-  Future<String> getToken() async {
-    FlutterSecureStorage storage = const FlutterSecureStorage();
-    String? token = await storage.read(key: "jwt");
-    return token!;
-  }
-
   @override
   void initState() {
     super.initState();

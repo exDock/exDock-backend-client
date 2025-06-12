@@ -4,6 +4,7 @@
 import 'package:exdock_backend_client/globals/globals.dart';
 // Flutter imports:
 import 'package:exdock_backend_client/pages/login/login_settings.dart';
+import 'package:exdock_backend_client/router/router.dart';
 import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
 import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
 import 'package:exdock_backend_client/utils/snackbar/exdock_snackbar.dart';
@@ -52,7 +53,12 @@ class _LoginState extends State<Login> {
           context.pop();
           return;
         }
-        context.go("/");
+
+        if (router.canPop()) {
+          router.pop();
+        } else {
+          router.go("/");
+        }
       }
     } else if (statusCode == 401) {
       if (mounted) {
@@ -110,7 +116,7 @@ class _LoginState extends State<Login> {
               child: Container(
                 width: 450,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).indicatorColor,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: kBoxShadowList,
                 ),

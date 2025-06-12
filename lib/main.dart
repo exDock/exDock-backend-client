@@ -13,8 +13,6 @@ import 'package:go_router/go_router.dart';
 import 'package:localstorage/localstorage.dart';
 
 void main() async {
-  GoRouter.optionURLReflectsImperativeAPIs = true;
-
   // --- Use runZonedGuarded as the outermost error handler ---
   // This will catch ALL unhandled errors, synchronous or asynchronous,
   // that occur within its zone, including those that might somehow
@@ -54,7 +52,8 @@ void main() async {
       if (router.configuration.routes.isNotEmpty &&
           error.runtimeType.toString() == "NotAuthenticatedException") {
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          router.go('/login');
+          print("tets");
+          router.push('/login');
         });
       }
 

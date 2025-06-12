@@ -2,17 +2,17 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/utils/id_set_notifier.dart';
-import 'package:exdock_backend_client/widgets/overview_page/bulk/bulk_action.dart';
-import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
-import 'package:exdock_backend_client/widgets/overview_page/content/overview_page_content.dart';
-import 'package:exdock_backend_client/widgets/overview_page/content/row/retrieve_overview_page_pages.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/active_filters.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup.dart';
-import 'package:exdock_backend_client/widgets/overview_page/overview_page_header.dart';
-import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
-import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
+import 'package:exdock_backoffice/utils/id_set_notifier.dart';
+import 'package:exdock_backoffice/widgets/overview_page/bulk/bulk_action.dart';
+import 'package:exdock_backoffice/widgets/overview_page/content/columns/overview_page_column.dart';
+import 'package:exdock_backoffice/widgets/overview_page/content/overview_page_content.dart';
+import 'package:exdock_backoffice/widgets/overview_page/content/row/retrieve_overview_page_pages.dart';
+import 'package:exdock_backoffice/widgets/overview_page/filters/active_filters.dart';
+import 'package:exdock_backoffice/widgets/overview_page/filters/filter_notifier.dart';
+import 'package:exdock_backoffice/widgets/overview_page/filters/filter_setup/filter_setup.dart';
+import 'package:exdock_backoffice/widgets/overview_page/overview_page_header.dart';
+import 'package:exdock_backoffice/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
+import 'package:exdock_backoffice/widgets/pagination/page_notifier.dart';
 
 class OverviewPage extends StatefulWidget {
   const OverviewPage({

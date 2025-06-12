@@ -1,5 +1,3 @@
-// Flutter imports:
-
 // Dart imports:
 import 'dart:convert';
 
@@ -7,10 +5,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/pages/catalog/product/info/product_info_synchronous.dart';
-import 'package:exdock_backend_client/utils/HTTP/HttpData.dart';
-import 'package:exdock_backend_client/utils/HTTP/post_requests.dart';
-import 'package:exdock_backend_client/utils/map_notifier.dart';
+import 'package:exdock_backoffice/pages/catalog/product/info/product_info_synchronous.dart';
+import 'package:exdock_backoffice/utils/HTTP/http_data.dart';
+import 'package:exdock_backoffice/utils/HTTP/post_requests.dart';
+import 'package:exdock_backoffice/utils/map_notifier.dart';
 
 class ProductInfo extends StatefulWidget {
   const ProductInfo({
@@ -26,7 +24,7 @@ class ProductInfo extends StatefulWidget {
 
 class _ProductInfoState extends State<ProductInfo> {
   Future<Map<String, dynamic>> getJsonProductData(int productId) async {
-    HttpData httpData = await standardPostRequest(
+    final HttpData httpData = await standardPostRequest(
       "/api/v1/getBlockData",
       jsonEncode(
         {

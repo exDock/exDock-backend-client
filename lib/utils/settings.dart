@@ -24,7 +24,6 @@ class Settings {
         }
       }
     } catch (e) {
-      print(e);
       rethrow;
     }
   }

@@ -46,7 +46,7 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
 
   void _initializeAnimationControllers() {
     // Initialize animation controllers for each section
-    for (var sectionTitle in widget.menuItems.keys) {
+    for (final sectionTitle in widget.menuItems.keys) {
       // Rotation controller for the arrow icon
       _rotationControllers[sectionTitle] = AnimationController(
         vsync: this,
@@ -60,7 +60,7 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
       );
 
       // Individual controllers for each item in the section
-      var items = widget.menuItems[sectionTitle] ?? [];
+      final items = widget.menuItems[sectionTitle] ?? [];
       _itemControllers[sectionTitle] = List.generate(
         items.length,
         (index) => AnimationController(
@@ -74,16 +74,16 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
   @override
   void dispose() {
     // Dispose all animation controllers
-    for (var controller in _rotationControllers.values) {
+    for (final controller in _rotationControllers.values) {
       controller.dispose();
     }
 
-    for (var controller in _expansionControllers.values) {
+    for (final controller in _expansionControllers.values) {
       controller.dispose();
     }
 
-    for (var controllerList in _itemControllers.values) {
-      for (var controller in controllerList) {
+    for (final controllerList in _itemControllers.values) {
+      for (final controller in controllerList) {
         controller.dispose();
       }
     }
@@ -91,7 +91,7 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
   }
 
   void _animateItems(String sectionTitle, bool isExpanded) {
-    var items = _itemControllers[sectionTitle] ?? [];
+    final items = _itemControllers[sectionTitle] ?? [];
 
     if (isExpanded) {
       // Staggered animation forward for each item
@@ -104,7 +104,7 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
       }
     } else {
       // Reverse all item animations at once when closing
-      for (var controller in items) {
+      for (final controller in items) {
         controller.reverse();
       }
     }
@@ -123,7 +123,7 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
   }
 
   List<Widget> _buildMenuSections() {
-    List<Widget> sections = [
+    final List<Widget> sections = [
       const SizedBox(height: 24),
     ];
 
@@ -138,9 +138,9 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
     );
 
     widget.menuItems.forEach((sectionTitle, subItems) {
-      bool isExpanded = expandedSections.contains(sectionTitle);
-      var rotationController = _rotationControllers[sectionTitle]!;
-      var expansionController = _expansionControllers[sectionTitle]!;
+      final bool isExpanded = expandedSections.contains(sectionTitle);
+      final rotationController = _rotationControllers[sectionTitle]!;
+      final expansionController = _expansionControllers[sectionTitle]!;
 
       // Update controllers based on expansion state
       if (isExpanded) {
@@ -156,7 +156,7 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
       }
 
       // Rotation animation for the arrow icon
-      var rotationAnimation =
+      final rotationAnimation =
           Tween<double>(begin: 0, end: 0.5).animate(CurvedAnimation(
         parent: rotationController,
         curve: Curves.easeInOut,
@@ -235,16 +235,16 @@ class _ConfigurationSidebarState extends State<ConfigurationSidebar>
 
   List<Widget> _buildSubItems(
       String sectionTitle, List<ConfigurationMenuSubType> subItems) {
-    List<Widget> itemWidgets = [];
-    var itemControllerList = _itemControllers[sectionTitle] ?? [];
+    final List<Widget> itemWidgets = [];
+    final itemControllerList = _itemControllers[sectionTitle] ?? [];
 
     for (int i = 0; i < subItems.length; i++) {
       if (i < itemControllerList.length) {
-        var item = subItems[i];
-        var itemController = itemControllerList[i];
+        final item = subItems[i];
+        final itemController = itemControllerList[i];
 
         // Fade animation for individual item
-        var fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+        final fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
           CurvedAnimation(
             parent: itemController,
             curve: Curves.easeIn,

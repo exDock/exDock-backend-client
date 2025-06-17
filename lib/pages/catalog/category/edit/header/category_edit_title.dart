@@ -13,9 +13,9 @@ class CategoryEditTitle extends StatelessWidget {
   final List<CategoryLeaf> categorySelection;
 
   String parentCategoriesText(List<CategoryLeaf> categorySelection) {
-    List<String> outputList = [];
+    final List<String> outputList = [];
 
-    for (CategoryLeaf categoryLeaf in categorySelection) {
+    for (final CategoryLeaf categoryLeaf in categorySelection) {
       outputList.add(categoryLeaf.name.toLowerCase());
     }
     outputList.removeLast();
@@ -25,12 +25,12 @@ class CategoryEditTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle mainTitleStyle =
+    final TextStyle mainTitleStyle =
         Theme.of(context).textTheme.headlineLarge ??
             const TextStyle(
               fontSize: 48,
             );
-    TextStyle parentLeavesTextStyle = const TextStyle();
+    const TextStyle parentLeavesTextStyle = TextStyle();
     if (categorySelection.isEmpty) {
       return Text(
         "No category selected",

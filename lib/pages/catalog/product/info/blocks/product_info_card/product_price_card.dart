@@ -1,16 +1,14 @@
 // Flutter imports:
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-
 // Project imports:
 import 'package:exdock_backend_client/globals/styling.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
 import 'package:exdock_backend_client/utils/attributes/generate_attribute.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 
 class ProductPriceCard extends StatefulWidget {
   const ProductPriceCard({
@@ -63,15 +61,18 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
       },
     );
 
-    if (widget.block.value['product_sale_dates'] != null) {
-      List<String> startDateSplit =
-          widget.block.value['product_sale_dates'][0].split('-');
+    if (widget.block.value['sale_dates'] != null) {
+      final List<String> startDateSplit = widget
+          .block.value['sale_dates'][0]['current_attribute_value']
+          .split('-');
       startDate = DateTime.utc(int.parse(startDateSplit[0]),
           int.parse(startDateSplit[1]), int.parse(startDateSplit[2]));
     }
-    if (widget.block.value['product_sale_dates'][1] != null) {
-      List<String> endDateSplit =
-          widget.block.value['product_sale_dates'][1].split('-');
+    if (widget.block.value['sale_dates'][1]['current_attribute_value'] !=
+        null) {
+      final List<String> endDateSplit = widget
+          .block.value['sale_dates'][1]['current_attribute_value']
+          .split('-');
       endDate = DateTime.utc(int.parse(endDateSplit[0]),
           int.parse(endDateSplit[1]), int.parse(endDateSplit[2]));
     }
@@ -114,7 +115,7 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
             padding: const EdgeInsets.only(top: 8),
             child: GestureDetector(
               onTap: () async {
-                var result = await showCalendarDatePicker2Dialog(
+                final result = await showCalendarDatePicker2Dialog(
                   context: context,
                   config: CalendarDatePicker2WithActionButtonsConfig(
                     calendarType: CalendarDatePicker2Type.range,

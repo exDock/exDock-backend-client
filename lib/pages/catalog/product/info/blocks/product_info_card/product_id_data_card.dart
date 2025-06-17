@@ -1,11 +1,10 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:exdock_backend_client/pages/catalog/product/info/id_data/category_list.dart';
 import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
 import 'package:exdock_backend_client/utils/attributes/generate_attribute.dart';
 import 'package:exdock_backend_client/utils/map_notifier.dart';
+import 'package:flutter/material.dart';
 
 class IdDataBlock extends StatefulWidget {
   const IdDataBlock({
@@ -47,9 +46,10 @@ class _IdDataBlockState extends State<IdDataBlock> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> categories = widget.block.value['product_categories'];
-    List<String> categoryNames = categories.map((element) {
-      return element as String;
+    final List<Map<String, dynamic>> categories =
+        widget.block.value['categories'];
+    final List<String> categoryNames = categories.map((element) {
+      return element["category_name"].toString();
     }).toList();
 
     return ProductInfoCardTitle(

@@ -19,8 +19,8 @@ class ProductInfoSynchronous extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MapNotifier changeAttributeMap = MapNotifier();
-    List<MapEntry<String, dynamic>> blocksEntriesList = blocks.entries.toList();
+    final MapNotifier changeAttributeMap = MapNotifier();
+    final List<MapEntry<String, dynamic>> blocksEntriesList = blocks.entries.toList();
 
     saveValues() {
       changeAttributeMap.reset();

@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:dotted_border/dotted_border.dart';
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:kumi_popup_window/kumi_popup_window.dart';
 
 // Project imports:
@@ -140,12 +140,14 @@ class NoImagePresent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DottedBorder(
-      borderType: BorderType.RRect,
-      radius: const Radius.circular(5),
-      dashPattern: const [10, 10],
-      strokeWidth: 2,
-      color: Theme.of(context).disabledColor,
+    return Container(
+      decoration: DottedDecoration(
+        shape: Shape.box,
+        borderRadius: BorderRadius.circular(5),
+        dash: const [10, 10],
+        strokeWidth: 2,
+        color: Theme.of(context).disabledColor,
+      ),
       child: const SizedBox(
         height: 100,
         child: Center(

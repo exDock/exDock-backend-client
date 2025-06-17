@@ -2,6 +2,7 @@
 // Project imports:
 import 'package:exdock_backend_client/widgets/exdock_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ExdockTextField extends StatelessWidget {
   const ExdockTextField({
@@ -11,6 +12,7 @@ class ExdockTextField extends StatelessWidget {
     this.isPassword = false,
     this.labelText,
     this.errorText,
+    this.inputFormatters,
   });
 
   final TextEditingController controller;
@@ -18,12 +20,14 @@ class ExdockTextField extends StatelessWidget {
   final String? labelText;
   final String? errorText;
   final bool isPassword;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
     return ExdockCard(
       height: 56,
       child: TextField(
+        inputFormatters: inputFormatters,
         controller: controller,
         onChanged: onChanged,
         obscureText: isPassword,

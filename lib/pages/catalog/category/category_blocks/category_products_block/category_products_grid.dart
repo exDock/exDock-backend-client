@@ -44,9 +44,9 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
       width: double.infinity,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          int columnCount =
+          final int columnCount =
               (constraints.maxWidth / (productCardWidth + 12)).floor();
-          double spacing =
+          final double spacing =
               (constraints.maxWidth / columnCount - productCardWidth) /
                   columnCount *
                   (columnCount + 1);
@@ -60,7 +60,7 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                 onAcceptWithDetails: (draggedIndex) {
                   // move logic
                   setState(() {
-                    var draggedItem = _localProducts[draggedIndex.data];
+                    final draggedItem = _localProducts[draggedIndex.data];
                     _localProducts.removeAt(draggedIndex.data);
                     _localProducts.insert(index, draggedItem);
                   });
@@ -119,7 +119,7 @@ class _CategoryProductsGridState extends State<CategoryProductsGrid> {
                               cursor: SystemMouseCursors.grab,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).indicatorColor,
+                                  color: Theme.of(context).cardColor,
                                   borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(10),
                                   ),

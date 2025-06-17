@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
   }
 
   void loginButtonFunction() async {
-    int statusCode = await loginServer(
+    final int statusCode = await loginServer(
       emailController.text,
       passwordController.text,
     );

@@ -29,32 +29,36 @@ class Settings {
   }
 
   void setSetting<T>(String key, T value) {
-    switch (T.toString()) {
-      case "String":
-        {
-          prefs.setString(key, value as String);
-          break;
-        }
-      case "int":
-        {
-          prefs.setInt(key, value as int);
-          break;
-        }
-      case "double":
-        {
-          prefs.setDouble(key, value as double);
-          break;
-        }
-      case "bool":
-        {
-          prefs.setBool(key, value as bool);
-          break;
-        }
-      default:
-        {
-          prefs.setString(key, jsonEncode(value));
-          break;
-        }
+    if (settingsMap.containsKey(key)) {
+      settingsMap[key] = value;
+    } else {
+      switch (T.toString()) {
+        case "String":
+          {
+            prefs.setString(key, value as String);
+            break;
+          }
+        case "int":
+          {
+            prefs.setInt(key, value as int);
+            break;
+          }
+        case "double":
+          {
+            prefs.setDouble(key, value as double);
+            break;
+          }
+        case "bool":
+          {
+            prefs.setBool(key, value as bool);
+            break;
+          }
+        default:
+          {
+            prefs.setString(key, jsonEncode(value));
+            break;
+          }
+      }
     }
   }
 

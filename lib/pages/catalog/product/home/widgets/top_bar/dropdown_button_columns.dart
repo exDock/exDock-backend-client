@@ -5,8 +5,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/globals/styling.dart';
-import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/column_list.dart';
+import 'package:exdock_backoffice/globals/styling.dart';
+import 'package:exdock_backoffice/pages/catalog/product/home/widgets/top_bar/column_list.dart';
 
 class DropdownButtonColumns extends StatefulWidget {
   const DropdownButtonColumns({

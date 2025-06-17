@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/pages/catalog/product/home/product_data.dart';
-import 'package:exdock_backend_client/pages/catalog/product/home/widgets/middle_bar/product_middle_bar.dart';
-import 'package:exdock_backend_client/pages/catalog/product/home/widgets/product_list/product_list.dart';
-import 'package:exdock_backend_client/pages/catalog/product/home/widgets/top_bar/product_top_bar.dart';
+import 'package:exdock_backoffice/pages/catalog/product/home/product_data.dart';
+import 'package:exdock_backoffice/pages/catalog/product/home/widgets/middle_bar/product_middle_bar.dart';
+import 'package:exdock_backoffice/pages/catalog/product/home/widgets/product_list/product_list.dart';
+import 'package:exdock_backoffice/pages/catalog/product/home/widgets/top_bar/product_top_bar.dart';
 
 class ProductHomeSynchronous extends StatefulWidget {
   const ProductHomeSynchronous({super.key, required this.productData});

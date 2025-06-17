@@ -1,16 +1,16 @@
 // Dart imports:
-import 'dart:async';
 
-// Project imports:
-import 'package:exdock_backend_client/globals/globals.dart';
-import 'package:exdock_backend_client/globals/variables.dart';
-import 'package:exdock_backend_client/utils/HTTP/connect_websocket_stream.dart';
-import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
+
 // Package imports:
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+
+// Project imports:
+import 'package:exdock_backoffice/globals/globals.dart';
+import 'package:exdock_backoffice/globals/variables.dart';
+import 'package:exdock_backoffice/utils/HTTP/connect_websocket_stream.dart';
+import 'package:exdock_backoffice/utils/authentication/authentication_data.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -31,24 +31,15 @@ class _NotificationsState extends State<Notifications> {
     color: Theme.of(context).primaryColor,
   );
 
-  Future<String> getToken() async {
-    FlutterSecureStorage storage = const FlutterSecureStorage();
-    String? token = await storage.read(key: "jwt");
-    return token!;
-  }
-
   @override
   void initState() {
     super.initState();
     _notificationsNotifier = ValueNotifier<List<String>>(_notifications);
 
     try {
-      String baseUrl = settings.getSetting("base_url");
-      String websocketUrl = baseUrl.contains("http")
-          ? baseUrl.replaceFirst("http", "ws")
-          : baseUrl.replaceFirst("https", "wss");
-      Uri uri = Uri.parse("$websocketUrl/api/v1/ws/error");
-      getWebsocketChannel(uri, _notificationsNotifier!);
+      final String baseUrl = settings.getSetting("base_url");
+      final Uri uri = Uri.parse("$baseUrl/api/v1/ws/error");
+      getWebsocketChannel(uri.convertToWs(), _notificationsNotifier!);
     } catch (e) {
       if (e is NotAuthenticatedException) {
         throw NotAuthenticatedException("");

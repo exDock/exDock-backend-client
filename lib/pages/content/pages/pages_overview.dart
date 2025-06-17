@@ -2,19 +2,19 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:exdock_backend_client/pages/content/pages/bulk_actions/delete_pages_bulk_action.dart';
-import 'package:exdock_backend_client/utils/id_set_notifier.dart';
-import 'package:exdock_backend_client/utils/user_parameters/text_user_parameter.dart';
-import 'package:exdock_backend_client/utils/user_parameters/user_parameter_collection.dart';
-import 'package:exdock_backend_client/widgets/overview_page/content/columns/overview_page_column.dart';
-import 'package:exdock_backend_client/widgets/overview_page/content/row/overview_page_row.dart';
-import 'package:exdock_backend_client/widgets/overview_page/content/row/retrieve_overview_page_pages.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/filter_notifier.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup.dart';
-import 'package:exdock_backend_client/widgets/overview_page/filters/filter_setup/filter_setup_type_data.dart';
-import 'package:exdock_backend_client/widgets/overview_page/overview_page.dart';
-import 'package:exdock_backend_client/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
-import 'package:exdock_backend_client/widgets/pagination/page_notifier.dart';
+import 'package:exdock_backoffice/pages/content/pages/bulk_actions/delete_pages_bulk_action.dart';
+import 'package:exdock_backoffice/utils/id_set_notifier.dart';
+import 'package:exdock_backoffice/utils/user_parameters/text_user_parameter.dart';
+import 'package:exdock_backoffice/utils/user_parameters/user_parameter_collection.dart';
+import 'package:exdock_backoffice/widgets/overview_page/content/columns/overview_page_column.dart';
+import 'package:exdock_backoffice/widgets/overview_page/content/row/overview_page_row.dart';
+import 'package:exdock_backoffice/widgets/overview_page/content/row/retrieve_overview_page_pages.dart';
+import 'package:exdock_backoffice/widgets/overview_page/filters/filter_notifier.dart';
+import 'package:exdock_backoffice/widgets/overview_page/filters/filter_setup/filter_setup.dart';
+import 'package:exdock_backoffice/widgets/overview_page/filters/filter_setup/filter_setup_type_data.dart';
+import 'package:exdock_backoffice/widgets/overview_page/overview_page.dart';
+import 'package:exdock_backoffice/widgets/overview_page/visible_columns_selection/visible_columns_notifier.dart';
+import 'package:exdock_backoffice/widgets/pagination/page_notifier.dart';
 
 class PagesOverview extends StatefulWidget {
   const PagesOverview({super.key});
@@ -308,7 +308,8 @@ class _PagesOverviewState extends State<PagesOverview> {
 
   @override
   Widget build(BuildContext context) {
-    final UserParameterCollection userParameterCollection = UserParameterCollection();
+    final UserParameterCollection userParameterCollection =
+        UserParameterCollection();
 
     userParameterCollection.addParameter(
       TextUserParameter(

@@ -1,17 +1,20 @@
 // Flutter imports:
 
-// Project imports:
-import 'package:exdock_backend_client/globals/globals.dart';
 // Flutter imports:
-import 'package:exdock_backend_client/pages/login/login_settings.dart';
-import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
-import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
-import 'package:exdock_backend_client/utils/snackbar/exdock_snackbar.dart';
-import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
-import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:go_router/go_router.dart';
+
+// Project imports:
+import 'package:exdock_backoffice/globals/globals.dart';
+import 'package:exdock_backoffice/pages/login/login_settings.dart';
+import 'package:exdock_backoffice/router/router.dart';
+import 'package:exdock_backoffice/utils/HTTP/http_data.dart';
+import 'package:exdock_backoffice/utils/HTTP/login_requests.dart';
+import 'package:exdock_backoffice/utils/snackbar/exdock_snackbar.dart';
+import 'package:exdock_backoffice/widgets/buttons/exdock_button.dart';
+import 'package:exdock_backoffice/widgets/input/exdock_text_field.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -30,10 +33,10 @@ class _LoginState extends State<Login> {
   }
 
   Future<int> loginServer(String email, String password) async {
-    String email = emailController.text;
-    String password = passwordController.text;
+    final String email = emailController.text;
+    final String password = passwordController.text;
 
-    HttpData httpGetData = await loginRequest(
+    final HttpData httpGetData = await loginRequest(
       email,
       password,
     );
@@ -52,7 +55,12 @@ class _LoginState extends State<Login> {
           context.pop();
           return;
         }
-        context.go("/");
+
+        if (router.canPop()) {
+          router.pop();
+        } else {
+          router.go("/");
+        }
       }
     } else if (statusCode == 401) {
       if (mounted) {
@@ -110,7 +118,7 @@ class _LoginState extends State<Login> {
               child: Container(
                 width: 450,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).indicatorColor,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: kBoxShadowList,
                 ),

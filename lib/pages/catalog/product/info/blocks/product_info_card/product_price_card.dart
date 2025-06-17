@@ -1,14 +1,16 @@
 // Flutter imports:
 
-// Package imports:
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-// Project imports:
-import 'package:exdock_backend_client/globals/styling.dart';
-import 'package:exdock_backend_client/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
-import 'package:exdock_backend_client/utils/attributes/generate_attribute.dart';
-import 'package:exdock_backend_client/utils/map_notifier.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+
+// Project imports:
+import 'package:exdock_backoffice/globals/styling.dart';
+import 'package:exdock_backoffice/pages/catalog/product/info/product_info_card/product_info_card_title.dart';
+import 'package:exdock_backoffice/utils/attributes/generate_attribute.dart';
+import 'package:exdock_backoffice/utils/map_notifier.dart';
 
 class ProductPriceCard extends StatefulWidget {
   const ProductPriceCard({
@@ -61,17 +63,18 @@ class _ProductPriceCardState extends State<ProductPriceCard> {
       },
     );
 
-    if (widget.block.value['sale_dates'] != null) {
+    if (widget.block.value['product_sale_dates'] != null) {
       final List<String> startDateSplit = widget
-          .block.value['sale_dates'][0]['current_attribute_value']
+          .block.value['product_sale_dates'][0]['current_attribute_value']
           .split('-');
       startDate = DateTime.utc(int.parse(startDateSplit[0]),
           int.parse(startDateSplit[1]), int.parse(startDateSplit[2]));
     }
-    if (widget.block.value['sale_dates'][1]['current_attribute_value'] !=
+    if (widget.block.value['product_sale_dates'][1]
+            ['current_attribute_value'] !=
         null) {
       final List<String> endDateSplit = widget
-          .block.value['sale_dates'][1]['current_attribute_value']
+          .block.value['product_sale_dates'][1]['current_attribute_value']
           .split('-');
       endDate = DateTime.utc(int.parse(endDateSplit[0]),
           int.parse(endDateSplit[1]), int.parse(endDateSplit[2]));

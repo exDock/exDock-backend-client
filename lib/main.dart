@@ -1,20 +1,20 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:async';
 import 'dart:developer' as developer;
 
-// Project imports:
-import 'package:exdock_backend_client/router/router.dart';
-import 'package:exdock_backend_client/utils/startup.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:go_router/go_router.dart';
-import 'package:localstorage/localstorage.dart';
+
+// Project imports:
+import 'package:exdock_backoffice/router/router.dart';
+import 'package:exdock_backoffice/utils/startup.dart';
 
 void main() async {
-  GoRouter.optionURLReflectsImperativeAPIs = true;
-
   // --- Use runZonedGuarded as the outermost error handler ---
   // This will catch ALL unhandled errors, synchronous or asynchronous,
   // that occur within its zone, including those that might somehow
@@ -23,7 +23,6 @@ void main() async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       GoRouter.optionURLReflectsImperativeAPIs = true;
-      await initLocalStorage();
       usePathUrlStrategy();
 
       // Explicitly handle errors during application startup.
@@ -54,7 +53,8 @@ void main() async {
       if (router.configuration.routes.isNotEmpty &&
           error.runtimeType.toString() == "NotAuthenticatedException") {
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          router.go('/login');
+          print("tets");
+          router.push('/login');
         });
       }
 

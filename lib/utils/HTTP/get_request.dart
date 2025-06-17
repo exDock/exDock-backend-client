@@ -2,24 +2,25 @@
 import 'dart:io';
 
 // Package imports:
-import 'package:exdock_backend_client/globals/variables.dart';
-// Project imports:
-import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
-import 'package:exdock_backend_client/utils/HTTP/login_requests.dart';
-import 'package:exdock_backend_client/utils/authentication/authentication_data.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
 
+// Project imports:
+import 'package:exdock_backoffice/globals/variables.dart';
+import 'package:exdock_backoffice/utils/HTTP/http_data.dart';
+import 'package:exdock_backoffice/utils/HTTP/login_requests.dart';
+import 'package:exdock_backoffice/utils/authentication/authentication_data.dart';
+
 Future<HttpData> standardGetRequest(String endpoint) async {
-  FlutterSecureStorage storage = const FlutterSecureStorage();
+  const FlutterSecureStorage storage = FlutterSecureStorage();
   int statusCode;
   String responseBody = "";
   String? accessToken = await storage.read(key: "access_token");
-  String? refreshToken = await storage.read(key: "refresh_token");
-  String baseUrl = settings.getSetting("base_url");
+  final String? refreshToken = await storage.read(key: "refresh_token");
+  final String baseUrl = settings.getSetting("base_url");
 
-  Uri uri = Uri.parse(baseUrl + endpoint);
+  final Uri uri = Uri.parse(baseUrl + endpoint);
   if (accessToken == null) {
     return HttpData(statusCode: 401, responseBody: null);
   }
@@ -37,7 +38,7 @@ Future<HttpData> standardGetRequest(String endpoint) async {
   }
 
   try {
-    http.Response response = await http.get(
+    final http.Response response = await http.get(
       uri,
       headers: {HttpHeaders.authorizationHeader: 'Bearer $accessToken'},
     );

@@ -1,13 +1,16 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:convert';
 
-import 'package:exdock_backend_client/globals/variables.dart';
-import 'package:exdock_backend_client/pages/system/blocks/generate_system_block.dart';
-import 'package:exdock_backend_client/pages/system/blocks/system_block.dart';
-import 'package:exdock_backend_client/pages/system/top_bar/system_top_bar.dart';
-import 'package:exdock_backend_client/utils/HTTP/post_requests.dart';
-import 'package:exdock_backend_client/utils/map_notifier.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backoffice/globals/variables.dart';
+import 'package:exdock_backoffice/pages/system/blocks/generate_system_block.dart';
+import 'package:exdock_backoffice/pages/system/blocks/system_block.dart';
+import 'package:exdock_backoffice/pages/system/top_bar/system_top_bar.dart';
+import 'package:exdock_backoffice/utils/HTTP/post_requests.dart';
+import 'package:exdock_backoffice/utils/map_notifier.dart';
 
 class SystemSynchronous extends StatelessWidget {
   const SystemSynchronous({
@@ -21,23 +24,23 @@ class SystemSynchronous extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MapNotifier changeSettingsMap = MapNotifier();
-    List<MapEntry<String, dynamic>> blocksEntriesList = blocks.entries.toList();
+    final MapNotifier changeSettingsMap = MapNotifier();
+    final List<MapEntry<String, dynamic>> blocksEntriesList = blocks.entries.toList();
 
     void saveValues() async {
       Map<String, dynamic> serverRequestMap = {};
-      for (var entry in changeSettingsMap.value.entries) {
+      for (final entry in changeSettingsMap.value.entries) {
         if (entry.value != null) {
           serverRequestMap[entry.key] = entry.value;
         }
       }
 
       if (serverRequestMap.isNotEmpty) {
-        serverRequestMap = settings.setSettings(serverRequestMap);
+        serverRequestMap = settings.saveSettings(serverRequestMap);
         changeSettingsMap.value.clear();
 
         try {
-          var response = await standardPostRequest(
+          final response = await standardPostRequest(
             "/api/v1/system/setSettings",
             jsonEncode(serverRequestMap),
           );

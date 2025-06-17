@@ -1,10 +1,15 @@
-import 'package:exdock_backend_client/globals/variables.dart';
-import 'package:exdock_backend_client/widgets/buttons/exdock_button.dart';
-import 'package:exdock_backend_client/widgets/input/exdock_text_field.dart';
-import 'package:exdock_backend_client/widgets/popup/exdock_big_popup.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:http/http.dart';
 import 'package:kumi_popup_window/kumi_popup_window.dart';
+
+// Project imports:
+import 'package:exdock_backoffice/globals/variables.dart';
+import 'package:exdock_backoffice/widgets/buttons/exdock_button.dart';
+import 'package:exdock_backoffice/widgets/input/exdock_text_field.dart';
+import 'package:exdock_backoffice/widgets/popup/exdock_big_popup.dart';
 
 class LoginSettings extends StatefulWidget {
   const LoginSettings({super.key});
@@ -16,20 +21,20 @@ class LoginSettings extends StatefulWidget {
 class _LoginSettingsState extends State<LoginSettings> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
-    ValueNotifier<String?> errorNotifier = ValueNotifier<String?>(null);
-    ValueNotifier<bool> isValidated = ValueNotifier<bool>(false);
-    controller.text = settings.getSetting<String>("baseUrl");
+    final TextEditingController controller = TextEditingController();
+    final ValueNotifier<String?> errorNotifier = ValueNotifier<String?>(null);
+    final ValueNotifier<bool> isValidated = ValueNotifier<bool>(false);
+    controller.text = settings.getSetting<String>("base_url");
 
     void handleCheckValues() async {
       try {
-        String base = controller.text;
-        Uri uri = Uri.parse("$base/api/v1/ping");
+        final String base = controller.text;
+        final Uri uri = Uri.parse("$base/api/v1/ping");
         if (uri.scheme.isEmpty || uri.host.isEmpty) {
           throw const FormatException("Invalid URL format");
         }
 
-        var response = await get(uri);
+        final response = await get(uri);
 
         if (response.statusCode != 200) {
           throw Exception("Server not reachable");
@@ -60,22 +65,26 @@ class _LoginSettingsState extends State<LoginSettings> {
               title: "Login Settings",
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
-                  ValueListenableBuilder(
-                      valueListenable: errorNotifier,
-                      builder: (context, errorText, child) {
-                        return ExdockTextField(
-                          controller: controller,
-                          onChanged: (text) {},
-                          labelText: "Server URL",
-                          errorText: errorText,
-                        );
-                      }),
-                  const Expanded(
-                    child: SizedBox(),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: errorNotifier,
+                        builder: (context, errorText, child) {
+                          return ExdockTextField(
+                            controller: controller,
+                            onChanged: (text) {},
+                            labelText: "Server URL",
+                            errorText: errorText,
+                          );
+                        },
+                      ),
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

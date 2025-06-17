@@ -1,12 +1,15 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:convert';
 
-import 'package:exdock_backend_client/globals/variables.dart';
-import 'package:exdock_backend_client/pages/system/system_synchronous.dart';
-import 'package:exdock_backend_client/utils/HTTP/get_request.dart';
-import 'package:exdock_backend_client/utils/HTTP/http_data.dart';
-import 'package:exdock_backend_client/utils/map_notifier.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:exdock_backoffice/globals/variables.dart';
+import 'package:exdock_backoffice/pages/system/system_synchronous.dart';
+import 'package:exdock_backoffice/utils/HTTP/get_request.dart';
+import 'package:exdock_backoffice/utils/HTTP/http_data.dart';
+import 'package:exdock_backoffice/utils/map_notifier.dart';
 
 class System extends StatefulWidget {
   const System({super.key});
@@ -17,16 +20,16 @@ class System extends StatefulWidget {
 
 class _SystemState extends State<System> {
   Future<Map<String, dynamic>> getSystemData() async {
-    HttpData httpData = await standardGetRequest("/api/v1/system/getSettings");
+    final HttpData httpData = await standardGetRequest("/api/v1/system/getSettings");
 
-    Map<String, dynamic> backOfficeSettings = {
+    final Map<String, dynamic> backOfficeSettings = {
       "BackOffice Settings": {
         "block_type": "standard",
         "attributes": generateBackOfficeSettings(),
       },
     };
 
-    Map<String, dynamic> jsonData =
+    final Map<String, dynamic> jsonData =
         jsonDecode(httpData.responseBody!) as Map<String, dynamic>;
     jsonData.addAll(backOfficeSettings);
 
@@ -39,6 +42,7 @@ class _SystemState extends State<System> {
         future: getSystemData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
+            print(snapshot.error);
             return const Placeholder();
           }
 
@@ -64,9 +68,9 @@ Map<String, dynamic> generateBackendAttribute(
 }
 
 List<Map<String, dynamic>> generateBackOfficeSettings() {
-  List<Map<String, dynamic>> backOfficeSettings = [];
-  List<String> settingsKeys = settings.getSettingKeys();
-  for (String key in settingsKeys) {
+  final List<Map<String, dynamic>> backOfficeSettings = [];
+  final List<String> settingsKeys = settings.getSettingsKeys();
+  for (final String key in settingsKeys) {
     backOfficeSettings.add({
       "attribute_id": key,
       "attribute_name": key.replaceAll("_", " ").capitalize(),

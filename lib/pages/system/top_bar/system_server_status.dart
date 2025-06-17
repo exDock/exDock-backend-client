@@ -1,6 +1,7 @@
 import 'package:exdock_backoffice/globals/variables.dart';
 import 'package:exdock_backoffice/utils/HTTP/connect_websocket_stream.dart';
 import 'package:exdock_backoffice/utils/authentication/authentication_data.dart';
+import 'package:exdock_backoffice/widgets/exdock_gradient_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -63,19 +64,43 @@ class _SystemServerStatusState extends State<SystemServerStatus> {
                 ),
               ),
               const SizedBox(width: 24),
-              Text(
-                'CPU Usage: ${serverHealth.processCpuUsage.toStringAsFixed(2)}%',
-                style: const TextStyle(
+              const Text(
+                'Process CPU Usage: ',
+                style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                 ),
               ),
+              SizedBox(
+                width: 200,
+                child: ExDockGradientProgressBar(
+                  progress: serverHealth.processCpuUsage,
+                  gradientColors: const [
+                    Colors.green,
+                    Colors.yellow,
+                    Colors.red,
+                  ],
+                  showPercentage: true,
+                ),
+              ),
               const SizedBox(width: 24),
-              Text(
-                'System CPU Usage: ${serverHealth.systemCpuUsage.toStringAsFixed(2)}%',
-                style: const TextStyle(
+              const Text(
+                'System CPU Usage:',
+                style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
+                ),
+              ),
+              SizedBox(
+                width: 200,
+                child: ExDockGradientProgressBar(
+                  progress: serverHealth.systemCpuUsage,
+                  gradientColors: const [
+                    Colors.green,
+                    Colors.yellow,
+                    Colors.red,
+                  ],
+                  showPercentage: true,
                 ),
               ),
             ],

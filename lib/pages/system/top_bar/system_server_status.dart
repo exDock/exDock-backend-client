@@ -85,7 +85,7 @@ class _SystemServerStatusState extends State<SystemServerStatus> {
               ),
               const SizedBox(width: 24),
               const Text(
-                'System CPU Usage:',
+                'System CPU Usage: ',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,

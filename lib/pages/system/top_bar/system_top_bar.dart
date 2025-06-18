@@ -39,16 +39,6 @@ class _SystemTopBarState extends State<SystemTopBar> {
           const SizedBox(
             width: 35,
           ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Text(
-              widget.name,
-              style: const TextStyle(
-                fontSize: 25,
-                color: Colors.white,
-              ),
-            ),
-          ),
           const SystemServerStatus(),
           const Expanded(
             child: SizedBox(),

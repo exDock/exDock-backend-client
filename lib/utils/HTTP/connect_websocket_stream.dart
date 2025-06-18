@@ -84,6 +84,8 @@ Future<WebSocketChannel> getWebsocketChannel(
               timestamp: data["timeStamp"],
               processCpuUsage: data["processCpuLoad"],
               systemCpuUsage: data["systemCpuLoad"],
+              totalMemory: data["totalMemory"],
+              usedMemory: data["usedMemory"],
             );
             values.value = serverHealth;
             break;

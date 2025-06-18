@@ -3,6 +3,7 @@ import 'package:exdock_backoffice/utils/HTTP/connect_websocket_stream.dart';
 import 'package:exdock_backoffice/utils/authentication/authentication_data.dart';
 import 'package:exdock_backoffice/widgets/exdock_gradient_progress_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class SystemServerStatus extends StatefulWidget {
@@ -20,6 +21,8 @@ class _SystemServerStatusState extends State<SystemServerStatus> {
       timestamp: 0,
       processCpuUsage: 0.0,
       systemCpuUsage: 0.0,
+      totalMemory: 0,
+      usedMemory: 0,
     ),
   );
   late Future<WebSocketChannel> _channel;
@@ -42,69 +45,93 @@ class _SystemServerStatusState extends State<SystemServerStatus> {
 
   @override
   Widget build(BuildContext context) {
+    final f = NumberFormat("##.###", "en_US");
     return ValueListenableBuilder(
       valueListenable: _serverHealthNotifier,
       builder: (context, ServerHealth serverHealth, child) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                serverHealth.serverStatus.icon,
-                color: serverHealth.serverStatus.color,
-                size: 30,
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            // Determine if the process CPU usage should
+            // be included based on screen width
+            final bool includeProcess =
+                MediaQuery.of(context).size.width > 1650;
+            final List<Widget> processWidgets = includeProcess
+                ? [
+                    const Text(
+                      'Process CPU Usage: ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: ExDockGradientProgressBar(
+                        progress: serverHealth.processCpuUsage,
+                        gradientColors: const [
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.red,
+                        ],
+                        showPercentage: true,
+                      ),
+                    ),
+                    const SizedBox(width: 24),
+                  ]
+                : [];
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    serverHealth.serverStatus.icon,
+                    color: serverHealth.serverStatus.color,
+                    size: 30,
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    "SERVER STATUS: ${serverHealth.serverStatus.toString().split('.').last.toUpperCase()}",
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(width: 24),
+                  ...processWidgets,
+                  const Text(
+                    'System CPU Usage: ',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: ExDockGradientProgressBar(
+                      progress: serverHealth.systemCpuUsage,
+                      gradientColors: const [
+                        Colors.green,
+                        Colors.yellow,
+                        Colors.red,
+                      ],
+                      showPercentage: true,
+                    ),
+                  ),
+                  const SizedBox(width: 24),
+                  Text(
+                    "Memory Usage: ${f.format(serverHealth.usedMemory / 1000)} / "
+                    "${f.format(serverHealth.totalMemory / 1000)} GB",
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 10),
-              Text(
-                "SERVER STATUS: ${serverHealth.serverStatus.toString().split('.').last.toUpperCase()}",
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(width: 24),
-              const Text(
-                'Process CPU Usage: ',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-              SizedBox(
-                width: 200,
-                child: ExDockGradientProgressBar(
-                  progress: serverHealth.processCpuUsage,
-                  gradientColors: const [
-                    Colors.green,
-                    Colors.yellow,
-                    Colors.red,
-                  ],
-                  showPercentage: true,
-                ),
-              ),
-              const SizedBox(width: 24),
-              const Text(
-                'System CPU Usage: ',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-              SizedBox(
-                width: 200,
-                child: ExDockGradientProgressBar(
-                  progress: serverHealth.systemCpuUsage,
-                  gradientColors: const [
-                    Colors.green,
-                    Colors.yellow,
-                    Colors.red,
-                  ],
-                  showPercentage: true,
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         );
       },
     );
@@ -123,12 +150,16 @@ class ServerHealth {
   final int timestamp;
   final double processCpuUsage;
   final double systemCpuUsage;
+  final int totalMemory;
+  final int usedMemory;
 
   ServerHealth({
     required this.serverStatus,
     required this.timestamp,
     required this.processCpuUsage,
     required this.systemCpuUsage,
+    required this.totalMemory,
+    required this.usedMemory,
   });
 }
 

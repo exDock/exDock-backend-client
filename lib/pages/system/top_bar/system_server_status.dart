@@ -54,14 +54,14 @@ class _SystemServerStatusState extends State<SystemServerStatus> {
             // Determine if the process CPU usage should
             // be included based on screen width
             final bool includeProcess =
-                MediaQuery.of(context).size.width > 1650;
+                MediaQuery.of(context).size.width > 1525;
             final List<Widget> processWidgets = includeProcess
                 ? [
                     const Text(
                       'Process CPU Usage: ',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: 12,
                       ),
                     ),
                     SizedBox(
@@ -95,7 +95,7 @@ class _SystemServerStatusState extends State<SystemServerStatus> {
                     "SERVER STATUS: ${serverHealth.serverStatus.toString().split('.').last.toUpperCase()}",
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 14,
                     ),
                   ),
                   const SizedBox(width: 24),
@@ -104,7 +104,7 @@ class _SystemServerStatusState extends State<SystemServerStatus> {
                     'System CPU Usage: ',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 12,
                     ),
                   ),
                   SizedBox(
@@ -125,7 +125,7 @@ class _SystemServerStatusState extends State<SystemServerStatus> {
                     "${f.format(serverHealth.totalMemory / 1000)} GB",
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 12,
                     ),
                   ),
                 ],

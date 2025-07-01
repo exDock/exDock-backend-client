@@ -20,7 +20,8 @@ class System extends StatefulWidget {
 
 class _SystemState extends State<System> {
   Future<Map<String, dynamic>> getSystemData() async {
-    final HttpData httpData = await standardGetRequest("/api/v1/system/getSettings");
+    final HttpData httpData =
+        await standardGetRequest("/api/v1/system/getSettings");
 
     final Map<String, dynamic> backOfficeSettings = {
       "BackOffice Settings": {
@@ -42,7 +43,6 @@ class _SystemState extends State<System> {
         future: getSystemData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            print(snapshot.error);
             return const Placeholder();
           }
 
